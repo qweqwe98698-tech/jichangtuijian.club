@@ -1,0 +1,90 @@
+{
+  "id": "yifan",
+  "name": "一翻云",
+  "slug": "yifan",
+  "tagline": "20 元档大流量之王 · 150GB VLESS + IEPL 专线",
+  "establishedYear": 2024,
+  "officialUrl": "https://guangs.1flyunaff.cc/#/register?code=Yr7FhB7r",
+  "couponCode": "yfy6666",
+  "discount": "专属优惠码",
+  "pricing": {
+    "monthlyStarting": 20,
+    "currency": "¥",
+    "billingCycle": "月付 20 元/月，150GB"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "国内 BGP 骨干"
+  ],
+  "protocols": [
+    "VLESS",
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "streamingSupport": {
+    "netflix": "全区解锁",
+    "disney": "全区解锁",
+    "youtube4k": "秒开 4K/8K"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.91%",
+    "averageLatency": "17ms",
+    "peakSpeed": "830 Mbps",
+    "packetLoss": "< 0.05%"
+  },
+  "measuredEvidence": {
+    "file": "/images/speedtests/yifan-speedtest.png",
+    "testedAt": "2026-08-11T00:21:30+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  },
+  "plans": [
+    {
+      "name": "大流量标准版",
+      "price": "¥20/月",
+      "traffic": "150 GB/月",
+      "speed": "1000 Mbps IEPL"
+    },
+    {
+      "name": "大流量旗舰版",
+      "price": "¥38/月",
+      "traffic": "320 GB/月",
+      "speed": "1000 Mbps IEPL"
+    }
+  ],
+  "bestFor": [
+    "20元预算需要 150GB 满血流量的用户",
+    "重度追剧与视频大户",
+    "AI 开发者"
+  ],
+  "notFor": [
+    "每月用不满 30GB 的极小流量用户"
+  ],
+  "pros": [
+    "20元档位给足 150GB 流量，性价比极高",
+    "VLESS 协议与 IEPL 专线双重保障",
+    "直接支持通用第三方订阅导入"
+  ],
+  "cons": [
+    "无 10 元以下超低价方案"
+  ],
+  "runawayRisk": "低 (定价健康，用户基数大)",
+  "lastVerified": "2026-08-17",
+  "verificationStatus": "verified"
+}

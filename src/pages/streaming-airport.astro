@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import ProviderCard from '../components/ProviderCard.astro';
+import FAQ from '../components/FAQ.astro';
+import NextStep from '../components/NextStep.astro';
+import { getAllProviders } from '../lib/providers';
+
+const streamingProviders = getAllProviders().filter((p) => p.streamingSupport.netflix.includes('解锁') || p.streamingSupport.youtube4k.includes('秒开'));
+
+const faqs = [
+  {
+    question: '看 4K / 8K 流媒体视频对机场有什么硬性要求？',
+    answer: '主要看两点：一是单线程下行带宽必须稳定在 50Mbps 以上且晚高峰不丢包；二是节点必须支持流媒体平台的 DNS 原生解锁或 SNI 代理，否则平台会提示“您似乎使用了流媒体解锁器/代理”。',
+  },
+];
+---
+
+<BaseLayout
+  title="2026 流媒体机场推荐：Netflix / Disney+ / YouTube 4K 秒开原生解锁"
+  description="2026 4K/8K 流媒体专用机场推荐。全节点支持 Netflix 非自制剧、Disney+、HBO Max、BBC iPlayer 原生解锁，晚高峰大带宽无缓冲秒开。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '流媒体机场推荐' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-rose-400 uppercase tracking-widest block mb-2">4K STREAMING NODES</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        2026 4K/8K 流媒体稳定机场推荐
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        专为 Netflix、Disney+、YouTube 4K 发烧友精选。大带宽专线保障，晚高峰拒绝画质降级与缓冲圈。
+      </p>
+    </div>
+
+    <QuickAnswer
+      answerType="decision"
+      summary="流媒体重度用户首推 Flyint 飞鸟云 与 TAG Internet。两家均拥有专门的流媒体解锁维护脚本，港/日/新/美/英等主流版权区 100% 原生解锁，拖拽进度条 0 等待。"
+      points={[
+        'YouTube 4K/8K 缓冲速率实测突破 150,000 Kbps',
+        '全节点覆盖 Netflix 非自制版权剧集与 Disney+ 4K HDR',
+        '支持 Apple TV 与智能电视软路由无感分流',
+      ]}
+    />
+
+    <div class="my-10 space-y-6">
+      {streamingProviders.map((p, idx) => (
+        <ProviderCard provider={p} rankingIndex={idx} highlightBadge="流媒体 4K 认证" />
+      ))}
+    </div>
+
+    <FAQ items={faqs} title="流媒体与 Netflix 解锁问答" />
+
+    <NextStep
+      level="level2"
+      title="想了解 Netflix 原生解锁原理？"
+      description="深入阅读 Netflix 专区与原生 IP 技术解析。"
+      primaryLink={{ text: '查看 Netflix 专用机场指南', url: '/netflix-airport/' }}
+      secondaryLink={{ text: '查看 YouTube 加载慢排查', url: '/youtube/' }}
+    />
+  </div>
+</BaseLayout>

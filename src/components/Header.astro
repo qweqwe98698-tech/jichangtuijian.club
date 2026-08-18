@@ -1,0 +1,186 @@
+---
+// Header.astro
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-white/10 bg-[#090d16]/90 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Logo & Brand -->
+    <a href="/" class="flex items-center gap-3 group">
+      <div class="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 font-bold font-mono group-hover:bg-cyan-500/30 transition-all">
+        JC
+      </div>
+      <div>
+        <span class="text-lg font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
+          机场推荐 <span class="text-cyan-400">Club</span>
+        </span>
+        <span class="hidden sm:inline-block ml-2 text-xs text-slate-400 font-normal">
+          网络知识与选型中心
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+      <!-- 机场推荐 Dropdown -->
+      <div class="relative group py-2">
+        <a href="/airport-ranking/" class="flex items-center gap-1 hover:text-cyan-400 transition-colors">
+          机场推荐
+          <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+        <div class="absolute left-0 top-full hidden group-hover:block w-56 p-2 rounded-xl bg-slate-900 border border-white/10 shadow-2xl backdrop-blur-xl">
+          <a href="/airport-ranking/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">2026 综合排行榜</a>
+          <a href="/stable-airport/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">稳定专线机场 (防断连)</a>
+          <a href="/cheap-airport/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">便宜平价机场 (学生党)</a>
+          <a href="/dedicated-line-airport/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">IEPL / IPLC 纯专线</a>
+          <a href="/value-airport/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">高性价比均衡推荐</a>
+          <a href="/pay-as-you-go-airport/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">不限时按量计费</a>
+        </div>
+      </div>
+
+      <a href="/airport-ranking/" class="hover:text-cyan-400 transition-colors">排行榜</a>
+
+      <!-- 客户端 -->
+      <div class="relative group py-2">
+        <a href="/tutorial/" class="flex items-center gap-1 hover:text-cyan-400 transition-colors">
+          客户端
+          <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+        <div class="absolute left-0 top-full hidden group-hover:block w-60 p-2 rounded-xl bg-slate-900 border border-white/10 shadow-2xl backdrop-blur-xl">
+          <a href="/tutorial/clash-verge/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Clash Verge 配置 (Win/Mac)</a>
+          <a href="/tutorial/shadowrocket/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Shadowrocket 小火箭 (iOS)</a>
+          <a href="/tutorial/openwrt-openclash/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">OpenClash 软路由 (全屋透明)</a>
+          <a href="/tutorial/apple-tv/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Apple TV 原生客户端教程</a>
+          <a href="/tutorial/android-clash/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Android 安卓手机配置与保活</a>
+          <a href="/tutorial/surge/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Surge for Mac / iOS 极客配置</a>
+          <a href="/tutorial/sing-box/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">sing-box 新一代通用内核</a>
+          <a href="/tutorial/v2rayn/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">v2rayN 电脑端</a>
+        </div>
+      </div>
+
+      <!-- 使用场景 -->
+      <div class="relative group py-2">
+        <a href="/chatgpt-airport/" class="flex items-center gap-1 hover:text-cyan-400 transition-colors">
+          使用场景
+          <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+        <div class="absolute left-0 top-full hidden group-hover:block w-60 p-2 rounded-xl bg-slate-900 border border-white/10 shadow-2xl backdrop-blur-xl">
+          <a href="/scene/developer/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Cursor / 开发者专用节点</a>
+          <a href="/scene/tiktok-matrix/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">TikTok 跨境出海与原生住宅</a>
+          <a href="/scene/gaming-acceleration/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Steam / PS5 游戏低延迟加速</a>
+          <a href="/scene/crypto-trading/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Web3 / 币安与交易所合规专线</a>
+          <a href="/chatgpt-airport/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">ChatGPT / Claude 专用</a>
+          <a href="/streaming-airport/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Netflix / 流媒体 4K</a>
+        </div>
+      </div>
+
+      <!-- 技术知识 -->
+      <div class="relative group py-2">
+        <a href="/knowledge/" class="flex items-center gap-1 hover:text-cyan-400 transition-colors">
+          技术知识
+          <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+        <div class="absolute left-0 top-full hidden group-hover:block w-64 p-2 rounded-xl bg-slate-900 border border-white/10 shadow-2xl backdrop-blur-xl">
+          <a href="/knowledge/vless-vs-vmess/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">VLESS vs VMess 深度对比</a>
+          <a href="/knowledge/tuic-vs-hysteria2/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">TUIC v5 vs Hysteria 2 实测</a>
+          <a href="/knowledge/reality/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Reality 真实 TLS 伪装机制</a>
+          <a href="/knowledge/mihomo-vs-singbox/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Mihomo vs sing-box 核心选型</a>
+          <a href="/knowledge/transit-costs/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">专线真实成本透明账本</a>
+          <a href="/knowledge/subconverter-security/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">在线订阅转换安全陷阱</a>
+          <a href="/knowledge/iepl/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">IEPL 与 IPLC 区别</a>
+          <a href="/knowledge/native-ip/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">原生 IP 与广播 IP 原理</a>
+        </div>
+      </div>
+
+      <!-- 故障排查 -->
+      <a href="/troubleshooting/" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+        故障排查
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      </a>
+
+      <!-- 公益福利 Dropdown -->
+      <div class="relative group py-2">
+        <a href="/free-nodes/" class="flex items-center gap-1 text-emerald-300 hover:text-emerald-400 transition-colors font-semibold">
+          公益福利
+          <span class="px-1.5 py-0.2 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">每日更新</span>
+          <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+        <div class="absolute left-0 top-full hidden group-hover:block w-56 p-2 rounded-xl bg-slate-900 border border-emerald-500/30 shadow-2xl backdrop-blur-xl">
+          <a href="/apple-id/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-emerald-500/10 hover:text-emerald-300">
+            🍎 免费 Apple ID 共享池
+          </a>
+          <a href="/free-nodes/" class="block px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-emerald-500/10 hover:text-emerald-300">
+            ⚡ 每日免费节点订阅池
+          </a>
+        </div>
+      </div>
+
+      <!-- 风险预警 -->
+      <div class="relative group py-2">
+        <a href="/risk-warning/" class="flex items-center gap-1 text-rose-300 hover:text-rose-400 transition-colors">
+          风险预警
+          <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+        <div class="absolute left-0 top-full hidden group-hover:block w-64 p-2 rounded-xl bg-slate-900 border border-rose-500/20 shadow-2xl backdrop-blur-xl">
+          <a href="/risk-warning/runaway-blacklist/" class="block px-3 py-2 rounded-lg text-xs text-rose-300 hover:bg-rose-500/10">已跑路与失联机场黑名单</a>
+          <a href="/risk-warning/runaway-signs/" class="block px-3 py-2 rounded-lg text-xs text-rose-300 hover:bg-rose-500/10">机场跑路前夕五大征兆</a>
+          <a href="/risk-warning/free-nodes-danger/" class="block px-3 py-2 rounded-lg text-xs text-rose-300 hover:bg-rose-500/10">免费白嫖节点安全陷阱</a>
+          <a href="/risk-warning/speedtest-lies/" class="block px-3 py-2 rounded-lg text-xs text-rose-300 hover:bg-rose-500/10">测速图造假与跑分内幕</a>
+          <a href="/risk-warning/annual-plan-risk/" class="block px-3 py-2 rounded-lg text-xs text-rose-300 hover:bg-rose-500/10">年付订阅陷阱深度剖析</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="flex items-center gap-3">
+      <a
+        href="/#search-section"
+        class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+        aria-label="搜索知识库"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </a>
+
+      <a
+        href="/airport-ranking/"
+        class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 transition-all"
+      >
+        开始选型
+      </a>
+
+      <!-- Mobile Menu Button (Toggle Details/Summary or Minimal Checkbox) -->
+      <details class="lg:hidden relative">
+        <summary class="list-none p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 cursor-pointer" aria-label="移动端菜单">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </summary>
+        <div class="absolute right-0 top-full mt-2 w-64 p-4 rounded-xl bg-slate-900 border border-white/10 shadow-2xl text-sm flex flex-col gap-2 z-50">
+          <a href="/airport-ranking/" class="px-3 py-2 rounded-lg text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">机场推荐排行榜</a>
+          <a href="/apple-id/" class="px-3 py-2 rounded-lg text-emerald-300 hover:bg-emerald-500/10">🍎 免费 Apple ID 共享</a>
+          <a href="/free-nodes/" class="px-3 py-2 rounded-lg text-emerald-300 hover:bg-emerald-500/10">⚡ 每日免费节点订阅</a>
+          <a href="/stable-airport/" class="px-3 py-2 rounded-lg text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">稳定专线机场</a>
+          <a href="/cheap-airport/" class="px-3 py-2 rounded-lg text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">便宜平价机场</a>
+          <a href="/tutorial/" class="px-3 py-2 rounded-lg text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">客户端教程中心</a>
+          <a href="/chatgpt-airport/" class="px-3 py-2 rounded-lg text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">ChatGPT 专用节点</a>
+          <a href="/knowledge/" class="px-3 py-2 rounded-lg text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">技术百科</a>
+          <a href="/troubleshooting/" class="px-3 py-2 rounded-lg text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">故障排查中心</a>
+          <a href="/risk-warning/" class="px-3 py-2 rounded-lg text-rose-300 hover:bg-rose-500/10">风险预警与避坑</a>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>

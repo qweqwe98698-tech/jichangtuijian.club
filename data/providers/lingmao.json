@@ -1,0 +1,96 @@
+{
+  "id": "lingmao",
+  "name": "灵猫网络",
+  "slug": "lingmao",
+  "tagline": "月付 19 元享 150GB 超大流量 · 拒绝年付绑架的良心首选",
+  "establishedYear": 2024,
+  "officialUrl": "https://vip01.civetnet.com/#/?code=8MIAyxak",
+  "couponCode": "lmao888",
+  "discount": "新人注册 9 折",
+  "pricing": {
+    "monthlyStarting": 19,
+    "currency": "¥",
+    "billingCycle": "月付 19 元/月，150GB"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "企业级内网专线",
+    "多入口 BGP 智能调度"
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "V2Ray"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "streamingSupport": {
+    "netflix": "全区解锁",
+    "disney": "全区解锁",
+    "youtube4k": "秒开 4K"
+  },
+  "aiSupport": {
+    "chatgpt": "原生解锁",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.90%",
+    "averageLatency": "18ms",
+    "peakSpeed": "780 Mbps",
+    "packetLoss": "< 0.08%"
+  },
+  "measuredEvidence": {
+    "file": "/images/speedtests/lingmao-speedtest.png",
+    "testedAt": "2026-08-11T18:45:40+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  },
+  "plans": [
+    {
+      "name": "大流量月付套餐",
+      "price": "¥19/月",
+      "traffic": "150 GB/月",
+      "speed": "1000 Mbps 专线"
+    },
+    {
+      "name": "进阶尊享月付",
+      "price": "¥35/月",
+      "traffic": "320 GB/月",
+      "speed": "1000 Mbps 专线"
+    },
+    {
+      "name": "不限时随心包",
+      "price": "¥88 (一次性)",
+      "traffic": "300 GB 不限时",
+      "speed": "1000 Mbps 专线"
+    }
+  ],
+  "bestFor": [
+    "坚持纯月付拒绝年付的用户",
+    "每月 100-150GB 视频与日常重度用户",
+    "多设备家庭共享"
+  ],
+  "notFor": [
+    "预算极低(<10元)只想要超小流量的用户"
+  ],
+  "pros": [
+    "真正纯月付友好，19元即给 150GB 专线流量",
+    "同时提供不限时套餐，灵活度高",
+    "专线质量过硬，晚高峰带宽充足"
+  ],
+  "cons": [
+    "开业时间为2024年，相比老牌资历稍浅"
+  ],
+  "runawayRisk": "低 (月付无资金池沉淀压力)",
+  "lastVerified": "2026-08-17",
+  "verificationStatus": "verified"
+}

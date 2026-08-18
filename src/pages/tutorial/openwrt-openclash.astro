@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: 'OpenClash 的运行模式应该选 Fake-IP 还是 Redir-Host？',
+    answer: '2026 年强烈推荐首选【Fake-IP（TUN 混合）模式】。Fake-IP 模式由路由器本地代理核心直接为域名返回 198.18.0.1/16 网段的虚拟 IP，完全避免了本地运营商的 DNS 污染与解析延迟，网页首屏秒开率提升 50% 以上；仅在家庭网络内存在特殊不兼容的旧版物联网设备时，才考虑使用兼容性较好的 Redir-Host 模式。',
+  },
+  {
+    question: '在软路由上开启 OpenClash 后，家里普通设备需要额外安装软件吗？',
+    answer: '完全不需要。这正是软路由透明代理的核心魅力所在。只要软路由作为家庭主路由或旁路由生效，局域网内的所有设备（包括 iPhone、安卓手机、Windows 电脑、MacBook、PS5、Switch、Apple TV 与智能电视）无需安装任何科学上网软件，连上 Wi-Fi 即可自动实现海外网络秒开与国内流量直连。',
+  },
+  {
+    question: '软路由使用什么机场节点体验最好？',
+    answer: '软路由承载着全家数十台设备的高并发流量，强烈推荐使用具备大带宽冗余与低抖动的企业级 IEPL 专线机场（如光速云、星岛梦）。专线能够保证 Apple TV 播放 4K HDR 原盘、电脑下载与游戏机联机多任务并发时不抢占断流。',
+  },
+];
+---
+
+<BaseLayout
+  title="OpenWrt / 软路由 OpenClash 全屋透明代理保姆级教程：2026 全家无感翻墙指南"
+  description="2026 最新 OpenWrt 软路由 OpenClash 插件全屋透明代理保姆级配置教程。详解内核更新、订阅配置导入、Fake-IP 模式与全屋智能电视/游戏机无感分流 SOP。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '客户端教程', url: '/tutorial/' }, { title: 'OpenClash 软路由配置教程' }]} />
+
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3">
+        <span>全屋透明代理 · 软路由保姆级教程</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        OpenWrt / 软路由 OpenClash 全屋透明代理保姆级教程：2026 全家无感翻墙指南
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 9 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="OpenClash 是 OpenWrt 软路由平台上功能最强悍的科学上网插件。通过在软路由上部署 OpenClash 并开启 Fake-IP 混合模式，可以实现家庭 Wi-Fi 下所有手机、电脑、智能电视与游戏机 100% 免安装客户端、全屋全自动分流加速。"
+      points={[
+        '全屋免客户端：手机、电脑、电视连上 Wi-Fi 即刻科学上网，全家共享',
+        '极致性能：采用 Mihomo (Meta) 高性能核心，轻松跑满千兆家庭宽带',
+        '最佳拍档：搭配光速云或星岛梦 IEPL 专线，全家多设备并发 4K 拖拽 0 缓冲',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、什么是软路由透明代理？为什么家庭首选 OpenClash？</h2>
+        <p>
+          在传统方案中，用户的每一台手机、电脑、平板都需要单独下载并配置科学上网客户端。这不仅增加了多设备维护成本，而且像 Apple TV、PlayStation 5、Nintendo Switch 等闭源游戏机和智能电视，根本无法直接安装第三方代理客户端。
+        </p>
+        <p>
+          <strong>软路由透明代理（Transparent Proxy）</strong> 是终极解决方案：在家庭网络的网关入口（OpenWrt 路由器）统一运行代理内核。路由器在网络协议栈层面对所有进出流量实施自动化嗅探与智能分流：
+        </p>
+        <ul class="space-y-1.5 text-xs sm:text-sm text-slate-300 list-disc pl-5 leading-relaxed">
+          <li>访问国内网站（百度、淘宝、微信、Bilibili）时，路由器直接发起本地公网直连，保证低延迟；</li>
+          <li>访问海外服务（Google、YouTube、ChatGPT、Netflix）时，路由器自动将流量无感转发至优质专线节点。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>二、OpenClash 保姆级配置四步 SOP</h2>
+        <p>
+          请按照以下标准化流程完成 OpenClash 从内核准备到全屋加速的完整部署：
+        </p>
+
+        <div class="space-y-4 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/30 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">步骤 1：更新 Meta 开发者内核与 GeoIP 数据库</h3>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              登录 OpenWrt 管理后台，进入【服务】-【OpenClash】-【插件设置】-【版本更新】。点击下载并更新 <strong>Meta 内核（Mihomo）</strong> 与最新的 <code>GeoIP.dat</code> / <code>GeoSite.dat</code> 规则库，确保内核完整支持 VLESS Reality 与 Hysteria 2 协议。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/30 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">步骤 2：导入机场订阅并创建配置文件</h3>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              进入【配置订阅】面板，点击【添加】。在“配置文件名”中输入 <code>main-nodes</code>，在“订阅地址”中粘贴你从<strong>光速云</strong>或<strong>星岛梦</strong>后台复制的 Clash 订阅链接。勾选“自动更新”，更新周期设置为 <code>1440分钟（每天）</code>，保存并应用配置。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/30 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">步骤 3：模式设置与 DNS 防污染优化（核心关键）</h3>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              进入【模式设置】，运行模式选择 <strong>Fake-IP（TUN 混合模式）</strong>。<br />
+              进入【DNS 设置】，勾选“本地 DNS 劫持”，国内 NameServer 填入 <code>223.5.5.5</code>（阿里 DNS）与 <code>119.29.29.29</code>（腾讯 DNS）；Fallback 填入 <code>tls://8.8.8.8</code>（Google DoT），防止 DNS 污染。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/30 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">步骤 4：启动 OpenClash 并验证全屋连通性</h3>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              回到【运行状态】页面，点击【启动 OpenClash】。等待控制面板状态变为绿色【运行中】后，点击【Yacd 控制面板】选择深港或沪日专线节点。此时家中任意手机连接 Wi-Fi，无需任何客户端即可秒开 YouTube 4K 与 ChatGPT。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>三、家庭多设备并发：如何选择抗压专线机场？</h2>
+        <p>
+          当全家多台手机、电脑、电视和下载机同时挂在软路由下时，并发网络连接数动辄高达数千条。如果使用的廉价机场存在连接数限制或带宽虚标，路由器极易发生间歇性断流。
+        </p>
+        <p>
+          软路由透明代理场景下的服务商选型建议：
+        </p>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-300 list-disc pl-5 leading-relaxed">
+          <li><strong>家庭全天候主力（首选光速云）</strong>：支持多设备不限并发连接数，深港与沪日 IEPL 专线单线千兆冗余充足，晚高峰电视播放 4K 与电脑下载互不干扰；</li>
+          <li><strong>备用容灾方案（首选星岛梦）</strong>：在 OpenClash 中配置第二条 Fallback 订阅。星岛梦的不限时流量包长期有效，当主力线路维护时自动毫秒级切换，保障全家网络永不失联。</li>
+        </ul>
+      </section>
+    </article>
+
+    <FAQ items={faqs} title="OpenClash 软路由配置常见 FAQ" />
+
+    <NextStep
+      level="level2"
+      title="配置好全屋路由后，挑选一条高 SLA 的稳定专线"
+      description="查看 2026 综合天梯排行榜，挑选完美适配软路由高并发的多设备专线机场。"
+      primaryLink={{ text: '查看 2026 机场综合排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '阅读 Clash Verge 电脑端教程', url: '/tutorial/clash-verge/' }}
+    />
+  </div>
+</BaseLayout>

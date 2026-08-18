@@ -1,0 +1,51 @@
+---
+export interface Props {
+  level?: 'level1' | 'level2' | 'level3';
+  title?: string;
+  description?: string;
+  primaryLink?: { text: string; url: string };
+  secondaryLink?: { text: string; url: string };
+}
+
+const {
+  level = 'level2',
+  title = '下一步：找到适合你的可靠网络方案',
+  description = '根据你的主要使用场景（AI 开发、4K 流媒体、跨境外贸或低预算学习），选择经过 SLA 严格实测的专线服务。',
+  primaryLink = { text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' },
+  secondaryLink = { text: '阅读防跑路与避坑指南', url: '/risk-warning/runaway-signs/' },
+} = Astro.props;
+---
+
+<div class="my-10 p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-cyan-950/40 border border-cyan-500/20 shadow-xl">
+  <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div class="space-y-1.5 max-w-2xl">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+        <h4 class="text-base font-bold text-white tracking-tight">{title}</h4>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">{description}</p>
+    </div>
+
+    <div class="flex flex-wrap sm:flex-nowrap items-center gap-3 shrink-0">
+      {
+        secondaryLink && (
+          <a
+            href={secondaryLink.url}
+            class="px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-800 border border-white/5 transition-all"
+          >
+            {secondaryLink.text}
+          </a>
+        )
+      }
+      <a
+        href={primaryLink.url}
+        class="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 transition-all flex items-center gap-1.5"
+      >
+        <span>{primaryLink.text}</span>
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>

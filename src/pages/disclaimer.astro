@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import NextStep from '../components/NextStep.astro';
+---
+
+<BaseLayout
+  title="免责声明：合规使用、网络安全与知识普及声明"
+  description="机场推荐 Club 免责声明。本站所有内容仅作为计算机网络技术研究、科学选型与知识普及，请遵守当地法律法规。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '免责声明' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest block mb-2">LEGAL DISCLAIMER</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        免责声明与合规提醒
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        请在遵守所在地法律法规的前提下进行技术学习与网络研究。
+      </p>
+    </header>
+
+    <article class="prose-atlas my-10 space-y-6">
+      <h2>一、知识普及与技术研究目的</h2>
+      <p>
+        本站发布的所有关于网络协议（Shadowsocks、V2Ray、Trojan、Hysteria2）、路由分流（Clash、sing-box）、DNS 防污染及服务器测速评测文章，仅用于计算机网络技术探讨、学术科研资料检索与跨境外贸网络优化交流。
+      </p>
+
+      <h2>二、第三方服务风险自担</h2>
+      <p>
+        本站并非任何机场服务商的直接运营方或收款方。第三方机场的实际运营状况、退款政策、网络稳定度及服务连续性由各服务商自行负责。用户在进行任何商业购买前应充分评估风险，坚持小额月付原则。
+      </p>
+    </article>
+
+    <NextStep
+      level="level1"
+      title="返回首页探索知识库？"
+      description="查看 2026 稳定机场推荐或技术知识库。"
+      primaryLink={{ text: '返回网站首页', url: '/' }}
+      secondaryLink={{ text: '查看技术百科', url: '/knowledge/' }}
+    />
+  </div>
+</BaseLayout>

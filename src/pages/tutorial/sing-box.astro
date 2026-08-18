@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: 'sing-box 相比 Clash 有哪些技术优势？',
+    answer: 'sing-box 是采用纯 Go 语言从零编写的新一代通用代理核心。其架构设计极为轻量，内存占用比老旧内核低 50% 以上；原生支持完整的 Hysteria 2、TUIC v5、VLESS Reality 等现代化协议，路由分流性能强悍，且在 iOS/Android/Windows/macOS/Linux/OpenWrt 均有对应的图形客户端。',
+  },
+  {
+    question: '普通机场的 Clash 订阅链接能直接导入 sing-box 吗？',
+    answer: '很多现代机场已经在后台直接提供了“sing-box 订阅链接”或“sing-box 一键导入”。如果机场未直接提供，可以使用第三方订阅转换平台，将 Clash 订阅转换为标准 sing-box JSON 格式配置文件导入即可。',
+  },
+];
+---
+
+<BaseLayout
+  title="sing-box 客户端保姆级配置教程：2026 全平台下载、规则分流与 JSON 订阅导入指南"
+  description="2026 最新 sing-box 全平台使用指南。详解 sing-box 图形客户端下载安装、订阅链接导入转换、TUN 虚拟网卡全接管与高性能规则路由配置。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '客户端教程', url: '/tutorial/' }, { title: 'sing-box 配置教程' }]} />
+
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3">
+        <span>适用于 iOS · Android · Windows · macOS · 软路由</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        sing-box 全平台保姆级配置教程 (2026 最新版)
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 7 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="sing-box 是目前性能最高、能耗最低的通用代理核心。新手上手三步法：1. 下载官方图形客户端（Windows/Mac 推荐 sing-box for Windows 或 Nekobox）；2. 在 Profile 面板导入机场提供的 sing-box 订阅；3. 开启 TUN 虚拟网卡模式，享受高性能极速分流。"
+      points={[
+        '性能革命：极致轻量化设计，内存占用比老旧内核降低 50%+',
+        '协议全面：原生满血支持 Hysteria 2、TUIC 与 VLESS',
+        '全平台覆盖：从 iPhone 到软路由 OpenWrt 均可无缝使用',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、为什么 sing-box 正在成为 2026 年的技术新标准？</h2>
+        <p>
+          在 Clash 原作者于 2023 年停更后，由 nekohasekai 发起的开源项目 <strong>sing-box</strong> 迅速成为了代理核心生态的绝对领头羊：
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <span class="text-xs font-bold text-cyan-300 block mb-1">1. 极致能耗与内存优化</span>
+            <p class="text-xs text-slate-300 m-0">在手机端运行时发热极低，待机内存仅需 20-30MB。</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <span class="text-xs font-bold text-emerald-400 block mb-1">2. 现代化 UDP 协议满血原生支持</span>
+            <p class="text-xs text-slate-300 m-0">无需借助外部插件，原生内嵌 Hysteria 2 与 TUIC 拥塞控制引擎。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、sing-box 图形客户端下载与配置 SOP</h2>
+        <div class="space-y-4 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">第一步：下载对应平台的图形应用</h3>
+            <ul class="text-xs text-slate-300 space-y-1 list-disc pl-4">
+              <li><strong>iOS / iPadOS</strong>：在美区 App Store 搜索 <code>Sing-box VT</code> 直接免费下载；</li>
+              <li><strong>Windows / macOS</strong>：前往 GitHub 官方 Releases（<code>https://github.com/SagerNet/sing-box/releases</code>）下载官方 GUI 安装包。</li>
+            </ul>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第二步：导入订阅与启动 TUN</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              在客户端“Profiles”面板中点击添加，类型选择“Remote”，填入机场后台的 sing-box 订阅链接。下载完成后点击启用，开启“TUN”总开关即可享受极致性能的跨境加速。
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="sing-box 常见问题解答" />
+
+    <!-- Level 3 CTA NextStep -->
+    <NextStep
+      level="level3"
+      title="需要一条原生支持 sing-box 协议的优质专线？"
+      description="首推 2020 年老牌旗舰【光速云】（全线支持 VLESS 专线，专属优惠码 AMM 享 8 折）。"
+      primaryLink={{ text: '查看 2026 稳定专线推荐', url: '/stable-airport/' }}
+      secondaryLink={{ text: '查看 2026 综合排行榜', url: '/airport-ranking/' }}
+    />
+  </div>
+</BaseLayout>

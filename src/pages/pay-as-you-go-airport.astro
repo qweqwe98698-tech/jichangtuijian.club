@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import ProviderCard from '../components/ProviderCard.astro';
+import FAQ from '../components/FAQ.astro';
+import NextStep from '../components/NextStep.astro';
+import { getAllProviders } from '../lib/providers';
+
+const paygProviders = getAllProviders().filter(
+  (p) => p.slug === 'xingdaomeng' || p.slug === 'lingmao' || p.pricing.monthlyStarting <= 20
+);
+
+const faqs = [
+  {
+    question: '不限时按量付费套餐到底能用多久？真的不会过期吗？',
+    answer: '正规的不限时套餐（如星岛梦的 68 元 200GB 按量包）只要服务商正常运营，流量就会一直保存在账户中，直到全部消耗完毕为止，绝不会在月底被系统强制清零。非常适合出差备用或低频使用。',
+  },
+  {
+    question: '按量计费套餐适合作为主力机场使用吗？',
+    answer: '不适合。按量计费的单 G 流量单价（约 0.25 - 0.4 元/G）通常高于月付固定套餐（约 0.08 - 0.15 元/G）。如果每月看 4K 视频消耗数百 G 流量，按量付费成本较高；但如果作为主力失联时的备用容灾，按量付费是最经济划算的选择。',
+  },
+  {
+    question: '如何在 Clash 中实现主力与按量备用节点的自动故障转移？',
+    answer: '在 Clash 配置文件或订阅转换中创建 Fallback（故障回退）或 URL-Test 策略组：将光速云设为第一优先级主力，将星岛梦按量节点设为第二优先级。当主力节点发生连续 3 次 TCP 超时时，Clash 会在 5 秒内自动无感切换至备用节点。',
+  },
+];
+---
+
+<BaseLayout
+  title="2026 按量付费机场推荐：不限时流量包、永不过期备用节点与双活容灾全指南"
+  description="2026 按量计费与不限时流量机场横评。专为出差党、科研低频用户与主力机场容灾备用打造，精选星岛梦、灵猫网络等支持一次性购买、永不过期的优质节点。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '按量付费机场推荐' }]} />
+
+    <header class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-sky-400 uppercase tracking-widest block mb-2">PAY AS YOU GO & BACKUP</span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        2026 按量付费与不限时流量机场推荐
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2 leading-relaxed">
+        用多少扣多少，永不过期。为低频网民与高阶玩家打造坚不可摧的“双活容灾”备用节点防线。
+      </p>
+    </header>
+
+    <QuickAnswer
+      answerType="decision"
+      summary="按量计费核心价值在于【备用容灾与极低频出海】。推荐方案：【星岛梦】（提供 68 元 200GB 一次性不限时流量包，支持多端订阅）配合【光速云】月付作为主力，构成黄金 1主1备 双活容灾组合。"
+      points={[
+        '一次性购买，流量永不清零，彻底告别每月固定月租浪费',
+        '备用节点采用内网专线，关键时刻秒级切换，保障工作永不失联',
+        '配合 Clash 的 Fallback 自动故障转移策略，实现 100% 高可用出海',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-12 space-y-8">
+      <section>
+        <h2>一、为什么每位网民都需要一个“不限时按量备用包”？</h2>
+        <p>
+          在日常使用中，很多用户常常面临两种尴尬境地：
+        </p>
+        <ol class="space-y-2 text-sm text-slate-300 pl-5 list-decimal">
+          <li><strong>低频出海的月租浪费</strong>：平时仅偶尔上 Google 查查资料、收发 Gmail 验证码，每月消耗流量不足 5GB，但依然不得不每月支付 20-30 元的固定月租，月末流量全部作废清零；</li>
+          <li><strong>主力机场突发维护的失联焦虑</strong>：仅购买了一家机场，一旦遇到海底光缆中断、机房例行割接或特殊时期突发断连，瞬间与外界失联，严重耽误工作与跨境外贸业务。</li>
+        </ol>
+        <p>
+          <strong>不限时按量付费（Pay As You Go）</strong> 完美解决了这两个痛点：花费几十元购买一个 200GB 的流量包，放置在客户端中。平时不扣费，用 1MB 扣 1MB，哪怕用上两年也不会过期，是性价比最高的防失联保险。
+        </p>
+      </section>
+
+      <section>
+        <h2>二、按量计费 vs 月付固定套餐的深度经济学对比</h2>
+        <p>
+          如何根据个人每月的实际流量消耗来做出最划算的决策？以下是详细的资费模型对比：
+        </p>
+
+        <div class="overflow-x-auto my-6">
+          <table class="w-full text-left text-xs border border-white/10 rounded-xl overflow-hidden">
+            <thead class="bg-slate-900 text-cyan-300 font-semibold border-b border-white/10">
+              <tr>
+                <th class="p-3">用户画像与月用量</th>
+                <th class="p-3">月付固定套餐模式</th>
+                <th class="p-3">不限时按量计费模式</th>
+                <th class="p-3">最优选择推荐</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 bg-slate-950/60">
+              <tr>
+                <td class="p-3 font-medium text-white">轻度用户 (&lt; 10 GB/月)</td>
+                <td class="p-3 text-rose-400">¥20/月 (年化 ¥240，浪费巨大)</td>
+                <td class="p-3 text-emerald-400 font-bold">¥68 买 200GB (可用约 20 个月)</td>
+                <td class="p-3 text-emerald-400 font-bold">强烈推荐不限时按量包</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium text-white">中度用户 (50-100 GB/月)</td>
+                <td class="p-3 text-emerald-400 font-bold">¥15-20/月 (平均每 G 约 0.15 元)</td>
+                <td class="p-3 text-slate-300">¥68 仅够用 2-3 个月</td>
+                <td class="p-3 text-cyan-300">推荐选择固定月付套餐</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium text-white">高阶玩家 (容灾需求)</td>
+                <td class="p-3 text-cyan-300">主力买光速云/灵猫网络月付</td>
+                <td class="p-3 text-emerald-400 font-bold">额外配一个星岛梦按量包当备用</td>
+                <td class="p-3 text-emerald-400 font-bold">黄金 1主 + 1备 架构</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>三、精选 2026 支持按量与不限时服务商</h2>
+        <div class="space-y-4 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/70 border border-sky-500/30">
+            <h3 class="text-base font-bold text-white m-0">1. 星岛梦 —— 老牌 2020 运营，不限时按量包代表</h3>
+            <p class="text-xs text-slate-300 leading-relaxed my-2">
+              星岛梦提供独立的不限时按量包选项（68 元 200GB 一次性买断），全节点支持通用客户端订阅。其专线节点在晚高峰依然保持良好的连通性，是公认最适合作为“压箱底备用”的平台之一。
+            </p>
+            <span class="text-xs text-amber-300 font-mono">专属优惠：新人优惠码 <code>nmw888</code> 享 9 折。</span>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/70 border border-white/10">
+            <h3 class="text-base font-bold text-white m-0">2. 灵猫网络 —— 提供 88 元 300GB 随心不限时包</h3>
+            <p class="text-xs text-slate-300 leading-relaxed my-2">
+              灵猫网络除了 19 元/150GB 纯月付外，亦提供大容量的不限时按量方案。千兆专线带宽不限速，支持多设备同时在线，适合出差频繁的商务人士。
+            </p>
+            <span class="text-xs text-emerald-300 font-mono">专属优惠：优惠码 <code>lmao888</code> 享 9 折。</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>四、Clash 自动化容灾配置实操教程</h2>
+        <p>
+          在 Clash Verge 中配置主力与备用节点的自动无感切换步骤：
+        </p>
+        <ol class="space-y-2 text-sm text-slate-300 pl-5 list-decimal">
+          <li><strong>导入两个机场订阅</strong>：在订阅面板分别导入主力机场（如光速云）与备用机场（如星岛梦）；</li>
+          <li><strong>创建合并规则配置</strong>：在策略组中将主力的核心香港专线排在第一位，将备用按量节点排在第二位；</li>
+          <li><strong>策略组类型选择 Fallback</strong>：设置健康检查测试链接为 <code>http://www.gstatic.com/generate_204</code>，测试间隔设为 10 秒；</li>
+          <li><strong>享受 0 中断体验</strong>：平时全部走主力专线，一旦主力出现网络波动，Clash 将在数秒内自动借道备用按量节点，实现 100% 永不掉线。</li>
+        </ol>
+      </section>
+    </article>
+
+    <!-- Provider Cards Grid -->
+    <div class="my-10 space-y-6">
+      <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <h2 class="text-xl font-bold text-white">支持按量计费与不限时备用服务商</h2>
+        <span class="text-xs font-mono text-cyan-400">容灾备用精选</span>
+      </div>
+
+      {paygProviders.map((p, idx) => (
+        <ProviderCard
+          provider={p}
+          rankingIndex={idx}
+          highlightBadge={p.slug === 'xingdaomeng' ? '🛡️ 不限时备用首选' : '💰 高性价比平价'}
+        />
+      ))}
+    </div>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="按量计费与容灾备用常见问题" />
+
+    <!-- NextStep Level 3 -->
+    <NextStep
+      level="level3"
+      title="配置您的 1主 + 1备 永不失联组合？"
+      description="主力首选【光速云】月付专线，备用配置【星岛梦】不限时按量包，享受极致安全出海体验。"
+      primaryLink={{ text: '查看 2026 综合排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '直达星岛梦官方选购按量包', url: 'https://guangs.xingdaomeng.com/#/?code=1TynBYnR' }}
+    />
+  </div>
+</BaseLayout>

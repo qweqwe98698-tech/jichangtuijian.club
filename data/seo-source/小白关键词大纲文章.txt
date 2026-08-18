@@ -1,0 +1,44 @@
+# 小白关键词大纲与泛流量引导矩阵 (TOFU Top-of-Funnel)
+
+## 1. 泛访问与网络打不开系列
+- 国外网站打不开怎么办
+  * 承接页面: /knowledge/what-is-airport/
+  * 意图: 小白泛搜索 -> 解释 GFW 与代理原理 -> 引导了解科学工具与稳定机场
+- 海外网站无法访问/连接超时
+  * 承接页面: /troubleshooting/network/
+  * 意图: 故障排查 -> 网络诊断 -> 基础分流设置
+- Google打不开怎么办 / 谷歌搜索进不去
+  * 承接页面: /google/
+  * 意图: 谷歌生态访问指南 -> 节点选择 -> 稳定机场
+
+## 2. AI 平台小白指南
+- ChatGPT打不开怎么办 / 登录报错
+  * 承接页面: /chatgpt/
+  * 意图: 完整 ChatGPT 使用排查 -> IP风控解释 -> ChatGPT 机场推荐 (/chatgpt-airport/)
+- Claude 无法注册 / 提示不在服务区
+  * 承接页面: /claude/
+  * 意图: Claude 3.5/3.7 IP 要求 -> 原生住宅 IP 知识 -> 专线机场选型
+
+## 3. 海外社交与影音系列
+- YouTube 加载很慢总是缓冲
+  * 承接页面: /youtube/
+  * 意图: 码率带宽解析 -> 晚高峰拥堵原因 -> 流媒体机场 (/streaming-airport/)
+- Netflix 提示使用了代理无法观看
+  * 承接页面: /netflix/
+  * 意图: Netflix 家宽与原生解锁原理 -> 机场原生节点推荐 (/netflix-airport/)
+- Telegram 手机端一直在连接中 (Connecting...)
+  * 承接页面: /telegram/
+  * 意图: Telegram 内置代理与客户端分流配置 -> 稳定节点推荐
+
+## 4. 开发者与学习办公系列
+- GitHub 打不开 / git clone 速度极慢
+  * 承接页面: /github/
+  * 意图: 终端代理配置 -> 开发者专线推荐
+- Apple ID 外区注册教程与美区节点要求
+  * 承接页面: /apple-id/
+  * 意图: 美区账号注册 -> 纯净 IP 配合
+
+## 5. 小白避坑与防跑路
+- 机场买了几天就不能用了怎么办 (跑路内幕)
+  * 承接页面: /risk-warning/runaway-signs/
+  * 意图: 揭露低价跑路套路 -> 输出 1主1备月付容灾策略

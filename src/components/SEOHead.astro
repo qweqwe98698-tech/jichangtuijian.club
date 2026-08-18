@@ -1,0 +1,121 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  type?: 'website' | 'article';
+  pubDate?: string;
+  updatedDate?: string;
+  schema?: Record<string, any> | Record<string, any>[];
+}
+
+const {
+  title,
+  description,
+  canonicalUrl = Astro.url.href,
+  ogImage = 'https://jichangtuijian.club/og-default.png',
+  type = 'website',
+  pubDate,
+  updatedDate,
+  schema,
+} = Astro.props;
+
+const siteName = '机场推荐 Club';
+const formattedTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+
+// Base Schema
+const baseSchema: Record<string, any>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteName,
+    url: 'https://jichangtuijian.club/',
+    description: '机场选择、代理知识与网络工具中文知识库',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://jichangtuijian.club/?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteName,
+    url: 'https://jichangtuijian.club/',
+    logo: 'https://jichangtuijian.club/logo.png',
+  }
+];
+
+// Article / TechArticle Schema for rich indexation and GEO
+if (type === 'article') {
+  baseSchema.push({
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: title,
+    description: description,
+    url: canonicalUrl,
+    image: ogImage,
+    datePublished: pubDate || '2026-08-16T00:00:00+08:00',
+    dateModified: updatedDate || '2026-08-17T00:00:00+08:00',
+    author: {
+      '@type': 'Organization',
+      name: '机场推荐 Club 评测实验室',
+      url: 'https://jichangtuijian.club/about/',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteName,
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://jichangtuijian.club/logo.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+  });
+}
+
+if (schema) {
+  if (Array.isArray(schema)) {
+    baseSchema.push(...schema);
+  } else {
+    baseSchema.push(schema);
+  }
+}
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Primary Meta Tags -->
+<title>{formattedTitle}</title>
+<meta name="title" content={formattedTitle} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={formattedTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content={siteName} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalUrl} />
+<meta property="twitter:title" content={formattedTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImage} />
+
+{pubDate && <meta property="article:published_time" content={pubDate} />}
+{updatedDate && <meta property="article:modified_time" content={updatedDate} />}
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(baseSchema)} />

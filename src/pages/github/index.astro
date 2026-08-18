@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: '终端运行 git clone 依然提示 Failed to connect to github.com 怎么办？',
+    answer: '终端命令行默认不走 Windows 的系统代理。在终端中执行命令设置 git 代理：git config --global http.proxy http://127.0.0.1:7897；或者在 Clash Verge 中直接开启 TUN Mode 虚拟网卡接管全局终端流量。',
+  },
+];
+---
+
+<BaseLayout
+  title="GitHub 访问加速与连接超时解决：开发者终端代理与专线配置指南"
+  description="针对程序员与开发者的 GitHub 访问加速指南。解决 GitHub 网页打不开、git clone 速度只有几 KB、Release 资产下载超时与终端代理配置。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: 'GitHub 专题指南' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">DEVELOPER TOOLKIT</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        GitHub 极速访问与 Git 终端代理配置指南
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="加速 GitHub 访问的最佳实践：1. 开启 Clash Verge 的 TUN 模式让 Git 终端无缝走代理；2. 或通过命令行配置 Git 本地 HTTP 代理端口；3. 选择具备深港/沪日低延迟专线的节点，git clone 速度可直接拉满本地千兆宽带。"
+      points={[
+        '解决 raw.githubusercontent.com 资源无法加载问题',
+        '加速 Docker Hub、npm、pip 与 Go 模块依赖包下载',
+        '配合 Cursor 与 Copilot 实现代码补全 0 延迟响应',
+      ]}
+    />
+
+    <article class="prose-atlas my-10 space-y-6">
+      <h2>一、为什么 GitHub 在国内访问断断续续？</h2>
+      <p>
+        GitHub 并没有被 GFW 完全屏蔽，但其核心静态资源 CDN、Release 下载镜像服务器与 SSH 握手端口长期遭受严重的 DNS 污染和 TCP 随机丢包，导致开发者经常遇到克隆失败或页面样式丢失。
+      </p>
+
+      <h2>二、开发者专线节点的最佳选择</h2>
+      <p>
+        开发者建议选择支持企业级专线、低网络抖动且支持 SSH/TCP 直通的机场服务商，保证代码拉取与远程部署的高可用性。
+      </p>
+    </article>
+
+    <FAQ items={faqs} title="GitHub 与开发代理常见问题" />
+
+    <NextStep
+      level="level2"
+      title="需要高可用开发者专线与 AI 编程节点？"
+      description="查看 2026 稳定专线机场推荐，为代码构建与 Cursor 提速。"
+      primaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '查看 ChatGPT 专用机场推荐', url: '/chatgpt-airport/' }}
+    />
+  </div>
+</BaseLayout>

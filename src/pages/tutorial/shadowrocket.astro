@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: 'Shadowrocket（小火箭）在国区 App Store 为什么搜不到？',
+    answer: '由于中国大陆合规政策限制，所有网络代理工具均已从国区 App Store 下架。您需要准备一个美区、日区或港区的非国区 Apple ID，在 App Store 登录后购买下载（售价 2.99 美元）。切勿在“设置-iCloud”中登录他人共享账号，必须仅在“App Store”中登录。',
+  },
+  {
+    question: '在 iPhone 上使用小火箭非常耗电怎么办？',
+    answer: '在 Shadowrocket 设置中，将“全局路由”保持为“配置（Config）”模式，并在设置中关闭不必要的 HTTPS 解密抓包功能；尽量选择 VLESS 或 Shadowsocks 专线节点，降低加解密对 iPhone A 系列芯片的 CPU 占用。',
+  },
+  {
+    question: '如何配置分流规则让微信与国内银行 App 绝对不走代理？',
+    answer: '小火箭默认自带一套完善的中国大陆白名单分流规则。只要将全局路由选择为“配置（Config）”，所有国内主流域名与 IP 段都会自动走 Direct 直连，不会消耗机场流量，也不会触发银行 App 的异地风控。',
+  },
+];
+---
+
+<BaseLayout
+  title="Shadowrocket 小火箭 iOS 保姆级配置教程：2026 最新下载、订阅导入与分流设置"
+  description="2026 最全 Shadowrocket（小火箭）iPhone / iPad 使用指南。详解美区 Apple ID 获取方式、一键导入机场订阅链接、全局路由配置模式切换与规则分流深度调优。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '客户端教程', url: '/tutorial/' }, { title: 'Shadowrocket 小火箭教程' }]} />
+
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3">
+        <span>适用于 iPhone · iPad · Apple TV</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Shadowrocket 小火箭 iOS 保姆级配置教程 (2026 最新版)
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 7 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="Shadowrocket（俗称小火箭）是 iOS 生态中最强大、最成熟的代理工具。配置四步走：1. 切换美区 Apple ID 下载正版小火箭；2. 复制机场订阅链接并在 App 中点击右上角“+”一键导入；3. 全局路由务必选择为“配置（Config）”；4. 开启顶部连接开关并在系统弹窗中允许安装 VPN 配置。"
+      points={[
+        '安全警告：非国区 Apple ID 仅允许在 App Store 中登录，严禁在“设置-iCloud”中登录',
+        '分流模式：务必选择“配置”模式，国内网站直连，海外网站代理',
+        '定期同步：在订阅列表向左滑动点击“更新”，保持最新节点列表',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、前期准备：获取海外 Apple ID 与安装正版应用</h2>
+        <p>
+          正版 Shadowrocket 开发者为 <code>Shadow Launch Technology Limited</code>，在 App Store 售价为 $2.99 美元。请注意识别仿冒山寨软件：
+        </p>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-rose-500/20 space-y-2 text-xs text-slate-300 my-4">
+          <div class="text-rose-400 font-bold">⚠️ 苹果账号登录核心安全红线：</div>
+          <div>1. 打开 App Store ──▶ 点击右上角头像 ──▶ 滑到最底部点击“退出登录”；</div>
+          <div>2. <strong>仅在 App Store 中输入海外账号密码</strong>，完成小火箭的下载；</div>
+          <div>3. <strong>严禁在 iPhone 系统的“设置 ──▶ 顶部头像 (iCloud)”中登录任何非个人独占的共享账号</strong>，防止手机被远程锁定抹掉！</div>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、四步从零上手保姆级操作 SOP</h2>
+        <div class="space-y-6 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">第一步：导入机场订阅链接</h3>
+            <ol class="text-xs text-slate-300 space-y-1.5 pl-4 list-decimal">
+              <li>在 Safari 浏览器中登录你的机场用户中心（如光速云），找到“一键导入 Shadowrocket”或点击“复制订阅链接”；</li>
+              <li>打开 Shadowrocket，如果已复制链接，App 会自动弹出识别提示，点击“添加”即可；</li>
+              <li>若未自动弹出，点击主界面右上角 <strong>“+”号</strong> ──▶ 类型选择 <strong>Sub / Subscribe</strong> ──▶ 在“URL”栏粘贴链接 ──▶ 点击右上角“保存”。</li>
+            </ol>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第二步：节点延迟测速与手动优选</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              在主界面“服务器节点”区域，点击 <strong>连通性测试（Ping Test）</strong>。节点后方会显示具体的毫秒延迟（如 <code>16ms</code>）。点击选中一个延迟较低的深港或沪日专线节点（节点前方出现黄色/绿色圆点）。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第三步：全局路由切换为“配置（Config）”模式</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              在主界面的“全局路由”一栏中，<strong>务必确认选中为“配置（Config）”</strong>。绝不能选为“代理（Proxy）”（全局代理会导致国内应用卡顿）或“直连（Direct）”（导致无法科学上网）。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-emerald-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-emerald-400 m-0">第四步：开启连接与系统授权</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              将最顶部的“未连接”开关拨至开启。首次使用时 iOS 会弹出系统提示 <code>“Shadowrocket”想要添加 VPN 配置</code>，点击“允许（Allow）”并验证 Face ID 或输入锁屏密码，状态栏出现 <code>VPN</code> 标志即表示成功起飞！
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>三、进阶调优：设置“按打开时自动更新订阅”</h2>
+        <p>
+          为了保证节点始终最新：在 Shadowrocket 底部点击 <strong>设置（Settings）</strong> ──▶ <strong>订阅（Subscribe）</strong> ──▶ 开启 <strong>“打开时更新”</strong> 与 <strong>“自动后台更新”</strong>。每次打开 App 都会自动拉取机场最新的入口解析。
+        </p>
+      </section>
+    </article>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="Shadowrocket 使用常见问答" />
+
+    <!-- Level 3 CTA NextStep -->
+    <NextStep
+      level="level3"
+      title="配置好了小火箭，想挑选高品质专线？"
+      description="首推 2020 年老牌旗舰【光速云】（支持小火箭一键导入，专属优惠码 AMM 享 8 折）。"
+      primaryLink={{ text: '查看 2026 稳定专线推荐', url: '/stable-airport/' }}
+      secondaryLink={{ text: '查看美区 Apple ID 注册教程', url: '/apple-id/' }}
+    />
+  </div>
+</BaseLayout>

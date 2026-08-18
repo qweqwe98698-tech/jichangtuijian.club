@@ -1,0 +1,91 @@
+{
+  "id": "sogo",
+  "name": "SOGO 云",
+  "slug": "sogo",
+  "tagline": "25 元档 150GB 综合专线 · 极速 4K 与 AI 全场景覆盖",
+  "establishedYear": 2026,
+  "officialUrl": "https://guangs.sogoyunaff.cc/#/?code=327Vs0w7",
+  "couponCode": "sss777",
+  "discount": "专属优惠码",
+  "pricing": {
+    "monthlyStarting": 25,
+    "currency": "¥",
+    "billingCycle": "月付 25 元/月，150GB"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "国内 BGP 骨干"
+  ],
+  "protocols": [
+    "VLESS",
+    "Shadowsocks"
+  ],
+  "clients": [
+    "自研客户端",
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "streamingSupport": {
+    "netflix": "全区解锁",
+    "disney": "全区解锁",
+    "youtube4k": "秒开 4K/8K"
+  },
+  "aiSupport": {
+    "chatgpt": "原生支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.93%",
+    "averageLatency": "16ms",
+    "peakSpeed": "860 Mbps",
+    "packetLoss": "< 0.04%"
+  },
+  "measuredEvidence": {
+    "file": "/images/speedtests/sogo-speedtest.png",
+    "testedAt": "2026-08-11T18:57:59+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  },
+  "plans": [
+    {
+      "name": "SOGO 标准版",
+      "price": "¥25/月",
+      "traffic": "150 GB/月",
+      "speed": "1000 Mbps IEPL"
+    },
+    {
+      "name": "SOGO 尊享版",
+      "price": "¥45/月",
+      "traffic": "300 GB/月",
+      "speed": "1000 Mbps IEPL"
+    }
+  ],
+  "bestFor": [
+    "25元预算综合体验追求者",
+    "4K 视频秒开与低延迟要求",
+    "AI 全家桶高频使用"
+  ],
+  "notFor": [
+    "20元以下紧凑预算用户"
+  ],
+  "pros": [
+    "25元档 150GB 专线带宽冗余极高",
+    "晚高峰 18:57 实测跑满千兆下行",
+    "提供自研客户端并支持通用订阅"
+  ],
+  "cons": [
+    "推广链接采用 Hash 格式，注册时需注意完整打开"
+  ],
+  "runawayRisk": "低 (月付为主，带宽质量高)",
+  "lastVerified": "2026-08-17",
+  "verificationStatus": "verified"
+}

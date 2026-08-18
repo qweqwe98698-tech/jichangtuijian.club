@@ -1,0 +1,96 @@
+{
+  "id": "xingdaomeng",
+  "name": "星岛梦",
+  "slug": "xingdaomeng",
+  "tagline": "低价年付与不限时流量套餐 · 灵活容灾与备用首选",
+  "establishedYear": 2020,
+  "officialUrl": "https://guangs.xingdaomeng.com/#/?code=1TynBYnR",
+  "couponCode": "nmw888",
+  "discount": "新人注册 9 折",
+  "pricing": {
+    "monthlyStarting": 8,
+    "currency": "¥",
+    "billingCycle": "年付折合约 8 元/月，60GB 起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "企业级内网专线",
+    "国内 BGP 优化"
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "V2Ray"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "streamingSupport": {
+    "netflix": "主流区解锁",
+    "disney": "支持",
+    "youtube4k": "流畅 4K"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.85%",
+    "averageLatency": "22ms",
+    "peakSpeed": "620 Mbps",
+    "packetLoss": "< 0.10%"
+  },
+  "measuredEvidence": {
+    "file": "/images/speedtests/xingdaomeng-speedtest.png",
+    "testedAt": "2026-08-11T01:48:13+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  },
+  "plans": [
+    {
+      "name": "年付轻度套餐",
+      "price": "¥96/年 (折合 8元/月)",
+      "traffic": "60 GB/月",
+      "speed": "500 Mbps 专线"
+    },
+    {
+      "name": "不限时按量包",
+      "price": "¥68 (一次性)",
+      "traffic": "200 GB 不限时",
+      "speed": "500 Mbps 专线"
+    },
+    {
+      "name": "大流量月付",
+      "price": "¥22/月",
+      "traffic": "160 GB/月",
+      "speed": "1000 Mbps 专线"
+    }
+  ],
+  "bestFor": [
+    "预算有限用户",
+    "小流量轻度网民",
+    "需要不限时备用节点防失联"
+  ],
+  "notFor": [
+    "追求极致 8K 蓝光流媒体超大吞吐的用户"
+  ],
+  "pros": [
+    "2020年起稳定运营，套餐类型极其丰富",
+    "提供罕见的不限时流量包，适合作为主力失联时的备用容灾",
+    "年付折算价格低至 8 元/月"
+  ],
+  "cons": [
+    "8 元/月属于年付折算，不支持按月试用8元价位"
+  ],
+  "runawayRisk": "低 (老牌 6 年平台，套餐梯度合理)",
+  "lastVerified": "2026-08-17",
+  "verificationStatus": "verified"
+}

@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import NextStep from '../../components/NextStep.astro';
+
+const issues = [
+  {
+    title: '机场节点全部 TIMEOUT / 全红排查 SOP',
+    slug: '/troubleshooting/timeout/',
+    category: '节点连通性',
+    severity: '高频致命',
+    summary: '突然所有节点延迟显示 -1ms 或 timeout 无法访问。系统时间误差、本地防火墙拦截、订阅过期与节点被封的 5 步排查清单。',
+  },
+  {
+    title: '机场订阅更新失败（报错 500 / 403 / 网络错误）',
+    slug: '/troubleshooting/subscription-failed/',
+    category: '订阅管理',
+    severity: '常见错误',
+    summary: '拉取订阅时提示请求失败。域名被墙、Token 泄露重置、订阅转换工具劫持与防污染更新方法。',
+  },
+  {
+    title: 'Clash / 代理软件连接成功但依然无法上网',
+    slug: '/troubleshooting/clash/',
+    category: '系统代理',
+    severity: '经典困惑',
+    summary: '节点显示绿色延迟几毫秒，但浏览器就是打不开网页。DNS 污染、系统代理注册表残留、TUN 虚拟网卡冲突解决。',
+  },
+  {
+    title: 'ChatGPT 提示 Access Denied / 您所在的地区不可用',
+    slug: '/troubleshooting/chatgpt/',
+    category: 'AI 场景',
+    severity: '高风控',
+    summary: 'OpenAI 1020 报错、Cloudflare 5秒盾循环与 Claude 3.5 封号风控应对策略。',
+  },
+  {
+    title: '国外海外网站无法访问 / 页面加载慢诊断',
+    slug: '/troubleshooting/network/',
+    category: '泛网络诊断',
+    severity: '基础网络',
+    summary: '针对小白用户的泛海外网络诊断指南。DNS 污染识别与代理分流重置。',
+  },
+];
+---
+
+<BaseLayout
+  title="网络代理故障排查中心：节点超时、订阅失败与无法上网快速诊断"
+  description="2026 科学上网与代理故障排查中心。针对节点全红 TIMEOUT、订阅更新失败、连接成功无法上网与 ChatGPT 报错提供标准化诊断排查 SOP。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '故障排查中心' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block mb-2">DIAGNOSTIC CENTER</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        网络代理与机场故障快速排查中心
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        遇到突发断连不要慌。我们按照“先本地设备、再客户端、后网络线路”的科学诊断逻辑，帮您 3 分钟内定位并解决问题。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+      {issues.map((item) => (
+        <div class="glass-card p-6 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                {item.category}
+              </span>
+              <span class="text-[11px] text-rose-400">{item.severity}</span>
+            </div>
+            <h2 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors mb-2">
+              <a href={item.slug}>{item.title}</a>
+            </h2>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">{item.summary}</p>
+          </div>
+
+          <a
+            href={item.slug}
+            class="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 pt-4 border-t border-white/5"
+          >
+            <span>查看完整排查步骤 (SOP)</span>
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <NextStep
+      level="level2"
+      title="排除本地问题后依然无法使用，怀疑服务商故障？"
+      description="建议备用一份高可用按量计费专线节点，随时作为第二网络通道验证。"
+      primaryLink={{ text: '查看按量计费备用推荐', url: '/pay-as-you-go-airport/' }}
+      secondaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+    />
+  </div>
+</BaseLayout>

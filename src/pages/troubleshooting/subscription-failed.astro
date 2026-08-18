@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: '为什么更新订阅时会报错 HTTP 500 / 502 / 504？',
+    answer: '5xx 报错属于服务端内部错误。通常是因为机场的订阅下发后端服务器发生数据库死锁、高并发过载或正在进行版本升级。请等待 15-30 分钟后重试，或登录机场官网重新复制最新的动态订阅链接。',
+  },
+  {
+    question: '更新订阅报错 HTTP 403 Forbidden 是什么原因？',
+    answer: '403 报错通常表示机场的防刷风控拦截了请求。常见原因包括：订阅下发频次过高被短时拉黑、当前网络 IP 被机场防火墙拦截（如在开启了其他代理的情况下更新订阅导致 IP 异常），或用户的专属 Token 被系统重置。可在机场后台“重置订阅 Token”后重新导入。',
+  },
+  {
+    question: '如何在没有代理的情况下更新被 GFW 阻断的订阅域名？',
+    answer: '很多优质机场会为订阅链接提供免翻墙的国内加速域名（如 CDN 节点）。若订阅域名被阻断，可登录机场官网公告栏获取最新的免翻墙订阅转换短链。',
+  },
+];
+---
+
+<BaseLayout
+  title="订阅更新失败怎么办？2026 机场订阅 500/403/超时排查完全指南"
+  description="针对 Clash、Shadowrocket、Sing-box 订阅更新失败、HTTP 500/502/403 报错、Fetch Failed 的全套排查 SOP。教你重置 Token、配置订阅转换与更换免翻加速域名。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '故障排查手册', url: '/troubleshooting/' }, { title: '订阅更新失败' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest block mb-2">SUBSCRIPTION RESOLUTION</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        机场订阅更新失败怎么办？500 / 403 / 超时报错排查
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 7 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="订阅更新失败通常由【订阅域名被 GFW 阻断】或【机场后端下发接口过载/Token失效】引起。快速排查：1. 开启系统代理或换手机热点更新；2. 登录官网重置订阅 Token 并复制最新链接；3. 将订阅链接放入在线订阅转换后端；4. 检查客户端 User-Agent 设置。"
+      points={[
+        '403 报错：登录官网用户中心点击“重置订阅 Token”，重新导入',
+        '500/502 报错：机场后端维护，等待 15 分钟或联系在线工单',
+        'Timeout 报错：订阅域名被污染，换手机热点或使用官方防封转换链接',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、订阅更新失败的四大常见 HTTP 错误代码解析</h2>
+        <div class="overflow-x-auto my-6">
+          <table class="w-full text-left text-xs border border-white/10 rounded-xl overflow-hidden">
+            <thead class="bg-slate-900 text-cyan-300 font-semibold border-b border-white/10">
+              <tr>
+                <th class="p-3">报错状态码</th>
+                <th class="p-3">错误类型</th>
+                <th class="p-3">底层诱发原因</th>
+                <th class="p-3">解决策略</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 bg-slate-950/60">
+              <tr>
+                <td class="p-3 font-mono font-bold text-rose-400">HTTP 403</td>
+                <td class="p-3 text-white">Forbidden</td>
+                <td class="p-3 text-slate-300">Token 过期失效、请求频次超限被风控</td>
+                <td class="p-3 text-emerald-400">在官网重置 Token 重新复制导入</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-mono font-bold text-amber-400">HTTP 500/502</td>
+                <td class="p-3 text-white">Server Error</td>
+                <td class="p-3 text-slate-300">机场后端数据库崩溃或版本维护中</td>
+                <td class="p-3 text-slate-300">等待 15 分钟后重试或查看 TG 频道</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-mono font-bold text-rose-400">Connect Timeout</td>
+                <td class="p-3 text-white">网络超时</td>
+                <td class="p-3 text-slate-300">订阅服务器域名被 GFW 污染阻断</td>
+                <td class="p-3 text-emerald-400">连上热点或使用官网免翻加速域名</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-mono font-bold text-sky-400">Invalid YAML</td>
+                <td class="p-3 text-white">格式解析错误</td>
+                <td class="p-3 text-slate-300">下发的订阅内容被防火墙拦截篡改为空</td>
+                <td class="p-3 text-emerald-400">使用第三方订阅转换生成标准配置</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、四步实操修复指南</h2>
+        <div class="space-y-4 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">第一步：使用“免翻墙订阅转换”生成备用链接</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              将机场原始订阅链接复制到知名的订阅转换后端（如 <code>https://sub.xeton.dev</code>），选择客户端类型为“Clash”，生成的转换链接通常部署在 Cloudflare CDN 上，能够稳定直连拉取节点。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第二步：修改客户端 User-Agent (UA)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              部分机场只对标准客户端 UA 开放订阅下发接口。在 Clash Verge 设置中，将“订阅 User-Agent”修改为 <code>clash-verge/v1.7.7</code> 或 <code>Shadowrocket/1982</code>，可解决被服务端直接拦截的问题。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第三步：切换网络环境拉取（手机热点法）</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              如果家庭宽带（如移动宽带）对订阅域名进行了严格的 DNS 劫持，用手机开热点让电脑连接拉取，通常能成功跳过本地局域网污染。
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="订阅更新故障常见问答" />
+
+    <!-- Level 3 CTA NextStep -->
+    <NextStep
+      level="level3"
+      title="需要稳定下发、自研客户端免配置的品牌？"
+      description="首推 2020 年老牌旗舰【光速云】，提供官方定制客户端，一键登录免订阅导入。"
+      primaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '查看 Clash Verge 配置教程', url: '/tutorial/clash-verge/' }}
+    />
+  </div>
+</BaseLayout>

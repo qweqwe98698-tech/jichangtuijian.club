@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: '为什么手机连家里的 Wi-Fi 打不开外网，切成 5G 手机流量就能打开了？',
+    answer: '部分家庭宽带（尤其是移动、长城宽带或某些广电宽带）在省级出口部署了更严格的 DNS 污染和黑名单拦截规则；而 5G 蜂窝数据网段的出口路由不同，通常干扰较少。解决办法是为家庭 Wi-Fi 路由器配置 DNS 防污染（如 DoH / DoT）或使用专线机场。',
+  },
+];
+---
+
+<BaseLayout
+  title="国外网站打不开与连接超时排查：DNS污染、网络阻断与诊断指南"
+  description="针对小白用户的海外网站打不开、连接超时、网页加载缓慢诊断指南。涵盖 DNS 污染测试、基础网络分流重置与稳定专线选型。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '故障排查中心', url: '/troubleshooting/' }, { title: '海外网站打不开诊断' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block mb-2">NETWORK DIAGNOSTICS</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        国外海外网站打不开 / 连接超时快速诊断指南
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>阅读时长：3 分钟</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="海外网页打不开的本质原因是国家防火墙（GFW）的 DNS 污染、TCP 重置（RST）与 SNI 阻断。通过正规科学上网工具配合加密专线即可彻底恢复畅通访问。"
+      points={[
+        '普通修改 DNS 无法突破真正的 GFW 深度包检测（DPI）',
+        '选择配备 Shadowsocks / VLESS / Hysteria2 加密协议的代理工具',
+        '掌握 1主1备容灾策略，告别突发失联',
+      ]}
+    />
+
+    <article class="prose-atlas my-10 space-y-6">
+      <h2>一、为什么海外网站在大陆无法直接打开？</h2>
+      <p>
+        中国大陆的国际互联网出口部署了庞大的网络边界过滤系统。当用户在浏览器发起对 Google、YouTube、GitHub 等海外域名的请求时，会触发以下机制：
+      </p>
+      <ul>
+        <li><strong>DNS 污染</strong>：运营商 DNS 返回一个虚假的、不可达的 IP 地址，导致网页直接报错 <code>DNS_PROBE_FINISHED_NXDOMAIN</code>。</li>
+        <li><strong>TCP 阻断与重置</strong>：向双方强制发送伪造的 RST 报文，切断网络连接。</li>
+        <li><strong>SNI 阻断</strong>：在 TLS 握手时读取域名明文并直接丢弃数据包。</li>
+      </ul>
+
+      <h2>二、如何正确建立高速稳定的海外连接？</h2>
+      <p>
+        1. <strong>下载正规代理客户端</strong>：如 Windows 推荐 <strong>Clash Verge Rev</strong>，iOS 推荐 <strong>Shadowrocket</strong>。
+      </p>
+      <p>
+        2. <strong>选购具备内网专线的服务商</strong>：内网专线（IEPL/IPLC）在境外物理交汇，避开公网 GFW 审查，速度与稳定性最有保障。
+      </p>
+    </article>
+
+    <FAQ items={faqs} title="海外网络连接问答" />
+
+    <NextStep
+      level="level1"
+      title="从零开始了解科学上网工作原理？"
+      description="阅读我们的新手科普指南，了解机场到底是什么原理与如何安全选型。"
+      primaryLink={{ text: '阅读 机场是什么 原理科普', url: '/knowledge/what-is-airport/' }}
+      secondaryLink={{ text: '查看 2026 稳定机场推荐', url: '/stable-airport/' }}
+    />
+  </div>
+</BaseLayout>

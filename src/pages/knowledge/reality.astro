@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: 'VLESS-Reality 为什么不需要自建域名和申请证书？',
+    answer: 'Reality 的核心创新在于“借用证书”。在传统方案中，用户必须自费购买域名并向 Let’s Encrypt 申请证书；而 Reality 允许服务端直接指定一个合法的境外知名网站（如 apple.com、microsoft.com、dl.google.com）作为伪装目标（Dest）。服务端在 TLS 握手时直接透传目标网站的真实公钥证书，完全不需要用户拥有该域名的管理权限。',
+  },
+  {
+    question: '防火墙如果主动探测 Reality 节点会发生什么？',
+    answer: '如果 GFW 主动向 Reality 节点的 IP 和端口发起普通的 HTTPS 探测请求，由于防火墙不知道客户端与服务端之间约定的私钥与 ShortId，Reality 服务端会自动触发 Fallback 机制，将请求无缝反向代理转发给真正的伪装目标（如微软官网），并返回 100% 真实的微软官方网页。在审查系统的视角下，该 IP 就是一台合法的反向代理或 CDN 节点。',
+  },
+  {
+    question: 'Reality 伪装能完全替代 IEPL 专线吗？',
+    answer: '不能。Reality 是解决“公网穿透与抗封锁”的顶级技术，但它的数据依然在公网中路由，依然受制于跨境公网晚高峰的丢包与物理拥堵；而 IEPL 专线走的是内网企业光缆，延迟更低且 0 丢包。公网首选 Reality，极致稳定低延迟依然首选 IEPL 专线（如光速云、星岛梦）。',
+  },
+];
+---
+
+<BaseLayout
+  title="Reality 真实 TLS 伪装机制深度解析：2026 终结自建域名与 SNI 阻断指南"
+  description="2026 最新 VLESS-Reality 协议技术深度解析。揭秘 Reality 如何借用苹果、微软大厂合法证书彻底隐藏科学上网特征、防御 GFW 主动探测与伪装目标选型规范。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '技术知识', url: '/knowledge/' }, { title: 'Reality 真实 TLS 伪装技术' }]} />
+
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3">
+        <span>前沿防封锁技术 · 2026 原理解析</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Reality 真实 TLS 伪装机制深度解析：2026 彻底终结 SNI 阻断与自建域名证书痛点
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 8 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="definition"
+      summary="Reality 是由 Xray 团队开发的新一代 TLS 消除特征技术。它彻底淘汰了自建域名和 Let's Encrypt 证书申请，直接通过借用苹果、微软等境外大厂合法的 TLS 1.3 证书与 SNI 特征，配合服务端非认证流量透明转发机制，彻底消除了证书指纹特征与 GFW 主动探测风险。"
+      points={[
+        '告别域名：无需购买海外域名，无需定期配置 certbot 自动续签 SSL 证书',
+        '真实伪装：握手阶段直接呈现苹果/微软官方证书，DPI 无法实施证书白名单拦截',
+        '主动探测免疫：未携带预共享私钥的探测流量将被透明代理至真实官网，返回合法网页',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、传统 TLS 伪装方案（Trojan/V2Ray TLS）的致命痛点</h2>
+        <p>
+          在 Reality 问世之前，主流的抗封锁方案（如 Trojan、VMess+WebSocket+TLS、VLESS+XTLS）均依赖于标准的 HTTPS 传输。其基本逻辑是：用户自费购买一个境外域名，解析到自己的 VPS 服务器，并通过 Let's Encrypt 申请合法的 SSL 证书，将代理流量伪装成正常的网站访问。
+        </p>
+        <p>
+          然而随着网络审查技术的升级，这种“自建域名伪装”模式暴露出了三大无法克服的系统性软肋：
+        </p>
+        <div class="space-y-4 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-rose-500/20">
+            <h3 class="text-sm font-bold text-rose-300 mb-2">1. 证书申请者暴露与域名黑名单阻断</h3>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              Let's Encrypt 等证书颁发机构的所有证书记录都是完全公开可查的（Certificate Transparency Log）。审查系统可以通过监控全网新增证书，直接锁定新注册但流量异常的自建域名，并在 SNI 握手阶段直接发送伪造的 TCP RST 包实施精准阻断。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-rose-500/20">
+            <h3 class="text-sm font-bold text-rose-300 mb-2">2. 中间人主动探测（Active Probing）</h3>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              当审查系统捕获到可疑的 TLS 流量后，会自动派出探测爬虫向目标 IP 发起常规 HTTP/HTTPS 请求。如果 VPS 上没有搭建真实复杂的网站，或者返回了默认的 Nginx 空白页、自签名证书报错，节点 IP 就会在数分钟内被判定为代理服务器并列入黑名单。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-rose-500/20">
+            <h3 class="text-sm font-bold text-rose-300 mb-2">3. 证书指纹（uTLS）与密码套件特征</h3>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              不同操作系统和浏览器（如 Chrome、Safari、Firefox）在发起 TLS ClientHello 握手时，所携带的加密套件列表、扩展顺序和椭圆曲线参数具有独一无二的指纹特征。如果代理客户端生成的 TLS 握手包特征固定，DPI 设备即可一眼识别出这是非浏览器客户端发出的异常请求。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、Reality 的颠覆性思想：借鸡生蛋与无证书伪装</h2>
+        <p>
+          针对上述痛点，Xray-core 团队推出了革命性的 <strong>Reality 协议</strong>。Reality 的核心设计理念是：<strong>既然自建域名容易暴露，那就干脆不要域名；既然自己申请证书有特征，那就直接“借用”全世界最不可阻断的大厂真实证书</strong>。
+        </p>
+        <p>
+          在 Reality 架构下：
+        </p>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-300 list-disc pl-5 leading-relaxed">
+          <li><strong>伪装目标（Dest）</strong>：服务端配置一个支持 TLS 1.3 与 HTTP/2 的全球超大企业官网（如 <code>itunes.apple.com:443</code> 或 <code>www.microsoft.com:443</code>）；</li>
+          <li><strong>零证书依赖</strong>：服务端本地无需申请、安装或续期任何 SSL 证书；</li>
+          <li><strong>客户端指纹模拟（uTLS）</strong>：客户端在发起握手时，自动将自身伪装成标准 Chrome 浏览器的最新版 ClientHello 指纹，SNI 显式声明为目标大厂域名。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>三、Reality 内部握手与 Fallback 转发机制图解</h2>
+        <p>
+          Reality 是如何在不被大厂发现、不被防火墙拦截的前提下完成数据解密与转发的？其内部工作流程极为严密精巧：
+        </p>
+        <ol class="space-y-3 text-xs sm:text-sm text-slate-300 list-decimal pl-5 leading-relaxed my-4">
+          <li><strong>客户端握手认证</strong>：客户端在构造 TLS 1.3 ClientHello 数据包时，利用预先共享的公钥（PublicKey）和短期 ID（ShortId），通过 ECDH 椭圆曲线算法将认证信息巧妙隐藏在握手扩展字段中发送出去；</li>
+          <li><strong>服务端私钥比对</strong>：Reality 服务端收到数据包后，使用私钥进行计算。如果验证成功，证明这是合法用户，服务端直接接管后续连接，建立高速无状态的 VLESS 数据通信通道；</li>
+          <li><strong>非认证流量 Fallback 透明转发</strong>：如果验证失败（例如 GFW 审查爬虫发起常规探测，或者普通网民误访问了该 IP），Reality 服务端不会报错，而是<strong>作为透明 TCP 代理，将请求原封不动转发给真正的目标网站（如微软官网），并将微软返回的数据原样转交回去</strong>。</li>
+        </ol>
+        <p>
+          在审查系统和探测爬虫的视角下，这台服务器的所有证书、响应头、HTML 页面和握手时延与真实的微软官方服务器 100% 完全一致，从而实现了真正意义上的“物理级隐形”。
+        </p>
+      </section>
+
+      <section>
+        <h2>四、挑选优质 Reality 伪装域名（SNI）的三大黄金法则</h2>
+        <p>
+          配置 Reality 节点时，伪装目标（Dest / ServerNames）的选取至关重要。如果选用了不合格的域名，可能导致连接失败或特征显露。务必遵循以下三条黄金准则：
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/20">
+            <span class="text-xs font-bold text-cyan-400 block mb-1">法则 1：必须原生支持 TLS 1.3 与 H2</span>
+            <p class="text-xs text-slate-300 m-0">目标网站必须支持最新版 TLS 1.3 加密协议与 HTTP/2 多路复用，避免降级到易受攻击的旧版 TLS 1.2。</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/20">
+            <span class="text-xs font-bold text-cyan-400 block mb-1">法则 2：物理距离与 IP 归属地一致</span>
+            <p class="text-xs text-slate-300 m-0">如果你的 VPS 位于日本东京，所选的目标网站在该地区也必须拥有 CDN 节点，确保握手回源时延小于 5ms，避免时延异常。</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/20">
+            <span class="text-xs font-bold text-cyan-400 block mb-1">法则 3：国内可直连且未被墙</span>
+            <p class="text-xs text-slate-300 m-0">伪装域名必须是国内网络能正常直接访问的跨国大站，绝不能选用自身已经被 GFW 阻断的敏感域名。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>五、2026 技术定位：Reality 与 IEPL 专线的差异与选型</h2>
+        <p>
+          很多新手用户常问：既然 Reality 伪装如此强大，为什么还需要购买价格更高的 IEPL 专线机场？
+        </p>
+        <p>
+          这是因为两者的技术攻坚方向不同：
+        </p>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-300 list-disc pl-5 leading-relaxed">
+          <li><strong>Reality 的定位是“公网生存与抗封锁”</strong>：它解决了数据在公网直连穿越防火墙时不被识别的问题，但无法改变公网骨干网在晚高峰时段的物理拥堵和随机丢包；</li>
+          <li><strong>IEPL 专线的定位是“低延迟与高 SLA 确定性”</strong>：如<strong>光速云</strong>、<strong>星岛梦</strong>、<strong>U1S1</strong>等高端专线，数据在境内入口即封装进入企业物理内网光纤直达海外机房，从物理层避开了公网拥堵，晚高峰维持 0.00% 丢包与电竞级延迟。</li>
+        </ul>
+      </section>
+    </article>
+
+    <FAQ items={faqs} title="Reality 协议核心要点 FAQ" />
+
+    <NextStep
+      level="level2"
+      title="准备好挑选拥有高 SLA 专线与新一代协议的服务商了吗？"
+      description="查看 2026 综合天梯排行榜，挑选采用纯专线物理传输与原生纯净 IP 的高品质机场。"
+      primaryLink={{ text: '查看 2026 机场综合排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '深入了解 VLESS vs VMess 差异', url: '/knowledge/vless-vs-vmess/' }}
+    />
+  </div>
+</BaseLayout>

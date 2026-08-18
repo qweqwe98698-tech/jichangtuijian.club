@@ -1,0 +1,90 @@
+{
+  "id": "yuzhou",
+  "name": "宇宙云",
+  "slug": "yuzhou",
+  "tagline": "15 元档高性价比 IEPL 专线 · VLESS 协议 · 100GB 月付",
+  "establishedYear": 2023,
+  "officialUrl": "https://guangs.yuzoucloud.cc/#/register?code=yrThwMP1",
+  "couponCode": "YUZHOU553",
+  "discount": "专属优惠码直减",
+  "pricing": {
+    "monthlyStarting": 14.9,
+    "currency": "¥",
+    "billingCycle": "月付 14.9 元/月，100GB"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "国内 BGP 入口"
+  ],
+  "protocols": [
+    "VLESS"
+  ],
+  "clients": [
+    "自研客户端",
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "streamingSupport": {
+    "netflix": "全区解锁",
+    "disney": "支持",
+    "youtube4k": "秒开 4K"
+  },
+  "aiSupport": {
+    "chatgpt": "原生支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.91%",
+    "averageLatency": "19ms",
+    "peakSpeed": "820 Mbps",
+    "packetLoss": "< 0.06%"
+  },
+  "measuredEvidence": {
+    "file": "/images/speedtests/yuzhou-speedtest.png",
+    "testedAt": "2026-08-11T21:04:24+08:00",
+    "protocolDisplayed": "VLESS",
+    "toolFamily": "main 4.3.3 (696) / miaosu 4.7.0 (A11-32)",
+    "dateConfidence": "visible-in-image"
+  },
+  "plans": [
+    {
+      "name": "宇宙标准版",
+      "price": "¥14.9/月",
+      "traffic": "100 GB/月",
+      "speed": "1000 Mbps IEPL"
+    },
+    {
+      "name": "宇宙尊享版",
+      "price": "¥26.9/月",
+      "traffic": "200 GB/月",
+      "speed": "1000 Mbps IEPL"
+    }
+  ],
+  "bestFor": [
+    "希望月预算压在 15 元以内",
+    "追求 IEPL 专线与 VLESS 协议结合",
+    "日常视频与 AI 兼顾"
+  ],
+  "notFor": [
+    "需要数千吉字节的企业级用户"
+  ],
+  "pros": [
+    "15元档位最具竞争力的 IEPL + VLESS 组合",
+    "提供自研客户端，小白开箱即用",
+    "晚高峰 21:00 实测表现出色"
+  ],
+  "cons": [
+    "自研客户端订阅需联系客服获取第三方链接"
+  ],
+  "runawayRisk": "低 (价格处于健康可持续区间)",
+  "lastVerified": "2026-08-17",
+  "verificationStatus": "verified"
+}

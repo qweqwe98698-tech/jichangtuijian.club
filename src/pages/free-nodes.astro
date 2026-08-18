@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import FreeNodePool from '../components/FreeNodePool.astro';
+import FAQ from '../components/FAQ.astro';
+import NextStep from '../components/NextStep.astro';
+
+const faqs = [
+  {
+    question: '这里的免费订阅节点多久更新一次？',
+    answer: '本站自动化爬虫与健康检测系统每 6 小时自动巡检全网公共节点池，清洗失效 IP 与高丢包节点，剔除失效配置，并更新订阅文件。',
+  },
+  {
+    question: '为什么导入免费节点后延迟显示很低，但连上却打不开网页？',
+    answer: '延迟低通常只是本地连接到国内中转入口的握手时延（TCP Ping），并不代表跨境出口的真实带宽。很多免费节点的海外落地机房已被墙或带宽跑满导致实际丢包率高达 90% 以上。如需晚高峰秒开 4K 与 ChatGPT，建议选用企业级 IEPL 专线（如光速云）。',
+  },
+  {
+    question: '长期使用免费公共节点有哪些严重的安全隐患？',
+    answer: '公共节点由第三方匿名运营，可能部署了中间人（MitM）流量嗅探与日志记录工具，您的明文 HTTP 请求、Cookie 凭证甚至账号密码可能被监听窃取。严禁在免费节点环境下登录网上银行、交易所或进行任何敏感支付操作。',
+  },
+];
+---
+
+<BaseLayout
+  title="2026 每日动态免费节点订阅池：Clash / 小火箭 / v2rayN 公益节点每日更新"
+  description="2026 每日自动更新的公益免费节点订阅池。提供香港、日本、新加坡、美国等全球优质 VLESS、VMess、Shadowsocks 与 Hysteria2 节点，一键复制 Clash 订阅链接与图文配置。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-18"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '免费节点订阅池' }]} />
+
+    <header class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block mb-2">FREE PUBLIC NODES MATRIX</span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        2026 每日动态公益节点订阅池
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2 leading-relaxed">
+        为临时查阅资料、开源学习与应急备用提供每日更新的高可用公共代理节点。支持 Clash Verge、小火箭与 v2rayN 一键导入。
+      </p>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="获取与使用免费订阅三步法：1. 复制本页上方的通用 Clash / v2ray 订阅链接；2. 打开客户端点击“从 URL 导入配置”并粘贴链接；3. 开启系统代理即可联网。推荐将更新周期设置为 12 小时以自动获取每日最新可用节点。"
+      points={[
+        '节点协议：涵盖 VLESS、VMess、Shadowsocks 与 Hysteria2 协议',
+        '覆盖地区：香港、日本东京、新加坡、美国西海岸',
+        '安全建议：仅供临时查阅资料，严禁在免费节点下进行网银或支付操作',
+      ]}
+    />
+
+    <!-- Dynamic Free Node Pool Widget -->
+    <FreeNodePool />
+
+    <!-- 1500+ Word Deep Guide on Free Nodes -->
+    <article class="prose-atlas my-12 space-y-8">
+      <section>
+        <h2>一、免费公益节点的使用场景与正确打开方式</h2>
+        <p>
+          对于刚刚接触科学上网的小白用户，或者只需要偶尔查阅海外学术论文、GitHub 代码库的轻度学习者，免费节点是一个零成本体验跨境网络的基础途径。
+        </p>
+        <p>
+          然而，在使用免费节点时，建议遵循以下三大黄金原则：
+        </p>
+        <ul class="space-y-2 text-sm text-slate-300 pl-5 list-disc">
+          <li><strong>备用应急定位</strong>：不要将免费节点作为唯一的生产力工具，应将其作为主力专线偶尔故障时的第二备用容灾通道；</li>
+          <li><strong>开启规则分流（Rule 模式）</strong>：务必确保客户端处于“规则/分流”模式，避免国内微信、淘宝流量无端流经免费公共节点；</li>
+          <li><strong>定期手动更新订阅</strong>：公共节点 IP 寿命通常在 24-72 小时之间，遇到全红超时，只需在客户端重新点击“更新订阅”即可获取最新批次。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>二、各大客户端一键导入免费订阅指南</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white">Clash Verge (电脑端)</h3>
+            <p class="text-xs text-slate-300">
+              打开软件 ➔ 点击左侧【订阅】➔ 粘贴上方 Clash 订阅链接 ➔ 点击【导入】并开启【系统代理】。
+            </p>
+            <a href="/tutorial/clash-verge/" class="text-[11px] text-cyan-400 font-bold block pt-1 hover:underline">查看完整教程 →</a>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white">Shadowrocket (苹果手机)</h3>
+            <p class="text-xs text-slate-300">
+              右上角点击【+】号 ➔ 类型选择【Subscribe】➔ URL 处粘贴订阅链接 ➔ 点击右上角【完成】保存并拉取。
+            </p>
+            <a href="/tutorial/shadowrocket/" class="text-[11px] text-cyan-400 font-bold block pt-1 hover:underline">查看完整教程 →</a>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white">v2rayN (Windows)</h3>
+            <p class="text-xs text-slate-300">
+              顶部菜单【订阅分组】➔ 【订阅分组设置】➔ 点击【添加】➔ 粘贴 URL 并保存 ➔ 快捷键 Ctrl+U 更新订阅。
+            </p>
+            <a href="/tutorial/v2rayn/" class="text-[11px] text-cyan-400 font-bold block pt-1 hover:underline">查看完整教程 →</a>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <FAQ items={faqs} title="免费节点订阅常见问题" />
+
+    <NextStep
+      level="level2"
+      title="需要一条永不卡顿的商业级专线？"
+      description="查看 2026 综合排行榜 TOP 1 光速云（折后 12 元/月起，优惠码 AMM）与星岛梦（0 月租按量计费）。"
+      primaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '免费 Apple ID 共享池', url: '/apple-id/' }}
+    />
+  </div>
+</BaseLayout>

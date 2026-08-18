@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: '为什么使用网上的公共在线订阅转换会有安全风险？',
+    answer: '当你在网页上输入机场的订阅链接并点击转换时，你的专属订阅 URL 会被直接发送给第三方的后端服务器。不良运营者可以通过后台日志轻易截获你的订阅地址，利用你的流量配额作为其个人代理甚至进行非法网络爬虫；此外，恶意后端还可以在下发的节点列表中悄悄插入推广广告或中间人监听节点。',
+  },
+  {
+    question: '现在主流的客户端还需要使用订阅转换吗？',
+    answer: '绝大多数情况下已经不再需要。现代化客户端（如 Clash Verge Rev、Mihomo Party、sing-box、Nekobox、Shadowrocket）内部已经原生集成了强大的协议解析引擎，可以直接识别绝大多数格式的订阅链接；优质机场（如光速云、星岛梦）也在后台直接提供了一键导入对应客户端的专属按钮。',
+  },
+  {
+    question: '如果确实需要转换复杂规则，最安全的方法是什么？',
+    answer: '最安全的方法有两种：第一，使用基于 WebAssembly 技术的纯浏览器本地前端离线转换，数据完全不离开本地电脑；第二，使用 Docker 在自己的本地电脑或私有 VPS 上部署专属的开源 subconverter 后端，彻底掌握数据控制权。',
+  },
+  {
+    question: '我的订阅链接如果疑似被泄露了，该怎么做？',
+    answer: '请立即登录你的机场后台，在个人中心找到“重置订阅链接 / 重置 UUID”按钮并点击确认。重置后旧的订阅链接将瞬间失效，任何截获旧链接的第三方都将无法再连接你的节点，随后将新生成的订阅重新导入客户端即可。',
+  },
+];
+---
+
+<BaseLayout
+  title="第三方在线订阅转换安全陷阱与隐私防范：2026 本地离线与 Docker 自建指南"
+  description="2026 机场订阅转换安全内幕深度调查。揭秘公共在线订阅转换偷跑流量与后门植入风险，详解现代化客户端原生导入与 Docker 私有化自建 SOP。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '技术知识', url: '/knowledge/' }, { title: '订阅转换安全与私有化部署' }]} />
+
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3">
+        <span>数据隐私与网络安全 · 2026 实战</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        第三方在线订阅转换安全陷阱与隐私泄露防范：2026 本地离线转换与 Docker 自建 SOP
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 8 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="在线订阅转换虽然方便，但将包含个人 Token 的订阅链接提交给不可信的第三方公网服务器，存在极高的流量被盗刷、节点被插入广告与隐私被监听风险。优先选用支持全格式原生导入的客户端与优质机场；确需转换时，强烈建议使用纯本地 WebAssembly 转换或通过 Docker 私有化自建 subconverter。"
+      points={[
+        '泄露隐患：公共转换后端可直接记录订阅 URL，盗用你的专线流量配额',
+        '恶意篡改：部分不良转换服务会在你的配置文件中插入恶意规则与广告节点',
+        '最佳方案：优先使用机场官方一键导入（如光速云），或自建本地 Docker 转换后端',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、为什么我们需要“订阅转换”？</h2>
+        <p>
+          在科学上网的生态体系中，不同客户端所支持的配置文件语法差异极大：
+        </p>
+        <ul class="space-y-1.5 text-xs sm:text-sm text-slate-300 list-disc pl-5 leading-relaxed">
+          <li><strong>Clash / Mihomo 系列</strong>：使用 <code>.yaml</code> 格式，遵循严格的 Proxy-Group 与 Rule 缩进语法；</li>
+          <li><strong>Shadowrocket（小火箭）</strong>：支持 Base64 编码的单行节点 URL 列表；</li>
+          <li><strong>sing-box</strong>：使用高规范的 <code>.json</code> 结构体；</li>
+          <li><strong>Quantumult X / Surge</strong>：使用独有的 <code>.conf</code> 专用规则分流格式。</li>
+        </ul>
+        <p>
+          为了解决不同协议与客户端之间的格式兼容问题，开源社区诞生了强大的 <strong>subconverter（订阅转换核心）</strong> 工具。然而，当这一工具被部署在公开互联网上并被小白网民频繁使用时，严重的隐私与资产安全问题随之产生。
+        </p>
+      </section>
+
+      <section>
+        <h2>二、公共在线订阅转换背后的三大致命黑产后门</h2>
+        <p>
+          很多网民在搜索引擎随便搜一个“在线订阅转换”，将价值数百元的专线订阅链接粘贴进去。殊不知，不可信的公共后端正在实施以下三种危险操作：
+        </p>
+        <div class="space-y-4 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-rose-500/20">
+            <h3 class="text-sm font-bold text-rose-300 mb-2">1. 抓取订阅 Token，偷跑用户专线流量</h3>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              订阅转换后端在请求你的机场接口获取节点列表时，会在服务端数据库中完整记录你的原始订阅链接与包含的 Token 秘钥。运营者可以将这些收集到的优质专线节点打包导入到其个人的代理池中，用于批量爬取数据或搭建免费节点群，导致你的月度流量在几天内被莫名耗尽。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-rose-500/20">
+            <h3 class="text-sm font-bold text-rose-300 mb-2">2. 强行插入恶意规则与后门节点</h3>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              当你从公共转换页面下载生成的 YAML 配置文件时，恶意后端可能会在你的节点列表末尾悄悄插入他们自己掌控的节点，并在规则分流中将特定银行、交易所或社交网站的流量强制指定走该后门节点，从而对你的核心金融资产实施中间人嗅探。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-rose-500/20">
+            <h3 class="text-sm font-bold text-rose-300 mb-2">3. 植入博彩与垃圾营销广告</h3>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              部分黑产转换站会在分流规则中加入广告劫持规则，在你使用代理浏览网页时，将原本干净的网页内容重定向到博彩、色情或仿冒钓鱼网站。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>三、如何彻底规避订阅泄露？三大安全使用法则</h2>
+        <p>
+          保障订阅安全非常简单，只需遵循以下安全准则：
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/20">
+            <span class="text-xs font-bold text-cyan-400 block mb-1">法则 1：首选机场官方原生导入</span>
+            <p class="text-xs text-slate-300 m-0">如<strong>光速云</strong>、<strong>星岛梦</strong>等正规服务商，后台已原生生成针对 Clash、小火箭、sing-box 的专属链接，直接一键导入，无需经过任何第三方转换。</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/20">
+            <span class="text-xs font-bold text-cyan-400 block mb-1">法则 2：使用客户端内置转换能力</span>
+            <p class="text-xs text-slate-300 m-0">新版 Clash Verge Rev 与 Nekobox 已内置本地转换核心，将通用订阅粘贴进客户端即可在本地内存中完成解析，数据绝不离开本机。</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/20">
+            <span class="text-xs font-bold text-cyan-400 block mb-1">法则 3：定期重置订阅 Token</span>
+            <p class="text-xs text-slate-300 m-0">若曾在公共平台转换过订阅，立即在机场后台点击“重置订阅链接”，旧链接即刻废弃，彻底切断泄露隐患。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>四、进阶极客实战：Docker 一键私有化自建 subconverter SOP</h2>
+        <p>
+          如果你有特殊的分流规则定制需求，最安全稳妥的方案是通过 Docker 在本地电脑或自己的私有 VPS 上部署完全独立的转换后端：
+        </p>
+        <div class="p-4 rounded-xl bg-slate-950 border border-cyan-500/30 my-4 font-mono text-xs text-slate-300 space-y-3">
+          <div class="text-cyan-400 font-bold">// 步骤 1：使用 Docker 启动官方 subconverter 纯净后端</div>
+          <pre class="bg-slate-900 p-3 rounded text-cyan-300 overflow-x-auto">docker run -d --name subconverter --restart=always -p 25500:25500 tindy2013/subconverter:latest</pre>
+          <div class="text-cyan-400 font-bold">// 步骤 2：验证本地转换服务运行状态</div>
+          <pre class="bg-slate-900 p-3 rounded text-emerald-400 overflow-x-auto">curl http://127.0.0.1:25500/version
+# 返回类似 subconverter v0.9.0 即表示私有化部署成功</pre>
+          <div class="text-cyan-400 font-bold">// 步骤 3：在本地构造安全的转换请求</div>
+          <p class="text-xs text-slate-400 m-0">
+            将转换地址修改为 <code>http://127.0.0.1:25500/sub?target=clash&url=你的原始订阅地址</code>，所有节点解析与规则生成全部在本地局域网完成，0 数据外泄。
+          </p>
+        </div>
+      </section>
+    </article>
+
+    <FAQ items={faqs} title="订阅转换与隐私安全 FAQ" />
+
+    <NextStep
+      level="level2"
+      title="如何挑选原生支持全平台客户端的优质专线服务商？"
+      description="查看 2026 综合天梯排行榜，挑选提供原生一键导入、安全隔离的基石级机场。"
+      primaryLink={{ text: '查看 2026 机场综合排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '阅读 Clash Verge 配置教程', url: '/tutorial/clash-verge/' }}
+    />
+  </div>
+</BaseLayout>

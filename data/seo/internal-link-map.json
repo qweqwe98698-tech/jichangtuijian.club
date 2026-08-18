@@ -1,0 +1,25 @@
+{
+  "hubToPillar": [
+    {
+      "from": "/knowledge/*",
+      "to": "/stable-airport/",
+      "anchor": "稳定专线机场选型"
+    },
+    {
+      "from": "/troubleshooting/*",
+      "to": "/airport-ranking/",
+      "anchor": "高SLA可靠备用机场"
+    },
+    {
+      "from": "/risk-warning/*",
+      "to": "/stable-airport/",
+      "anchor": "老牌支持月付的基石机场"
+    },
+    {
+      "from": "/chatgpt/*",
+      "to": "/chatgpt-airport/",
+      "anchor": "ChatGPT 原生纯净 IP 机场方案"
+    }
+  ],
+  "standardThreeLinksRule": "每篇文章标配：1条回链Pillar + 2~3条同Cluster横向链接 + 1条下一步需求转化"
+}

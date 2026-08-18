@@ -1,0 +1,307 @@
+---
+// src/components/Wizard.astro
+// 一分钟智能选型诊断向导组件
+import { getPriorityProviders } from '../lib/providers';
+
+const topProviders = getPriorityProviders();
+const guangsu = topProviders.find(p => p.id === 'guangsu') || topProviders[0];
+const xingdaomeng = topProviders.find(p => p.id === 'xingdaomeng') || topProviders[1];
+const feimao = topProviders.find(p => p.id === 'feimao') || topProviders[2];
+const u1s1 = topProviders.find(p => p.id === 'u1s1') || topProviders[3];
+---
+
+<div id="airport-wizard" class="w-full my-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-slate-900/90 to-[#0c1222] border border-cyan-500/30 shadow-[0_0_30px_rgba(6,182,212,0.15)] relative overflow-hidden">
+  <!-- Glowing Background Accent -->
+  <div class="absolute -right-20 -top-20 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Wizard Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+    <div>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono font-bold mb-2">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        AI-POWERED MATCHER
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-2">
+        <span>一分钟智能选型诊断向导</span>
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-300 mt-1">
+        根据您的设备、核心用途与预算，系统将自动从数据库中实时匹配最契合的高可用服务商
+      </p>
+    </div>
+
+    <!-- Step Indicator -->
+    <div class="flex items-center gap-2 self-start sm:self-auto font-mono text-xs">
+      <span id="step-badge-1" class="w-7 h-7 rounded-full bg-cyan-500 text-slate-950 font-bold flex items-center justify-center">1</span>
+      <span class="w-4 h-0.5 bg-white/20"></span>
+      <span id="step-badge-2" class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 font-bold flex items-center justify-center">2</span>
+      <span class="w-4 h-0.5 bg-white/20"></span>
+      <span id="step-badge-3" class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 font-bold flex items-center justify-center">3</span>
+    </div>
+  </div>
+
+  <!-- Question Container -->
+  <div class="py-6">
+    <!-- Step 1: Device -->
+    <div id="wizard-step-1" class="wizard-step">
+      <h3 class="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
+        <span class="text-cyan-400 font-mono">01.</span> 您主要在哪些设备上使用？
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <button type="button" data-val="all" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95">
+          <span class="text-2xl block mb-2">💻📱</span>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">多设备全家桶</span>
+          <span class="text-[11px] text-slate-400">PC + 手机 + 平板</span>
+        </button>
+        <button type="button" data-val="apple" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95">
+          <span class="text-2xl block mb-2">🍎</span>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">苹果全生态</span>
+          <span class="text-[11px] text-slate-400">iPhone / Mac / Apple TV</span>
+        </button>
+        <button type="button" data-val="win_android" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95">
+          <span class="text-2xl block mb-2">🤖🪟</span>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">Windows / 安卓</span>
+          <span class="text-[11px] text-slate-400">电脑办公 / 手机移动</span>
+        </button>
+        <button type="button" data-val="router" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95">
+          <span class="text-2xl block mb-2">📡</span>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">软路由 / 电视</span>
+          <span class="text-[11px] text-slate-400">OpenWrt 全屋透明代理</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 2: Use-case -->
+    <div id="wizard-step-2" class="wizard-step hidden">
+      <h3 class="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
+        <span class="text-cyan-400 font-mono">02.</span> 您的核心使用场景是什么？
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <button type="button" data-val="ai_code" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95">
+          <span class="text-2xl block mb-2">🤖</span>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">AI 编程 / ChatGPT</span>
+          <span class="text-[11px] text-slate-400">Cursor / Claude 3.7 / API</span>
+        </button>
+        <button type="button" data-val="streaming" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95">
+          <span class="text-2xl block mb-2">🎬</span>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">4K 8K 流媒体</span>
+          <span class="text-[11px] text-slate-400">Netflix / YouTube / Disney+</span>
+        </button>
+        <button type="button" data-val="tiktok" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95">
+          <span class="text-2xl block mb-2">📦</span>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">TikTok / 跨境外贸</span>
+          <span class="text-[11px] text-slate-400">原生住宅静态 IP / 防封</span>
+        </button>
+        <button type="button" data-val="gaming" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95">
+          <span class="text-2xl block mb-2">🎮</span>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">Steam / 联机游戏</span>
+          <span class="text-[11px] text-slate-400">极低抖动 Jitter &lt; 2ms</span>
+        </button>
+        <button type="button" data-val="light" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95 col-span-2 sm:col-span-2">
+          <span class="text-2xl block mb-2">🌐</span>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">轻量查资料 / 应急备用</span>
+          <span class="text-[11px] text-slate-400">Google 搜索 / Telegram / GitHub</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 3: Budget -->
+    <div id="wizard-step-3" class="wizard-step hidden">
+      <h3 class="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
+        <span class="text-cyan-400 font-mono">03.</span> 您的预算与计费偏好？
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <button type="button" data-val="flagship" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-2xl">👑</span>
+            <span class="px-2 py-0.5 rounded text-[10px] bg-cyan-500/20 text-cyan-400 font-bold">旗舰专线</span>
+          </div>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">极致稳定 · IEPL 专线</span>
+          <span class="text-[11px] text-slate-400">折合月付约 ¥15~35 / 晚高峰 0 丢包</span>
+        </button>
+        <button type="button" data-val="budget" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-2xl">⚡</span>
+            <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 font-bold">平价首选</span>
+          </div>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">超高性价比 · 尝鲜试水</span>
+          <span class="text-[11px] text-slate-400">月付低至 ¥7~15 起 / 学生党友好</span>
+        </button>
+        <button type="button" data-val="payg" class="wizard-opt p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-400/50 text-left transition-all group active:scale-95">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-2xl">⏳</span>
+            <span class="px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-400 font-bold">按量计费</span>
+          </div>
+          <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-cyan-300">0 月租 · 流量永不过期</span>
+          <span class="text-[11px] text-slate-400">用多少扣多少 / 永久双活备用</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Diagnostic Result -->
+    <div id="wizard-result" class="hidden">
+      <div class="p-6 rounded-xl bg-slate-950 border border-emerald-500/40 relative overflow-hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+              <span>🎯 100% 契合您的诊断需求 · 最佳推荐</span>
+            </div>
+            <div class="flex items-baseline gap-3">
+              <h3 id="result-name" class="text-2xl sm:text-3xl font-black text-white">光速云</h3>
+              <span id="result-tier" class="px-2.5 py-0.5 rounded text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">TOP 1 综合旗舰</span>
+              <span id="result-price" class="text-sm font-mono text-emerald-400 font-bold">¥15.00/月 起 (折后 ¥12.00)</span>
+            </div>
+            <p id="result-desc" class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
+              深港/沪日企业物理专线直达，针对您的设备与使用场景提供专属优化通道，晚高峰 0 丢包，支持 4K 秒开与原生住宅 IP 解锁。
+            </p>
+            <div class="flex flex-wrap items-center gap-2 pt-2 text-xs">
+              <span class="text-slate-400">专属特惠：</span>
+              <button type="button" id="result-coupon-btn" class="coupon-copy-btn px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono font-bold hover:bg-amber-500/20 transition-all flex items-center gap-1.5 cursor-pointer" data-coupon="AMM">
+                <span id="result-coupon-text">优惠码 AMM (8折)</span>
+                <span class="text-[10px] text-amber-400/80">点击复制</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row md:flex-col gap-3 min-w-[200px]">
+            <a id="result-link" href="https://sahude.gsyvipaff.com/#/?code=keqgvT5Y" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-sm text-center shadow-lg shadow-emerald-500/25 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5">
+              <span>立即前往官网开通</span>
+              <span class="text-base">→</span>
+            </a>
+            <button type="button" id="wizard-reset-btn" class="px-4 py-2 rounded-xl bg-slate-900 border border-white/10 text-slate-300 hover:text-white text-xs text-center hover:bg-white/5 transition-all cursor-pointer">
+              重新测试诊断 ↺
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    let step = 1;
+    const answers = { device: '', usecase: '', budget: '' };
+
+    const step1El = document.getElementById('wizard-step-1');
+    const step2El = document.getElementById('wizard-step-2');
+    const step3El = document.getElementById('wizard-step-3');
+    const resultEl = document.getElementById('wizard-result');
+
+    const badge1 = document.getElementById('step-badge-1');
+    const badge2 = document.getElementById('step-badge-2');
+    const badge3 = document.getElementById('step-badge-3');
+
+    const resultName = document.getElementById('result-name');
+    const resultTier = document.getElementById('result-tier');
+    const resultPrice = document.getElementById('result-price');
+    const resultDesc = document.getElementById('result-desc');
+    const resultLink = document.getElementById('result-link');
+    const resultCouponBtn = document.getElementById('result-coupon-btn');
+    const resultCouponText = document.getElementById('result-coupon-text');
+    const resetBtn = document.getElementById('wizard-reset-btn');
+
+    // Step 1 Options
+    step1El?.querySelectorAll('button[data-val]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        answers.device = btn.getAttribute('data-val') || '';
+        step = 2;
+        step1El.classList.add('hidden');
+        step2El.classList.remove('hidden');
+        badge1.className = 'w-7 h-7 rounded-full bg-emerald-500 text-slate-950 font-bold flex items-center justify-center';
+        badge1.textContent = '✓';
+        badge2.className = 'w-7 h-7 rounded-full bg-cyan-500 text-slate-950 font-bold flex items-center justify-center';
+      });
+    });
+
+    // Step 2 Options
+    step2El?.querySelectorAll('button[data-val]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        answers.usecase = btn.getAttribute('data-val') || '';
+        step = 3;
+        step2El.classList.add('hidden');
+        step3El.classList.remove('hidden');
+        badge2.className = 'w-7 h-7 rounded-full bg-emerald-500 text-slate-950 font-bold flex items-center justify-center';
+        badge2.textContent = '✓';
+        badge3.className = 'w-7 h-7 rounded-full bg-cyan-500 text-slate-950 font-bold flex items-center justify-center';
+      });
+    });
+
+    // Step 3 Options & Calculate
+    step3El?.querySelectorAll('button[data-val]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        answers.budget = btn.getAttribute('data-val') || '';
+        step = 4;
+        step3El.classList.add('hidden');
+        resultEl.classList.remove('hidden');
+        badge3.className = 'w-7 h-7 rounded-full bg-emerald-500 text-slate-950 font-bold flex items-center justify-center';
+        badge3.textContent = '✓';
+
+        calculateResult(answers);
+      });
+    });
+
+    function calculateResult(ans) {
+      // Logic mapping with verified live official URLs
+      if (ans.budget === 'payg' || ans.usecase === 'light') {
+        // #2 星岛梦
+        resultName.textContent = '星岛梦 (Xingdaomeng)';
+        resultTier.textContent = 'TOP 2 不限时按量标杆';
+        resultTier.className = 'px-2.5 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30';
+        resultPrice.textContent = '¥8.00/月 起 (按量永久不过期)';
+        resultDesc.textContent = '0 月租、流量永不过期。非常适合轻量查资料、备用容灾与低频用户，购买一次即可长期高枕无忧，支持客户端 Fallback 自动切换。';
+        resultLink.href = 'https://guangs.xingdaomeng.com/#/?code=1TynBYnR';
+        resultCouponBtn?.setAttribute('data-coupon', 'nmw888');
+        if (resultCouponText) resultCouponText.textContent = '优惠码 nmw888 (9折)';
+      } else if (ans.budget === 'budget') {
+        // #3 飞猫云
+        resultName.textContent = '飞猫云 (FlyCat)';
+        resultTier.textContent = 'TOP 3 平价高性价比标杆';
+        resultTier.className = 'px-2.5 py-0.5 rounded text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+        resultPrice.textContent = '¥7.00/月 起';
+        resultDesc.textContent = '业内极低门槛的优质专线服务，7 元月付即可享受大流量与多节点覆盖，非常适合学生党、移动端多账号尝鲜使用。';
+        resultLink.href = 'https://guangs.flycataff.com/#/?code=6uq0Xe9y';
+        resultCouponBtn?.setAttribute('data-coupon', 'flycat888');
+        if (resultCouponText) resultCouponText.textContent = '优惠码 flycat888 (8折)';
+      } else if (ans.usecase === 'gaming') {
+        // #4 U1S1
+        resultName.textContent = 'U1S1 纯专线';
+        resultTier.textContent = 'TOP 4 电竞低延迟先锋';
+        resultTier.className = 'px-2.5 py-0.5 rounded text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30';
+        resultPrice.textContent = '¥20.00/月 起';
+        resultDesc.textContent = '全线纯 IEPL 专线，Jitter 抖动严格控制在 1.5ms 以内，晚高峰 0 丢包与 Full Cone NAT 优化，是 Steam/PS5 游戏联机的极客首选。';
+        resultLink.href = 'https://guangs.vipaff.cc/#/?code=xhX5X22f';
+        resultCouponBtn?.setAttribute('data-coupon', 'akaka');
+        if (resultCouponText) resultCouponText.textContent = '优惠码 akaka (专属优惠)';
+      } else {
+        // #1 光速云 (Default Flagship)
+        resultName.textContent = '光速云 (Guangsu Cloud)';
+        resultTier.textContent = 'TOP 1 综合旗舰首选';
+        resultTier.className = 'px-2.5 py-0.5 rounded text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30';
+        resultPrice.textContent = '¥15.00/月 起 (折后 ¥12.00)';
+        resultDesc.textContent = '深港/沪日物理专线直达，2020 年老牌高可用标杆。完美适配全平台设备、Cursor/ChatGPT 编程、Netflix 4K 影音与 TikTok 跨境外贸。';
+        resultLink.href = 'https://sahude.gsyvipaff.com/#/?code=keqgvT5Y';
+        resultCouponBtn?.setAttribute('data-coupon', 'AMM');
+        if (resultCouponText) resultCouponText.textContent = '优惠码 AMM (8折)';
+      }
+    }
+
+    // Reset button
+    resetBtn?.addEventListener('click', () => {
+      step = 1;
+      answers.device = '';
+      answers.usecase = '';
+      answers.budget = '';
+
+      resultEl.classList.add('hidden');
+      step1El.classList.remove('hidden');
+
+      badge1.className = 'w-7 h-7 rounded-full bg-cyan-500 text-slate-950 font-bold flex items-center justify-center';
+      badge1.textContent = '1';
+      badge2.className = 'w-7 h-7 rounded-full bg-slate-800 text-slate-400 font-bold flex items-center justify-center';
+      badge2.textContent = '2';
+      badge3.className = 'w-7 h-7 rounded-full bg-slate-800 text-slate-400 font-bold flex items-center justify-center';
+      badge3.textContent = '3';
+    });
+  });
+</script>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import ProviderCard from '../components/ProviderCard.astro';
+import FAQ from '../components/FAQ.astro';
+import NextStep from '../components/NextStep.astro';
+import { getAllProviders } from '../lib/providers';
+
+const rocketProviders = getAllProviders().filter((p) =>
+  p.clients.some((c) => c.toLowerCase().includes('shadowrocket'))
+);
+
+const faqs = [
+  {
+    question: 'Shadowrocket（小火箭）在国区 App Store 为什么搜不到？',
+    answer: '由于大陆地区政策原因，Shadowrocket 已从中国大陆区 App Store 下架。您需要准备一个美区或港区 Apple ID，在对应外区商店以 2.99 美元购买下载。',
+  },
+];
+---
+
+<BaseLayout
+  title="2026 Shadowrocket 小火箭机场推荐：苹果 iOS 专用极速节点"
+  description="2026 苹果 iPhone / iPad Shadowrocket（小火箭）专用机场推荐。支持二维码扫码一键导入、自动更新订阅与配置分流规则，随时随地极速畅连海外网络。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '小火箭机场推荐' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-blue-400 uppercase tracking-widest block mb-2">IOS SHADOWROCKET</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        2026 Shadowrocket 小火箭稳定机场推荐
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        专为苹果 iOS 用户精选。手机端功耗极低、扫码秒导入，支持原生 5G/Wi-Fi 智能漫游切换。
+      </p>
+    </div>
+
+    <QuickAnswer
+      answerType="decision"
+      summary="iOS 移动端强烈建议选择支持“深港 IEPL”与“沪日 IEPL”超低延迟专线的服务商。小火箭导入后开启“配置（Rule）”分流模式，微信/淘宝走本地直连，推特/YouTube 走专线秒开。"
+      points={[
+        '支持二维码扫描与一键唤起 Shadowrocket 订阅导入',
+        '极低电量消耗与后台保活优化',
+        '内置主流流媒体与 AI 工具分流策略组',
+      ]}
+    />
+
+    <div class="my-10 space-y-6">
+      {rocketProviders.map((p, idx) => (
+        <ProviderCard provider={p} rankingIndex={idx} highlightBadge="iOS 小火箭推荐" />
+      ))}
+    </div>
+
+    <FAQ items={faqs} title="Shadowrocket 选型与使用问答" />
+
+    <NextStep
+      level="level2"
+      title="需要小火箭下载与配置教程？"
+      description="查看我们准备的小火箭美区 Apple ID 注册与 3 步扫码导入图文教程。"
+      primaryLink={{ text: '查看 Shadowrocket 小火箭配置教程', url: '/tutorial/shadowrocket/' }}
+      secondaryLink={{ text: '查看美区 Apple ID 注册指南', url: '/apple-id/' }}
+    />
+  </div>
+</BaseLayout>

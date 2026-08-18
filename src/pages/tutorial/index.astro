@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import NextStep from '../../components/NextStep.astro';
+
+const tutorials = [
+  {
+    title: 'Clash Verge Rev 电脑端新手配置教程',
+    slug: '/tutorial/clash-verge/',
+    platform: 'Windows / macOS / Linux',
+    difficulty: '入门简单',
+    description: '现代化的开源 Clash 客户端，内置 Mihomo 核心，图文讲解从下载、安装、导入订阅到开启系统代理与 TUN 模式全流程。',
+  },
+  {
+    title: 'Shadowrocket 小火箭苹果 iOS 使用指南',
+    slug: '/tutorial/shadowrocket/',
+    platform: 'iOS (iPhone / iPad)',
+    difficulty: '极简易用',
+    description: '苹果手机上最流行的代理软件。包含美区 Apple ID 获取、小火箭下载、扫码导入订阅与按需规则分流设置。',
+  },
+  {
+    title: 'OpenWrt / 软路由 OpenClash 全屋透明代理教程',
+    slug: '/tutorial/openwrt-openclash/',
+    platform: 'OpenWrt / 软路由 / 旁路由',
+    difficulty: '进阶实用',
+    description: '家庭网络网关级部署。开启 Meta 内核与 Fake-IP 混合模式，实现全屋手机、电视、PS5 游戏机 100% 免安装客户端无感分流。',
+  },
+  {
+    title: 'Apple TV 科学上网全家桶保姆级配置指南',
+    slug: '/tutorial/apple-tv/',
+    platform: 'Apple TV (tvOS 17+)',
+    difficulty: '极简易用',
+    description: 'tvOS 原生 Shadowrocket / Loon 安装与订阅扫码导入。畅享 YouTube 4K 60fps、Netflix 杜比视界与 Infuse 蓝光极速串流。',
+  },
+  {
+    title: 'Android 安卓手机科学上网指南与保活避坑',
+    slug: '/tutorial/android-clash/',
+    platform: 'Android (安卓手机 / 平板)',
+    difficulty: '入门简单',
+    description: 'Clash Meta for Android (CMFA) 与 Surfboard 配置指南。分应用代理加速，解决国内安卓系统后台锁屏断连四大设置。',
+  },
+  {
+    title: 'Surge for Mac & iOS 极客神级配置全景指南',
+    slug: '/tutorial/surge/',
+    platform: 'macOS / iOS / tvOS',
+    difficulty: '极客高阶',
+    description: '苹果生态网络神器。托管策略组编写、社区 Module 模块热插拔、MitM 规则解密与 Enhanced Mode 局域网网关实战。',
+  },
+  {
+    title: 'sing-box 新一代通用代理配置教程',
+    slug: '/tutorial/sing-box/',
+    platform: '全平台 (Win/Mac/Android/iOS)',
+    difficulty: '进阶极客',
+    description: '新一代性能怪兽，超低内存开销。讲解 JSON 规则配置、Inbound/Outbound 路由与软路由透明代理部署。',
+  },
+  {
+    title: 'v2rayN 电脑端配置与协议加速教程',
+    slug: '/tutorial/v2rayn/',
+    platform: 'Windows',
+    difficulty: '中等实用',
+    description: '轻量高效的 Windows 客户端，详细介绍 Xray/sing-box 核心切换、真连接测速与路由规则自定义。',
+  },
+];
+---
+
+<BaseLayout
+  title="客户端教程中心：Clash Verge、小火箭、v2rayN 与 sing-box 配置指南"
+  description="全平台科学上网客户端新手图文教程中心。覆盖 Windows、Mac、iPhone、Android 及软路由设备，手把手教您快速导入订阅与分流配置。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '客户端教程中心' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">SETUP & TUTORIALS</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        代理客户端下载与配置教程中心
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        无论您使用的是 Windows 电脑、苹果 iPhone、Mac 还是安卓手机，我们为您准备了从零开始的保姆级配置指南。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+      {tutorials.map((t) => (
+        <div class="glass-card p-6 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                {t.platform}
+              </span>
+              <span class="text-[11px] text-slate-400">{t.difficulty}</span>
+            </div>
+            <h2 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors mb-2">
+              <a href={t.slug}>{t.title}</a>
+            </h2>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">{t.description}</p>
+          </div>
+
+          <a
+            href={t.slug}
+            class="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 pt-4 border-t border-white/5"
+          >
+            <span>阅读完整图文教程</span>
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <NextStep
+      level="level2"
+      title="配置过程中遇到了错误或无法连接？"
+      description="查看故障排查中心，包含节点全红 TIMEOUT、订阅更新失败等快速解决方案。"
+      primaryLink={{ text: '查看故障排查中心', url: '/troubleshooting/' }}
+      secondaryLink={{ text: '查看 2026 稳定机场推荐', url: '/stable-airport/' }}
+    />
+  </div>
+</BaseLayout>

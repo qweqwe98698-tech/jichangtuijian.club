@@ -1,0 +1,90 @@
+{
+  "id": "ermao",
+  "name": "二猫云",
+  "slug": "ermao",
+  "tagline": "20 元档 130GB 专线折中之选 · VLESS 协议保障",
+  "establishedYear": 2023,
+  "officialUrl": "https://guangs.2maoyunaff.cc/#/?code=7mjvgGbW",
+  "couponCode": "ermao5555",
+  "discount": "专属优惠码",
+  "pricing": {
+    "monthlyStarting": 20,
+    "currency": "¥",
+    "billingCycle": "月付 20 元/月，130GB"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "国内多入口 BGP"
+  ],
+  "protocols": [
+    "VLESS",
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "streamingSupport": {
+    "netflix": "主流区解锁",
+    "disney": "支持",
+    "youtube4k": "秒开 4K"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.88%",
+    "averageLatency": "19ms",
+    "peakSpeed": "750 Mbps",
+    "packetLoss": "< 0.07%"
+  },
+  "measuredEvidence": {
+    "file": "/images/speedtests/ermao-speedtest.png",
+    "testedAt": "2026-08-11T10:45:27+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  },
+  "plans": [
+    {
+      "name": "二猫月付版",
+      "price": "¥20/月",
+      "traffic": "130 GB/月",
+      "speed": "1000 Mbps IEPL"
+    },
+    {
+      "name": "二猫进阶版",
+      "price": "¥36/月",
+      "traffic": "260 GB/月",
+      "speed": "1000 Mbps IEPL"
+    }
+  ],
+  "bestFor": [
+    "20元档中等偏大流量需求 (130GB)",
+    "看重线路稳定性与 VLESS 协议",
+    "多端协同"
+  ],
+  "notFor": [
+    "需要超低价年付套餐的用户"
+  ],
+  "pros": [
+    "流量处在 120GB 与 150GB 之间的甜点档位",
+    "IEPL 专线抗波动表现优异",
+    "直接支持通用第三方订阅"
+  ],
+  "cons": [
+    "品牌知名度相对头部老牌略小"
+  ],
+  "runawayRisk": "低 (稳定月付模式)",
+  "lastVerified": "2026-08-17",
+  "verificationStatus": "verified"
+}

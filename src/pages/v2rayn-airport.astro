@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import ProviderCard from '../components/ProviderCard.astro';
+import FAQ from '../components/FAQ.astro';
+import NextStep from '../components/NextStep.astro';
+import { getAllProviders } from '../lib/providers';
+
+const v2raynProviders = getAllProviders().filter((p) =>
+  p.clients.some((c) => c.toLowerCase().includes('v2rayn'))
+);
+
+const faqs = [
+  {
+    question: 'v2rayN 和 Clash Verge 相比有什么优势？',
+    answer: 'v2rayN 更加轻量纯粹，启动速度极快，内存占用通常不到 50MB；同时支持直接测试真实下载速度与 Ping 延迟，对 V2Ray (VLESS/VMess)、Xray 和 Hysteria2 新协议的原生支持非常迅速。',
+  },
+];
+---
+
+<BaseLayout
+  title="2026 v2rayN 机场推荐：Windows 极速轻量代理节点与 VLESS/Hysteria2 支持"
+  description="2026 v2rayN 专用机场推荐。为 Windows PC 电脑端用户挑选低内存占用、高吞吐带宽的专线节点，全面支持 VLESS、Trojan、Shadowsocks 及 Hysteria2 协议。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: 'v2rayN 机场推荐' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block mb-2">WINDOWS V2RAYN</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        2026 v2rayN 专用高带宽机场推荐
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        专为追求极简、极致轻量与高吞吐的 Windows 极客用户打造。无多余图形开销，千兆带宽全力释放。
+      </p>
+    </div>
+
+    <QuickAnswer
+      answerType="decision"
+      summary="搭配 v2rayN 使用时，优先选择提供原生 VLESS-Reality、Shadowsocks 与 Hysteria2 混合协议节点的服务商（如 GLaDOS、TAG Internet、Kuromis），抗封锁与单线程下载速度最强。"
+      points={[
+        '支持单线程/多线程真连接下载测速',
+        '系统内存占用极低（< 60MB）',
+        '支持一键开启清除系统代理与路由规则切换',
+      ]}
+    />
+
+    <div class="my-10 space-y-6">
+      {v2raynProviders.map((p, idx) => (
+        <ProviderCard provider={p} rankingIndex={idx} highlightBadge="v2rayN 原生支持" />
+      ))}
+    </div>
+
+    <FAQ items={faqs} title="v2rayN 选型与配置问答" />
+
+    <NextStep
+      level="level2"
+      title="需要 v2rayN 电脑端安装与订阅导入教程？"
+      description="阅读我们的 Windows 端 v2rayN 下载与核心组件配置 SOP。"
+      primaryLink={{ text: '查看 v2rayN 电脑端使用教程', url: '/tutorial/v2rayn/' }}
+      secondaryLink={{ text: '查看 v2rayN 测速正常但打不开网页排查', url: '/troubleshooting/clash/' }}
+    />
+  </div>
+</BaseLayout>

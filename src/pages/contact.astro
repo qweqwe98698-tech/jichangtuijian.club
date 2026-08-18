@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import NextStep from '../components/NextStep.astro';
+---
+
+<BaseLayout
+  title="联系我们：提交纠错、品牌评测申请与技术交流"
+  description="联系 机场推荐 Club 评测团队。如果您发现本站有任何过时数据、失效链接或需要提交独立评测申请，欢迎与我们取得联系。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '联系我们' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">FEEDBACK & CONTACT</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        联系我们与纠错反馈
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        帮助我们把知识库做得更完善。
+      </p>
+    </header>
+
+    <article class="prose-atlas my-10 space-y-6">
+      <h2>联系方式</h2>
+      <p>
+        <strong>官方电子邮箱</strong>：<code>contact@jichangtuijian.club</code>
+      </p>
+      <p>
+        <strong>Telegram 交流频道</strong>：<code>@jichangtuijian_club</code>
+      </p>
+
+      <h2>纠错与数据更新通道</h2>
+      <p>
+        如果您是机场运营方或普通用户，发现本站某篇评测中的价格、节点线路或优惠码信息发生变更，请随时发送邮件至上述邮箱，附带相关截图或证明，我们将在 24 小时内核验并更新全站数据。
+      </p>
+    </article>
+
+    <NextStep
+      level="level1"
+      title="想了解我们的数据更新机制？"
+      description="查看我们关于数据复查与年度更新的详细机制。"
+      primaryLink={{ text: '查看数据更新机制', url: '/update-policy/' }}
+      secondaryLink={{ text: '返回首页', url: '/' }}
+    />
+  </div>
+</BaseLayout>

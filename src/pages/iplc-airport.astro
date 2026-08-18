@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import ProviderCard from '../components/ProviderCard.astro';
+import FAQ from '../components/FAQ.astro';
+import NextStep from '../components/NextStep.astro';
+import { getAllProviders } from '../lib/providers';
+
+const iplcProviders = getAllProviders().filter((p) =>
+  p.routes.some((r) => r.includes('IPLC') || r.includes('专线'))
+);
+
+const faqs = [
+  {
+    question: 'IPLC 专线的成本为什么通常非常昂贵？',
+    answer: 'IPLC 属于国际私有租用物理线路，电信运营商按 Mbps 兆宽带月度收费，单兆成本是普通公网带宽的数十倍甚至上百倍。因此真正的 IPLC 专线机场往往定位高端商务或对延迟极度敏感的用户。',
+  },
+];
+---
+
+<BaseLayout
+  title="2026 IPLC 专线机场推荐：点对点物理硬隔离国际专线梯子"
+  description="2026 IPLC 纯专线机场推荐。提供传统电信级物理私有租用线路，0 抖动、固定超低延迟，无论外界网络环境如何变化，始终保持 100% 畅通。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: 'IPLC 专线机场' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-blue-400 uppercase tracking-widest block mb-2">IPLC DEDICATED CIRCUIT</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        2026 IPLC 国际私有专线机场横评
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        经典电信级国际私网连接。物理层完全独立，专为金融级低延迟交互与重度生产力定制。
+      </p>
+    </div>
+
+    <QuickAnswer
+      answerType="comparison"
+      summary="IPLC 专线以物理层点对点光缆直连为特色。首推 2020 年成立的老牌旗舰【光速云】与【U1S1】。物理穿透海缆，深港两端直连，延迟严格固定在 12-16ms，适合电竞联机、金融级低延迟与极端抗网络波动场景。"
+      points={[
+        '电信级物理硬隔离通道，网络抖动 &lt; 1ms',
+        '敏感时期无视 GFW 封锁，可用性 99.99%',
+        '全节点支持 VLESS / Shadowsocks 原生协议加速',
+      ]}
+    />
+
+    <div class="my-10 space-y-6">
+      {iplcProviders.map((p, idx) => (
+        <ProviderCard provider={p} rankingIndex={idx} highlightBadge="电信级 IPLC 专线" />
+      ))}
+    </div>
+
+    <FAQ items={faqs} title="IPLC 专线技术常见问题" />
+
+    <NextStep
+      level="level2"
+      title="想了解更多专线与中转线路知识？"
+      description="阅读我们的线路科普专题，了解直连、公网中转与专线的全面对比。"
+      primaryLink={{ text: '查看中转与直连区别详解', url: '/knowledge/transit-vs-direct/' }}
+      secondaryLink={{ text: '返回 2026 机场综合排行榜', url: '/airport-ranking/' }}
+    />
+  </div>
+</BaseLayout>

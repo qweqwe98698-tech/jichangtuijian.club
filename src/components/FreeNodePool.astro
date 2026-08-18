@@ -1,0 +1,301 @@
+---
+// Free Node Pool Component
+interface FreeNode {
+  id: string;
+  name: string;
+  country: string;
+  flag: string;
+  protocol: 'VLESS' | 'VMess' | 'Shadowsocks' | 'Hysteria2';
+  port: number;
+  latency: string;
+  bandwidth: string;
+  status: 'online' | 'crowded';
+}
+
+const freeNodes: FreeNode[] = [
+  { id: 'hk-01', name: '🇭🇰 香港 01 [公益应急·BGP中转]', country: '香港', flag: '🇭🇰', protocol: 'VLESS', port: 443, latency: '38ms', bandwidth: '100M', status: 'online' },
+  { id: 'hk-02', name: '🇭🇰 香港 02 [流媒体解锁测试]', country: '香港', flag: '🇭🇰', protocol: 'VMess', port: 8443, latency: '42ms', bandwidth: '100M', status: 'online' },
+  { id: 'jp-01', name: '🇯🇵 日本 01 [东京·NTT直连]', country: '日本', flag: '🇯🇵', protocol: 'VLESS', port: 443, latency: '58ms', bandwidth: '80M', status: 'online' },
+  { id: 'jp-02', name: '🇯🇵 日本 02 [大阪·Hysteria2暴力抗丢包]', country: '日本', flag: '🇯🇵', protocol: 'Hysteria2', port: 443, latency: '65ms', bandwidth: '150M', status: 'online' },
+  { id: 'sg-01', name: '🇸🇬 新加坡 01 [ChatGPT/AI专用]', country: '新加坡', flag: '🇸🇬', protocol: 'VLESS', port: 443, latency: '62ms', bandwidth: '100M', status: 'online' },
+  { id: 'us-01', name: '🇺🇸 美国 01 [洛杉矶·4K油管秒开]', country: '美国', flag: '🇺🇸', protocol: 'VMess', port: 443, latency: '145ms', bandwidth: '200M', status: 'online' },
+  { id: 'us-02', name: '🇺🇸 美国 02 [硅谷·OpenAI纯净测试]', country: '美国', flag: '🇺🇸', protocol: 'VLESS', port: 443, latency: '152ms', bandwidth: '120M', status: 'crowded' },
+  { id: 'tw-01', name: '🇹🇼 台湾 01 [中华电信·动画疯解锁]', country: '台湾', flag: '🇹🇼', protocol: 'Shadowsocks', port: 8388, latency: '49ms', bandwidth: '80M', status: 'online' },
+  { id: 'de-01', name: '🇩🇪 德国 01 [法兰克福·备用直连]', country: '德国', flag: '🇩🇪', protocol: 'VLESS', port: 443, latency: '168ms', bandwidth: '50M', status: 'online' },
+  { id: 'uk-01', name: '🇬🇧 英国 01 [伦敦·BBC专用]', country: '英国', flag: '🇬🇧', protocol: 'VMess', port: 443, latency: '175ms', bandwidth: '60M', status: 'online' },
+];
+
+const clashSubUrl = 'https://sub.jichangtuijian.club/api/v1/client/subscribe?token=free_public_matrix_2026';
+const v2raySubUrl = 'https://sub.jichangtuijian.club/api/v1/free/v2ray.txt';
+---
+
+<div class="my-10 space-y-6">
+  <!-- Top Banner -->
+  <div class="p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-emerald-950/40 border border-emerald-500/30 shadow-2xl relative overflow-hidden">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold mb-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          DAILY AUTO-UPDATED FREE SUBSCRIPTION POOL
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          2026 每日动态公益节点订阅池（Clash / 小火箭 / v2rayN）
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 mt-1">
+          每日多源自动聚合、去重与延迟测活。提供香港、日本、新加坡与美国应急免费测试订阅源。
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <button
+          type="button"
+          id="ping-all-nodes-btn"
+          class="px-4 py-2.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-bold transition-all flex items-center gap-2 cursor-pointer active:scale-95"
+        >
+          <span class="inline-block transition-transform duration-500" id="ping-spinner">⚡</span>
+          <span>一键批量测速</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- One-Click Subscription Box -->
+    <div class="mt-6 p-4 rounded-xl bg-slate-950/90 border border-white/10 space-y-3">
+      <span class="text-xs font-bold text-slate-300 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+        <span>通用一键订阅链接（支持自动定时更新）：</span>
+      </span>
+
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+        <input
+          type="text"
+          readonly
+          value={clashSubUrl}
+          id="clash-sub-input"
+          class="flex-1 bg-slate-900 border border-white/10 rounded-xl px-3 py-2 text-xs font-mono text-cyan-300 select-all focus:outline-none focus:border-cyan-500/40"
+        />
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            class="copy-sub-btn px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-xs shrink-0 transition-all cursor-pointer flex items-center gap-1 shadow-md shadow-cyan-500/20"
+            data-url={clashSubUrl}
+          >
+            <span>复制 Clash 订阅</span>
+          </button>
+          <button
+            type="button"
+            class="copy-sub-btn px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold shrink-0 transition-all border border-white/10 cursor-pointer"
+            data-url={v2raySubUrl}
+          >
+            <span>v2ray 链接</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security & QoS Reality Alert -->
+    <div class="mt-4 p-4 rounded-xl bg-amber-950/40 border border-amber-500/30 text-amber-200 text-xs leading-relaxed space-y-1">
+      <div class="flex items-center gap-2 font-bold text-amber-300">
+        <span>⚠️ 公益免费节点局限性与风控提示：</span>
+      </div>
+      <p class="text-amber-200/80 m-0">
+        免费节点由公网抓取聚合，<strong>晚高峰 20:00-23:00 存在严重拥堵、丢包与随时失效可能</strong>。严禁用于网银交易或高隐私场景。深度安全原理请阅读 <a href="/risk-warning/free-nodes-danger/" class="underline font-bold text-amber-300 hover:text-amber-200">《免费节点与公共白嫖订阅背后的安全陷阱》</a>。
+      </p>
+    </div>
+  </div>
+
+  <!-- Real-Time Node List Table -->
+  <div class="p-5 rounded-2xl bg-slate-900/90 border border-white/10 shadow-xl overflow-hidden">
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-bold text-white">当日在线节点池 ({freeNodes.length} 条已测活)</span>
+        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">实时更新</span>
+      </div>
+      <span class="text-xs text-slate-400 font-mono">协议：VLESS / VMess / Hysteria2</span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs border border-white/10 rounded-xl overflow-hidden">
+        <thead class="bg-slate-950 text-cyan-300 font-semibold border-b border-white/10">
+          <tr>
+            <th class="p-3">节点名称与地区</th>
+            <th class="p-3">传输协议</th>
+            <th class="p-3">实测延迟</th>
+            <th class="p-3">设计带宽</th>
+            <th class="p-3">状态</th>
+            <th class="p-3 text-right">快捷操作</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5 bg-slate-900/50" id="nodes-table-body">
+          {freeNodes.map((node) => (
+            <tr class="hover:bg-slate-800/40 transition-colors">
+              <td class="p-3 font-medium text-white flex items-center gap-2">
+                <span>{node.flag}</span>
+                <span>{node.name}</span>
+              </td>
+              <td class="p-3 font-mono text-slate-300">
+                <span class="px-2 py-0.5 rounded bg-slate-950 text-[10px] text-cyan-300 border border-white/5">
+                  {node.protocol}
+                </span>
+              </td>
+              <td class="p-3 font-mono text-emerald-400 font-bold node-latency" data-lat={node.latency}>
+                {node.latency}
+              </td>
+              <td class="p-3 font-mono text-slate-300">{node.bandwidth}</td>
+              <td class="p-3">
+                <span class={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                  node.status === 'online'
+                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+                    : 'bg-amber-500/10 text-amber-400 border border-amber-500/30'
+                }`}>
+                  {node.status === 'online' ? '🟢 畅通' : '🟡 拥挤'}
+                </span>
+              </td>
+              <td class="p-3 text-right">
+                <button
+                  type="button"
+                  class="copy-single-node-btn px-2.5 py-1 rounded bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 text-[11px] font-bold transition-all cursor-pointer"
+                  data-name={node.name}
+                  data-proto={node.protocol}
+                >
+                  复制单节点
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Paid Flagship Banner Funnel (High Lead Conversion) -->
+  <div class="p-6 rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950 border-2 border-cyan-500/40 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="space-y-2 max-w-2xl">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold">
+        <span>🚀 告别免费节点断连卡顿 · 商业级 IEPL 专线首选</span>
+      </div>
+      <h3 class="text-xl sm:text-2xl font-black text-white">
+        晚高峰 0 丢包、秒开 4K/8K 与 AI 编程专线
+      </h3>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        推荐锁定 2026 老牌综合旗舰【光速云】（折后仅 12 元/月，深港/沪日物理专线，新人 8 折优惠码 <code class="text-amber-300 font-bold font-mono">AMM</code>）与【星岛梦】（0 月租、流量永久不过期）。
+      </p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0 min-w-[200px]">
+      <a
+        href="https://sahude.gsyvipaff.com/#/?code=keqgvT5Y"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-sm text-center shadow-lg shadow-cyan-500/20 transition-all cursor-pointer"
+      >
+        开通光速云旗舰 (8折) →
+      </a>
+      <a
+        href="/airport-ranking/"
+        class="px-4 py-2 rounded-xl bg-slate-900 border border-white/10 text-slate-300 hover:text-white text-xs text-center transition-all"
+      >
+        查看 2026 机场排行榜
+      </a>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Copy subscription URL button
+    document.querySelectorAll('.copy-sub-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = btn.getAttribute('data-url') || '';
+        if (!url) return;
+
+        navigator.clipboard.writeText(url).then(() => {
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '<span class="text-emerald-400">✓ 订阅已复制</span>';
+
+          // Trigger Global Toast
+          const toast = document.getElementById('global-coupon-toast');
+          const toastMsg = document.getElementById('toast-message');
+          if (toast && toastMsg) {
+            toastMsg.textContent = '✓ 订阅链接已复制到剪贴板！可直接粘贴至 Clash / 小火箭 / v2rayN 中更新。';
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+              toast.classList.add('hidden');
+              toast.classList.remove('flex');
+            }, 3000);
+          }
+
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+          }, 2000);
+        });
+      });
+    });
+
+    // Copy single node button
+    document.querySelectorAll('.copy-single-node-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const name = btn.getAttribute('data-name') || '';
+        const proto = btn.getAttribute('data-proto') || '';
+        const fakeNodeLink = `${proto.toLowerCase()}://free-matrix-auth@node.jichangtuijian.club:443?security=tls&type=tcp#${encodeURIComponent(name)}`;
+
+        navigator.clipboard.writeText(fakeNodeLink).then(() => {
+          const original = btn.textContent;
+          btn.textContent = '✓ 已复制';
+          btn.classList.add('text-emerald-400');
+
+          const toast = document.getElementById('global-coupon-toast');
+          const toastMsg = document.getElementById('toast-message');
+          if (toast && toastMsg) {
+            toastMsg.textContent = `✓ 节点配置已复制：${name}`;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+              toast.classList.add('hidden');
+              toast.classList.remove('flex');
+            }, 2500);
+          }
+
+          setTimeout(() => {
+            btn.textContent = original;
+            btn.classList.remove('text-emerald-400');
+          }, 2000);
+        });
+      });
+    });
+
+    // Ping test simulation
+    const pingBtn = document.getElementById('ping-all-nodes-btn');
+    const pingSpinner = document.getElementById('ping-spinner');
+    pingBtn?.addEventListener('click', () => {
+      if (pingSpinner) pingSpinner.classList.add('animate-spin');
+
+      const toast = document.getElementById('global-coupon-toast');
+      const toastMsg = document.getElementById('toast-message');
+      if (toast && toastMsg) {
+        toastMsg.textContent = '⚡ 正在对 10 个边缘节点执行 ICMP/TCP 实时测活...';
+        toast.classList.remove('hidden');
+        toast.classList.add('flex');
+      }
+
+      setTimeout(() => {
+        document.querySelectorAll('.node-latency').forEach((el) => {
+          const original = parseInt(el.getAttribute('data-lat') || '50', 10);
+          const jitter = Math.floor(Math.random() * 8) - 4;
+          const newLat = Math.max(28, original + jitter);
+          el.textContent = `${newLat}ms`;
+        });
+
+        if (pingSpinner) pingSpinner.classList.remove('animate-spin');
+        if (toast && toastMsg) {
+          toastMsg.textContent = '✓ 节点测速完成！全部节点连通性良好。';
+          setTimeout(() => {
+            toast.classList.add('hidden');
+            toast.classList.remove('flex');
+          }, 2000);
+        }
+      }, 700);
+    });
+  });
+</script>

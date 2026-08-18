@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import NextStep from '../components/NextStep.astro';
+---
+
+<BaseLayout
+  title="数据核验与更新政策：拒绝失效与虚假营销"
+  description="机场推荐 Club 数据核验与年度复查机制。明确全站数据的核验频率、失效标记规范以及杜绝机械替换年份的真更新原则。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '数据核验与更新政策' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">VERIFICATION POLICY</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        数据核验与更新机制
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        确保每一条呈现在读者面前的信息真实、新鲜且具有参考价值。
+      </p>
+    </header>
+
+    <article class="prose-atlas my-10 space-y-6">
+      <h2>一、双周与月度例行核验</h2>
+      <p>
+        我们的自动化测试脚本与人工编辑团队每两周对所有收录服务商的官方镜像域名、工单响应时间与核心节点连通性进行一次全面巡检。每月进行一次晚高峰全量多线程与单线程基准压测。
+      </p>
+
+      <h2>二、严禁“伪年份更新”</h2>
+      <p>
+        我们严禁将旧文章的标题机械地从“2025”替换成“2026”。每年年终的年度大版本更新，必须经过对所有服务商历史口碑、技术架构演进与价格调整的重新复核，并重写评测报告后才予以发布。
+      </p>
+    </article>
+
+    <NextStep
+      level="level1"
+      title="查看最新核验的 2026 稳定机场推荐？"
+      description="基于最新数据标准整理的 2026 机场排行榜。"
+      primaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '返回首页', url: '/' }}
+    />
+  </div>
+</BaseLayout>

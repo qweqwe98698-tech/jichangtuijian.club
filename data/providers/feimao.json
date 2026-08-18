@@ -1,0 +1,91 @@
+{
+  "id": "feimao",
+  "name": "飞猫云",
+  "slug": "feimao",
+  "tagline": "低价小流量 IEPL 专线 · 7 元/月轻度用户性价比之王",
+  "establishedYear": 2023,
+  "officialUrl": "https://guangs.flycataff.com/#/?code=6uq0Xe9y",
+  "couponCode": "flycat888",
+  "discount": "新用户季付及以上 8 折",
+  "pricing": {
+    "monthlyStarting": 7,
+    "currency": "¥",
+    "billingCycle": "年付折合约 7 元/月，50GB 起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "国内 BGP 优化"
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "V2Ray"
+  ],
+  "clients": [
+    "自研客户端",
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN"
+  ],
+  "streamingSupport": {
+    "netflix": "支持",
+    "disney": "支持",
+    "youtube4k": "流畅 4K"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.88%",
+    "averageLatency": "19ms",
+    "peakSpeed": "560 Mbps",
+    "packetLoss": "< 0.08%"
+  },
+  "measuredEvidence": {
+    "file": "/images/speedtests/feimao-speedtest.png",
+    "testedAt": "2026-08-11T08:52:30+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  },
+  "plans": [
+    {
+      "name": "轻量年付套餐",
+      "price": "¥84/年 (折合 7元/月)",
+      "traffic": "50 GB/月",
+      "speed": "500 Mbps 专线"
+    },
+    {
+      "name": "标准季付套餐",
+      "price": "¥36/季 (折合 12元/月)",
+      "traffic": "80 GB/月",
+      "speed": "1000 Mbps 专线"
+    }
+  ],
+  "bestFor": [
+    "日常流量需求不大(<50GB)的轻度网民",
+    "查资料、微信出海、偶尔看视频",
+    "低预算首选"
+  ],
+  "notFor": [
+    "BT 下载或 24 小时开 4K 电视直播的大流量用户"
+  ],
+  "pros": [
+    "7元/月极低门槛享受 IEPL 专线",
+    "覆盖常见 AI 与流媒体需求",
+    "提供自研客户端便于小白上手"
+  ],
+  "cons": [
+    "7元为年付折算价格",
+    "小流量套餐超过 50GB 会限速"
+  ],
+  "runawayRisk": "低 (定价健康，非不限流量骗局)",
+  "lastVerified": "2026-08-17",
+  "verificationStatus": "verified"
+}

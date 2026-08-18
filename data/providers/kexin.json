@@ -1,0 +1,91 @@
+{
+  "id": "kexin",
+  "name": "可信云",
+  "slug": "kexin",
+  "tagline": "25 元档 150GB 专线大流量 · 稳健网络与高可用调度",
+  "establishedYear": 2024,
+  "officialUrl": "https://guangs.kosingaff.com/#/register?code=UYDtNlCY",
+  "couponCode": "kkk333",
+  "discount": "专属优惠码",
+  "pricing": {
+    "monthlyStarting": 25,
+    "currency": "¥",
+    "billingCycle": "月付 25 元/月，150GB"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "国内多线 BGP"
+  ],
+  "protocols": [
+    "VLESS",
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "streamingSupport": {
+    "netflix": "主流区解锁",
+    "disney": "支持",
+    "youtube4k": "秒开 4K"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.90%",
+    "averageLatency": "18ms",
+    "peakSpeed": "790 Mbps",
+    "packetLoss": "< 0.06%"
+  },
+  "measuredEvidence": {
+    "file": "/images/speedtests/kexin-speedtest.png",
+    "testedAt": "2026-08-11T15:32:35+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "date-inferred-from-batch-time-visible-in-image",
+    "reviewNote": "Full calendar date inferred from batch context."
+  },
+  "plans": [
+    {
+      "name": "可信标准版",
+      "price": "¥25/月",
+      "traffic": "150 GB/月",
+      "speed": "1000 Mbps IEPL"
+    },
+    {
+      "name": "可信大流量版",
+      "price": "¥48/月",
+      "traffic": "320 GB/月",
+      "speed": "1000 Mbps IEPL"
+    }
+  ],
+  "bestFor": [
+    "看重网络长期可用性",
+    "每月 150GB 流量需求",
+    "偏好专线线路的普通与专业用户"
+  ],
+  "notFor": [
+    "需要超小流量低预算用户"
+  ],
+  "pros": [
+    "25元 150GB 专线配置扎实",
+    "多线 BGP 容灾切换平滑",
+    "直接支持通用第三方订阅"
+  ],
+  "cons": [
+    "未宣传全区解锁，部分流媒体需挑节点"
+  ],
+  "runawayRisk": "低 (定价健康，无大促销收割前兆)",
+  "lastVerified": "2026-08-17",
+  "verificationStatus": "verified"
+}

@@ -1,0 +1,835 @@
+{
+  "lastUpdated": "2026-08-18T02:57:49.839Z",
+  "source": "ccbaohe_live_scraper",
+  "batches": [
+    {
+      "batchId": 1,
+      "batchName": "第 1 组 · ccbaohe 实时测活池",
+      "accounts": [
+        {
+          "id": "cc-1",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "JaniceRussell7605ByzA@outlook.com",
+          "passwordPrefix": "ddND5526",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:42:50",
+          "nextUnlockMinutes": 15
+        },
+        {
+          "id": "cc-2",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "RickyBaileykUtE@outlook.com",
+          "passwordPrefix": "ddND3735",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:39:14",
+          "nextUnlockMinutes": 18
+        },
+        {
+          "id": "cc-3",
+          "region": "中国大陆 (CN)",
+          "regionCode": "CN",
+          "flag": "🇨🇳",
+          "apps": [
+            "国区免费应用下载"
+          ],
+          "email": "c5308_cong@163.com",
+          "passwordPrefix": "u6emV9Crcm",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 09:19:37",
+          "nextUnlockMinutes": 15
+        },
+        {
+          "id": "cc-4",
+          "region": "日本 (JP)",
+          "regionCode": "JP",
+          "flag": "🇯🇵",
+          "apps": [
+            "Shadowrocket",
+            "DMM",
+            "Pixiv",
+            "AbemaTV"
+          ],
+          "email": "marioslopes066@hotmail.com",
+          "passwordPrefix": "QbHtR1st86",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 09:05:37",
+          "nextUnlockMinutes": 30
+        },
+        {
+          "id": "cc-5",
+          "region": "中国台湾 (TW)",
+          "regionCode": "TW",
+          "flag": "🇹🇼",
+          "apps": [
+            "LINE",
+            "巴哈姆特动画疯",
+            "KKBOX"
+          ],
+          "email": "muq2225@163.com",
+          "passwordPrefix": "Fu8C6EgV1A",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 08:57:51",
+          "nextUnlockMinutes": 34
+        },
+        {
+          "id": "cc-6",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "odieandrea0252@hotmail.com",
+          "passwordPrefix": "HDbNGpNtv8",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 08:48:44",
+          "nextUnlockMinutes": 23
+        }
+      ]
+    },
+    {
+      "batchId": 2,
+      "batchName": "第 2 组 · ccbaohe 实时测活池",
+      "accounts": [
+        {
+          "id": "cc-7",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "tisacantara@hotmail.com",
+          "passwordPrefix": "vU4RrgJxnS",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-07-30 06:05:55",
+          "nextUnlockMinutes": 19
+        },
+        {
+          "id": "cc-8",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "arwinionescu@hotmail.com",
+          "passwordPrefix": "PAZP7Pke9p",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-07-30 08:05:58",
+          "nextUnlockMinutes": 34
+        },
+        {
+          "id": "cc-9",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "taylorn341@icloud.com",
+          "passwordPrefix": "mTKY6PMpkr",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 09:34:48",
+          "nextUnlockMinutes": 31
+        },
+        {
+          "id": "cc-10",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "joshuah5078@icloud.com",
+          "passwordPrefix": "sfXa4TUBVw",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 09:32:46",
+          "nextUnlockMinutes": 27
+        },
+        {
+          "id": "cc-11",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "eddie_3052@icloud.com",
+          "passwordPrefix": "VgNkRspXc1",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 09:27:58",
+          "nextUnlockMinutes": 21
+        },
+        {
+          "id": "cc-12",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "brittany_314141@icloud.com",
+          "passwordPrefix": "aNaSP9mvs1",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 09:30:30",
+          "nextUnlockMinutes": 20
+        }
+      ]
+    },
+    {
+      "batchId": 3,
+      "batchName": "第 3 组 · ccbaohe 实时测活池",
+      "accounts": [
+        {
+          "id": "cc-13",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "meyer00275@icloud.com",
+          "passwordPrefix": "8f6prneRr8",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:36:37",
+          "nextUnlockMinutes": 29
+        },
+        {
+          "id": "cc-14",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "meng01380@icloud.com",
+          "passwordPrefix": "3BExV431qf",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 08:48:27",
+          "nextUnlockMinutes": 20
+        },
+        {
+          "id": "cc-15",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "zangwill_43812@icloud.com",
+          "passwordPrefix": "KESWy3MFmp",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 09:45:44",
+          "nextUnlockMinutes": 29
+        },
+        {
+          "id": "cc-16",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "quodonnell@gmail.com",
+          "passwordPrefix": "Dd10096da",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:23:11",
+          "nextUnlockMinutes": 15
+        },
+        {
+          "id": "cc-17",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "david7zksmunoz@hotmail.com",
+          "passwordPrefix": "TzTx3!zd",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:24:02",
+          "nextUnlockMinutes": 28
+        },
+        {
+          "id": "cc-18",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "DeborazpiHarr967@icloud.com",
+          "passwordPrefix": "x5Qt9ch9m9",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:23:24",
+          "nextUnlockMinutes": 28
+        }
+      ]
+    },
+    {
+      "batchId": 4,
+      "batchName": "第 4 组 · ccbaohe 实时测活池",
+      "accounts": [
+        {
+          "id": "cc-19",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "jarvarisrivetteuf3409@gmail.com",
+          "passwordPrefix": "VG7j2eeg4C",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:32:52",
+          "nextUnlockMinutes": 25
+        },
+        {
+          "id": "cc-20",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "AllenMilliepyl879@gmail.com",
+          "passwordPrefix": "44s41NP3MD5pf3",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:31:19",
+          "nextUnlockMinutes": 31
+        },
+        {
+          "id": "cc-21",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "BettyGarcia5be56@gmail.com",
+          "passwordPrefix": "44s4nrRa3yZnJ5",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:27:59",
+          "nextUnlockMinutes": 25
+        },
+        {
+          "id": "cc-22",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "18295079648@163.com",
+          "passwordPrefix": "3cUx6Qptu1",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:39:24",
+          "nextUnlockMinutes": 16
+        },
+        {
+          "id": "cc-23",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13862415888@163.com",
+          "passwordPrefix": "YtS9JFwYam",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:40:11",
+          "nextUnlockMinutes": 31
+        },
+        {
+          "id": "cc-24",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13706622020@163.com",
+          "passwordPrefix": "TSyjqWaVV7",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:44:33",
+          "nextUnlockMinutes": 25
+        }
+      ]
+    },
+    {
+      "batchId": 5,
+      "batchName": "第 5 组 · ccbaohe 实时测活池",
+      "accounts": [
+        {
+          "id": "cc-25",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "18604675215@163.com",
+          "passwordPrefix": "2anS8bvvTR",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:34:52",
+          "nextUnlockMinutes": 25
+        },
+        {
+          "id": "cc-26",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "15869715700@163.com",
+          "passwordPrefix": "yTvztS4kT7",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:40:54",
+          "nextUnlockMinutes": 21
+        },
+        {
+          "id": "cc-27",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "15802630166@163.com",
+          "passwordPrefix": "99ATmG5c54",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:44:35",
+          "nextUnlockMinutes": 16
+        },
+        {
+          "id": "cc-28",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "18591955895@163.com",
+          "passwordPrefix": "zpAPVJT4wQ",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:39:31",
+          "nextUnlockMinutes": 30
+        },
+        {
+          "id": "cc-29",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "18235265599@163.com",
+          "passwordPrefix": "w5KPacFz3d",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:37:10",
+          "nextUnlockMinutes": 30
+        },
+        {
+          "id": "cc-30",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "15527335129@163.com",
+          "passwordPrefix": "ueauQ3dDvw",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:43:20",
+          "nextUnlockMinutes": 16
+        }
+      ]
+    },
+    {
+      "batchId": 6,
+      "batchName": "第 6 组 · ccbaohe 实时测活池",
+      "accounts": [
+        {
+          "id": "cc-31",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13861629829@163.com",
+          "passwordPrefix": "dzFc3qe2p9",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:42:14",
+          "nextUnlockMinutes": 21
+        },
+        {
+          "id": "cc-32",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13980189333@163.com",
+          "passwordPrefix": "qSmcj5nTPK",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:43:51",
+          "nextUnlockMinutes": 28
+        },
+        {
+          "id": "cc-33",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13600377752@163.com",
+          "passwordPrefix": "9XeX6NntJd",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:39:02",
+          "nextUnlockMinutes": 20
+        },
+        {
+          "id": "cc-34",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "1907792275@qq.com",
+          "passwordPrefix": "9nMmSrgDWj",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:44:31",
+          "nextUnlockMinutes": 24
+        },
+        {
+          "id": "cc-35",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13756103736@163.com",
+          "passwordPrefix": "D7UNRE3ebT",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:19:50",
+          "nextUnlockMinutes": 22
+        },
+        {
+          "id": "cc-36",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "15969206999@163.com",
+          "passwordPrefix": "3sb3MK6g7p",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:44:42",
+          "nextUnlockMinutes": 27
+        }
+      ]
+    },
+    {
+      "batchId": 7,
+      "batchName": "第 7 组 · ccbaohe 实时测活池",
+      "accounts": [
+        {
+          "id": "cc-37",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13585241893@163.com",
+          "passwordPrefix": "1WxCUHr8tn",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:41:53",
+          "nextUnlockMinutes": 19
+        },
+        {
+          "id": "cc-38",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13512904429@163.com",
+          "passwordPrefix": "g3NX1TEsDH",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:35:06",
+          "nextUnlockMinutes": 15
+        },
+        {
+          "id": "cc-39",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "1365754042@qq.com",
+          "passwordPrefix": "AVM3HDhkVp",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:42:29",
+          "nextUnlockMinutes": 20
+        },
+        {
+          "id": "cc-40",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "18573503064@163.com",
+          "passwordPrefix": "skBTCrRx25",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:35:00",
+          "nextUnlockMinutes": 19
+        },
+        {
+          "id": "cc-41",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13259888685@163.com",
+          "passwordPrefix": "x5vrhVFZMj",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:43:41",
+          "nextUnlockMinutes": 20
+        },
+        {
+          "id": "cc-42",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13604890081@163.com",
+          "passwordPrefix": "5cYUQjjmfX",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:42:01",
+          "nextUnlockMinutes": 16
+        }
+      ]
+    },
+    {
+      "batchId": 8,
+      "batchName": "第 8 组 · ccbaohe 实时测活池",
+      "accounts": [
+        {
+          "id": "cc-43",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13974763333@163.com",
+          "passwordPrefix": "kzUYpUU2be",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:36:43",
+          "nextUnlockMinutes": 28
+        },
+        {
+          "id": "cc-44",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "15154603567@163.com",
+          "passwordPrefix": "xG3VS7p3M1",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:35:01",
+          "nextUnlockMinutes": 15
+        },
+        {
+          "id": "cc-45",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "17603666846@163.com",
+          "passwordPrefix": "6HwYjpn4FY",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:42:25",
+          "nextUnlockMinutes": 23
+        },
+        {
+          "id": "cc-46",
+          "region": "美国 (US)",
+          "regionCode": "US",
+          "flag": "🇺🇸",
+          "apps": [
+            "Shadowrocket (已购小火箭)",
+            "Loon",
+            "Sing-box"
+          ],
+          "email": "13912911183@163.com",
+          "passwordPrefix": "NXY2xhuVbR",
+          "status": "active",
+          "statusText": "🟢 正常可用 · ccbaohe 实时抓取",
+          "lastChecked": "2026-08-18 10:42:11",
+          "nextUnlockMinutes": 34
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: 'v2rayN 启动时提示缺少 .NET 运行时库怎么办？',
+    answer: 'v2rayN 是基于微软 WPF 框架开发的 Windows 原生应用。如果首次打开报错，请前往微软官方网站下载安装 Microsoft .NET 8.0 Desktop Runtime (x64) 桌面运行时库即可正常打开。',
+  },
+  {
+    question: 'v2rayN 底部显示“清除系统代理”与“自动配置系统代理”有什么区别？',
+    answer: '“清除系统代理”表示不改变 Windows 系统的全局代理设置；“自动配置系统代理”表示 v2rayN 会自动修改 Windows 注册表，让系统所有浏览器默认走本地 10808/10809 代理端口。日常使用请选择“自动配置系统代理”并将路由模式设为“绕过大陆”。',
+  },
+];
+---
+
+<BaseLayout
+  title="v2rayN 电脑端保姆级配置教程：2026 最新下载、订阅导入与内核更新全指南"
+  description="2026 最全 v2rayN Windows 客户端新手教程。详解 v2rayN 7.x 最新版下载安装、Xray/sing-box 内核切换、订阅链接自动更新与绕过大陆分流规则设置。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '客户端教程', url: '/tutorial/' }, { title: 'v2rayN 配置教程' }]} />
+
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3">
+        <span>适用于 Windows 10 · Windows 11</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        v2rayN 电脑端保姆级配置教程 (2026 最新版)
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 7 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="v2rayN 是 Windows 平台上历史最悠久、兼容协议最全面的老牌代理工具。配置四步走：1. 从 GitHub 下载包含完整 Core 内核的 release 压缩包；2. 在“订阅分组”中添加机场订阅 URL 并更新；3. 选中节点按 Enter 设为活动服务器；4. 底部系统代理选择“自动配置系统代理”，路由选择“绕过大陆”。"
+      points={[
+        '下载建议：下载 v2rayN-With-Core.zip，免除手动下载内核的烦恼',
+        '分流模式：底部路由务必保持“绕过大陆 (bypass mainland)”，兼顾国内外访问',
+        '快捷操作：在节点列表中按 Ctrl+R 进行延迟测试，按 Enter 键激活选中节点',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、v2rayN 软件下载与解压安装</h2>
+        <p>
+          请务必访问官方开源发布页面进行下载：
+        </p>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2 text-xs text-slate-300 my-4">
+          <div>🌐 <strong>GitHub 官方仓库</strong>：<code>https://github.com/2dust/v2rayN/releases</code></div>
+          <div>📦 <strong>推荐下载版本</strong>：<code>v2rayN-With-Core.zip</code>（已集成 Xray、sing-box 等全部核心驱动）。</div>
+          <div>📂 <strong>安装方法</strong>：下载后将其解压到一个没有中文字符的固定文件夹（如 <code>D:\v2rayN\</code>），双击 <code>v2rayN.exe</code> 即可运行。</div>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、四步从零上手保姆级操作 SOP</h2>
+        <div class="space-y-6 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">第一步：添加并更新机场订阅</h3>
+            <ol class="text-xs text-slate-300 space-y-1.5 pl-4 list-decimal">
+              <li>在顶部菜单栏点击 <strong>订阅分组（Subscription）</strong> ──▶ <strong>订阅分组设置</strong>；</li>
+              <li>点击“添加”，在“别名”处输入你的机场名字（如光速云），在“可选地址（url）”处粘贴你的订阅链接；</li>
+              <li>点击确定保存后，再次点击顶部菜单的 <strong>订阅分组</strong> ──▶ <strong>更新当前订阅（不通过代理）</strong>，所有节点将自动加载呈现。</li>
+            </ol>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第二步：测速并选择活动节点</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              在节点列表中按快捷键 <code>Ctrl + A</code> 全选，然后按 <code>Ctrl + R</code> 进行真实下载速度测试。选中一个延迟低、速度快的专线节点，按键盘上的 <strong>Enter（回车键）</strong>，节点文字变蓝即表示已被设为主力活动服务器。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第三步：开启系统代理与分流模式</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              观察软件主界面最底部的两项设置：
+            </p>
+            <ul class="text-xs text-slate-300 pl-4 space-y-1 list-disc">
+              <li><strong>系统代理</strong>：由“清除系统代理”切换为 <strong>“自动配置系统代理”</strong>（桌面右下角 v2rayN 图标会由蓝变红）；</li>
+              <li><strong>路由</strong>：务必选择 <strong>“绕过大陆（whitelist / bypass mainland）”</strong>，实现国内网站直连、国外网站代理。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="v2rayN 常见问题解答" />
+
+    <!-- Level 3 CTA NextStep -->
+    <NextStep
+      level="level3"
+      title="需要一条兼容 v2rayN 的高品质专线？"
+      description="首推 2020 年老牌旗舰【光速云】（VLESS 专线架构，专属优惠码 AMM 享 8 折）。"
+      primaryLink={{ text: '查看 2026 稳定专线推荐', url: '/stable-airport/' }}
+      secondaryLink={{ text: '查看 Clash Verge 配置教程', url: '/tutorial/clash-verge/' }}
+    />
+  </div>
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ProviderCard from '../../components/ProviderCard.astro';
+import NextStep from '../../components/NextStep.astro';
+import { getAllProviders } from '../../lib/providers';
+
+const providers = getAllProviders();
+---
+
+<BaseLayout
+  title="2026 机场品牌数据库：16 家老牌与专线服务商实测、测速图谱与官方入口"
+  description="2026 科学上网机场品牌数据库。完整收录光速云、星岛梦、灵猫网络、飞猫云、宇宙云等 16 家主力服务商，提供 2026-08-11 真实节点测速原图、SLA 晚高峰实测、专属优惠码与防坑指南。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '品牌数据库' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium mb-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        <span>16 家品牌真实测速图与 SLA 数据已全量核验入库</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        2026 科学上网机场品牌数据库
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        基于 2026-08-11 真实节点测速快照、价格套餐梯度与晚高峰 SLA 综合归档。所有品牌均支持正规月付订购与聚合支付，拒绝虚假宣传与跑路收割。
+      </p>
+    </div>
+
+    <!-- Quick Category Filter Chips -->
+    <div class="flex flex-wrap items-center gap-2 mb-8 text-xs">
+      <span class="text-slate-400 mr-1">快速分类：</span>
+      <a href="/stable-airport/" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/5 transition-all">
+        ⚡ 稳定 IEPL 专线
+      </a>
+      <a href="/cheap-airport/" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/5 transition-all">
+        💰 10-20元平价月付
+      </a>
+      <a href="/chatgpt-airport/" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/5 transition-all">
+        🤖 ChatGPT / Claude 原生 IP
+      </a>
+      <a href="/pay-as-you-go-airport/" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/5 transition-all">
+        🛡️ 不限时按量备用包
+      </a>
+    </div>
+
+    <!-- 16 Brand Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+      {providers.map((p, idx) => (
+        <ProviderCard provider={p} rankingIndex={idx} />
+      ))}
+    </div>
+
+    <NextStep
+      level="level3"
+      title="想直接查看综合天梯排行榜？"
+      description="查看我们基于 SLA 丢包率、单线程下行与 AI 纯净度综合评定的 2026 最新天梯榜单。"
+      primaryLink={{ text: '查看 2026 综合排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '查看评测方法论', url: '/methodology/' }}
+    />
+  </div>
+</BaseLayout>

@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: 'Hysteria2 为什么在丢包率很高的网络下依然能跑满带宽？',
+    answer: '传统 TCP 协议（如 BBR、CUBIC）只要检测到丢包，就会自动将发送窗口减半；而 Hysteria2 基于魔改版 QUIC/UDP 协议与自定义拥塞控制算法（Brutal Congestion Control），即使在 20%-30% 的恶劣丢包环境下，依然保持激进的恒定发包速率，结合 FEC 前向纠错技术，彻底跑满本地下行带宽。',
+  },
+  {
+    question: 'Hysteria2 协议会被运营商针对性限速（QoS）吗？',
+    answer: '部分地区的省份运营商（尤其是晚高峰的中国移动和部分电信机房）会对公网 UDP 流量实施激进的 QoS 限制。针对这一情况，Hysteria2 引入了端口跳跃（Port Hopping）和混淆技术，动态变换 UDP 端口以规避单端口限速。',
+  },
+  {
+    question: 'IEPL 专线机场需要使用 Hysteria2 吗？',
+    answer: '通常不需要。IEPL 专线本身丢包率小于 0.05%，TCP 协议（如 VLESS、Shadowsocks）即可跑满千兆带宽且能耗极低；Hysteria2 主要适用于公网直连（直连美国/日本 VPS）或校园网/移动蜂窝等高丢包恶劣网络环境。',
+  },
+];
+---
+
+<BaseLayout
+  title="Hysteria2 协议底层原理解析：基于 QUIC/UDP 的暴力发包与高丢包网络提速完全指南"
+  description="深度解析 2026 最强代理协议 Hysteria 2（歇斯底里 2）。详解基于 QUIC/UDP 的 Brutal 拥塞控制算法、端口跳跃抗 QoS 机制、与 VLESS/Shadowsocks 的深度对比。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '技术知识库', url: '/knowledge/' }, { title: 'Hysteria2 协议详解' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">NEXT-GEN UDP PROTOCOL</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Hysteria2 协议底层原理解析：高丢包网络提速终极利器
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 7 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="why"
+      summary="Hysteria 2 是专为【恶劣高丢包、高延迟公网环境】设计的现代化代理协议。它基于标准 QUIC/UDP 协议重构，采用自定义的 Brutal 暴力拥塞控制算法。在 20% 严重丢包的公网环境下，传统 TCP 速度会暴跌 90%，而 Hysteria2 仍能拉满 500Mbps 下行。"
+      points={[
+        '协议核心：基于 HTTP/3 标准 QUIC/UDP 传输，连接握手 0-RTT',
+        '算法突破：Brutal 拥塞控制，无视网络丢包信号，恒定满速发包',
+        '抗 QoS：内置端口跳跃（Port Hopping）动态规避运营商 UDP 限制',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、传统 TCP 拥塞控制在跨境公网中的致命缺陷</h2>
+        <p>
+          在标准的 TCP 传输体系中，设计原则是“谦让与避免网络崩溃”：
+        </p>
+        <p>
+          无论是经典的 CUBIC 算法还是 Google 的 BBR 算法，当数据包在跨越太平洋时遇到 1%-5% 的随机丢包，算法会判定为“网络发生了严重拥塞”，并立即执行拥塞避免策略——主动将发包速率削减 30% 至 50%，导致 4K 视频瞬间卡死。
+        </p>
+        <p>
+          <strong>Hysteria2（歇斯底里 2）</strong> 从根本上颠覆了这一逻辑：它假设公网链路上的丢包主要是 GFW 干扰或运营商 QoS 造成的“虚假拥塞”，因此采用激进的固定速率发包策略，彻底打破了 TCP 的吞吐瓶颈。
+        </p>
+      </section>
+
+      <section>
+        <h2>二、Hysteria2 相比 Hysteria 1 的重大架构升级</h2>
+        <div class="space-y-4 my-6">
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-cyan-300 mb-1">1. 完全基于标准 RFC 9000 QUIC 协议重构</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Hysteria 1 采用私有修改版 QUIC，特征相对明显；Hysteria 2 严格遵循 IETF 标准 QUIC 规范，流量在网络监测中与正常的 HTTP/3 网页浏览完全一致，难以被防火墙特征识别。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-emerald-300 mb-1">2. 引入更加平滑的 Brutal 拥塞控制机制</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              用户只需在客户端设置期望的下行与上行带宽（例如 500Mbps / 50Mbps），服务端与客户端将严格按此速率进行 UDP 突发传输，兼顾极速与链路友好性。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-sky-300 mb-1">3. 端口跳跃（Port Hopping）抗干扰技术</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              针对部分省份运营商对长时间高负载单一 UDP 端口的 QoS 限速，Hysteria2 允许客户端在指定的端口区间（如 20000-50000）内按时间动态切换通信端口，彻底规避限速策略。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>三、协议选型决策指南：什么时候该用 Hysteria2？</h2>
+        <div class="overflow-x-auto my-6">
+          <table class="w-full text-left text-xs border border-white/10 rounded-xl overflow-hidden">
+            <thead class="bg-slate-900 text-cyan-300 font-semibold border-b border-white/10">
+              <tr>
+                <th class="p-3">使用场景</th>
+                <th class="p-3">最优推荐协议</th>
+                <th class="p-3">核心原因</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 bg-slate-950/60">
+              <tr>
+                <td class="p-3 font-medium text-white">购买了 IEPL / IPLC 专线机场</td>
+                <td class="p-3 text-emerald-400 font-bold">VLESS / Shadowsocks</td>
+                <td class="p-3 text-slate-300">专线本身 0 丢包，TCP 协议能耗更低、更省电</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium text-white">自建 VPS 公网直连（美国/日本机房）</td>
+                <td class="p-3 text-cyan-300 font-bold">Hysteria 2</td>
+                <td class="p-3 text-slate-300">强行拉满跨境公网丢包线路的下行带宽</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium text-white">校园网 / 移动 4G/5G 弱网环境</td>
+                <td class="p-3 text-cyan-300 font-bold">Hysteria 2</td>
+                <td class="p-3 text-slate-300">0-RTT 握手，弱网重连速度极快</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </article>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="Hysteria2 协议常见问题" />
+
+    <!-- NextStep Level 3 -->
+    <NextStep
+      level="level3"
+      title="追求稳定与极速兼备的出海体验？"
+      description="查看 2026 稳定专线排行榜，首推 2020 年老牌旗舰【光速云】（VLESS 专线架构，专属优惠码 AMM）。"
+      primaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '查看 IEPL 专线原理解析', url: '/knowledge/iepl/' }}
+    />
+  </div>
+</BaseLayout>

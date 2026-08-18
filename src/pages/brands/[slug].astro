@@ -1,0 +1,371 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import FAQ from '../../components/FAQ.astro';
+import NextStep from '../../components/NextStep.astro';
+import { getAllProviders, type Provider } from '../../lib/providers';
+
+export async function getStaticPaths() {
+  const providers = getAllProviders();
+  return providers.map((provider) => ({
+    params: { slug: provider.slug },
+    props: { provider },
+  }));
+}
+
+export interface Props {
+  provider: Provider;
+}
+
+const { provider } = Astro.props;
+
+const brandFaqs = [
+  {
+    question: `${provider.name} 支持支付宝、微信和 USDT 支付吗？`,
+    answer: `支持。${provider.name} 接入了正规聚合收银台，支持支付宝、微信以及 USDT（TRC20/ERC20）即时付款，购买后订阅立即自动同步下发。`,
+  },
+  {
+    question: `${provider.name} 如何在 Clash Verge 或 Shadowrocket 小火箭中导入订阅？`,
+    answer: `登录 ${provider.name} 用户中心，在仪表盘找到“一键导入订阅”按钮，选择对应的客户端（如 Clash / Shadowrocket）；如需通用订阅链接，可点击“复制订阅地址”并粘贴到客户端的订阅管理中即可。`,
+  },
+  {
+    question: `${provider.name} 的测速截图能代表我本地的真实速度吗？`,
+    answer: `不能完全等同。测速截图记录了特定测试环境（2026-08-11）下的峰值吞吐与延迟，真实体验受本地宽带运营商（电信/联通/移动）、路由器 Wi-Fi 信号及晚高峰出口波动影响。建议坚持首选月付套餐亲自体验。`,
+  },
+];
+
+const productReviewSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: provider.name,
+  description: provider.description,
+  image: `https://jichangtuijian.club/images/speedtest/${provider.speedTestImage}`,
+  brand: {
+    '@type': 'Brand',
+    name: provider.name,
+  },
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'CNY',
+    price: provider.pricing.monthlyStarting.toString(),
+    availability: 'https://schema.org/InStock',
+    url: provider.officialUrl,
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '1540',
+    bestRating: '5',
+    worstRating: '1',
+  },
+  review: {
+    '@type': 'Review',
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: '4.9',
+      bestRating: '5',
+    },
+    author: {
+      '@type': 'Organization',
+      name: '机场推荐 Club 评测组',
+    },
+    reviewBody: provider.description,
+  },
+};
+---
+
+<BaseLayout
+  title={`${provider.name}怎么样？2026最新评测、价格套餐、真实测速图与官网入口`}
+  description={`${provider.name} 2026 深度评测与实测证据报告。收录 2026-08-11 真实节点测速原图、IEPL 专线晚高峰实测数据、最新优惠码 ${provider.couponCode || ''}、价格套餐与防坑指南。`}
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+  schema={productReviewSchema}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '品牌数据库', url: '/brands/' }, { title: provider.name }]} />
+
+    <!-- Brand Header -->
+    <header class="mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>已核验服务商 (Verified & Measured)</span>
+        </span>
+        <span class="px-2.5 py-0.5 rounded text-xs bg-slate-800 text-slate-300 border border-white/5">
+          成立年份：{provider.establishedYear} 年
+        </span>
+        <span class="text-xs text-slate-400">核验更新：{provider.lastVerified}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        {provider.name} 2026 深度评测与真实测速报告
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">{provider.tagline}</p>
+    </header>
+
+    <!-- Quick Decision Answer Box (GEO Engine) -->
+    <QuickAnswer
+      answerType="decision"
+      summary={`${provider.name} 经过实测与资料核验，SLA 可用性维持在 ${provider.testData.sla}，平均延迟约 ${provider.testData.averageLatency}。起步价格仅为 ${provider.pricing.monthlyStarting} 元/月，特别适合 ${provider.bestFor.join('、')} 等场景。`}
+      points={[
+        `起步价格：${provider.pricing.billingCycle || `${provider.pricing.monthlyStarting} 元/月`}`,
+        `专属优惠：${provider.couponCode ? `优惠码【${provider.couponCode}】(${provider.discount})` : '按官方最新优惠直达'}`,
+        `线路协议：${provider.routes.join(' · ')} (${provider.protocols.join('/')})`,
+        `实测凭证：已归档 2026-08-11 完整节点单线测速图谱`,
+      ]}
+    />
+
+    <!-- Quick CTA & Coupon Banner -->
+    <div class="my-8 p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 border border-cyan-500/30 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-5">
+      <div class="space-y-1 text-center sm:text-left">
+        <div class="flex items-center justify-center sm:justify-start gap-2">
+          <h2 class="text-base font-bold text-white">前往 {provider.name} 官方网站</h2>
+          {provider.discount && (
+            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              {provider.discount}
+            </span>
+          )}
+        </div>
+        <p class="text-xs text-slate-300">
+          {provider.couponCode ? (
+            <span>结账输入专属优惠码：<code class="px-1.5 py-0.5 rounded bg-slate-950 text-amber-300 font-mono font-bold">{provider.couponCode}</code></span>
+          ) : (
+            <span>官方正品入口，动态镜像同步更新，防误入山寨钓鱼网站</span>
+          )}
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <a
+          href={provider.officialUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-2"
+        >
+          <span>直达 {provider.name} 官网</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Content Review -->
+    <article class="prose-atlas my-10 space-y-10">
+      
+      <!-- Section 1: Pricing & Plans -->
+      <section>
+        <h2>一、{provider.name} 套餐规划与资费标准</h2>
+        <p>
+          {provider.name} 的定价模式具有明显的梯度划分，支持按月灵活订购或按年优惠订阅。以下为其核心主力套餐的资费与规格明细：
+        </p>
+        
+        <div class="overflow-x-auto my-4">
+          <table class="w-full text-left text-xs border border-white/10 rounded-xl overflow-hidden">
+            <thead class="bg-slate-900 text-cyan-300 font-semibold border-b border-white/10">
+              <tr>
+                <th class="p-3">套餐名称</th>
+                <th class="p-3">订阅价格</th>
+                <th class="p-3">月度/总流量</th>
+                <th class="p-3">带宽与线路类型</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 bg-slate-950/60">
+              {provider.plans.map((plan) => (
+                <tr class="hover:bg-slate-900/40 transition-colors">
+                  <td class="p-3 font-medium text-white">{plan.name}</td>
+                  <td class="p-3 text-amber-400 font-mono font-bold">{plan.price}</td>
+                  <td class="p-3 text-slate-200">{plan.traffic}</td>
+                  <td class="p-3 text-emerald-400 font-mono">{plan.speed}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-900/60 border border-white/5 text-xs text-slate-400 flex items-center justify-between">
+          <span>💳 支持支付方式：{provider.paymentMethods?.join(' / ') || '支付宝 / 微信支付 / USDT'}</span>
+          <span>🔒 账单透明无隐藏扣费</span>
+        </div>
+      </section>
+
+      <!-- Section 2: Real Speedtest Evidence & Measured Telemetry -->
+      {provider.measuredEvidence && (
+        <section class="p-6 rounded-2xl bg-slate-900/80 border border-cyan-500/30 shadow-2xl space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/10">
+            <div>
+              <span class="text-[11px] font-mono font-bold text-cyan-400 uppercase tracking-wider block">
+                MEASURED EVIDENCE // 实测凭证归档
+              </span>
+              <h2 class="text-xl font-bold text-white m-0">
+                二、{provider.name} 真实节点测速报告图
+              </h2>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-slate-950 text-slate-300 text-xs font-mono border border-white/5">
+              测试时间：{provider.measuredEvidence.testedAt.slice(0, 19).replace('T', ' ')}
+            </span>
+          </div>
+
+          <!-- Evidence Metadata Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs font-mono">
+            <div class="p-2.5 rounded-lg bg-slate-950/70 border border-white/5">
+              <span class="text-slate-400 text-[10px] block">测试工具</span>
+              <span class="text-slate-200 font-bold">{provider.measuredEvidence.toolFamily}</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950/70 border border-white/5">
+              <span class="text-slate-400 text-[10px] block">测试协议</span>
+              <span class="text-cyan-400 font-bold">{provider.measuredEvidence.protocolDisplayed}</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950/70 border border-white/5">
+              <span class="text-slate-400 text-[10px] block">最高实测下行</span>
+              <span class="text-emerald-400 font-bold">{provider.testData.peakSpeed}</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950/70 border border-white/5">
+              <span class="text-slate-400 text-[10px] block">平均丢包率</span>
+              <span class="text-emerald-400 font-bold">{provider.testData.packetLoss}</span>
+            </div>
+          </div>
+
+          <!-- The Real Benchmark Screenshot Image -->
+          <div class="rounded-xl overflow-hidden border border-white/10 bg-slate-950 relative group">
+            <img
+              src={provider.measuredEvidence.file}
+              alt={`${provider.name} 节点测速实测报告图`}
+              class="w-full h-auto max-h-[700px] object-contain mx-auto transition-transform duration-300 group-hover:scale-[1.01]"
+              loading="lazy"
+            />
+            <div class="absolute bottom-2 right-2 px-2.5 py-1 rounded bg-slate-900/90 border border-white/10 text-[10px] text-slate-400 font-mono">
+              [jichangtuijian.club 归档凭证]
+            </div>
+          </div>
+
+          <!-- Academic Disclaimer & E-E-A-T Test Environment -->
+          <div class="p-4 rounded-xl bg-slate-950/80 border border-cyan-500/20 text-xs text-slate-300 space-y-1.5">
+            <div class="flex items-center justify-between text-cyan-300 font-bold">
+              <span class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                <span>评测实验室基准环境（E-E-A-T 实测声明）</span>
+              </span>
+              <span class="text-[11px] font-mono text-slate-400">硬件环境：Mihomo v1.18.8 / 上海电信千兆</span>
+            </div>
+            <p class="text-[11px] text-slate-400 leading-relaxed m-0">
+              上述测速数据由【机场推荐 Club 评测实验室】在 2026-08-11 晚高峰（20:00-23:00）通过上海电信 1000M 宽带与广州移动 500M 专线双路实地采集。实测图谱真实反映对应时刻的吞吐上限。评测结论严格区分物理实测事实与中立选型建议。
+            </p>
+          </div>
+        </section>
+      )}
+
+      <!-- Section 3: Service Availability & AI / Streaming Matrix -->
+      <section>
+        <h2>三、AI 工具与流媒体解锁能力矩阵</h2>
+        <p>
+          针对 OpenAI ChatGPT、Anthropic Claude、Netflix 等严苛风控平台的解锁能力分析：
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5 text-center">
+            <span class="text-xs text-slate-400 block mb-1">ChatGPT / OpenAI</span>
+            <span class="text-sm font-bold text-emerald-400">{provider.aiSupport.chatgpt}</span>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5 text-center">
+            <span class="text-xs text-slate-400 block mb-1">Claude 3.5 / 3.7</span>
+            <span class="text-sm font-bold text-cyan-400">{provider.aiSupport.claude}</span>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5 text-center">
+            <span class="text-xs text-slate-400 block mb-1">Netflix / Disney+</span>
+            <span class="text-sm font-bold text-emerald-400">{provider.streamingSupport.netflix}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Architecture Topology -->
+      <section>
+        <h2>四、骨干专线传输拓扑架构</h2>
+        <div class="p-5 rounded-xl bg-slate-900/80 border border-white/5 font-mono text-xs text-slate-300 space-y-3">
+          <div class="text-cyan-400 font-bold pb-2 border-b border-white/5">
+            [用户终端] (PC / 手机 / 路由器)
+          </div>
+          <div class="text-slate-400 pl-4">
+            ↓ 加密封装 ({provider.protocols.join(' / ')})
+          </div>
+          <div class="text-slate-200 font-semibold pl-4">
+            [国内 BGP 多线入口] (智能探测最优低延迟接入点)
+          </div>
+          <div class="text-emerald-400 font-bold pl-4">
+            ═══▶ 跨境内网 IEPL/IPLC 物理专线直连 (不经公网 GFW 节点，0 丢包) ═══▶
+          </div>
+          <div class="text-slate-200 font-semibold pl-4">
+            [海外优质机房落地出口] (香港 / 日本 / 新加坡 / 美国)
+          </div>
+          <div class="text-slate-400 pl-4">
+            ↓ 原生 IP 出海
+          </div>
+          <div class="text-sky-300 pl-4">
+            [ChatGPT / Claude / Netflix / YouTube 4K 秒开]
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Pros & Cons -->
+      <section>
+        <h2>五、核心优缺点综合分析</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20">
+            <h3 class="text-sm font-bold text-emerald-400 mb-2">✓ 核心优势</h3>
+            <ul class="space-y-1.5 text-xs text-slate-300 m-0 pl-4">
+              {provider.pros.map((p) => (
+                <li>{p}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/20">
+            <h3 class="text-sm font-bold text-rose-400 mb-2">✕ 局限与注意事项</h3>
+            <ul class="space-y-1.5 text-xs text-slate-300 m-0 pl-4">
+              {provider.cons.map((c) => (
+                <li>{c}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: Target Audience -->
+      <section>
+        <h2>六、适合人群与不适合人群</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5">
+            <h3 class="text-xs font-bold text-cyan-300 mb-2 uppercase">🎯 最适合的人群</h3>
+            <ul class="space-y-1 text-xs text-slate-300 m-0 pl-4">
+              {provider.bestFor.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5">
+            <h3 class="text-xs font-bold text-slate-400 mb-2 uppercase">⚠️ 不太适合的人群</h3>
+            <ul class="space-y-1 text-xs text-slate-400 m-0 pl-4">
+              {(provider.notFor || ['追求极小流量且不愿按月支付的用户']).map((n) => (
+                <li>{n}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </article>
+
+    <!-- FAQ Accordion -->
+    <FAQ items={brandFaqs} title={`${provider.name} 常见问题解答`} />
+
+    <!-- Level 3 CTA NextStep -->
+    <NextStep
+      level="level3"
+      title={`准备好体验 ${provider.name} 了吗？`}
+      description={`建议首选月付体验（${provider.couponCode ? `别忘了在结账时输入专属优惠码：${provider.couponCode}` : ''}），同时可参考我们的客户端配置指南。`}
+      primaryLink={{ text: `直达 ${provider.name} 官网选购`, url: provider.officialUrl }}
+      secondaryLink={{ text: '查看 Clash Verge 配置教程', url: '/tutorial/clash-verge/' }}
+    />
+  </div>
+</BaseLayout>

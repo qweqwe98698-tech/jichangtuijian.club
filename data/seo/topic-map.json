@@ -1,0 +1,99 @@
+{
+  "pillars": [
+    {
+      "title": "商业决策中心",
+      "url": "/",
+      "subpages": [
+        "/airport-ranking/",
+        "/stable-airport/",
+        "/cheap-airport/",
+        "/dedicated-line-airport/",
+        "/value-airport/"
+      ]
+    },
+    {
+      "title": "场景与客户中心",
+      "url": "/chatgpt-airport/",
+      "subpages": [
+        "/clash-airport/",
+        "/shadowrocket-airport/",
+        "/v2rayn-airport/",
+        "/streaming-airport/",
+        "/netflix-airport/",
+        "/tiktok-airport/",
+        "/low-latency-airport/"
+      ]
+    },
+    {
+      "title": "技术百科知识库",
+      "url": "/knowledge/",
+      "subpages": [
+        "/knowledge/what-is-airport/",
+        "/knowledge/airport-vs-vpn/",
+        "/knowledge/iepl/",
+        "/knowledge/iplc/",
+        "/knowledge/transit-vs-direct/",
+        "/knowledge/native-ip/",
+        "/knowledge/residential-ip/",
+        "/knowledge/shadowsocks/",
+        "/knowledge/hysteria2/",
+        "/knowledge/tuic/"
+      ]
+    },
+    {
+      "title": "故障排查中心",
+      "url": "/troubleshooting/",
+      "subpages": [
+        "/troubleshooting/timeout/",
+        "/troubleshooting/subscription-failed/",
+        "/troubleshooting/clash/",
+        "/troubleshooting/shadowrocket/",
+        "/troubleshooting/chatgpt/",
+        "/troubleshooting/peak-congestion/"
+      ]
+    },
+    {
+      "title": "风险预警中心",
+      "url": "/risk-warning/",
+      "subpages": [
+        "/risk-warning/runaway-signs/",
+        "/risk-warning/speedtest-lies/",
+        "/risk-warning/annual-plan-risk/",
+        "/risk-warning/fake-sites/",
+        "/risk-warning/free-proxy-risks/"
+      ]
+    },
+    {
+      "title": "客户端教程中心",
+      "url": "/tutorial/",
+      "subpages": [
+        "/tutorial/clash-verge/",
+        "/tutorial/shadowrocket/",
+        "/tutorial/v2rayn/",
+        "/tutorial/sing-box/"
+      ]
+    },
+    {
+      "title": "品牌评测数据库",
+      "url": "/brands/",
+      "subpages": [
+        "/brands/glados/",
+        "/brands/tag-internet/",
+        "/brands/flyint/",
+        "/brands/kuromis/",
+        "/brands/amytelecom/"
+      ]
+    },
+    {
+      "title": "E-E-A-T 信誉中心",
+      "url": "/about/",
+      "subpages": [
+        "/methodology/",
+        "/editorial-policy/",
+        "/disclaimer/",
+        "/contact/",
+        "/update-policy/"
+      ]
+    }
+  ]
+}

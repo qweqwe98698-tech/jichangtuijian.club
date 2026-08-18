@@ -1,0 +1,49 @@
+---
+export interface BreadcrumbItem {
+  title: string;
+  url?: string;
+}
+
+export interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const allItems = [{ title: '首页', url: '/' }, ...items];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: allItems.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.title,
+    item: item.url ? `https://jichangtuijian.club${item.url}` : undefined,
+  })),
+};
+---
+
+<nav aria-label="Breadcrumb" class="mb-6 flex items-center gap-2 text-xs text-slate-400">
+  {
+    allItems.map((item, index) => {
+      const isLast = index === allItems.length - 1;
+      return (
+        <div class="flex items-center gap-2">
+          {index > 0 && <span class="text-slate-600">/</span>}
+          {isLast || !item.url ? (
+            <span class="text-slate-200 font-medium" aria-current="page">
+              {item.title}
+            </span>
+          ) : (
+            <a href={item.url} class="hover:text-cyan-400 transition-colors">
+              {item.title}
+            </a>
+          )}
+        </div>
+      );
+    })
+  }
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

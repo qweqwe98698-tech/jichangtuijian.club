@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import ProviderCard from '../components/ProviderCard.astro';
+import FAQ from '../components/FAQ.astro';
+import NextStep from '../components/NextStep.astro';
+import { getAllProviders } from '../lib/providers';
+
+const tiktokProviders = getAllProviders().filter(
+  (p) => p.protocols.includes('VLESS') || p.routes.some((r) => r.includes('专线'))
+);
+
+const faqs = [
+  {
+    question: '运营 TikTok 为什么对机场 IP 要求极高？',
+    answer: 'TikTok 对中国大陆 SIM 卡、系统语言、时区以及代理 IP 的纯净度有深度风控检测。如果使用万人共享的劣质机房 IP 发视频，会被判定为批量黑产营销，导致视频 0 播放（0 view）或账号隐式限流。',
+  },
+];
+---
+
+<BaseLayout
+  title="2026 TikTok 机场推荐：跨境电商与外贸运营防 0 播放纯净住宅节点"
+  description="2026 TikTok 跨境运营专用机场推荐。针对海外短视频带货、TikTok Shop 与跨境社媒矩阵，精选美区、英区、东南亚纯净原生住宅 IP 专线。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: 'TikTok 机场推荐' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">TIKTOK & ECOMMERCE</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        2026 TikTok 跨境电商专用稳定专线机场
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        专为 TikTok 创作者、跨境卖家与外贸团队精选。提供高纯净度原生 IP，有效解决 0 播放、限流与封号风险。
+      </p>
+    </div>
+
+    <QuickAnswer
+      answerType="decision"
+      summary="跨境外贸与 TikTok 运营首选唯兔云（60+ 丰富多国节点调度）、速界（原生纯净 IP 专线）与光速云（IEPL 企业专线）。支持多设备矩阵批量运营与稳定推流。"
+      points={[
+        '支持美区、英区、东南亚本土原生住宅 IP 检测',
+        '高上行带宽保障，4K 高清视频发布与直播推流不丢帧',
+        '配合防关联浏览器与软路由打造专业出海环境',
+      ]}
+    />
+
+    <div class="my-10 space-y-6">
+      {tiktokProviders.map((p, idx) => (
+        <ProviderCard provider={p} rankingIndex={idx} highlightBadge="TikTok 运营推荐" />
+      ))}
+    </div>
+
+    <FAQ items={faqs} title="TikTok 运营与防封常见问题" />
+
+    <NextStep
+      level="level2"
+      title="需要更多外贸与开发者专线？"
+      description="查看我们专为海外外贸与低延迟电竞打造的专线横评。"
+      primaryLink={{ text: '查看电竞低延迟专线推荐', url: '/low-latency-airport/' }}
+      secondaryLink={{ text: '查看 IEPL 专线深度推荐', url: '/iepl-airport/' }}
+    />
+  </div>
+</BaseLayout>

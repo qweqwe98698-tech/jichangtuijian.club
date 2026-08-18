@@ -1,0 +1,78 @@
+{
+  "description": "防同室操戈（Cannibalization）合并映射规则",
+  "rules": [
+    {
+      "primaryKeyword": "机场推荐",
+      "targetUrl": "/",
+      "mergedVariations": [
+        "2026机场推荐",
+        "机场推荐2026",
+        "好用机场推荐",
+        "靠谱机场推荐",
+        "稳定机场选择"
+      ],
+      "distinctUrlsDoNotMerge": [
+        "/airport-ranking/",
+        "/stable-airport/",
+        "/cheap-airport/",
+        "/clash-airport/",
+        "/chatgpt-airport/"
+      ]
+    },
+    {
+      "primaryKeyword": "机场节点全部TIMEOUT",
+      "targetUrl": "/troubleshooting/timeout/",
+      "mergedVariations": [
+        "节点全红",
+        "节点TIMEOUT",
+        "节点全部超时",
+        "节点无法连接",
+        "节点延迟-1ms"
+      ],
+      "distinctUrlsDoNotMerge": [
+        "/troubleshooting/subscription-failed/",
+        "/troubleshooting/clash/"
+      ]
+    },
+    {
+      "primaryKeyword": "ChatGPT打不开与网络报错",
+      "targetUrl": "/troubleshooting/chatgpt/",
+      "mergedVariations": [
+        "ChatGPT 1020",
+        "ChatGPT Access Denied",
+        "ChatGPT 地区不支持",
+        "ChatGPT 登录报错"
+      ],
+      "distinctUrlsDoNotMerge": [
+        "/chatgpt/",
+        "/chatgpt-airport/"
+      ]
+    },
+    {
+      "primaryKeyword": "IEPL专线是什么意思",
+      "targetUrl": "/knowledge/iepl/",
+      "mergedVariations": [
+        "IEPL原理",
+        "IEPL专线解析",
+        "IEPL和普通中转区别"
+      ],
+      "distinctUrlsDoNotMerge": [
+        "/iepl-airport/"
+      ]
+    },
+    {
+      "primaryKeyword": "机场跑路前兆识别",
+      "targetUrl": "/risk-warning/runaway-signs/",
+      "mergedVariations": [
+        "机场跑路迹象",
+        "机场跑路怎么办",
+        "如何判断机场跑路",
+        "TG群禁言跑路"
+      ],
+      "distinctUrlsDoNotMerge": [
+        "/risk-warning/speedtest-lies/",
+        "/risk-warning/annual-plan-risk/"
+      ]
+    }
+  ]
+}

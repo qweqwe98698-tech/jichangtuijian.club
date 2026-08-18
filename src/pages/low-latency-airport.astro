@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import ProviderCard from '../components/ProviderCard.astro';
+import FAQ from '../components/FAQ.astro';
+import NextStep from '../components/NextStep.astro';
+import { getAllProviders } from '../lib/providers';
+
+const gameProviders = getAllProviders().filter((p) => parseInt(p.testData.averageLatency) <= 40);
+
+const faqs = [
+  {
+    question: '机场节点可以用来代替 UU 游戏加速器吗？',
+    answer: '对于 Steam 下载、外服游戏社区、更新包下载，机场专线速度远超加速器；对于 Apex、PUBG、瓦罗兰特等强竞技类 FPS 联机对战，支持 UDP 转发与内网专线的顶级机场（如 AmyTelecom、Kuromis）延迟可压到 20-35ms，表现完全可以比肩甚至超越专业加速器。',
+  },
+];
+---
+
+<BaseLayout
+  title="2026 低延迟游戏机场推荐：Steam / 国际服游戏电竞专线"
+  description="2026 低延迟与海外电竞游戏专用机场推荐。全内网 IEPL 专线，超低抖动与 0 丢包率，支持 UDP 转发，助力 Steam、PS5、Switch 及国际服游戏极致流畅对战。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '低延迟游戏机场' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block mb-2">ULTRA-LOW LATENCY & GAMING</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        2026 低延迟国际服电竞游戏机场推荐
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        专为 Steam 玩家、PS5/Xbox 主机党与海外网游发烧友精选。深港/沪日物理直连光缆，告别跳 ping 与掉线。
+      </p>
+    </div>
+
+    <QuickAnswer
+      answerType="decision"
+      summary="海外游戏联机首选 AmyTelecom 与 Kuromis。全节点支持 Full Cone NAT 与 UDP 游戏转发，港日韩美节点实测 Ping 延迟稳定在 15-38ms，晚高峰 0 丢包。"
+      points={[
+        '深港 IEPL 专线实测香港服务器延迟 15-20ms',
+        '沪日专线东京机房延迟 25-32ms，完美契合日服联机',
+        '支持 Steam 下载千兆拉满，更新游戏 0 等待',
+      ]}
+    />
+
+    <div class="my-10 space-y-6">
+      {gameProviders.map((p, idx) => (
+        <ProviderCard provider={p} rankingIndex={idx} highlightBadge="电竞级低延迟" />
+      ))}
+    </div>
+
+    <FAQ items={faqs} title="游戏加速与代理问答" />
+
+    <NextStep
+      level="level2"
+      title="想了解如何配置软路由为主机游戏加速？"
+      description="查看我们准备的客户端与分流配置教程，让 Switch/PS5 无感加速。"
+      primaryLink={{ text: '查看客户端配置中心', url: '/tutorial/' }}
+      secondaryLink={{ text: '返回 2026 综合排行榜', url: '/airport-ranking/' }}
+    />
+  </div>
+</BaseLayout>

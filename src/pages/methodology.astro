@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import NextStep from '../components/NextStep.astro';
+---
+
+<BaseLayout
+  title="评测方法论与数据标准：如何科学测试机场延迟、SLA与流媒体解锁"
+  description="机场推荐 Club 评测方法论与数据透明度标准。详解晚高峰压力测试流程、单线程真连接测速、AI 纯净度检测与风险预警核验机制。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '评测与数据方法论' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">E-E-A-T STANDARDS</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        评测方法论与数据透明度标准
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        公开、透明、可复现。我们如何通过严苛的工程手段，从成百上千个机场中筛选出真正可信赖的服务商。
+      </p>
+    </header>
+
+    <QuickAnswer
+      answerType="decision"
+      summary="我们坚持拒绝“收钱置顶”和“伪造测速图”。所有榜单与评分基于四大客观维度：晚高峰（20:00-23:00）真实丢包率、单线程下行带宽、IP 纯净度数据库核验、以及 3 年以上历史无跑路违约记录。"
+      points={[
+        '测试环境：中国电信/联通/移动 1000M 真实宽带与 5G 蜂窝网络',
+        '测试时间：重点锁定晚高峰 20:00-23:00 与敏感时期',
+        '数据状态明确标注：已核验（Verified）与参考数据（Reference）绝不混淆',
+      ]}
+    />
+
+    <article class="prose-atlas my-10 space-y-6">
+      <h2>一、为什么只在晚高峰进行基准压力测试？</h2>
+      <p>
+        白天网络负载较低时，绝大多数机场都能跑出几百兆的速度。只有在全网国际出口最为拥堵的晚上八点至十一点，才能真正检验服务商是否拥有充足的独立物理专线带宽和优质的 BGP 容灾调度能力。
+      </p>
+
+      <h2>二、单线程与多线程的测试权重</h2>
+      <p>
+        传统的 Speedtest 多线程测试只能代表极端并发吞吐，而网页浏览、API 调用和视频播放高度依赖单线程能力。在我们的评测体系中，单线程真实下载速率占据 60% 的性能评分权重。
+      </p>
+
+      <h2>三、AI 与流媒体原生 IP 检测机制</h2>
+      <p>
+        我们使用自动化脚本定期对各大服务商的核心节点发起 OpenAI API、Claude 网页端与 Netflix 非自制剧的真实连通性握手，实时监控 IP 信誉分值变化。
+      </p>
+    </article>
+
+    <NextStep
+      level="level3"
+      title="查看基于此方法论产出的 2026 机场排行榜？"
+      description="查看 2026 综合排行榜，享受经过严格核验的高可用专线服务。"
+      primaryLink={{ text: '查看 2026 机场综合排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '查看关于我们', url: '/about/' }}
+    />
+  </div>
+</BaseLayout>

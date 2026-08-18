@@ -1,0 +1,44 @@
+---
+export interface Props {
+  answerType?: 'decision' | 'comparison' | 'why' | 'how';
+  summary: string;
+  points?: string[];
+}
+
+const { answerType = 'decision', summary, points = [] } = Astro.props;
+
+const typeLabels: Record<string, { label: string; color: string }> = {
+  decision: { label: '决策速览 (Decision)', color: 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400' },
+  comparison: { label: '核心对比 (Comparison)', color: 'border-blue-500/30 bg-blue-500/10 text-blue-400' },
+  why: { label: '底层原因 (Why)', color: 'border-amber-500/30 bg-amber-500/10 text-amber-400' },
+  how: { label: '排查步骤 (How-To)', color: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400' },
+};
+
+const currentType = typeLabels[answerType] || typeLabels.decision;
+---
+
+<div class="my-6 p-5 rounded-xl bg-slate-900/90 border border-white/10 shadow-lg relative overflow-hidden">
+  <div class="flex items-center justify-between mb-3">
+    <span class={`text-[11px] font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full border ${currentType.color}`}>
+      {currentType.label}
+    </span>
+    <span class="text-[11px] text-slate-500">2026年8月最新核验结论</span>
+  </div>
+
+  <p class="text-sm sm:text-base font-medium text-slate-100 leading-relaxed">
+    {summary}
+  </p>
+
+  {
+    points.length > 0 && (
+      <ul class="mt-4 space-y-1.5 border-t border-white/5 pt-3">
+        {points.map((pt) => (
+          <li class="flex items-start gap-2 text-xs sm:text-sm text-slate-300">
+            <span class="text-cyan-400 font-bold mt-0.5">•</span>
+            <span>{pt}</span>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</div>

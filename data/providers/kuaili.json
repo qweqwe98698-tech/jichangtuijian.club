@@ -1,0 +1,90 @@
+{
+  "id": "kuaili",
+  "name": "快狸",
+  "slug": "kuaili",
+  "tagline": "25 元档 150GB VLESS + IEPL 专线 · AI 与 4K 影音综合体",
+  "establishedYear": 2023,
+  "officialUrl": "https://guangs.kuailicloud.cc/#/register?code=AiqyM8oG",
+  "couponCode": "kkk2222",
+  "discount": "专属优惠码",
+  "pricing": {
+    "monthlyStarting": 25,
+    "currency": "¥",
+    "billingCycle": "月付 25 元/月，150GB"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "国内 BGP 骨干"
+  ],
+  "protocols": [
+    "VLESS"
+  ],
+  "clients": [
+    "自研客户端",
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "streamingSupport": {
+    "netflix": "全区解锁",
+    "disney": "全区解锁",
+    "youtube4k": "秒开 4K/8K"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.92%",
+    "averageLatency": "17ms",
+    "peakSpeed": "820 Mbps",
+    "packetLoss": "< 0.05%"
+  },
+  "measuredEvidence": {
+    "file": "/images/speedtests/kuaili-speedtest.png",
+    "testedAt": "2026-08-11T19:52:22+08:00",
+    "protocolDisplayed": "VLESS",
+    "toolFamily": "main 4.3.3 (696) / miaosu 4.7.0 (A11-32)",
+    "dateConfidence": "visible-in-image"
+  },
+  "plans": [
+    {
+      "name": "快狸标准版",
+      "price": "¥25/月",
+      "traffic": "150 GB/月",
+      "speed": "1000 Mbps IEPL"
+    },
+    {
+      "name": "快狸旗舰版",
+      "price": "¥45/月",
+      "traffic": "300 GB/月",
+      "speed": "1000 Mbps IEPL"
+    }
+  ],
+  "bestFor": [
+    "视频流媒体、AI 与日常代理均衡的用户",
+    "偏好 VLESS 协议",
+    "150GB 中等偏大流量"
+  ],
+  "notFor": [
+    "单月流量小于 20GB 的用户"
+  ],
+  "pros": [
+    "全面支持 VLESS 协议与 IEPL 专线",
+    "晚高峰 19:52 喵速实测表现优异",
+    "提供自研客户端并支持通用订阅导入"
+  ],
+  "cons": [
+    "无低于 25 元的试用月套餐"
+  ],
+  "runawayRisk": "低 (运营超 3 年，稳定可靠)",
+  "lastVerified": "2026-08-17",
+  "verificationStatus": "verified"
+}

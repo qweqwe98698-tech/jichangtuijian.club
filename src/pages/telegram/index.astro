@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: 'Telegram 一直卡在 Connecting... 连接中怎么解决？',
+    answer: '1. 确认已开启代理客户端（如 Clash / Shadowrocket）；2. 如果使用的是电脑端 Telegram，在设置 → 高级 → 连接类型中选择“使用系统代理”或手动填入本地 SOCKS5 代理端口（127.0.0.1:7897）；3. 手机端可在小火箭中开启 Telegram 专用分流规则。',
+  },
+];
+---
+
+<BaseLayout
+  title="Telegram 科学上网与连接指南：解决一直转圈 Connecting 与防封设置"
+  description="2026 Telegram（电报）连接与网络配置指南。解决国内手机 Telegram 无法连接、收不到短信验证码、内置 MTProto 代理配置与安全使用技巧。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: 'Telegram 专题指南' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-sky-400 uppercase tracking-widest block mb-2">TELEGRAM PILLAR</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Telegram 连不上与网络配置全流程指南
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="Telegram 无法连通常见于“代理客户端未接管 Telegram 流量”或“使用了不可靠的公共 MTProto 代理”。推荐在系统层开启 Clash Verge 的 TUN 虚拟网卡模式，即可实现秒速连接与高清大文件快速下载。"
+      points={[
+        '避免在不知名电报群点击第三方免费 MTProto 代理链接',
+        '国内 +86 手机号注册存在收不到短信问题，建议使用 Google Voice 虚拟号',
+        '开启二步验证（Two-Step Verification）保护账号安全',
+      ]}
+    />
+
+    <article class="prose-atlas my-10 space-y-6">
+      <h2>一、Telegram 连接失败的核心原因</h2>
+      <p>
+        Telegram 在中国大陆属于被完全屏蔽的服务，包括其信令服务器与媒体 CDN。普通直连无法握手，必须通过加密代理才能正常通信。
+      </p>
+
+      <h2>二、正确配置代理客户端分流</h2>
+      <p>
+        在 Clash Verge 中，默认的 <code>Telegram</code> 策略组会自动将电报的数据流导向你选择的香港或新加坡节点。香港专线节点因物理距离最近，消息发送延迟通常在 15-30ms 之间，体验如同国内即时通讯软件一样丝滑。
+      </p>
+    </article>
+
+    <FAQ items={faqs} title="Telegram 连接问答" />
+
+    <NextStep
+      level="level2"
+      title="需要稳定不掉线的 Telegram 专线节点？"
+      description="查看 2026 稳定机场排行榜，享受低延迟电报收发体验。"
+      primaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '查看 Clash Verge 配置教程', url: '/tutorial/clash-verge/' }}
+    />
+  </div>
+</BaseLayout>

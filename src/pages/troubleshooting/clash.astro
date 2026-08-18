@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: '为什么 Clash 开了系统代理后，连百度等国内网站都打不开了？',
+    answer: '这通常是因为 Clash 的分流规则被设置成了“Global 全局代理”模式，或者规则中缺少国内域名直连白名单（GeoIP / DIRECT 规则失效），导致国内流量全部被发往海外节点甚至黑洞。在 Clash 主界面将模式由 Global 改为 Rule（规则模式）即可立即恢复。',
+  },
+  {
+    question: '开启 TUN 模式后电脑无法上网并提示 DNS 冲突怎么办？',
+    answer: '如果电脑中同时安装了虚拟机（VMware/VirtualBox）、Docker、加速器（网易UU/迅游）或其他 VPN 软件，虚拟网卡会发生路由优先级冲突。在 Clash Verge 设置中关闭“Strict Route”严格路由，并将 DNS 模式调整为 fake-ip 即可恢复正常。',
+  },
+];
+---
+
+<BaseLayout
+  title="Clash 连上但打不开网页怎么办？2026 系统代理、TUN 模式与 DNS 故障深度排查"
+  description="针对 Clash Verge、Clash for Windows 节点测速正常但打不开 Google/YouTube 或国内网页打不开的深度故障排查。涵盖系统代理设置、TUN 网卡冲突与 Fake-IP DNS 修复。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '故障排查手册', url: '/troubleshooting/' }, { title: 'Clash 连上打不开网页' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-rose-400 uppercase tracking-widest block mb-2">CLASH ROUTING TROUBLESHOOTING</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Clash 连上但打不开网页怎么办？系统代理与 DNS 深度排查
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 7 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="“节点有延迟但打不开网页” 90% 是由【系统代理开关未开启】、【分流模式误选为 Direct/Global】或【本地 DNS 污染未走 Fake-IP】导致。排查四步法：1. 确认系统代理（System Proxy）已开启；2. 将运行模式切换为 Rule（规则模式）；3. 在策略组中手动选中有效的绿色节点；4. 清理本地 DNS 缓存。"
+      points={[
+        '核心检查：检查 Windows 设置 -> 网络与 Internet -> 代理，确认 127.0.0.1:7890 正在生效',
+        '分流模式：务必选择 Rule 模式，严禁误选为 Direct（全部直连导致不翻墙）',
+        '刷新命令：在 CMD 中运行 ipconfig /flushdns 刷新本地 DNS',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、故障现象深度归类</h2>
+        <div class="space-y-4 my-6">
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-amber-400 mb-1">现象 A：国内网站正常，国外网站全部打不开</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              原因：系统代理开关未生效、策略组中选中的节点实际上已经失效（虽然有历史延迟缓存），或者分流模式被误设为了 Direct。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-rose-400 mb-1">现象 B：国内外所有网站全部断网打不开</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              原因：系统代理未随 Clash 正常关闭导致注册表残留死代理，或者 TUN 模式虚拟网卡与本地网络适配器发生 DNS 环路。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、四步标准化排查与修复步骤</h2>
+        <div class="space-y-4 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">第一步：检查系统代理开关状态</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              在 Clash Verge 左侧菜单中，确保 <strong>System Proxy（系统代理）</strong> 开关处于蓝色开启状态。进入 Windows 设置 ──▶ 网络 ──▶ 代理，确认“使用代理服务器”为开启，地址为 <code>127.0.0.1</code>，端口为 <code>7897</code>（或 <code>7890</code>）。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第二步：检查策略组（Proxy Group）节点选择</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              进入“代理（Proxies）”界面，展开 <code>PROXY</code> 策略组。不要盲目依赖自动测速，<strong>手动点击选中一个测速延迟在 50ms 左右的深港或沪日节点</strong>，观察策略组是否已切换。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第三步：清理本地 DNS 缓存并重置网络</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              以管理员身份打开 CMD 命令提示符，逐行运行以下修复命令：
+            </p>
+            <pre class="p-3 rounded-lg bg-slate-950 text-xs font-mono text-cyan-300 overflow-x-auto"><code>ipconfig /flushdns
+netsh winsock reset</code></pre>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-emerald-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-emerald-400 m-0">第四步：开启 TUN 模式替代传统系统代理</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              在 Clash Verge 设置中安装 Service 核心服务模式，开启 <strong>TUN Mode</strong>。TUN 模式会在系统层创建一张虚拟网卡，强制接管所有底层 TCP/UDP 流量，彻底解决浏览器走代理但终端命令行、Git 与 Spotify 不走代理的顽疾。
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="Clash 网页打不开常见问答" />
+
+    <!-- Level 3 CTA NextStep -->
+    <NextStep
+      level="level3"
+      title="需要更详细的客户端图文配置？"
+      description="查看我们的 Clash Verge 保姆级配置教程，以及 2026 稳定专线推荐。"
+      primaryLink={{ text: '查看 Clash Verge 配置教程', url: '/tutorial/clash-verge/' }}
+      secondaryLink={{ text: '查看 2026 稳定专线推荐', url: '/stable-airport/' }}
+    />
+  </div>
+</BaseLayout>

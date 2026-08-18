@@ -1,0 +1,141 @@
+---
+import type { Provider } from '../lib/providers';
+
+export interface Props {
+  provider: Provider;
+  rankingIndex?: number;
+  highlightBadge?: string;
+}
+
+const { provider, rankingIndex, highlightBadge } = Astro.props;
+---
+
+<div class="glass-card p-6 relative flex flex-col justify-between group">
+  <!-- Top Badges -->
+  <div class="flex items-start justify-between gap-3 mb-4">
+    <div class="flex items-center gap-3">
+      {
+        rankingIndex !== undefined && (
+          <span class="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center font-bold text-cyan-400 font-mono text-sm">
+            #{rankingIndex + 1}
+          </span>
+        )
+      }
+      <div>
+        <div class="flex items-center gap-2">
+          <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
+            {provider.name}
+          </h3>
+          {
+            provider.discount && (
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 border border-amber-500/30 text-amber-300">
+                {provider.discount}
+              </span>
+            )
+          }
+        </div>
+        <p class="text-xs text-slate-400 mt-0.5">{provider.tagline}</p>
+      </div>
+    </div>
+
+    {
+      highlightBadge && (
+        <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 whitespace-nowrap">
+          {highlightBadge}
+        </span>
+      )
+    }
+  </div>
+
+  <!-- Performance & Route Specs Grid -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 my-4 p-3 rounded-lg bg-slate-900/60 border border-white/5 text-center">
+    <div>
+      <span class="text-[11px] text-slate-400 block">晚高峰 SLA</span>
+      <span class="text-xs font-semibold text-emerald-400 font-mono">{provider.testData.sla}</span>
+    </div>
+    <div>
+      <span class="text-[11px] text-slate-400 block">平均延迟</span>
+      <span class="text-xs font-semibold text-cyan-400 font-mono">{provider.testData.averageLatency}</span>
+    </div>
+    <div>
+      <span class="text-[11px] text-slate-400 block">实测峰值</span>
+      <span class="text-xs font-semibold text-slate-200 font-mono">{provider.testData.peakSpeed}</span>
+    </div>
+    <div>
+      <span class="text-[11px] text-slate-400 block">起步价格</span>
+      <span class="text-xs font-semibold text-amber-400 font-mono">{provider.pricing.monthlyStarting}元/月</span>
+    </div>
+  </div>
+
+  <!-- Route & Protocol Tags -->
+  <div class="flex flex-wrap gap-1.5 my-2">
+    {provider.routes.map((r) => (
+      <span class="px-2 py-0.5 rounded text-[11px] bg-slate-800 text-slate-300 border border-white/5">
+        {r}
+      </span>
+    ))}
+    {provider.protocols.slice(0, 3).map((p) => (
+      <span class="px-2 py-0.5 rounded text-[11px] bg-slate-800/80 text-cyan-300/80 border border-cyan-500/10">
+        {p}
+      </span>
+    ))}
+  </div>
+
+  <!-- Coupon Code Highlight if Available -->
+  {
+    provider.couponCode && (
+      <div class="my-2 p-2.5 rounded-lg bg-slate-950/80 border border-amber-500/20 flex items-center justify-between text-xs">
+        <span class="text-slate-400 flex items-center gap-1.5">
+          <span>专属特惠：</span>
+          <button
+            type="button"
+            class="coupon-copy-btn px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono font-bold hover:bg-amber-500/20 transition-all flex items-center gap-1 cursor-pointer"
+            data-coupon={provider.couponCode}
+            title="点击复制优惠码"
+          >
+            <span>{provider.couponCode}</span>
+            <span class="text-[10px] text-amber-400/70">复制</span>
+          </button>
+        </span>
+        <span class="text-[11px] text-emerald-400 font-mono">结账立减</span>
+      </div>
+    )
+  }
+
+  <!-- Pros Highlights -->
+  <div class="space-y-1 my-2 text-xs text-slate-300">
+    {provider.pros.slice(0, 2).map((pro) => (
+      <div class="flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="truncate">{pro}</span>
+      </div>
+    ))}
+  </div>
+
+  <!-- CTA Bar -->
+  <div class="mt-4 pt-4 border-t border-white/5 flex items-center justify-between gap-3">
+    <a
+      href={`/brands/${provider.slug}/`}
+      class="text-xs text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-1"
+    >
+      查看测速原图与评测
+      <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+
+    <a
+      href={provider.officialUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="px-4 py-2 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-medium text-xs transition-all flex items-center gap-1"
+    >
+      直达官网
+      <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+      </svg>
+    </a>
+  </div>
+</div>

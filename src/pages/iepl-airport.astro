@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import ProviderCard from '../components/ProviderCard.astro';
+import FAQ from '../components/FAQ.astro';
+import NextStep from '../components/NextStep.astro';
+import { getAllProviders } from '../lib/providers';
+
+const ieplProviders = getAllProviders().filter((p) =>
+  p.routes.some((r) => r.includes('IEPL'))
+);
+
+const faqs = [
+  {
+    question: '为什么现在主流高端机场都采用 IEPL 专线？',
+    answer: 'IEPL（国际以太网专线）采用企业级物理二层/二点五层内网隧道穿透，完全不经过 GFW 公网防火墙审查，具有极高的抗封锁能力；同时具备灵活的带宽调度能力，在敏感时期依然能保持 100% 可用性。',
+  },
+];
+---
+
+<BaseLayout
+  title="2026 IEPL 专线机场推荐：抗封锁、超低丢包与晚高峰稳定出海"
+  description="2026 IEPL 专线机场推荐。深入评测华为云、腾讯云等 BGP 入口与深港/沪日企业级 IEPL 专线服务商，为对稳定性和网络质量有极高要求的用户提供标杆级推荐。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: 'IEPL 专线机场' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">IEPL BACKBONE</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        2026 IEPL 纯内网专线机场横评与选型
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        专线领域的绝对主力。企业级光纤点对点连接，彻底消除公网 QOS 限速与网络抖动。
+      </p>
+    </div>
+
+    <QuickAnswer
+      answerType="decision"
+      summary="IEPL 专线推荐梯队首选 TAG Internet 与 Kuromis。全量节点采用真 IEPL 专线部署，晚高峰丢包率严格控制在 0.05% 以内，支持高并发企业与极客个人使用。"
+      points={[
+        '华为云/各大公有云 BGP 智能接入，全国各地低延迟汇聚',
+        '端到端以太网专线，数据包不过公网 GFW 审查',
+        '支持 Shadowsocks 与 Hysteria2 新型抗封锁协议',
+      ]}
+    />
+
+    <div class="my-10 space-y-6">
+      {ieplProviders.map((p, idx) => (
+        <ProviderCard provider={p} rankingIndex={idx} highlightBadge="IEPL 旗舰专线" />
+      ))}
+    </div>
+
+    <FAQ items={faqs} title="IEPL 专线技术问答" />
+
+    <NextStep
+      level="level2"
+      title="想了解 IEPL 和 IPLC 的底层技术区别？"
+      description="阅读技术知识库中的详细解析，了解两种专线的技术拓扑差异。"
+      primaryLink={{ text: '阅读 IEPL 与 IPLC 技术区别', url: '/knowledge/iepl/' }}
+      secondaryLink={{ text: '查看 IPLC 专线推荐', url: '/iplc-airport/' }}
+    />
+  </div>
+</BaseLayout>

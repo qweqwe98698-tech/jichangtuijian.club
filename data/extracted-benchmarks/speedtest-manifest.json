@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "1.0",
+  "packageVersion": "2026-08-12-v2",
+  "batchId": "speedtest-2026-08-11-cst",
+  "measurementDate": "2026-08-11",
+  "measurementTimezone": "Asia/Shanghai",
+  "dataStatus": "measured",
+  "reviewStatus": "review-required",
+  "sourceArchive": {
+    "name": "16个机场测速图_2026-08-11_实测版.zip",
+    "sizeBytes": 36733598,
+    "sha256": "22BBBCDF4AE9F2D82DADAD9EFCBB55DBFEE6681720B0032EB31BB92C66F0D9D4"
+  },
+  "commonLimitations": [
+    "single-day snapshot",
+    "brands tested at different times",
+    "not a controlled cross-brand ranking",
+    "does not test AI or streaming unlock",
+    "does not prove long-term stability",
+    "raw machine-readable measurements were not included"
+  ],
+  "assets": [
+    {
+      "brand": "SOGO云",
+      "file": "SOGO云-节点测速实测.png",
+      "testedAt": "2026-08-11T18:57:59+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "U1S1",
+      "file": "U1S1-节点测速实测.png",
+      "testedAt": "2026-08-11T22:33:29+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "二猫云",
+      "file": "二猫云-节点测速实测.png",
+      "testedAt": "2026-08-11T10:45:27+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "飞猫云",
+      "file": "飞猫云-节点测速实测.png",
+      "testedAt": "2026-08-11T08:52:30+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "光年梯",
+      "file": "光年梯-节点测速实测.png",
+      "testedAt": "2026-08-11T14:38:04+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "光速云",
+      "file": "光速云-节点测速实测.png",
+      "testedAt": "2026-08-11T14:32:56+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "极连云",
+      "file": "极连云-节点测速实测.png",
+      "testedAt": "2026-08-11T22:46:50+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "可信云",
+      "file": "可信云-节点测速实测.png",
+      "testedAt": "2026-08-11T15:32:35+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "date-inferred-from-batch-time-visible-in-image",
+      "reviewNote": "Full calendar date should be checked against the original test record before publication."
+    },
+    {
+      "brand": "快狸",
+      "file": "快狸-节点测速实测.png",
+      "testedAt": "2026-08-11T19:52:22+08:00",
+      "protocolDisplayed": "VLESS",
+      "toolFamily": "main 4.3.3 (696) / miaosu 4.7.0 (A11-32)",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "灵猫网络",
+      "file": "灵猫网络-节点测速实测.png",
+      "testedAt": "2026-08-11T18:45:40+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "全球云",
+      "file": "全球云-节点测速实测.png",
+      "testedAt": "2026-08-11T15:50:43+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "速界",
+      "file": "速界-节点测速实测.png",
+      "testedAt": "2026-08-11T15:39:36+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "唯兔云",
+      "file": "唯兔云-节点测速实测.png",
+      "testedAt": "2026-08-11T13:55:08+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "星岛梦",
+      "file": "星岛梦-节点测速实测.png",
+      "testedAt": "2026-08-11T01:48:13+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "一翻云",
+      "file": "一翻云-节点测速实测.png",
+      "testedAt": "2026-08-11T00:21:30+08:00",
+      "protocolDisplayed": "Shadowsocks",
+      "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+      "dateConfidence": "visible-in-image"
+    },
+    {
+      "brand": "宇宙云",
+      "file": "宇宙云-节点测速实测.png",
+      "testedAt": "2026-08-11T21:04:24+08:00",
+      "protocolDisplayed": "VLESS",
+      "toolFamily": "main 4.3.3 (696) / miaosu 4.7.0 (A11-32)",
+      "dateConfidence": "visible-in-image"
+    }
+  ]
+}

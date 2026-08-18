@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import AppleIdPool from '../../components/AppleIdPool.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: '注册美区 Apple ID 必须绑定海外信用卡吗？',
+    answer: '完全不需要！只要在苹果官网注册页面将国家和地区直接选择为“美国”，付款方式选择“None（无）”，并填入一个合法的免税州真实街道账单地址即可。下载付费 App（如 Shadowrocket）时，直接使用礼品卡充值余额扣费。',
+  },
+  {
+    question: '美国五大免税州是哪些？为什么建议填免税州地址？',
+    answer: '美国五大免税州为：特拉华州（Delaware）、蒙大拿州（Montana）、新罕布什尔州（New Hampshire）、俄勒冈州（Oregon）和阿拉斯加州（Alaska）。填入免税州地址后，在 App Store 购买任何付费软件或充值 ChatGPT Plus 时均无需额外支付 6%-10% 的消费税。',
+  },
+  {
+    question: '在 iPhone 上登录美区 Apple ID 会导致我 iCloud 里的相册丢失吗？',
+    answer: '绝对不会！前提是您必须严格遵循“仅在 App Store 中切换登录”的安全规则。切勿在 iPhone 系统的“设置-iCloud”中退出自己的国区主力账号。在 App Store 中切换账号只会影响应用的下载与更新，完全不影响 iCloud 相册、通讯录与备忘录同步。',
+  },
+];
+---
+
+<BaseLayout
+  title="美区 Apple ID 免费共享池与注册教程：2026 每日更新已购小火箭公共账号与免信用卡注册指南"
+  description="2026 最新美区 / 港区 / 日区免费公共 Apple ID 账号实时共享池（已购 Shadowrocket 小火箭与各类生产力工具）。同时提供 100% 成功免国外信用卡自建注册保姆级教程。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-18"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '美区 Apple ID 共享与教程' }]} />
+
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3">
+        <span>每日动态解锁 · 已购 Shadowrocket · 免费自建教程</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        2026 免费美区 Apple ID 实时共享池与免信用卡注册完全指南
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 7 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="获取美区 Apple ID 两种方案：1.【直接免费使用】：直接复制下方共享池中的美区已购账号，在 App Store 登录下载 Shadowrocket；2.【自建永久独享账号】：按后文四步法在苹果官网免信用卡注册专属美区账号，终身不受密码修改或锁定困扰。"
+      points={[
+        '共享账号：提供美区、港区、日区公共账号，每日自动维护测活',
+        '自建独享：中国大陆手机号（+86）完全支持直接注册，账单填俄勒冈免税州',
+        '安全红线：严禁在系统【设置 - iCloud】登录，必须且只能在【App Store】登录',
+      ]}
+    />
+
+    <!-- Dynamic Public Apple ID Pool Widget -->
+    <AppleIdPool />
+
+    <!-- 1500+ Word Deep Article: Self-Registration Tutorial -->
+    <article id="tutorial" class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、前期准备材料清单</h2>
+        <ul class="space-y-2 text-sm text-slate-300 pl-5 list-disc">
+          <li><strong>一个从未注册过 Apple ID 的全新邮箱</strong>：推荐 Gmail 或 Outlook；</li>
+          <li><strong>一个能接收短信的中国大陆手机号（+86）</strong>：苹果允许一个手机号绑定多个不同区域的 Apple ID；</li>
+          <li><strong>一段美国免税州的真实账单地址</strong>（可在后文直接复制俄勒冈模板）。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>二、四步实操注册与激活 SOP</h2>
+        <div class="space-y-6 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">第一步：在苹果官网创建全新账号</h3>
+            <ol class="text-xs text-slate-300 space-y-1.5 pl-4 list-decimal">
+              <li>在浏览器中打开苹果官方账号创建页：<code>https://appleid.apple.com</code>；</li>
+              <li>点击右上角“创建您的 Apple ID”；</li>
+              <li>国家或地区务必选择 <strong>美国（United States）</strong>；</li>
+              <li>输入全新邮箱，手机号选择 <code>+86 (China mainland)</code> 并填入自己的常用手机号；</li>
+              <li>依次输入邮箱收到的 6 位验证码与手机短信验证码，完成基础账号创建。</li>
+            </ol>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第二步：首次在 iPhone App Store 激活并设置免税州地址</h3>
+            <ol class="text-xs text-slate-300 space-y-1.5 pl-4 list-decimal">
+              <li>打开 iPhone 上的 <strong>App Store</strong> ──▶ 点击右上角头像 ──▶ 滑到最底部点击“退出登录”；</li>
+              <li>输入刚才注册的美区账号与密码登录；</li>
+              <li>系统会弹出提示 <code>此 Apple ID 尚未在 iTunes Store 使用过</code>，点击 <strong>检查（Review）</strong>；</li>
+              <li>同意条款后进入付款信息页：<strong>付款方式选择 None（无）</strong>；</li>
+              <li>账单寄送地址（Billing Address）填入以下俄勒冈免税州信息：
+                <div class="p-3 rounded bg-slate-950 font-mono text-[11px] text-emerald-300 my-2">
+                  Street: 1200 NW Naito Pkwy<br />
+                  City: Portland<br />
+                  State: OR - Oregon<br />
+                  Zip Code: 97209<br />
+                  Phone: (503) 222-1234
+                </div>
+              </li>
+              <li>点击下一页，提示 <code>Apple ID 已完成创建</code>，即可自由下载美区免费应用。</li>
+            </ol>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-emerald-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-emerald-400 m-0">第三步：支付宝充值并购买 Shadowrocket 小火箭</h3>
+            <ol class="text-xs text-slate-300 space-y-1.5 pl-4 list-decimal">
+              <li>打开手机支付宝 App ──▶ 将左上角城市切换为 <strong>旧金山</strong>；</li>
+              <li>点击首页“大牌礼卡” ──▶ 搜索 <strong>App Store & iTunes</strong> 礼品卡；</li>
+              <li>输入充值金额 <code>3 美元</code>，通过支付宝直接人民币结账；</li>
+              <li>在订单中复制 16 位卡密，打开 iPhone App Store ──▶ 点击头像 ──▶ <strong>Redeem Gift Card or Code（兑换充值卡或代码）</strong> 完成充值；</li>
+              <li>在美区 App Store 搜索 <code>Shadowrocket</code>，点击购买并完成下载！</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="美区 Apple ID 常见问答" />
+
+    <!-- Level 3 CTA NextStep -->
+    <NextStep
+      level="level3"
+      title="下载好了小火箭，想挑选稳定专线？"
+      description="首推 2020 年老牌旗舰【光速云】（全线支持小火箭一键导入，专属优惠码 AMM 享 8 折）。"
+      primaryLink={{ text: '查看 Shadowrocket 小火箭配置教程', url: '/tutorial/shadowrocket/' }}
+      secondaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+    />
+  </div>
+</BaseLayout>

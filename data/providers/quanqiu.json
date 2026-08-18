@@ -1,0 +1,90 @@
+{
+  "id": "quanqiu",
+  "name": "全球云",
+  "slug": "quanqiu",
+  "tagline": "20 元档 120GB VLESS + IEPL 专线 · 均衡出海基石",
+  "establishedYear": 2026,
+  "officialUrl": "https://guangs.gcvipaff.com/#/?code=Ov2nvU9C",
+  "couponCode": "qqy7777",
+  "discount": "专属优惠码",
+  "pricing": {
+    "monthlyStarting": 20,
+    "currency": "¥",
+    "billingCycle": "月付 20 元/月，120GB"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "国内多入口 BGP"
+  ],
+  "protocols": [
+    "VLESS",
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "streamingSupport": {
+    "netflix": "全区解锁",
+    "disney": "支持",
+    "youtube4k": "秒开 4K"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.90%",
+    "averageLatency": "18ms",
+    "peakSpeed": "790 Mbps",
+    "packetLoss": "< 0.06%"
+  },
+  "measuredEvidence": {
+    "file": "/images/speedtests/quanqiu-speedtest.png",
+    "testedAt": "2026-08-11T15:50:43+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  },
+  "plans": [
+    {
+      "name": "全球标准版",
+      "price": "¥20/月",
+      "traffic": "120 GB/月",
+      "speed": "1000 Mbps IEPL"
+    },
+    {
+      "name": "全球尊享版",
+      "price": "¥38/月",
+      "traffic": "250 GB/月",
+      "speed": "1000 Mbps IEPL"
+    }
+  ],
+  "bestFor": [
+    "20 元月预算用户",
+    "日常流量 100GB 左右",
+    "看重专线低延迟与全能兼容"
+  ],
+  "notFor": [
+    "需要超低价年付的用户"
+  ],
+  "pros": [
+    "20元档 120GB 专线配置均衡",
+    "搭载 VLESS 协议与 IEPL 专线",
+    "支持通用第三方订阅导入"
+  ],
+  "cons": [
+    "2026 新开品牌，建议坚持月付订阅体验"
+  ],
+  "runawayRisk": "中低 (按月订阅无忧)",
+  "lastVerified": "2026-08-17",
+  "verificationStatus": "verified"
+}

@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import NextStep from '../../components/NextStep.astro';
+
+const warnings = [
+  {
+    title: '2024-2026 全网已跑路与失联机场黑名单数据库：庞氏资金链复盘',
+    slug: '/risk-warning/runaway-blacklist/',
+    tag: '黑名单数据库',
+    color: 'text-rose-400 border-rose-500/20 bg-rose-500/10',
+    summary: '深度复盘速蛙云、泡泡狗等历史大案。拆解机场主跑路前的资金崩盘模型、五大死亡前兆与信用卡拒付止损 SOP。',
+  },
+  {
+    title: '免费节点与公共白嫖订阅背后的安全陷阱：为什么免费才是最昂贵的代价？',
+    slug: '/risk-warning/free-nodes-danger/',
+    tag: '网络安全深度调查',
+    color: 'text-rose-400 border-rose-500/20 bg-rose-500/10',
+    summary: '揭秘公共免费节点背后的蜜罐监听、Cookie 劫持、暗网凭据窃取与 MitM 自签名根证书解密危害。',
+  },
+  {
+    title: '拒绝当韭菜：2026 机场防跑路生存法则与“测速图谎言”深度粉碎',
+    slug: '/risk-warning/speedtest-lies/',
+    tag: '深度内幕',
+    color: 'text-rose-400 border-rose-500/20 bg-rose-500/10',
+    summary: '揭露单线程与多线程测速图造假伎俩、节点倍率套路、开业大促销收割跑路内幕，输出真正安全的订阅策略。',
+  },
+  {
+    title: '机场跑路 5 大前兆识别：突发大降价、TG全员禁言后的自救指南',
+    slug: '/risk-warning/runaway-signs/',
+    tag: '跑路预警',
+    color: 'text-amber-400 border-amber-500/20 bg-amber-500/10',
+    summary: '机场老板跑路前通常有哪些反常迹象？遇到失联该如何最大程度挽回损失并无缝迁移。',
+  },
+  {
+    title: '为什么永远不要购买长期年付/终身套餐？科学上网安全订阅法则',
+    slug: '/risk-warning/annual-plan-risk/',
+    tag: '资金安全',
+    color: 'text-rose-400 border-rose-500/20 bg-rose-500/10',
+    summary: '算清机场服务器运营成本账本。为什么“1主 + 1备 + 1小月付”是唯一能在各种网络动荡中立于不败之地的策略。',
+  },
+];
+---
+
+<BaseLayout
+  title="风险预警与避坑中心：机场跑路前兆、测速图造假内幕与安全订阅法则"
+  description="2026 科学上网风险预警中心。曝光机场行业跑路套路、虚假测速营销、假官网钓鱼与隐私安全陷阱，帮助用户建立科学的容灾防御体系。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '风险预警中心' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-rose-400 uppercase tracking-widest block mb-2">RISK & FRAUD RADAR</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        网络代理风险预警与行业避坑内幕
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        在鱼龙混杂的机场市场，保护您的资金与隐私安全。我们坚持中立视角，持续曝光虚假宣传与跑路黑产。
+      </p>
+    </div>
+
+    <div class="space-y-6 my-10">
+      {warnings.map((w) => (
+        <div class="glass-card p-6 border-rose-500/20 flex flex-col md:flex-row md:items-center justify-between gap-6 group">
+          <div class="space-y-2 max-w-3xl">
+            <span class={`text-xs font-semibold px-2.5 py-0.5 rounded border inline-block ${w.color}`}>
+              {w.tag}
+            </span>
+            <h2 class="text-lg font-bold text-white group-hover:text-rose-400 transition-colors">
+              <a href={w.slug}>{w.title}</a>
+            </h2>
+            <p class="text-xs text-slate-300 leading-relaxed">{w.summary}</p>
+          </div>
+
+          <a
+            href={w.slug}
+            class="px-5 py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 font-semibold text-xs transition-all shrink-0 flex items-center gap-1.5 self-start md:self-center"
+          >
+            <span>阅读深度长文</span>
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <NextStep
+      level="level2"
+      title="寻找运营 3 年以上、支持月付的靠谱老牌机场？"
+      description="查看我们经过长周期 SLA 实测与信誉核验的基石级服务商列表。"
+      primaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '查看平价月付机场推荐', url: '/cheap-airport/' }}
+    />
+  </div>
+</BaseLayout>

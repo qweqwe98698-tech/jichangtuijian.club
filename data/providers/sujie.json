@@ -1,0 +1,91 @@
+{
+  "id": "sujie",
+  "name": "速界",
+  "slug": "sujie",
+  "tagline": "专为 ChatGPT / Claude 优化的 25 元档 150GB IEPL 专线",
+  "establishedYear": 2024,
+  "officialUrl": "https://guangs.speedworldaff.cc/#/register?code=xgXzEfZB",
+  "couponCode": "sss1111",
+  "discount": "专属优惠码",
+  "pricing": {
+    "monthlyStarting": 25,
+    "currency": "¥",
+    "billingCycle": "月付 25 元/月，150GB"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "IEPL 专线",
+    "AI 优化专用出口"
+  ],
+  "protocols": [
+    "VLESS",
+    "Shadowsocks"
+  ],
+  "clients": [
+    "自研客户端",
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "streamingSupport": {
+    "netflix": "全区解锁",
+    "disney": "全区解锁",
+    "youtube4k": "秒开 4K"
+  },
+  "aiSupport": {
+    "chatgpt": "官方原生 IP 解锁",
+    "claude": "深度优化",
+    "gemini": "原生支持"
+  },
+  "testData": {
+    "sla": "99.94%",
+    "averageLatency": "15ms",
+    "peakSpeed": "850 Mbps",
+    "packetLoss": "< 0.04%"
+  },
+  "measuredEvidence": {
+    "file": "/images/speedtests/sujie-speedtest.png",
+    "testedAt": "2026-08-11T15:39:36+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  },
+  "plans": [
+    {
+      "name": "速界标准版",
+      "price": "¥25/月",
+      "traffic": "150 GB/月",
+      "speed": "1000 Mbps IEPL"
+    },
+    {
+      "name": "速界极速版",
+      "price": "¥46/月",
+      "traffic": "300 GB/月",
+      "speed": "1000 Mbps IEPL"
+    }
+  ],
+  "bestFor": [
+    "高频使用 ChatGPT/Claude/Gemini 的 AI 开发者",
+    "跨境外贸与代码补全 (Cursor/Copilot)",
+    "低网络抖动需求"
+  ],
+  "notFor": [
+    "仅偶尔查阅网页的轻度用户"
+  ],
+  "pros": [
+    "专为 AI 场景深度优化 IP 纯净度",
+    "25元档 150GB IEPL 专线带宽充沛",
+    "提供自研客户端并支持通用订阅"
+  ],
+  "cons": [
+    "起步价 25 元，无低价入门档"
+  ],
+  "runawayRisk": "低 (专业 AI 定位，客群稳定)",
+  "lastVerified": "2026-08-17",
+  "verificationStatus": "verified"
+}

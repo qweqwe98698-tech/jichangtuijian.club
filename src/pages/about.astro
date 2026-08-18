@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import NextStep from '../components/NextStep.astro';
+---
+
+<BaseLayout
+  title="关于我们：机场推荐 Club (jichangtuijian.club) 的初心与定位"
+  description="了解 机场推荐 Club。我们是一群专注于网络技术、分布式架构与代理协议研究的工程师与网络极客，致力于打造最真实中立的中文科学上网知识库与选型数据库。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '关于我们' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">ABOUT OUR TEAM</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        关于 机场推荐 Club
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        机场选择、代理知识与网络工具中文知识库。
+      </p>
+    </header>
+
+    <article class="prose-atlas my-10 space-y-6">
+      <h2>我们的定位</h2>
+      <p>
+        <strong>机场推荐 Club (jichangtuijian.club)</strong> 不是简单的返利导航站，也不是流水线生成的垃圾博客。我们致力于建设成为：
+      </p>
+      <blockquote>
+        机场选择决策中心 + 品牌评测数据库 + 客户端教程中心 + 代理技术知识库 + 网络故障排查中心 + 风险预警中心。
+      </blockquote>
+
+      <h2>为什么要做这个网站？</h2>
+      <p>
+        当前的中文科学上网生态充斥着严重的劣币驱逐良币现象：满屏由返利驱动的“最新最强机场”虚假推荐、充斥造假水分的单线测速图、以及收割完一波年费就卷款跑路的劣质团队。普通用户在信息不对称的环境下频频踩坑。
+      </p>
+      <p>
+        我们希望通过公开透明的工程测试、真实的 SLA 监控和严谨的防割指南，帮助每位网民找到真正稳定、安全、划算的网络工具。
+      </p>
+    </article>
+
+    <NextStep
+      level="level2"
+      title="准备好开始你的网络选型？"
+      description="查看 2026 稳定机场排行榜或了解我们的评测方法论。"
+      primaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '阅读数据方法论', url: '/methodology/' }}
+    />
+  </div>
+</BaseLayout>

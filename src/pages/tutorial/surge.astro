@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: 'Surge 的授权价格较高，相比普通客户端有哪些不可替代的优势？',
+    answer: 'Surge 绝不仅仅是一款科学上网软件，它是一款顶级的企业级网络调试与流量治理工具。其核心优势包括：业内最高水准的并发传输引擎、极其强大的 MitM HTTPS 解密与 JavaScript 脚本篡改能力、丰富的第三方社区模块（去广告/Cookie 自动化签到），以及将 Mac 或 Apple TV 一键转化为全屋局域网网关的能力。',
+  },
+  {
+    question: 'Surge 能够直接导入 Clash 的订阅链接吗？',
+    answer: '不能直接识别原始 Clash YAML。你需要使用机场后台直接提供的【Surge 托管订阅链接】导入；或者在客户端配置中，通过 <code>[Proxy]</code> 模块引入外部订阅节点集（Node List），并结合自定义的 <code>[Rule]</code> 规则集使用。',
+  },
+  {
+    question: 'Surge 的 Enhanced Mode（增强模式）有什么作用？',
+    answer: '增强模式利用 macOS 系统的 Packet Filter 虚拟网卡技术，接管整台 Mac 所有的网络流量（包括终端命令行、后台守护进程与未配置系统代理的软件）。它能彻底杜绝 DNS 泄漏，并实现对全系统所有出站流量的精准分流与可视化监控。',
+  },
+];
+---
+
+<BaseLayout
+  title="Surge for Mac & iOS 极客配置指南：2026 模块规则与代理网关实战"
+  description="2026 最新 Surge for Mac 与 iOS 深度使用教程。详解托管订阅导入、Module 模块生态、MitM 证书解密与 Enhanced Mode 局域网网关实战指南。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '客户端教程', url: '/tutorial/' }, { title: 'Surge 极客配置指南' }]} />
+
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3">
+        <span>苹果生态网络神器 · 进阶极客指南</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Surge for Mac & iOS 极客神级配置全景指南：2026 模块规则、MitM 与代理网关实战
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 9 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="Surge 是苹果生态（macOS / iOS / tvOS）中性能与功能最为强悍的网络调试与规则分流工具。通过合理编写托管配置、引入社区自动化模块与开启增强模式，能够将网络延迟降至物理极限，并实现全屋流量的透明调度与广告深度净化。"
+      points={[
+        '极致性能：采用自主研发的网络协议栈，吞吐性能大幅领跑开源客户端',
+        '强大模块：支持一键加载 Module，实现去开屏广告、流媒体重定向与脚本改包',
+        '顶级专线搭配：配合光速云或 U1S1 纯 IEPL 专线，电竞游戏与 4K 影音体验极佳',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、Surge 核心架构四大支柱深度拆解</h2>
+        <p>
+          对于苹果生态的高阶开发者与资深极客而言，Surge 的设计架构代表了桌面网络工具的最高工业水准。其内部逻辑由四大核心模块紧密协同：
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/20">
+            <span class="text-xs font-bold text-cyan-300 block mb-1">1. Proxy 策略组（Policy Group）</span>
+            <p class="text-xs text-slate-300 m-0">支持 Select 手动选择、URL-Test 自动测速选择、Fallback 故障转移与 SSID 按 Wi-Fi 智能切换。</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/20">
+            <span class="text-xs font-bold text-emerald-400 block mb-1">2. Rule 规则系统（Ruleset）</span>
+            <p class="text-xs text-slate-300 m-0">基于域名、IP-CIDR、GeoIP、应用进程名（PROCESS-NAME）进行毫秒级精准路由匹配。</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/20">
+            <span class="text-xs font-bold text-sky-400 block mb-1">3. Module 模块化生态</span>
+            <p class="text-xs text-slate-300 m-0">无需修改主配置文件，随时一键热插拔第三方社区模块，扩展屏蔽广告、签到与协议重定向功能。</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/20">
+            <span class="text-xs font-bold text-amber-400 block mb-1">4. Enhanced Mode 增强网关</span>
+            <p class="text-xs text-slate-300 m-0">接管 Mac 所有网络出站流量，并可开启“网关模式（Gateway）”为局域网其他设备提供无感透明代理。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、Surge 导入机场订阅与托管配置标准化流程</h2>
+        <p>
+          在 Surge for Mac 或 iOS 中配置机场节点，最推荐使用【外部节点集（Policy Path）】方案：
+        </p>
+        <ol class="space-y-3 text-xs sm:text-sm text-slate-300 list-decimal pl-5 leading-relaxed my-4">
+          <li><strong>获取 Surge 专用订阅</strong>：登录<strong>光速云</strong>或<strong>星岛梦</strong>后台，复制专用的 Surge 订阅 URL；</li>
+          <li><strong>配置托管策略组</strong>：在 Surge 配置文件中加入外部节点集声明：
+            <pre class="bg-slate-950 p-3 rounded text-cyan-300 text-xs my-2 overflow-x-auto"><code>[Proxy Group]
+⚡ 旗舰专线 = select, policy-path=https://your-sub-url.com, update-interval=86400
+🤖 AI 专用 = select, ⚡ 旗舰专线, DIRECT
+🎬 4K 流媒体 = url-test, policy-path=https://your-sub-url.com, url=http://www.gstatic.com/generate_204, interval=300</code></pre>
+          </li>
+          <li><strong>应用并激活配置</strong>：点击【Set as Active Configuration】，Surge 将在后台自动拉取所有经过测速验证的高质量专线节点。</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>三、Surge 发烧友必备的优质专线搭配</h2>
+        <p>
+          Surge 的强大内核需要底层的极速专线才能发挥其百分之百的威力。如果搭配劣质公网机场，频繁的丢包与握手超时将严重降低体验。
+        </p>
+        <p>
+          极客首选专线组合：
+        </p>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-300 list-disc pl-5 leading-relaxed">
+          <li><strong>全能生产力基石（首选光速云）</strong>：支持完整的 Shadowsocks 2022 与 VLESS 协议，深港/沪日内网专线 Jitter 小于 1ms，在 Surge 仪表盘上呈现出几乎完美的平直流线；</li>
+          <li><strong>纯专线电竞与低延迟（首选 U1S1）</strong>：晚高峰 0 丢包，与 Surge 的 URL-Test 自动优选策略深度契合，带来极致的跨国网络体验。</li>
+        </ul>
+      </section>
+    </article>
+
+    <FAQ items={faqs} title="Surge 极客配置常见 FAQ" />
+
+    <NextStep
+      level="level2"
+      title="配置好 Surge 后，挑选一条延迟最低的纯 IEPL 专线"
+      description="查看 2026 综合天梯排行榜，挑选完美适配 Surge 高并发特性的基石级专线服务商。"
+      primaryLink={{ text: '查看 2026 机场综合排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '阅读 IEPL vs IPLC 专线技术拆解', url: '/knowledge/iepl/' }}
+    />
+  </div>
+</BaseLayout>

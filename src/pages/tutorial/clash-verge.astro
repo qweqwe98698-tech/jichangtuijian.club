@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: 'Clash Verge Rev 和老版本 Clash for Windows (CFW) 有什么区别？',
+    answer: '老版 CFW 项目已在 2023 年底停更归档，其内置的 Clash Premium 内核不再支持最新的 VLESS、Hysteria2 协议和新型分流规则。而 Clash Verge Rev 基于开源社区活跃维护的 Mihomo（开源 Clash.Meta）内核重构，支持完整的现代协议生态、现代化 Fluent UI 界面与更强大的 TUN 虚拟网卡功能。',
+  },
+  {
+    question: '在 Clash Verge 中开启 TUN 模式提示需要管理员权限？',
+    answer: '是的。TUN 模式需要在 Windows / macOS 底层操作系统中安装虚拟网卡驱动以拦截全局网络流量。在 Clash Verge 设置中点击“安装服务模式（Install Service）”，授予管理员权限后即可一键无感开启 TUN 模式。',
+  },
+  {
+    question: '为什么导入订阅链接后提示“Format Error”或空白？',
+    answer: '这通常是由于机场原始订阅链接被本地网络阻断，或者下发的内容未经 Clash 标准格式转换。可将订阅链接粘贴至在线订阅转换平台，生成标准 Clash YAML 配置文件后重新导入。',
+  },
+];
+---
+
+<BaseLayout
+  title="Clash Verge Rev 电脑端保姆级配置教程：2026 最新下载、订阅导入与 TUN 模式全解"
+  description="2026 最详尽的 Clash Verge Rev（基于 Mihomo 内核）图文使用教程。覆盖 Windows / macOS 客户端下载安装、订阅链接一键导入、规则分流模式切换、TUN 虚拟网卡接管与 DNS 防污染设置。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '客户端教程', url: '/tutorial/' }, { title: 'Clash Verge Rev 配置教程' }]} />
+
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3">
+        <span>适用于 Windows 10/11 · macOS · Linux</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Clash Verge Rev 电脑端保姆级配置教程 (2026 最新版)
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 8 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="Clash Verge Rev 是当前 PC/Mac 端最稳定好用的开源代理客户端。新手四步上手：1. 从 GitHub 官方 Releases 下载安装包；2. 进入“订阅”面板粘贴机场订阅链接并下载；3. 在“代理”面板选择可用节点；4. 开启“系统代理”或“TUN 模式”，模式务必保持为 Rule 规则分流。"
+      points={[
+        '内核推荐：默认选择 Mihomo (Clash.Meta) 内核，完美支持 VLESS/Hysteria2',
+        '分流模式：务必保持 Rule 规则模式，国内流量直连，海外流量代理',
+        '终极提速：开启 TUN 模式接管终端命令行、Git 与游戏流量',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、Clash Verge Rev 软件下载与环境准备</h2>
+        <p>
+          请务必从官方开源仓库下载正版安装包，切勿在不可信的第三方下载站下载可能被植入后门的修改版客户端：
+        </p>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2 text-xs text-slate-300 my-4">
+          <div>🌐 <strong>官方开源项目地址</strong>：<code>https://github.com/clash-verge-rev/clash-verge-rev</code></div>
+          <div>💻 <strong>Windows 用户</strong>：下载 <code>Clash.Verge_x64-setup.exe</code>（安装版）或 <code>.msi</code> 文件。</div>
+          <div>🍎 <strong>macOS 用户</strong>：Apple Silicon (M1/M2/M3/M4) 下载 <code>_aarch64.dmg</code>，Intel 芯片下载 <code>_x64.dmg</code>。</div>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、四步从零上手保姆级操作 SOP</h2>
+
+        <div class="space-y-6 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">第一步：导入机场订阅链接</h3>
+            <ol class="text-xs text-slate-300 space-y-1.5 pl-4 list-decimal">
+              <li>登录你的机场后台（如光速云或灵猫网络），找到“快捷导入”或“复制 Clash 订阅链接”；</li>
+              <li>打开 Clash Verge Rev，点击左侧菜单栏中的 <strong>订阅（Subscription）</strong>；</li>
+              <li>在顶部输入框中粘贴刚才复制的订阅 URL，点击 <strong>保存并导入（Save & Import）</strong>；</li>
+              <li>右键点击已下载的订阅卡片，勾选“自动更新”，建议设置更新周期为 <code>1440</code> 分钟（每日自动同步）。</li>
+            </ol>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第二步：选择分流节点与策略组</h3>
+            <ol class="text-xs text-slate-300 space-y-1.5 pl-4 list-decimal">
+              <li>点击左侧菜单栏的 <strong>代理（Proxies）</strong>；</li>
+              <li>在顶部确认运行模式为 <strong>Rule（规则分流）</strong>（绝不要设为 Direct，否则不走代理）；</li>
+              <li>展开 <code>PROXY</code> 或 <code>节点选择</code> 策略组，点击右上角 Wi-Fi 图标进行测速，手动选择一个绿色的深港或沪日专线节点。</li>
+            </ol>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第三步：开启系统代理（System Proxy）</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              点击左侧菜单栏的 <strong>设置（Settings）</strong>，将顶部的 <strong>System Proxy（系统代理）</strong> 开关拨至开启。此时打开浏览器即可顺畅访问 Google、YouTube 与 GitHub。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-emerald-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-emerald-400 m-0">第四步：开启 TUN 模式接管全系统底层流量（强烈推荐）</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              很多开发者在终端中运行 <code>git clone</code>、<code>npm install</code> 或使用 Cursor 编程时，经常发现普通系统代理无法接管命令行。开启 TUN 模式可一劳永逸：
+            </p>
+            <ol class="text-xs text-slate-300 space-y-1.5 pl-4 list-decimal">
+              <li>在“设置”中找到 <strong>Service Mode（服务模式）</strong>，点击“Install（安装）”并授权；</li>
+              <li>安装成功后，将 <strong>Tun Mode（虚拟网卡模式）</strong> 开关开启；</li>
+              <li>此时系统内所有软件（包括 CMD、PowerShell、Terminal、各类游戏客户端）的流量将全部自动经由 Clash Verge 进行智能分流。</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>三、高级调优：DNS 防泄漏与防污染设置</h2>
+        <p>
+          为了防止本地运营商 ISP 记录你的 DNS 查询日志或进行域名污染，推荐在 Clash Verge 的“DNS 配置”中开启 Fake-IP：
+        </p>
+        <pre class="p-3 rounded-lg bg-slate-950 text-xs font-mono text-cyan-300 overflow-x-auto"><code>dns:
+  enable: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  fallback:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query</code></pre>
+      </section>
+    </article>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="Clash Verge 使用常见问答" />
+
+    <!-- Level 3 CTA NextStep -->
+    <NextStep
+      level="level3"
+      title="配置好了客户端，还没有一条高品质专线？"
+      description="首推 2020 年老牌旗舰【光速云】（全线支持 Clash 一键导入，专属优惠码 AMM 享 8 折）。"
+      primaryLink={{ text: '查看 2026 稳定专线推荐', url: '/stable-airport/' }}
+      secondaryLink={{ text: '查看节点全部 TIMEOUT 排查 SOP', url: '/troubleshooting/timeout/' }}
+    />
+  </div>
+</BaseLayout>

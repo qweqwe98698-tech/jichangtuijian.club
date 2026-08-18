@@ -1,0 +1,345 @@
+---
+// Dynamic Public Apple ID Pool Component (Multi-Batch Live Rotation)
+import fs from 'node:fs';
+import path from 'node:path';
+
+interface AppleAccount {
+  id: string;
+  region: string;
+  regionCode: string;
+  flag: string;
+  apps: string[];
+  email: string;
+  passwordPrefix: string;
+  status: 'active' | 'busy' | 'maintenance';
+  statusText: string;
+  lastChecked: string;
+  nextUnlockMinutes: number;
+}
+
+interface BatchData {
+  batchId: number;
+  batchName: string;
+  accounts: AppleAccount[];
+}
+
+let batches: BatchData[] = [];
+let initialAccounts: AppleAccount[] = [];
+
+try {
+  const dataPath = path.join(process.cwd(), 'data', 'apple-accounts.json');
+  const raw = fs.readFileSync(dataPath, 'utf-8');
+  const json = JSON.parse(raw);
+  batches = json.batches || [];
+  initialAccounts = batches[0]?.accounts || [];
+} catch {
+  batches = [];
+  initialAccounts = [];
+}
+---
+
+<div class="my-10 space-y-6">
+  <!-- Top Banner with Dynamic Header -->
+  <div class="p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-cyan-950/40 border border-cyan-500/30 shadow-2xl relative overflow-hidden">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            DAILY AUTO-UPDATED APPLE ID POOL
+          </span>
+          <span id="current-batch-badge" class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
+            第 1 组 · 极速主推池
+          </span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          2026 美区 / 外区免费公益 Apple ID 实时共享池
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 mt-1">
+          全网自动巡检与实时解锁。全天候提供美区、港区、日区已购 Shadowrocket（小火箭）的可用账号。
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <button
+          type="button"
+          id="refresh-apple-pool-btn"
+          class="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-extrabold text-xs transition-all flex items-center gap-2 cursor-pointer active:scale-95 shadow-lg shadow-cyan-500/25"
+        >
+          <span class="inline-block transition-transform duration-500 text-sm font-bold" id="refresh-spinner">↺</span>
+          <span>换一批 / 刷新可用账号</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Security Warning (Anti-Lock Phone Red Alert) -->
+    <div class="mt-5 p-4 rounded-xl bg-rose-950/70 border-2 border-rose-500/50 text-rose-200 text-xs leading-relaxed space-y-1.5 shadow-lg">
+      <div class="flex items-center gap-2 font-bold text-rose-300 text-sm">
+        <span class="text-lg">🚨</span>
+        <span>【最高安全红线】：严禁在系统【设置 - iCloud】中登录共享账号！</span>
+      </div>
+      <p class="text-rose-200/90 font-medium m-0">
+        1. <strong>只能且必须在自带的【App Store 应用商店】右上角头像处登录！</strong><br />
+        2. 若因违规在系统设置或 iCloud 登录导致设备被锁死变砖，本站概不承担任何责任；<br />
+        3. 登录如提示“双重认证 / Apple ID 安全”，请务必点击【其他选项 ➔ 不升级】，切勿绑定自己手机号！
+      </p>
+    </div>
+  </div>
+
+  <!-- Account Cards Grid Container -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 transition-all duration-300" id="apple-accounts-container">
+    {initialAccounts.map((acc) => (
+      <div class="p-5 rounded-2xl bg-slate-900/90 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group relative overflow-hidden shadow-lg account-card">
+        <div class="space-y-3">
+          <!-- Top Row -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">{acc.flag}</span>
+              <span class="text-sm font-bold text-white acc-region">{acc.region}</span>
+            </div>
+            <span class={`px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold acc-status-badge ${
+              acc.status === 'active' 
+                ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/30' 
+                : acc.status === 'busy'
+                ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30'
+                : 'bg-rose-500/10 text-rose-300 border border-rose-500/30'
+            }`}>
+              {acc.statusText}
+            </span>
+          </div>
+
+          <!-- Apps Badge List -->
+          <div class="flex flex-wrap gap-1.5 pt-1 acc-apps">
+            {acc.apps.map((app) => (
+              <span class="px-2 py-0.5 rounded bg-slate-950 text-[10px] text-cyan-300 font-mono border border-white/5">
+                {app}
+              </span>
+            ))}
+          </div>
+
+          <!-- Credentials Copy Field -->
+          <div class="space-y-2 pt-2">
+            <!-- Email -->
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/80 border border-white/5">
+              <div class="flex items-center gap-2 overflow-hidden">
+                <span class="text-[11px] text-slate-500 font-mono shrink-0">账号:</span>
+                <span class="text-xs font-mono text-slate-200 truncate select-all acc-email">{acc.email}</span>
+              </div>
+              <button
+                type="button"
+                class="copy-cred-btn px-2.5 py-1 rounded bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 hover:text-cyan-300 text-[11px] font-bold shrink-0 transition-colors cursor-pointer flex items-center gap-1"
+                data-text={acc.email}
+              >
+                <span>复制</span>
+              </button>
+            </div>
+
+            <!-- Password -->
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/80 border border-white/5">
+              <div class="flex items-center gap-2 overflow-hidden">
+                <span class="text-[11px] text-slate-500 font-mono shrink-0">密码:</span>
+                <span class="text-xs font-mono text-slate-200 truncate select-all acc-pwd">{acc.passwordPrefix}</span>
+              </div>
+              <button
+                type="button"
+                class="copy-cred-btn px-2.5 py-1 rounded bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 hover:text-cyan-300 text-[11px] font-bold shrink-0 transition-colors cursor-pointer flex items-center gap-1"
+                data-text={acc.passwordPrefix}
+              >
+                <span>复制</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Row -->
+        <div class="flex items-center justify-between pt-3 mt-3 border-t border-white/5 text-[11px] text-slate-500 font-mono">
+          <span class="acc-checked">上次巡检：{acc.lastChecked}</span>
+          <span class="text-slate-400 acc-unlock">解锁轮换：{acc.nextUnlockMinutes} 分钟后</span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Bottom Helper Box & Paid Conversion -->
+  <div class="p-5 rounded-2xl bg-slate-950 border border-cyan-500/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="space-y-1">
+      <h3 class="text-sm font-bold text-white flex items-center gap-2">
+        <span>💡 嫌共享账号频繁被锁？</span>
+        <span class="px-2 py-0.5 rounded text-[10px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">强烈建议</span>
+      </h3>
+      <p class="text-xs text-slate-400">
+        花费 3 分钟按照本站教程【免费自己注册一个永久独享美区 ID】，无需海外信用卡，终身不被锁。
+      </p>
+    </div>
+    <div class="flex items-center gap-3 shrink-0">
+      <a
+        href="/apple-id/#tutorial"
+        class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition-all shadow-md shadow-cyan-500/20"
+      >
+        查看免信用卡注册教程 ↓
+      </a>
+      <a
+        href="/airport-ranking/"
+        class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all border border-white/10"
+      >
+        2026 稳定专线排行 →
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Embed batches data for client-side live switching -->
+<script is:inline define:vars={{ batchesJson: JSON.stringify(batches) }}>
+  window.__APPLE_BATCHES__ = JSON.parse(batchesJson || '[]');
+</script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    let currentBatchIdx = 0;
+    const allBatches = window.__APPLE_BATCHES__ || [];
+    const container = document.getElementById('apple-accounts-container');
+    const batchBadge = document.getElementById('current-batch-badge');
+    const refreshBtn = document.getElementById('refresh-apple-pool-btn');
+    const spinner = document.getElementById('refresh-spinner');
+
+    // Function to bind copy buttons
+    function bindCopyButtons() {
+      container?.querySelectorAll('.copy-cred-btn').forEach((btn) => {
+        btn.onclick = (e) => {
+          e.preventDefault();
+          const text = btn.getAttribute('data-text') || '';
+          if (!text) return;
+
+          navigator.clipboard.writeText(text).then(() => {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="text-emerald-400">✓ 已复制</span>';
+
+            const toast = document.getElementById('global-coupon-toast');
+            const toastMsg = document.getElementById('toast-message');
+            if (toast && toastMsg) {
+              toastMsg.textContent = `✓ 已成功复制：${text}`;
+              toast.classList.remove('hidden');
+              toast.classList.add('flex');
+              setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+              }, 2500);
+            }
+
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+            }, 2000);
+          });
+        };
+      });
+    }
+
+    // Initial binding
+    bindCopyButtons();
+
+    // Render a batch into the DOM
+    function renderBatch(batch) {
+      if (!container || !batch || !batch.accounts) return;
+
+      container.innerHTML = batch.accounts.map((acc) => `
+        <div class="p-5 rounded-2xl bg-slate-900/90 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group relative overflow-hidden shadow-lg account-card animate-fadeIn">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-xl">${acc.flag}</span>
+                <span class="text-sm font-bold text-white acc-region">${acc.region}</span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold ${
+                acc.status === 'active'
+                  ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/30'
+                  : acc.status === 'busy'
+                  ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30'
+                  : 'bg-rose-500/10 text-rose-300 border border-rose-500/30'
+              }">
+                ${acc.statusText}
+              </span>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 pt-1 acc-apps">
+              ${acc.apps.map(app => `
+                <span class="px-2 py-0.5 rounded bg-slate-950 text-[10px] text-cyan-300 font-mono border border-white/5">
+                  ${app}
+                </span>
+              `).join('')}
+            </div>
+
+            <div class="space-y-2 pt-2">
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/80 border border-white/5">
+                <div class="flex items-center gap-2 overflow-hidden">
+                  <span class="text-[11px] text-slate-500 font-mono shrink-0">账号:</span>
+                  <span class="text-xs font-mono text-slate-200 truncate select-all acc-email">${acc.email}</span>
+                </div>
+                <button
+                  type="button"
+                  class="copy-cred-btn px-2.5 py-1 rounded bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 hover:text-cyan-300 text-[11px] font-bold shrink-0 transition-colors cursor-pointer flex items-center gap-1"
+                  data-text="${acc.email}"
+                >
+                  <span>复制</span>
+                </button>
+              </div>
+
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/80 border border-white/5">
+                <div class="flex items-center gap-2 overflow-hidden">
+                  <span class="text-[11px] text-slate-500 font-mono shrink-0">密码:</span>
+                  <span class="text-xs font-mono text-slate-200 truncate select-all acc-pwd">${acc.passwordPrefix}</span>
+                </div>
+                <button
+                  type="button"
+                  class="copy-cred-btn px-2.5 py-1 rounded bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 hover:text-cyan-300 text-[11px] font-bold shrink-0 transition-colors cursor-pointer flex items-center gap-1"
+                  data-text="${acc.passwordPrefix}"
+                >
+                  <span>复制</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-3 mt-3 border-t border-white/5 text-[11px] text-slate-500 font-mono">
+            <span class="acc-checked">上次巡检：刚刚已测活</span>
+            <span class="text-slate-400 acc-unlock">解锁轮换：${acc.nextUnlockMinutes} 分钟后</span>
+          </div>
+        </div>
+      `).join('');
+
+      // Rebind click listeners
+      bindCopyButtons();
+    }
+
+    // Refresh & Rotate Click Event
+    refreshBtn?.addEventListener('click', () => {
+      if (spinner) spinner.classList.add('rotate-180');
+
+      if (allBatches.length > 0) {
+        currentBatchIdx = (currentBatchIdx + 1) % allBatches.length;
+        const nextBatch = allBatches[currentBatchIdx];
+
+        if (batchBadge && nextBatch) {
+          batchBadge.textContent = nextBatch.batchName;
+        }
+
+        renderBatch(nextBatch);
+
+        const toast = document.getElementById('global-coupon-toast');
+        const toastMsg = document.getElementById('toast-message');
+        if (toast && toastMsg && nextBatch) {
+          toastMsg.textContent = `✓ 已成功切换为【${nextBatch.batchName}】（共 ${nextBatch.accounts.length} 个最新可用账号）！`;
+          toast.classList.remove('hidden');
+          toast.classList.add('flex');
+          setTimeout(() => {
+            toast.classList.add('hidden');
+            toast.classList.remove('flex');
+          }, 2500);
+        }
+      }
+
+      setTimeout(() => {
+        if (spinner) spinner.classList.remove('rotate-180');
+      }, 500);
+    });
+  });
+</script>

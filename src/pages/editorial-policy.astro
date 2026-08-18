@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import NextStep from '../components/NextStep.astro';
+---
+
+<BaseLayout
+  title="编辑政策与独立性准则：中立、客观与利益冲突披露"
+  description="机场推荐 Club 编辑政策与独立性准则。详细阐述我们的内容撰写规范、广告与赞助隔离原则、测试数据真实性保障与纠错机制。"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '编辑政策与独立性' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">EDITORIAL STANDARDS</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        编辑政策与独立性准则
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        维护评测公信力。我们如何确保所有评测内容不受商业利益绑架。
+      </p>
+    </header>
+
+    <article class="prose-atlas my-10 space-y-6">
+      <h2>一、内容独立性原则</h2>
+      <p>
+        我们的编辑团队与任何商业赞助严格隔离。任何服务商无法通过付费购买本站排行榜的置顶推荐、无法通过付费删除负面真实评测数据、也无法干预我们的测试结论。
+      </p>
+
+      <h2>二、返利链接与透明度披露</h2>
+      <p>
+        为了维持本站高昂的服务器运维与专线测试成本，部分外链包含公开的 Affiliate 推广代码。但这绝不影响我们对服务商真实优缺点的客观评判。当某个推荐服务商出现跑路前兆或晚高峰严重劣质化时，我们将立即在全站发布风险警告并下架推荐。
+      </p>
+    </article>
+
+    <NextStep
+      level="level1"
+      title="了解更多关于我们的信息？"
+      description="查看免责声明或联系我们提交纠错反馈。"
+      primaryLink={{ text: '查看免责声明', url: '/disclaimer/' }}
+      secondaryLink={{ text: '联系我们与纠错', url: '/contact/' }}
+    />
+  </div>
+</BaseLayout>

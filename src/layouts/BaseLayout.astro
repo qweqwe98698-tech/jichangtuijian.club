@@ -1,0 +1,141 @@
+---
+import SEOHead from '../components/SEOHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/globals.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  type?: 'website' | 'article';
+  pubDate?: string;
+  updatedDate?: string;
+  schema?: Record<string, any> | Record<string, any>[];
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage,
+  type = 'website',
+  pubDate,
+  updatedDate,
+  schema,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN" class="dark scroll-smooth">
+  <head>
+    <SEOHead
+      title={title}
+      description={description}
+      canonicalUrl={canonicalUrl}
+      ogImage={ogImage}
+      type={type}
+      pubDate={pubDate}
+      updatedDate={updatedDate}
+      schema={schema}
+    />
+  </head>
+  <body class="bg-[#090d16] text-slate-100 min-h-[100dvh] flex flex-col signal-bg-grid relative selection:bg-cyan-500/30 selection:text-cyan-200">
+    <!-- Top Neon Reading Progress Bar -->
+    <div id="reading-progress-bar" class="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-cyan-400 via-emerald-400 to-cyan-300 z-[100] transition-all duration-75 ease-out shadow-[0_0_8px_rgba(6,182,212,0.8)]" style="width: 0%;"></div>
+
+    <!-- Floating Global Coupon Copy Toast -->
+    <div id="global-coupon-toast" class="fixed bottom-6 right-6 z-[999] hidden items-center gap-3 px-4 py-3 rounded-xl bg-slate-950/95 border border-amber-500/40 text-amber-300 text-xs shadow-2xl shadow-amber-500/20 backdrop-blur-xl transition-all animate-bounce">
+      <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+      <span id="toast-message" class="font-bold">✓ 专属优惠码 AMM 已复制！享 8 折特惠</span>
+    </div>
+
+    <div class="fixed inset-0 pointer-events-none signal-radial-glow z-0"></div>
+    <Header />
+    <main class="flex-1 relative z-10">
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Global Client Interactions Engine -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        // 1. Reading Progress Bar Tracking
+        const progressBar = document.getElementById('reading-progress-bar');
+        window.addEventListener('scroll', () => {
+          const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          if (height > 0 && progressBar) {
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + '%';
+          }
+        }, { passive: true });
+
+        // 2. Global Coupon Code Click to Copy & Toast
+        const toast = document.getElementById('global-coupon-toast');
+        const toastMsg = document.getElementById('toast-message');
+        let toastTimeout = null;
+
+        function triggerCouponCopy(code) {
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(code).then(() => {
+              showToast(`✓ 专属优惠码 ${code} 已复制到剪贴板，享 8 折特惠！`);
+            }).catch(() => {
+              showToast(`优惠码：${code} (请手动复制)`);
+            });
+          } else {
+            showToast(`优惠码：${code}`);
+          }
+        }
+
+        function showToast(msg) {
+          if (!toast) return;
+          if (toastMsg) toastMsg.textContent = msg;
+          toast.classList.remove('hidden');
+          toast.classList.add('flex');
+          if (toastTimeout) clearTimeout(toastTimeout);
+          toastTimeout = setTimeout(() => {
+            toast.classList.add('hidden');
+            toast.classList.remove('flex');
+          }, 3500);
+        }
+
+        document.querySelectorAll('[data-coupon], .coupon-copy-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const code = btn.getAttribute('data-coupon') || 'AMM';
+            triggerCouponCopy(code);
+          });
+        });
+
+        // 3. Global Pre / Code Block Copy Button Injection
+        document.querySelectorAll('pre').forEach(pre => {
+          if (pre.querySelector('.code-copy-btn')) return;
+          pre.classList.add('relative', 'group');
+          
+          const copyBtn = document.createElement('button');
+          copyBtn.type = 'button';
+          copyBtn.className = 'code-copy-btn absolute top-2 right-2 px-2 py-1 rounded text-[10px] font-mono font-bold bg-white/10 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300 border border-white/10 opacity-0 group-hover:opacity-100 transition-all';
+          copyBtn.textContent = '复制';
+          
+          copyBtn.addEventListener('click', () => {
+            const codeText = pre.querySelector('code')?.innerText || pre.innerText;
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText(codeText).then(() => {
+                copyBtn.textContent = '✓ 已复制';
+                copyBtn.classList.add('text-emerald-400', 'border-emerald-500/40');
+                setTimeout(() => {
+                  copyBtn.textContent = '复制';
+                  copyBtn.classList.remove('text-emerald-400', 'border-emerald-500/40');
+                }, 2000);
+              });
+            }
+          });
+          
+          pre.appendChild(copyBtn);
+        });
+      });
+    </script>
+  </body>
+</html>

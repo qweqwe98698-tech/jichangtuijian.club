@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: '为什么换了美国节点依然提示“ChatGPT is not available in your country”？',
+    answer: '这是由于浏览器的 LocalStorage 或 Cookies 中残留了上一次被判定为中国大陆或香港 IP 的地理位置标记；或者是当前美国节点的 IP 在 Cloudflare 威胁情报库中已被标记为高风险数据中心机房。清理浏览器 Cookies，开启无痕模式，并切换至原生住宅 IP 专线节点即可解决。',
+  },
+  {
+    question: '香港节点可以用来访问 ChatGPT 或 Claude 吗？',
+    answer: '不可以。OpenAI 和 Anthropic 官方目前均未对中国香港和中国澳门地区开放服务。如果使用香港节点访问，会直接弹出 Unsupported Country 报错或触发账号风控。请务必使用美国、日本、新加坡、英国或台湾节点。',
+  },
+  {
+    question: 'ChatGPT 提示“Access Denied (Error 1020)”该怎么处理？',
+    answer: 'Error 1020 是 Cloudflare 的防火墙拦截规则。说明该 IP 在短时间内有大量机器人在刷 API 或尝试撞库。不要反复刷新（可能导致账号被封），应立即更换其他原生住宅节点并更换浏览器无痕窗口重试。',
+  },
+];
+---
+
+<BaseLayout
+  title="ChatGPT 地区不支持与 1020 报错怎么解决？2026 原生 IP 节点排查与防封实战指南"
+  description="针对 ChatGPT / Claude 报错“Not available in your country”、Access Denied Error 1020、Cloudflare 5秒盾循环的深度排查 SOP。教你伪装时区语言、清理 Cookies 与挑选纯净原生专线。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '故障排查手册', url: '/troubleshooting/' }, { title: 'ChatGPT 地区不支持排查' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-rose-400 uppercase tracking-widest block mb-2">AI GEO-BLOCK RESOLUTION</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        ChatGPT 地区不支持与 1020 报错怎么解决？防封排查 SOP
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 8 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="遇到 ChatGPT 地区不支持或 1020 报错，核心原因是【节点 IP 属于被封锁的非支持地区（如香港）】或【机房广播 IP 触发了 Cloudflare 深度风控】。排查四步法：1. 严禁使用香港节点，切换至美/日/新专线；2. 打开浏览器无痕模式并清空 chatgpt.com 的缓存；3. 检查系统时区与语言；4. 换用原生纯净住宅专线（如速界或光速云）。"
+      points={[
+        '严禁使用香港/澳门节点（OpenAI 官方从未对港澳开放）',
+        '使用 Chrome 无痕窗口（Incognito）规避历史地理位置缓存',
+        '选型：选用经过原生住宅 IP 认证的 AI 专属专线服务商',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、OpenAI 针对中国用户的多重风控检测机制</h2>
+        <p>
+          很多用户以为只要开了代理就能正常使用 ChatGPT，实际上 OpenAI 部署了极其复杂的七层地理与环境检测体系：
+        </p>
+        <div class="space-y-4 my-6">
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-cyan-300 mb-1">1. IP ASN 类型与信誉库检测</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              OpenAI 实时查询 MaxMind 与 IPinfo 数据库。如果你的 IP 归属于阿里云国际、AWS、DigitalOcean 等数据中心机房（Hosting），直接标记为高风险并限制访问；只有归属于本地电信运营商（ISP/Residential）的住宅 IP 才能获得最高信任。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-amber-300 mb-1">2. 浏览器指纹与本地缓存检测</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              如果之前在未开启代理或连接香港节点时访问过 <code>openai.com</code>，浏览器 LocalStorage 中会记录下中国区域标识。即使用户随后切换了美国节点，该本地缓存依然会导致页面报错。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-rose-400 mb-1">3. WebRTC 本地真实 IP 泄漏</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              部分浏览器在开启 WebRTC 功能时，会绕过代理直接向 STUN 服务器发起 UDP 请求，暴露中国大陆的真实公网 IP。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、四步根治 ChatGPT 报错的标准 SOP</h2>
+        <div class="space-y-4 my-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-cyan-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-300 m-0">第一步：切换至美区或新加坡原生节点（绝不用香港）</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              在 Clash 或 Shadowrocket 中，手动选择标注为 <code>US</code>（美国）、<code>SG</code>（新加坡）或 <code>JP</code>（日本）的专线节点。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第二步：彻底清理浏览器网站数据并开启无痕窗口</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              在 Chrome 浏览器中按快捷键 <code>Ctrl + Shift + Delete</code>，选择清除近 7 天内的“Cookie 及其他网站数据”；随后按 <code>Ctrl + Shift + N</code> 打开全新的无痕窗口访问 <code>https://chatgpt.com</code>。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
+            <h3 class="text-sm font-bold text-white m-0">第三步：在 Clash 中开启 OpenAI 专属分流策略</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              在 Clash Verge 的“订阅规则”中，将 <code>OpenAI</code> 和 <code>Claude</code> 策略组单独绑定至固定的纯净美国专线节点，避免因为节点自动负载均衡频繁切换 IP 触发异地登录保护。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-emerald-500/20 space-y-2">
+            <h3 class="text-sm font-bold text-emerald-400 m-0">第四步：升级至 AI 专属优化专线服务商</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              如果普通节点反复遭遇 1020 报错，建议切换至专为 AI 场景优化的服务商（如【速界】或【光速云】），其节点配备了纯净住宅 IP 与 Cloudflare 专属白名单优化。
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="ChatGPT 访问与防封常见问答" />
+
+    <!-- Level 3 CTA NextStep -->
+    <NextStep
+      level="level3"
+      title="需要 100% 顺畅使用 ChatGPT 4o 的原生专线？"
+      description="首推专为 AI 开发者调优的【速界】与老牌旗舰【光速云】（专属优惠码 AMM 享 8 折）。"
+      primaryLink={{ text: '查看 ChatGPT 专用机场推荐', url: '/chatgpt-airport/' }}
+      secondaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+    />
+  </div>
+</BaseLayout>

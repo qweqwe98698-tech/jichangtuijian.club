@@ -1,0 +1,58 @@
+# 关键字优先级 (Keyword Priority Matrix)
+
+[P0_COMMERCIAL]
+机场推荐: source=commercial, priority=P0, intent=commercial, parentTopic=commercial-core, targetUrl=/, pageType=home
+2026机场推荐: source=commercial, priority=P0, intent=commercial, parentTopic=commercial-core, targetUrl=/, pageType=home
+机场排行榜: source=commercial, priority=P0, intent=commercial, parentTopic=commercial-core, targetUrl=/airport-ranking/, pageType=ranking
+稳定机场推荐: source=commercial, priority=P0, intent=commercial, parentTopic=commercial-core, targetUrl=/stable-airport/, pageType=pillar
+便宜机场推荐: source=commercial, priority=P0, intent=commercial, parentTopic=commercial-core, targetUrl=/cheap-airport/, pageType=pillar
+专线机场推荐: source=commercial, priority=P0, intent=commercial, parentTopic=commercial-core, targetUrl=/dedicated-line-airport/, pageType=pillar
+高性价比机场推荐: source=commercial, priority=P0, intent=commercial, parentTopic=commercial-core, targetUrl=/value-airport/, pageType=pillar
+
+[P1_SUB_COMMERCIAL]
+Clash机场推荐: source=commercial, priority=P1, intent=commercial, parentTopic=client-hub, targetUrl=/clash-airport/, pageType=scenario
+Shadowrocket机场推荐: source=commercial, priority=P1, intent=commercial, parentTopic=client-hub, targetUrl=/shadowrocket-airport/, pageType=scenario
+v2rayN机场推荐: source=commercial, priority=P1, intent=commercial, parentTopic=client-hub, targetUrl=/v2rayn-airport/, pageType=scenario
+ChatGPT机场推荐: source=commercial, priority=P1, intent=commercial, parentTopic=scenario-hub, targetUrl=/chatgpt-airport/, pageType=scenario
+流媒体机场推荐: source=commercial, priority=P1, intent=commercial, parentTopic=scenario-hub, targetUrl=/streaming-airport/, pageType=scenario
+Netflix机场推荐: source=commercial, priority=P1, intent=commercial, parentTopic=scenario-hub, targetUrl=/netflix-airport/, pageType=scenario
+TikTok机场推荐: source=commercial, priority=P1, intent=commercial, parentTopic=scenario-hub, targetUrl=/tiktok-airport/, pageType=scenario
+按量付费机场: source=commercial, priority=P1, intent=commercial, parentTopic=pricing-hub, targetUrl=/pay-as-you-go-airport/, pageType=pricing
+免费试用机场: source=commercial, priority=P1, intent=commercial, parentTopic=pricing-hub, targetUrl=/free-trial-airport/, pageType=pricing
+IEPL专线机场: source=commercial, priority=P1, intent=commercial, parentTopic=tech-hub, targetUrl=/iepl-airport/, pageType=tech
+IPLC专线机场: source=commercial, priority=P1, intent=commercial, parentTopic=tech-hub, targetUrl=/iplc-airport/, pageType=tech
+低延迟游戏机场: source=commercial, priority=P1, intent=commercial, parentTopic=scenario-hub, targetUrl=/low-latency-airport/, pageType=scenario
+
+[P2_KNOWLEDGE_TECH]
+机场是什么: source=knowledge, priority=P2, intent=informational, parentTopic=knowledge-basics, targetUrl=/knowledge/what-is-airport/, pageType=knowledge
+机场和VPN区别: source=knowledge, priority=P2, intent=informational, parentTopic=knowledge-basics, targetUrl=/knowledge/airport-vs-vpn/, pageType=knowledge
+IEPL是什么意思: source=knowledge, priority=P2, intent=informational, parentTopic=knowledge-routes, targetUrl=/knowledge/iepl/, pageType=knowledge
+IPLC是什么意思: source=knowledge, priority=P2, intent=informational, parentTopic=knowledge-routes, targetUrl=/knowledge/iplc/, pageType=knowledge
+中转和直连区别: source=knowledge, priority=P2, intent=informational, parentTopic=knowledge-routes, targetUrl=/knowledge/transit-vs-direct/, pageType=knowledge
+原生IP与广播IP区别: source=knowledge, priority=P2, intent=informational, parentTopic=knowledge-ip, targetUrl=/knowledge/native-ip/, pageType=knowledge
+住宅IP和家宽IP: source=knowledge, priority=P2, intent=informational, parentTopic=knowledge-ip, targetUrl=/knowledge/residential-ip/, pageType=knowledge
+Shadowsocks协议解析: source=knowledge, priority=P2, intent=informational, parentTopic=knowledge-protocols, targetUrl=/knowledge/shadowsocks/, pageType=knowledge
+Hysteria2协议优势: source=knowledge, priority=P2, intent=informational, parentTopic=knowledge-protocols, targetUrl=/knowledge/hysteria2/, pageType=knowledge
+TUIC协议配置: source=knowledge, priority=P2, intent=informational, parentTopic=knowledge-protocols, targetUrl=/knowledge/tuic/, pageType=knowledge
+节点倍率是什么意思: source=knowledge, priority=P2, intent=informational, parentTopic=knowledge-basics, targetUrl=/knowledge/node-rate/, pageType=knowledge
+
+[P2_TROUBLESHOOTING]
+机场节点全部TIMEOUT: source=troubleshooting, priority=P2, intent=troubleshooting, parentTopic=troubleshooting-node, targetUrl=/troubleshooting/timeout/, pageType=troubleshooting
+机场订阅更新失败: source=troubleshooting, priority=P2, intent=troubleshooting, parentTopic=troubleshooting-sub, targetUrl=/troubleshooting/subscription-failed/, pageType=troubleshooting
+Clash连接成功但无法上网: source=troubleshooting, priority=P2, intent=troubleshooting, parentTopic=troubleshooting-client, targetUrl=/troubleshooting/clash/, pageType=troubleshooting
+Shadowrocket连接超时排查: source=troubleshooting, priority=P2, intent=troubleshooting, parentTopic=troubleshooting-client, targetUrl=/troubleshooting/shadowrocket/, pageType=troubleshooting
+ChatGPT提示您所在地区不可用: source=troubleshooting, priority=P2, intent=troubleshooting, parentTopic=troubleshooting-ai, targetUrl=/troubleshooting/chatgpt/, pageType=troubleshooting
+晚高峰高延迟与丢包排查: source=troubleshooting, priority=P2, intent=troubleshooting, parentTopic=troubleshooting-network, targetUrl=/troubleshooting/peak-congestion/, pageType=troubleshooting
+
+[P2_RISK_WARNING]
+机场跑路前兆识别: source=risk, priority=P2, intent=informational, parentTopic=risk-warning, targetUrl=/risk-warning/runaway-signs/, pageType=risk
+测速图造假与测速谎言: source=risk, priority=P2, intent=informational, parentTopic=risk-warning, targetUrl=/risk-warning/speedtest-lies/, pageType=risk
+年付订阅风险提示: source=risk, priority=P2, intent=informational, parentTopic=risk-warning, targetUrl=/risk-warning/annual-plan-risk/, pageType=risk
+如何识别假官网与钓鱼订阅: source=risk, priority=P2, intent=informational, parentTopic=risk-warning, targetUrl=/risk-warning/fake-sites/, pageType=risk
+免费机场安全隐患深度剖析: source=risk, priority=P2, intent=informational, parentTopic=risk-warning, targetUrl=/risk-warning/free-proxy-risks/, pageType=risk
+
+[P3_TUTORIALS_CLIENTS]
+Clash Verge小白配置教程: source=tutorial, priority=P3, intent=tutorial, parentTopic=tutorial-client, targetUrl=/tutorial/clash-verge/, pageType=tutorial
+Shadowrocket小火箭新手使用指南: source=tutorial, priority=P3, intent=tutorial, parentTopic=tutorial-client, targetUrl=/tutorial/shadowrocket/, pageType=tutorial
+v2rayN电脑端配置教程: source=tutorial, priority=P3, intent=tutorial, parentTopic=tutorial-client, targetUrl=/tutorial/v2rayn/, pageType=tutorial
+sing-box配置与规则详解: source=tutorial, priority=P3, intent=tutorial, parentTopic=tutorial-client, targetUrl=/tutorial/sing-box/, pageType=tutorial

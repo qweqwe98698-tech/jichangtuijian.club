@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import ProviderCard from '../components/ProviderCard.astro';
+import FAQ from '../components/FAQ.astro';
+import NextStep from '../components/NextStep.astro';
+import { getAllProviders } from '../lib/providers';
+
+const aiProviders = getAllProviders().filter((p) => p.aiSupport.chatgpt.includes('原生') || p.aiSupport.chatgpt.includes('支持'));
+
+const faqs = [
+  {
+    question: '为什么普通节点访问 ChatGPT 总是提示 1020 报错或 Access Denied？',
+    answer: 'OpenAI 接入了极其严格的 Cloudflare 防火墙与 IP 信誉库。当成百上千人使用同一个劣质广播 IP 或被滥用的机房 IP 时，该 IP 会被标记为高风险恶意爬虫并直接拦截；必须使用独立/干净的原生住宅或高质量企业 IP。',
+  },
+  {
+    question: 'Claude 3.5 / 3.7 对机场节点有什么更严格的限制？',
+    answer: 'Anthropic 对 Claude 的风控比 OpenAI 更加激进。一旦检测到机房 ASN（数据中心）或者 IP 经常跨国漂移，不仅拒绝对话，甚至会直接永久封禁账号并退款。因此使用 Claude 务必固定使用美国/英国原生静态住宅节点。',
+  },
+];
+---
+
+<BaseLayout
+  title="2026 ChatGPT 机场推荐：ChatGPT 4o & Claude 3.5/3.7 原生纯净 IP 专线"
+  description="2026 ChatGPT 与 AI 生产力专用机场推荐。精选 100% 解锁 OpenAI 与 Anthropic Claude 的纯净住宅原生 IP 节点，0 封号风险、免频繁验证码、低延迟高可用。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: 'ChatGPT 专用机场' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">AI PRODUCTIVITY NODES</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        2026 ChatGPT / Claude 专用原生 IP 专线机场
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        为 AI 重度开发者、Cursor 编程工程师与 Midjourney 创作者挑选最纯净的海外节点环境。告别 5 秒盾与账号降智封号。
+      </p>
+    </div>
+
+    <QuickAnswer
+      answerType="decision"
+      summary="AI 生产力场景首推【光速云】（老牌 IEPL 专线，VLESS 协议，原生住宅 IP 解锁，新人优惠码 AMM 享 8 折）与【速界】（专为 OpenAI / Claude 深度优化的 25 元档 150GB 专线）。两家核心节点均通过低风控欺骗度验证，实测 0 触发 Cloudflare 验证码与 Access Denied 报错。"
+      points={[
+        'IP 信誉库欺骗度分值极低，杜绝 ChatGPT 1020 降智封号',
+        '全面支持 ChatGPT 4o 实时语音对话与 Claude 3.7 极速推理交互',
+        '支持 Cursor / Copilot 终端 API 请求直连不超时',
+      ]}
+    />
+
+    <div class="my-10 space-y-6">
+      {aiProviders.map((p, idx) => (
+        <ProviderCard provider={p} rankingIndex={idx} highlightBadge="AI 纯净 IP 认证" />
+      ))}
+    </div>
+
+    <FAQ items={faqs} title="ChatGPT 与 AI 代理节点问答" />
+
+    <NextStep
+      level="level2"
+      title="遇到 ChatGPT 报错打不开？"
+      description="查看我们的 ChatGPT 常见网络报错排查与地区限制解除指南。"
+      primaryLink={{ text: '查看 ChatGPT 网络报错排查 SOP', url: '/troubleshooting/chatgpt/' }}
+      secondaryLink={{ text: '阅读 ChatGPT 账号注册与充值使用指南', url: '/chatgpt/' }}
+    />
+  </div>
+</BaseLayout>

@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: '为什么直连节点在晚上八九点经常 Ping 几百毫秒甚至超时？',
+    answer: '直连节点的数据包从用户本地电脑直连海外机房（如美西或日本），必须经过中国电信 163 或联通 169 的国际公网出口网关。晚高峰出口带宽极度饱和，国际骨干路由器发生严重拥塞与排队丢包，导致延迟暴涨；而 BGP 中转或 IEPL 专线在境内直连机房，避开了拥挤的公网出口。',
+  },
+  {
+    question: 'BGP 中转机场的国内入口是如何优化电信/联通/移动三网的？',
+    answer: '优质中转机场的国内入口服务器接入了三网 BGP 动态路由（Border Gateway Protocol）。电信用户走电信骨干网，联通用户走联通骨干网，在省内机房直接汇聚，通过高带宽内网隧道跨网中转，彻底消除跨运营商互联结算的延迟瓶颈。',
+  },
+];
+---
+
+<BaseLayout
+  title="中转线路与直连线路的区别：BGP 中转、公网隧道与出海网络架构全景解析"
+  description="深度解析科学上网中转线路与直连线路的技术本质。详解 BGP 多线入口、三网优化、晚高峰 QoS 抗拥塞机制以及与 IEPL 专线的梯队层级对比。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '技术知识库', url: '/knowledge/' }, { title: '中转 vs 直连' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">NETWORK ROUTING TOPOLOGY</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        中转线路与直连线路的区别：BGP 拓扑与抗晚高峰全解
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 7 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="comparison"
+      summary="【直连线路】是用户设备直接跨洋连接海外 VPS，晚高峰极易遭遇国际公网出口严重丢包与限速；【中转线路】是用户先连接国内高品质 BGP 机房，再由机房通过专用隧道或内网光缆将流量中继至海外机房。中转线路的延迟、丢包率与稳定性全面碾压公网直连。"
+      points={[
+        '拓扑差异：直连走公网跨海单线（不稳定），中转走境内 BGP + 跨国中继（低延迟）',
+        '三网优化：BGP 入口自动为电信/联通/移动分配最优接入点，解决跨网互联卡顿',
+        '选型梯度：直连（仅适合备用）&lt; BGP 公网中转 &lt; IEPL/IPLC 纯专线（第一梯队）',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、直连线路在现代网络环境下的物理困境</h2>
+        <p>
+          直连模式（Direct Connection）是早期科学上网（如使用搬瓦工、Linode 自建 Shadowsocks）的典型形态。用户电脑直接与位于洛杉矶、东京或法兰克福的服务器建立 TCP 连接。
+        </p>
+        <p>
+          随着全球跨境数据量的爆炸式增长，直连模式在现代网络中面临三大致命困境：
+        </p>
+        <ul class="space-y-2 text-sm text-slate-300 pl-5 list-disc">
+          <li><strong>晚高峰公网出口硬性拥塞</strong>：中国电信 163 骨干网每晚 20:00-23:00 丢包率高达 30%-50%，直连几乎无法正常加载 1080P 视频；</li>
+          <li><strong>跨省跨网延迟叠加</strong>：例如北方联通用户直连南方电信出口的香港服务器，国内段延迟就已达 50ms，跨海后再加 80ms，总延迟动辄破百；</li>
+          <li><strong>IP 极易被 GFW 定点封锁</strong>：由于直连流量直接通过公网防火墙，一旦被 DPI 判定为代理流量，服务器 IP 会在数小时内被直接阻断。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>二、BGP 多线中转的技术演进与拓扑</h2>
+        <p>
+          为了解决直连的痛点，现代商业机场全面引入了 <strong>BGP 中转（Border Gateway Protocol Transit）</strong> 架构：
+        </p>
+        <div class="p-5 rounded-xl bg-slate-900/80 border border-white/5 font-mono text-xs text-slate-300 space-y-2 my-4">
+          <div class="text-cyan-400 font-bold">【BGP 中转智能接入拓扑】</div>
+          <div>中国电信用户 ──▶ [电信优质直连入口 (10ms)] ──┐</div>
+          <div>中国联通用户 ──▶ [联通优质直连入口 (12ms)] ──┼─▶ [国内高速汇聚机房] ══▶ [跨境专线] ──▶ 海外机房</div>
+          <div>中国移动用户 ──▶ [移动优质直连入口 (15ms)] ──┘</div>
+        </div>
+        <p>
+          BGP 路由器通过动态广播路由表，让每个用户都能以最短的物理路径接入距离自己最近的省内机房，从而抹平了跨网互联的延迟劣势。
+        </p>
+      </section>
+
+      <section>
+        <h2>三、三大线路类型梯队对比与选型指南</h2>
+        <div class="overflow-x-auto my-6">
+          <table class="w-full text-left text-xs border border-white/10 rounded-xl overflow-hidden">
+            <thead class="bg-slate-900 text-cyan-300 font-semibold border-b border-white/10">
+              <tr>
+                <th class="p-3">线路类型</th>
+                <th class="p-3">代表协议 / 架构</th>
+                <th class="p-3">晚高峰稳定性</th>
+                <th class="p-3">适合场景</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 bg-slate-950/60">
+              <tr>
+                <td class="p-3 font-bold text-emerald-400">IEPL 纯物理专线</td>
+                <td class="p-3 text-slate-300">BGP 入口 + 点对点内网光缆</td>
+                <td class="p-3 text-emerald-400 font-bold">0 丢包，SLA ≥ 99.9%</td>
+                <td class="p-3 text-cyan-300">主力生产力、AI 开发、4K 影音</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-cyan-400">BGP 公网中转</td>
+                <td class="p-3 text-slate-300">BGP 入口 + 公网加密隧道</td>
+                <td class="p-3 text-slate-300">丢包率 1% - 5%，基本流畅</td>
+                <td class="p-3 text-cyan-300">日常浏览、平价口粮套餐</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-slate-400">公网直连</td>
+                <td class="p-3 text-slate-300">Hysteria2 / Shadowsocks 直连 VPS</td>
+                <td class="p-3 text-rose-400">晚高峰波动大，易被阻断</td>
+                <td class="p-3 text-slate-400">极低成本备用、自建研究</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </article>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="中转与直连线路常见问答" />
+
+    <!-- NextStep Level 3 -->
+    <NextStep
+      level="level3"
+      title="准备选择高品质 BGP 专线服务商？"
+      description="首推 2020 年老牌旗舰【光速云】（全线 BGP + IEPL 专线架构，专属优惠码 AMM 享 8 折）。"
+      primaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '查看 IEPL 专线详解', url: '/knowledge/iepl/' }}
+    />
+  </div>
+</BaseLayout>

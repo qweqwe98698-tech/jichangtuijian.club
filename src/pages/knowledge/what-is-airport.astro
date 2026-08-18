@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqs = [
+  {
+    question: '为什么科学上网工具在中国大陆被称为“机场”？',
+    answer: '2012 年由 clowwindy 开发的 Shadowsocks（影梭）协议，其客户端图标是一架“纸飞机”。后来，支持批量提供这种纸飞机代理节点的商业订阅服务商，就被中国互联网圈形象地戏称为“机场”（提供大量飞机起飞的平台）。',
+  },
+  {
+    question: '机场与传统的 ExpressVPN、NordVPN 有什么根本不同？',
+    answer: '传统海外 VPN 采用 OpenVPN/IPsec/WireGuard 等通用协议，特征明显，在国内极易被 GFW 的深度包检测（DPI）识别阻断；而机场采用针对中国网络环境专门优化的代理协议（如 Shadowsocks、VLESS、Trojan、Hysteria2），结合境内 BGP 中转与 IEPL 物理专线，在稳定性和速度上完胜传统 VPN。',
+  },
+  {
+    question: '机场订阅链接会泄露我的个人隐私吗？',
+    answer: '正规机场采用端到端 TLS 加密，服务商仅能看到目的 IP 地址，无法解密你访问的具体网页内容或密码。但强烈建议使用专用的无真实身份邮箱注册，并配合月付订阅与 HTTPS 加密。',
+  },
+];
+---
+
+<BaseLayout
+  title="什么是机场？科学上网底层原理、协议演进与选型完全指南"
+  description="深度科普：什么是机场？解析从 Shadowsocks、V2Ray、Trojan 到 VLESS 与 Hysteria2 的技术演进史，详解 BGP 中转与 IEPL 专线架构，新手必读。"
+  pubDate="2026-08-16"
+  updatedDate="2026-08-17"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '技术知识库', url: '/knowledge/' }, { title: '什么是机场' }]} />
+
+    <header class="mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">TECHNICAL FOUNDATION</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        什么是机场？科学上网底层原理解析与协议演进史
+      </h1>
+      <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+        <span>更新时间：2026年8月</span>
+        <span>•</span>
+        <span>作者：机场推荐 Club 评测组</span>
+        <span>•</span>
+        <span>阅读时长：约 8 分钟</span>
+      </div>
+    </header>
+
+    <QuickAnswer
+      answerType="why"
+      summary="“机场”是指通过分布式代理协议（Shadowsocks、VLESS、Trojan 等）为用户提供多节点跨境网络加速的服务平台。其技术核心是：境内 BGP 入口接收用户加密流量，通过公网隧道或 IEPL 专线过境，在海外落地机房解密并请求目标网站，最终实现无感出海。"
+      points={[
+        '起源：因 Shadowsocks 客户端图标为纸飞机而得名',
+        '核心：由“单台服务器代理”进化为“多入口 + 专线中转 + 多落地”的分布式网络',
+        '分流：配合 Clash、Shadowrocket 等客户端实现国内外流量智能自动分流',
+      ]}
+    />
+
+    <!-- 1500+ Word Deep Article -->
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、从“翻墙”到“机场”：中文互联网代理技术演进史</h2>
+        <p>
+          在过去二十年间，中国网民为了获取全球学术科研资料与自由信息，推动了网络代理技术的数次重大范式革命：
+        </p>
+        
+        <div class="space-y-4 my-6">
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-cyan-300 mb-1">第一代：传统通用 VPN 时代 (2000 - 2012)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              主要基于 PPTP、L2TP/IPsec 与 OpenVPN。这些协议原本是为跨国跨区域企业内网互联设计的，其握手特征固定且无混淆能力。随着 GFW 引入基于机器学习的深度包检测（DPI），传统 VPN 协议在直连模式下几乎被 100% 识别并重置连接。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-emerald-300 mb-1">第二代：Shadowsocks 与 SOCKS5 代理革命 (2012 - 2018)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              2012 年，开发者 clowwindy 开源了 Shadowsocks。它将 SOCKS5 代理协议进行对称加密包装，将流量伪装成看似毫无特征的“完全随机字节流”。因其客户端图标是一架纸飞机，中文圈开始广泛使用“飞机”与“机场”这一黑话代称。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-sky-300 mb-1">第三代：V2Ray (VMess/VLESS) 与 Trojan 时代 (2018 - 2023)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              为了对抗针对随机流量的主动探测（Active Probing），技术社区开发了基于 TLS 标准加密的协议。Trojan 将流量直接伪装成合法的 HTTPS 网站，V2Ray 社区则推出了模块化路由与轻量级高效的 VLESS 协议。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <h3 class="text-sm font-bold text-amber-300 mb-1">第四代：IEPL 专线与 UDP/QUIC 极速时代 (2024 - 2026)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              现代高端机场彻底摆脱了公网抗封锁的被动防守，转向租用运营商企业级 IEPL/IPLC 内网专线，物理层面不过公网防火墙；同时引入基于 QUIC/UDP 的 Hysteria2 协议，在恶劣网络环境下依然能跑满带宽。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、现代机场的完整网络拓扑架构</h2>
+        <p>
+          一个高可用的现代专线机场由以下四个核心物理组件构成：
+        </p>
+
+        <div class="p-5 rounded-xl bg-slate-900/80 border border-white/5 font-mono text-xs text-slate-300 space-y-3 my-4">
+          <div class="text-cyan-400 font-bold">1. 用户客户端 (Client)</div>
+          <div class="pl-4 text-slate-400">运行 Clash Verge、Shadowrocket 或 sing-box，根据内置规则将国内流量直连，将海外请求加密打包发送。</div>
+          <div class="text-emerald-400 font-bold">2. 国内 BGP 入口 (Domestic Ingress)</div>
+          <div class="pl-4 text-slate-400">部署在中国电信、联通、移动多线机房，负责快速接收用户请求，并进行协议解封装。</div>
+          <div class="text-sky-400 font-bold">3. 跨境内网专线 (Cross-Border Transit)</div>
+          <div class="pl-4 text-slate-400">深港/沪日 IEPL 内网物理光缆，点对点直达海外机房，延迟低至 12-28ms，全程 0 丢包。</div>
+          <div class="text-amber-400 font-bold">4. 海外落地机房 (Overseas Egress)</div>
+          <div class="pl-4 text-slate-400">部署在香港、日本、新加坡、美国的云服务器或原生家庭宽带机房，负责向 Google、OpenAI、Netflix 发起真实请求并回传数据。</div>
+        </div>
+      </section>
+
+      <section>
+        <h2>三、新手挑选机场的核心避坑法则</h2>
+        <p>
+          了解了机场的技术原理后，在选购时只需牢记以下三条硬法则：
+        </p>
+        <ol class="space-y-2 text-sm text-slate-300 pl-5 list-decimal">
+          <li><strong>坚持小额月付</strong>：无论促销力度多么大，坚决不买年付。月付能够倒逼服务商持续维护线路质量，并从根本上规避跑路风险；</li>
+          <li><strong>优选老牌专线服务商</strong>：选择成立时间 2 年以上、具备 IEPL 专线与真实 SLA 承诺的品牌（如【光速云】）；</li>
+          <li><strong>配置 1主 + 1备 容灾方案</strong>：主力配置高 SLA 专线月付，备用配置不限时按量流量包，确保工作永不中断。</li>
+        </ol>
+      </section>
+    </article>
+
+    <!-- FAQ Section -->
+    <FAQ items={faqs} title="关于机场原理的常见问题" />
+
+    <!-- Level 3 CTA NextStep -->
+    <NextStep
+      level="level3"
+      title="了解完原理，准备挑选您的第一条专线？"
+      description="查看 2026 科学上网机场综合排行榜，精选 2020 年老牌旗舰【光速云】等基石服务商。"
+      primaryLink={{ text: '查看 2026 机场综合排行榜', url: '/airport-ranking/' }}
+      secondaryLink={{ text: '查看 IEPL 专线原理解析', url: '/knowledge/iepl/' }}
+    />
+  </div>
+</BaseLayout>

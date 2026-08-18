@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import ProviderCard from '../components/ProviderCard.astro';
+import FAQ from '../components/FAQ.astro';
+import NextStep from '../components/NextStep.astro';
+import { getAllProviders } from '../lib/providers';
+
+const clashProviders = getAllProviders().filter((p) =>
+  p.clients.some((c) => c.toLowerCase().includes('clash'))
+);
+
+const faqs = [
+  {
+    question: 'Clash 为什么是目前桌面端最流行的代理客户端？',
+    answer: 'Clash 拥有最完善的规则分流体系（根据国内域名直连、国外域名走代理、特定 AI/流媒体走特定节点）、支持基于延迟的自动测速切换（URL-Test / Fallback）以及轻量级 TUN 虚拟网卡接管全局流量的能力。',
+  },
+];
+---
+
+<BaseLayout
+  title="2026 Clash 机场推荐：完美适配 Clash Verge 与 Mihomo 内核的专线节点"
+  description="2026 Clash 机场精选推荐。完美支持 Clash Verge Rev、Clash Nyanpasu 及 Clash Meta (Mihomo) 内核，自带智能规则分流，国内网站直连秒开，国外节点极速分流。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: 'Clash 机场推荐' }]} />
+
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">CLASH ECOSYSTEM</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        2026 Clash 专用稳定专线机场推荐
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-2">
+        专为 Windows、Mac 与 Linux 平台的 Clash / Clash Verge 用户精选。原生支持一键导入与自动化规则更新。
+      </p>
+    </div>
+
+    <QuickAnswer
+      answerType="decision"
+      summary="选用 Clash 专用机场时，务必挑选直接提供 Clash YAML 格式订阅、并且节点按地区/用途细分分组的服务商（如 TAG Internet、Flyint、Kuromis），无需手动进行第三方订阅转换。"
+      points={[
+        '100% 兼容 Clash Meta / Mihomo 新一代开源核心',
+        '内置 GeoIP / GeoSite 大陆白名单分流，国内应用 0 延迟',
+        '节点支持自动故障转移（Fallback）与低延迟择优',
+      ]}
+    />
+
+    <div class="my-10 space-y-6">
+      {clashProviders.map((p, idx) => (
+        <ProviderCard provider={p} rankingIndex={idx} highlightBadge="Clash 完美适配" />
+      ))}
+    </div>
+
+    <FAQ items={faqs} title="Clash 机场选型与分流常见问题" />
+
+    <NextStep
+      level="level2"
+      title="需要 Clash 客户端安装与导入配置教程？"
+      description="查看我们准备的 Clash Verge Rev 从零开始图文配置教程。"
+      primaryLink={{ text: '查看 Clash Verge 新手图文教程', url: '/tutorial/clash-verge/' }}
+      secondaryLink={{ text: '查看 Clash 节点超时排查 SOP', url: '/troubleshooting/clash/' }}
+    />
+  </div>
+</BaseLayout>
