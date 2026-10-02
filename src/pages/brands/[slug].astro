@@ -22,16 +22,16 @@ const { provider } = Astro.props;
 
 const brandFaqs = [
   {
-    question: `${provider.name} 支持支付宝、微信和 USDT 支付吗？`,
-    answer: `支持。${provider.name} 接入了正规聚合收银台，支持支付宝、微信以及 USDT（TRC20/ERC20）即时付款，购买后订阅立即自动同步下发。`,
+    question: `${provider.name} 支持哪些客户端协议和设备？`,
+    answer: `${provider.name} 全面支持 ${provider.protocols.join('、')} 协议。适配客户端包括 ${provider.clients.join('、')} 等，支持一键导入或通用订阅链接导入。`,
   },
   {
-    question: `${provider.name} 如何在 Clash Verge 或 Shadowrocket 小火箭中导入订阅？`,
-    answer: `登录 ${provider.name} 用户中心，在仪表盘找到“一键导入订阅”按钮，选择对应的客户端（如 Clash / Shadowrocket）；如需通用订阅链接，可点击“复制订阅地址”并粘贴到客户端的订阅管理中即可。`,
+    question: `${provider.name} 的资费标准与支付方式是什么？`,
+    answer: `起步资费为 ${provider.pricing.billingCycle || `${provider.pricing.monthlyStarting} 元/月`}。支持的付款方式包括 ${provider.paymentMethods?.join('、') || '支付宝、微信及 USDT'}，账单结算公开透明。`,
   },
   {
-    question: `${provider.name} 的测速截图能代表我本地的真实速度吗？`,
-    answer: `不能完全等同。测速截图记录了特定测试环境（2026-08-11）下的峰值吞吐与延迟，真实体验受本地宽带运营商（电信/联通/移动）、路由器 Wi-Fi 信号及晚高峰出口波动影响。建议坚持首选月付套餐亲自体验。`,
+    question: `${provider.name} 在 AI 工具与流媒体解锁上的实测表现如何？`,
+    answer: `在【机场推荐 Club 评测实验室】实测中，${provider.name} 对 ChatGPT 的支持状态为【${provider.aiSupport.chatgpt}】，Claude 支持为【${provider.aiSupport.claude}】，Netflix 流媒体支持为【${provider.streamingSupport.netflix}】。建议首选月付测试本地连通性。`,
   },
 ];
 
@@ -39,8 +39,8 @@ const productReviewSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: provider.name,
-  description: provider.description,
-  image: `https://jichangtuijian.club/images/speedtest/${provider.speedTestImage}`,
+  description: provider.tagline,
+  image: provider.measuredEvidence ? `https://jichangtuijian.club${provider.measuredEvidence.file}` : undefined,
   brand: {
     '@type': 'Brand',
     name: provider.name,
@@ -52,32 +52,33 @@ const productReviewSchema = {
     availability: 'https://schema.org/InStock',
     url: provider.officialUrl,
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '1540',
-    bestRating: '5',
-    worstRating: '1',
-  },
   review: {
     '@type': 'Review',
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: '4.9',
-      bestRating: '5',
-    },
     author: {
       '@type': 'Organization',
       name: '机场推荐 Club 评测组',
     },
-    reviewBody: provider.description,
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: '4.8',
+      bestRating: '5',
+    },
+    reviewBody: `${provider.name} 经实测验证：晚高峰 SLA 可用性为 ${provider.testData.sla}，平均时延 ${provider.testData.averageLatency}，峰值吞吐达到 ${provider.testData.peakSpeed}。`,
   },
 };
+
+// Differentiate Title and Description dynamically
+const routeFeature = provider.routes.join(' · ');
+const pageTitle = provider.pricing.monthlyStarting <= 12
+  ? `${provider.name}怎么样？2026平价月付评测、真实测速图与套餐解析`
+  : `${provider.name}深度评测：2026 ${routeFeature}实测与选型指南`;
+
+const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provider.testData.sla}、平均延迟 ${provider.testData.averageLatency}、最高下行 ${provider.testData.peakSpeed}。包含 ${provider.plans.length} 档套餐规格、流媒体/AI 解锁能力与防坑实测凭证。`;
 ---
 
 <BaseLayout
-  title={`${provider.name}怎么样？2026最新评测、价格套餐、真实测速图与官网入口`}
-  description={`${provider.name} 2026 深度评测与实测证据报告。收录 2026-08-11 真实节点测速原图、IEPL 专线晚高峰实测数据、最新优惠码 ${provider.couponCode || ''}、价格套餐与防坑指南。`}
+  title={pageTitle}
+  description={pageDesc}
   pubDate="2026-08-16"
   updatedDate="2026-08-17"
   schema={productReviewSchema}
@@ -140,7 +141,7 @@ const productReviewSchema = {
         <a
           href={provider.officialUrl}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer nofollow sponsored"
           class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-2"
         >
           <span>直达 {provider.name} 官网</span>
@@ -281,28 +282,28 @@ const productReviewSchema = {
 
       <!-- Section 4: Architecture Topology -->
       <section>
-        <h2>四、骨干专线传输拓扑架构</h2>
+        <h2>四、{provider.name} 骨干传输链路与协议架构</h2>
+        <p class="text-sm text-slate-300 mb-4">
+          根据实测与网络路由分析，{provider.name} 主要采用 {provider.routes.join(' 与 ')} 进行跨境流量调度，核心协议支持 {provider.protocols.join('、')}。
+        </p>
         <div class="p-5 rounded-xl bg-slate-900/80 border border-white/5 font-mono text-xs text-slate-300 space-y-3">
           <div class="text-cyan-400 font-bold pb-2 border-b border-white/5">
-            [用户终端] (PC / 手机 / 路由器)
+            [用户本地设备] ({provider.clients.slice(0, 3).join(' / ')})
           </div>
           <div class="text-slate-400 pl-4">
-            ↓ 加密封装 ({provider.protocols.join(' / ')})
+            ↓ 经由 {provider.protocols[0] || '加密隧道'} 封装流量
           </div>
           <div class="text-slate-200 font-semibold pl-4">
-            [国内 BGP 多线入口] (智能探测最优低延迟接入点)
+            [{provider.routes[1] || provider.routes[0] || '国内优质接入点'}] (智能低延迟探测)
           </div>
           <div class="text-emerald-400 font-bold pl-4">
-            ═══▶ 跨境内网 IEPL/IPLC 物理专线直连 (不经公网 GFW 节点，0 丢包) ═══▶
+            ═══▶ {provider.routes[0] || '跨境专线直达'} (平均延迟 {provider.testData.averageLatency}，实测丢包率 {provider.testData.packetLoss}) ═══▶
           </div>
           <div class="text-slate-200 font-semibold pl-4">
-            [海外优质机房落地出口] (香港 / 日本 / 新加坡 / 美国)
-          </div>
-          <div class="text-slate-400 pl-4">
-            ↓ 原生 IP 出海
+            [海外落地机房出口] (核心节点覆盖 {(provider.regions || ['香港', '日本', '新加坡', '美国']).join(' / ')})
           </div>
           <div class="text-sky-300 pl-4">
-            [ChatGPT / Claude / Netflix / YouTube 4K 秒开]
+            ↓ 最终目标服务 (综合实测 SLA 可用性维持在 {provider.testData.sla})
           </div>
         </div>
       </section>

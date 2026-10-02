@@ -31,6 +31,8 @@ const {
         secondaryLink && (
           <a
             href={secondaryLink.url}
+            target={secondaryLink.url.startsWith('http') ? '_blank' : undefined}
+            rel={secondaryLink.url.startsWith('http') ? 'noopener noreferrer nofollow sponsored' : undefined}
             class="px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-800 border border-white/5 transition-all"
           >
             {secondaryLink.text}
@@ -39,6 +41,8 @@ const {
       }
       <a
         href={primaryLink.url}
+        target={primaryLink.url.startsWith('http') ? '_blank' : undefined}
+        rel={primaryLink.url.startsWith('http') ? 'noopener noreferrer nofollow sponsored' : undefined}
         class="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 transition-all flex items-center gap-1.5"
       >
         <span>{primaryLink.text}</span>

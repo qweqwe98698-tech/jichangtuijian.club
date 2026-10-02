@@ -21,19 +21,45 @@ import NextStep from '../components/NextStep.astro';
       </p>
     </header>
 
-    <article class="prose-atlas my-10 space-y-6">
-      <h2>联系方式</h2>
-      <p>
-        <strong>官方电子邮箱</strong>：<code>contact@jichangtuijian.club</code>
-      </p>
-      <p>
-        <strong>Telegram 交流频道</strong>：<code>@jichangtuijian_club</code>
-      </p>
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、官方沟通与联系渠道</h2>
+        <p>
+          我们重视来自读者、网络技术开发者以及各服务商品牌方的真实反馈与纠错信息：
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2">
+            <span class="text-cyan-400 font-bold block">【官方电子邮箱】</span>
+            <code class="text-slate-200">contact@jichangtuijian.club</code>
+            <p class="text-[11px] text-slate-400 font-sans mt-1">用于提交数据纠错、测速凭证复核、技术撰稿申请及版权事宜（工作日 24 小时内必复）。</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2">
+            <span class="text-emerald-400 font-bold block">【Telegram 实时交流】</span>
+            <code class="text-slate-200">@jichangtuijian_club</code>
+            <p class="text-[11px] text-slate-400 font-sans mt-1">用于紧急节点宕机上报、跑路预警线索提供及前沿代理协议技术讨论。</p>
+          </div>
+        </div>
+      </section>
 
-      <h2>纠错与数据更新通道</h2>
-      <p>
-        如果您是机场运营方或普通用户，发现本站某篇评测中的价格、节点线路或优惠码信息发生变更，请随时发送邮件至上述邮箱，附带相关截图或证明，我们将在 24 小时内核验并更新全站数据。
-      </p>
+      <section>
+        <h2>二、数据纠错与异议申诉流程</h2>
+        <p>
+          如果您在浏览过程中发现任何服务商价格变动、节点下线、测速图过期或协议支持描述不准确，请按以下流程提交纠错：
+        </p>
+        <ol class="space-y-2 text-sm text-slate-300 pl-5 list-decimal">
+          <li><strong>明确涉及页面</strong>：提供具体的文章 URL 或品牌详情页地址；</li>
+          <li><strong>提供原始凭证</strong>：附带官方价格公告、测速截图或带时间戳的连通性测试日志；</li>
+          <li><strong>实验室复核确认</strong>：评测组在收到邮件后 24-48 小时内完成独立连通性交叉验证；</li>
+          <li><strong>版本日志公示</strong>：核验属实的纠错信息将同步更新至文章，并在变更记录中注明校正时间。</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>三、免责与商业合作原则</h2>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          <strong>郑重声明</strong>：本站严格执行评测与商业合作隔离制度。我们不接受任何形式的“付费删除真实负面评测”、“付费修改实测测速数据”或“竞价买断排行榜首位”。任何试图通过虚假信息干预评测中立性的行为，将被公开披露。
+        </p>
+      </section>
     </article>
 
     <NextStep

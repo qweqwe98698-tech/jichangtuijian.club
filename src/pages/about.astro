@@ -21,22 +21,49 @@ import NextStep from '../components/NextStep.astro';
       </p>
     </header>
 
-    <article class="prose-atlas my-10 space-y-6">
-      <h2>我们的定位</h2>
-      <p>
-        <strong>机场推荐 Club (jichangtuijian.club)</strong> 不是简单的返利导航站，也不是流水线生成的垃圾博客。我们致力于建设成为：
-      </p>
-      <blockquote>
-        机场选择决策中心 + 品牌评测数据库 + 客户端教程中心 + 代理技术知识库 + 网络故障排查中心 + 风险预警中心。
-      </blockquote>
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、我们的初心与团队定位</h2>
+        <p>
+          <strong>机场推荐 Club (jichangtuijian.club)</strong> 是一项由分布式网络工程师、网络运维专家与跨境外贸极客发起的独立网络研究项目。我们旨在打破网络代理行业长久以来的“信息黑盒”与“虚假测速营销”，为中文互联网用户提供真实、可复现、严谨的代理协议研究与网络选型决策支持。
+        </p>
+        <p>
+          我们坚决拒绝成为单纯依靠推广佣金驱动的返利收割站点，全站内容涵盖：<strong>机场选型决策中心、独立品牌评测数据库、客户端实操配置教程、协议底层原理解析、网络故障排查 SOP 与黑名单风险预警体系</strong>。
+        </p>
+      </section>
 
-      <h2>为什么要做这个网站？</h2>
-      <p>
-        当前的中文科学上网生态充斥着严重的劣币驱逐良币现象：满屏由返利驱动的“最新最强机场”虚假推荐、充斥造假水分的单线测速图、以及收割完一波年费就卷款跑路的劣质团队。普通用户在信息不对称的环境下频频踩坑。
-      </p>
-      <p>
-        我们希望通过公开透明的工程测试、真实的 SLA 监控和严谨的防割指南，帮助每位网民找到真正稳定、安全、划算的网络工具。
-      </p>
+      <section>
+        <h2>二、评测实验室物理基准环境</h2>
+        <p>
+          为了保证所有测速数据与延迟指标具备严格的工业级参考价值，本站所有评测均在标准化物理网络环境下采集：
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2">
+            <div class="text-cyan-400 font-bold">【华东测试基准节点】</div>
+            <div class="text-slate-300">• 接入网络：上海电信 1000M FTTH 光纤宽带</div>
+            <div class="text-slate-300">• 硬件环境：Intel i9-13900K / 64GB DDR5 / 2.5G 网卡</div>
+            <div class="text-slate-300">• 内核软件：Mihomo (Clash Meta) v1.18+ / sing-box v1.9+</div>
+            <div class="text-slate-300">• 采集时段：晚高峰（20:30 - 22:30）高并发承载测试</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2">
+            <div class="text-cyan-400 font-bold">【华南测试基准节点】</div>
+            <div class="text-slate-300">• 接入网络：广州移动 500M 商业光纤</div>
+            <div class="text-slate-300">• 硬件环境：Apple Mac Studio (M2 Max) / 万兆局域网</div>
+            <div class="text-slate-300">• 核心指标：TCP Ping、丢包率、TLS 握手延迟、BGP 跃点</div>
+            <div class="text-slate-300">• 测速工具：MAI-TEST-BOT 多线程真实吞吐压测引擎</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>三、四大评测与推荐铁律</h2>
+        <ul class="space-y-3 text-sm text-slate-300 pl-5 list-disc">
+          <li><strong>坚持晚高峰真实测速</strong>：严禁使用凌晨非高峰时段的虚高测速图充数，所有上架图谱必须带有清晰的时间戳与物理测试环境水印；</li>
+          <li><strong>首选月付测试原则</strong>：鉴于行业特有的跑路与被墙风控，全站始终建议用户首选月付订阅，拒绝任何捆绑超长年付诱导；</li>
+          <li><strong>协议与真实链路透明化</strong>：严格区分公网中转、IEPL 商业内网专线与物理 IPLC 专线，拒绝将低成本直连包装为所谓“企业专线”；</li>
+          <li><strong>黑名单一票否决制</strong>：任何被证实跑路、卷款失联、滥用用户个人数据或恶意篡改分流注入广告的服务商，将永久列入失联黑名单并全网警示。</li>
+        </ul>
+      </section>
     </article>
 
     <NextStep

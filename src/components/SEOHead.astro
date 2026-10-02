@@ -8,6 +8,7 @@ export interface Props {
   pubDate?: string;
   updatedDate?: string;
   schema?: Record<string, any> | Record<string, any>[];
+  noindex?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   pubDate,
   updatedDate,
   schema,
+  noindex = false,
 } = Astro.props;
 
 const siteName = '机场推荐 Club';
@@ -97,7 +99,11 @@ if (schema) {
 <title>{formattedTitle}</title>
 <meta name="title" content={formattedTitle} />
 <meta name="description" content={description} />
-<link rel="canonical" href={canonicalUrl} />
+{noindex ? (
+  <meta name="robots" content="noindex, nofollow" />
+) : (
+  <link rel="canonical" href={canonicalUrl} />
+)}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
@@ -118,4 +124,4 @@ if (schema) {
 {updatedDate && <meta property="article:modified_time" content={updatedDate} />}
 
 <!-- Structured Data -->
-<script type="application/ld+json" set:html={JSON.stringify(baseSchema)} />
+{!noindex && <script type="application/ld+json" set:html={JSON.stringify(baseSchema)} />}

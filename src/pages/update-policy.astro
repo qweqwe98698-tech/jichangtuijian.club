@@ -21,16 +21,43 @@ import NextStep from '../components/NextStep.astro';
       </p>
     </header>
 
-    <article class="prose-atlas my-10 space-y-6">
-      <h2>一、双周与月度例行核验</h2>
-      <p>
-        我们的自动化测试脚本与人工编辑团队每两周对所有收录服务商的官方镜像域名、工单响应时间与核心节点连通性进行一次全面巡检。每月进行一次晚高峰全量多线程与单线程基准压测。
-      </p>
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、多层级巡检周期与响应机制</h2>
+        <p>
+          网络代理服务的节点状态与域名具有高度的动态变化特性。我们建立了一套涵盖自动化监测与人工压测的阶梯式更新体系：
+        </p>
+        <div class="space-y-4 my-4">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5">
+            <h3 class="text-sm font-bold text-cyan-400 mb-1">1. 每日动态巡检（高频自动化）</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              每日运行自动化健康探测脚本，轮询全网收录服务商的最新官方免翻墙镜像域名、Apple ID 共享账号可用性及免费公益节点连通率，发现失效在 6 小时内自动剔除清洗。
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5">
+            <h3 class="text-sm font-bold text-emerald-400 mb-1">2. 双周 SLA 与价格复核（常规人工核验）</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              每隔两周对 16 个核心服务商的套餐资费、优惠码有效性、支付收银台可用性进行人工对账；并检查各大工单与 Telegram 群组公告，确保运营无异常停摆。
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5">
+            <h3 class="text-sm font-bold text-amber-400 mb-1">3. 季度/年度基准压测（深度全量重构）</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              每季度组织一次晚高峰全量多线程测速，重新归档实测证据图谱。每年年终重新审计全站技术架构、协议支持情况与历史表现，重写选型指南。
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <h2>二、严禁“伪年份更新”</h2>
-      <p>
-        我们严禁将旧文章的标题机械地从“2025”替换成“2026”。每年年终的年度大版本更新，必须经过对所有服务商历史口碑、技术架构演进与价格调整的重新复核，并重写评测报告后才予以发布。
-      </p>
+      <section>
+        <h2>二、拒绝“机械替换年份”的虚假更新</h2>
+        <p>
+          行业内大量垃圾内容站存在将五年前的陈旧文章仅通过替换标题中的“2021”到“2026”来进行搜索引擎霸榜欺骗。
+        </p>
+        <p>
+          本站对“更新”有明确的技术要求：<strong>每一篇标明更新日期的文章，必须对应实际的代码修改、测试数据变更或内容实质性重写</strong>。所有历史测速凭证均保留精确到秒的时间戳水印，坚决杜绝任何欺骗读者与搜索引擎的伪更新行为。
+        </p>
+      </section>
     </article>
 
     <NextStep

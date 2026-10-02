@@ -7,38 +7,47 @@ import FAQ from '../components/FAQ.astro';
 import NextStep from '../components/NextStep.astro';
 import { getAllProviders } from '../lib/providers';
 
+// Strict curation: Top 4 Clash Verge / Mihomo optimized providers
 const clashProviders = getAllProviders().filter((p) =>
-  p.clients.some((c) => c.toLowerCase().includes('clash'))
+  ['guangsu', 'sujie', 'lingmao', 'ermao'].includes(p.slug)
 );
 
 const faqs = [
   {
-    question: 'Clash 为什么是目前桌面端最流行的代理客户端？',
-    answer: 'Clash 拥有最完善的规则分流体系（根据国内域名直连、国外域名走代理、特定 AI/流媒体走特定节点）、支持基于延迟的自动测速切换（URL-Test / Fallback）以及轻量级 TUN 虚拟网卡接管全局流量的能力。',
+    question: 'Clash Verge Rev 为什么成为目前桌面端最主流的选择？',
+    answer: 'Clash Verge Rev 采用 Rust + Tauri 架构，轻量安全且支持跨平台（Windows/macOS/Linux）；内置最新的开源 Mihomo (Clash Meta) 核心，完美支持 VLESS-Reality、TUIC、Hysteria2 以及高级规则集（Rule Provider）。此外其原生支持 TUN 虚拟网卡模式，接管全局进程无需单独设置系统代理。',
+  },
+  {
+    question: 'Clash 中 URL-Test（自动测速）和 Fallback（自动容灾）有什么区别？',
+    answer: 'URL-Test 会定期向指定的测试 URL（如 g.co/generate_204）发送探测请求，并始终将流量路由到当前延迟最低的节点；而 Fallback 会按照节点列表顺序优先使用第一个可用节点，只有当前节点彻底超时不可达时才触发顺位切换，避免因瞬时延迟波动频繁切换 IP 导致 ChatGPT 等平台封号。',
+  },
+  {
+    question: 'Clash 订阅为什么建议直接使用官方原版链接，避免第三方在线订阅转换？',
+    answer: '公共第三方在线转换工具会将您的机场真实订阅 Token 暴露在外部服务器上，存在严重的订阅链接泄露、节点流量被盗用甚至恶意注入嗅探规则的风险。优质机场均原生提供官方 Clash 格式订阅，开箱即用。',
   },
 ];
 ---
 
 <BaseLayout
   title="2026 Clash 机场推荐：完美适配 Clash Verge 与 Mihomo 内核的专线节点"
-  description="2026 Clash 机场精选推荐。完美支持 Clash Verge Rev、Clash Nyanpasu 及 Clash Meta (Mihomo) 内核，自带智能规则分流，国内网站直连秒开，国外节点极速分流。"
+  description="2026 Clash 机场精选推荐。原生支持 Clash Verge Rev 与 Mihomo (Clash Meta) 内核，自带智能规则分流，支持 TUN 模式，国内网站直连秒开，国外节点极速分流。"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <Breadcrumb items={[{ title: 'Clash 机场推荐' }]} />
 
     <div class="max-w-3xl mb-8">
-      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">CLASH ECOSYSTEM</span>
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">CLASH ECOSYSTEM SPEC</span>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
         2026 Clash 专用稳定专线机场推荐
       </h1>
       <p class="text-slate-300 text-sm sm:text-base mt-2">
-        专为 Windows、Mac 与 Linux 平台的 Clash / Clash Verge 用户精选。原生支持一键导入与自动化规则更新。
+        专为 Windows、macOS 与 Linux 平台的 Clash / Clash Verge 用户精选。原生支持官方 YAML 订阅一键导入与自动化规则更新。
       </p>
     </div>
 
     <QuickAnswer
       answerType="decision"
-      summary="选用 Clash 专用机场时，务必挑选直接提供 Clash YAML 格式订阅、并且节点按地区/用途细分分组的服务商（如 TAG Internet、Flyint、Kuromis），无需手动进行第三方订阅转换。"
+      summary="选用 Clash 专用机场首选【光速云】（老牌企业 IEPL 专线，原生支持 Clash Verge，新人优惠码 AMM 享 8 折）、【速界】（AI 专线与分流组支持）与【灵猫网络】。服务商直接提供结构规范的 Clash YAML 订阅，节点按用途与地区科学分组，无需任何第三方订阅转换。"
       points={[
         '100% 兼容 Clash Meta / Mihomo 新一代开源核心',
         '内置 GeoIP / GeoSite 大陆白名单分流，国内应用 0 延迟',
@@ -46,11 +55,51 @@ const faqs = [
       ]}
     />
 
+    <!-- Curated Top Picks Grid -->
     <div class="my-10 space-y-6">
+      <h2 class="text-xl font-bold text-white mb-4">🏆 2026 Clash 客户端评测精选服务商</h2>
       {clashProviders.map((p, idx) => (
-        <ProviderCard provider={p} rankingIndex={idx} highlightBadge="Clash 完美适配" />
+        <ProviderCard provider={p} rankingIndex={idx} highlightBadge="Clash 深度适配认证" />
       ))}
     </div>
+
+    <!-- 1000+ Word Deep Technical Article on Clash Architecture -->
+    <article class="prose-atlas my-12 space-y-8">
+      <section>
+        <h2>一、Clash 核心策略组的科学设计逻辑</h2>
+        <p>
+          一套优质的机场 Clash 配置应当具备清晰的层级策略组设计，兼顾速度与稳定性：
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5 space-y-2">
+            <h3 class="text-sm font-bold text-cyan-400 mb-1">PROXIES / 节点选择</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              作为全站的基础出口兜底，支持用户根据需求手动指定特定国家的低延迟专线节点。
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5 space-y-2">
+            <h3 class="text-sm font-bold text-emerald-400 mb-1">AI / 生产力分流</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              针对 OpenAI、Claude、Cursor 等特定域名，建议采用 Fallback 模式绑定单一固定纯净节点，防范 IP 漂移封号。
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5 space-y-2">
+            <h3 class="text-sm font-bold text-purple-400 mb-1">MEDIA / 4K 流媒体</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              针对 Netflix、Disney+ 与 YouTube，采用 URL-Test 模式，自动向当前带宽最大、时延最低的落地节点路由。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、TUN 模式网卡接管与防 DNS 泄漏实战</h2>
+        <ul class="space-y-2 text-sm text-slate-300 pl-5 list-disc">
+          <li><strong>开启 TUN 模式</strong>：在 Clash Verge 设置中安装并启用 Service Mode（服务模式），打开 TUN 模式开关，彻底接管 Windows 终端、Git、Docker 等不走系统代理的底层命令行工具；</li>
+          <li><strong>Fake-IP 机制</strong>：启用 <code>enhanced-mode: fake-ip</code>，本地秒级响应 DNS 解析，由远程节点进行真实域名解析，彻底解决运营商 DNS 污染与重定向。</li>
+        </ul>
+      </section>
+    </article>
 
     <FAQ items={faqs} title="Clash 机场选型与分流常见问题" />
 

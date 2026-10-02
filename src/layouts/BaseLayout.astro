@@ -13,6 +13,7 @@ export interface Props {
   pubDate?: string;
   updatedDate?: string;
   schema?: Record<string, any> | Record<string, any>[];
+  noindex?: boolean;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   pubDate,
   updatedDate,
   schema,
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -39,6 +41,7 @@ const {
       pubDate={pubDate}
       updatedDate={updatedDate}
       schema={schema}
+      noindex={noindex}
     />
   </head>
   <body class="bg-[#090d16] text-slate-100 min-h-[100dvh] flex flex-col signal-bg-grid relative selection:bg-cyan-500/30 selection:text-cyan-200">
