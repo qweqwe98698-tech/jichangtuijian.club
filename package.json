@@ -14,7 +14,8 @@
     "indexnow": "tsx scripts/indexnow.ts",
     "seo:audit": "tsx scripts/seo-audit.ts",
     "keyword:coverage": "tsx scripts/keyword-coverage.ts",
-    "build:data": "tsx scripts/generate-seo-data.ts"
+    "build:data": "tsx scripts/generate-seo-data.ts",
+    "publish:matrix": "tsx scripts/auto-publish-matrix.ts"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",

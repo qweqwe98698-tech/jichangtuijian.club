@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import NextStep from '../../components/NextStep.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('articles', ({ data }) => !data.draft);
+
+// Sort by pubDate descending
+const sortedArticles = allArticles.sort((a, b) => {
+  const dateA = new Date(a.data.updatedDate || a.data.pubDate).getTime();
+  const dateB = new Date(b.data.updatedDate || b.data.pubDate).getTime();
+  return dateB - dateA;
+});
+---
+
+<BaseLayout
+  title="GEO / SEO 专题矩阵与技术专栏 | 机场推荐 Club"
+  description="机场推荐 Club 深度技术专栏与网络工程矩阵。汇集前沿代理协议（Reality/TUIC/Hysteria2）、跨国物理专线架构、全屋软路由网关、流媒体解锁与网络风控防封实战指南。"
+  canonicalUrl="https://jichangtuijian.club/articles/"
+  pubDate="2026-08-16"
+  updatedDate="2026-10-02"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <Breadcrumb items={[{ title: '技术专栏与专题矩阵' }]} />
+
+    <header class="max-w-3xl mb-10">
+      <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">
+        DEEP-DIVE TECHNICAL MATRIX & GEO ARCHIVE
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        技术专栏与专题深度矩阵
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
+        拒绝空洞参数罗列，专注网络工程物理层剖析。汇聚跨境以太网专线实测、新型拥塞控制协议实测、跨境矩阵风控对抗与客户端深度配置方案。
+      </p>
+    </header>
+
+    <QuickAnswer
+      answerType="how"
+      summary="本专栏矩阵由评测实验室持续滚动更新，严格遵循 GEO（Generative Engine Optimization）技术规范与真实物理环境实测标准。每篇文章均包含底层通信抓包分析、物理光缆拓扑拆解、生产级配置清单与真实 SLA 压测数据。"
+      points={[
+        '深度原则：单篇聚焦深度网络通信原理与工程化落地，不灌水、不写废话',
+        '真实环境：基于上海电信 1000M FTTH 与广州移动 500M 实机双线测试',
+        '长效更新：每 4 天动态推进核心专题主线，覆盖新一代协议与合规防护',
+      ]}
+    />
+
+    <!-- Article List Matrix -->
+    <div class="my-12">
+      <div class="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">
+          <span>全部专栏文章</span>
+          <span class="text-xs font-mono font-normal px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            共 {sortedArticles.length} 篇
+          </span>
+        </h2>
+        <span class="text-xs text-slate-400">按更新时间排序</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sortedArticles.map((article) => {
+          const slug = article.id.replace(/\.(md|mdx)$/, '');
+          const { data } = article;
+          return (
+            <a
+              href={`/articles/${slug}/`}
+              class="group flex flex-col justify-between p-6 rounded-2xl bg-slate-900/60 border border-white/5 hover:border-cyan-500/30 hover:bg-slate-900/90 transition-all duration-300 shadow-lg hover:shadow-cyan-500/10"
+            >
+              <div>
+                <div class="flex items-center justify-between mb-3 text-xs">
+                  <span class="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-medium">
+                    {data.category || '专题分析'}
+                  </span>
+                  <span class="text-slate-500 font-mono">
+                    {data.updatedDate || data.pubDate}
+                  </span>
+                </div>
+                <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors line-clamp-2 mb-2">
+                  {data.title}
+                </h3>
+                <p class="text-slate-400 text-xs line-clamp-3 leading-relaxed mb-4">
+                  {data.description}
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
+                <span class="text-slate-500">
+                  {data.tags?.slice(0, 2).map((t) => `#${t}`).join(' ') || `#${data.primaryKeyword}`}
+                </span>
+                <span class="text-cyan-400 font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                  阅读全文 →
+                </span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- NextStep -->
+    <NextStep
+      level="level2"
+      title="需要选择即刻可用的高 SLA 专线机场？"
+      description="阅读完原理后，可直接参考实验室基于千兆光纤实测的稳定服务商横向评测榜单。"
+      primaryLink={{ text: '查看 2026 稳定专线推荐', url: '/stable-airport/' }}
+      secondaryLink={{ text: '查看 2026 综合排行榜', url: '/airport-ranking/' }}
+    />
+  </div>
+</BaseLayout>

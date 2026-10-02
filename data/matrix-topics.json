@@ -1,0 +1,384 @@
+[
+  {
+    "id": "matrix-001",
+    "slug": "hysteria2-udp-congestion-control-bbr-deep-dive",
+    "category": "协议逆向与内核优化",
+    "primaryKeyword": "Hysteria 2 协议深度解析",
+    "secondaryKeywords": [
+      "Hysteria2 拥塞控制",
+      "UDP QoS 穿透",
+      "BBRv3 调优",
+      "科学上网抗晚高峰"
+    ],
+    "theme": "Hysteria 2 协议深度解析与 UDP 暴力拥塞控制底层拆解：晚高峰 QoS 突破与生产环境高防丢包配置",
+    "searchIntent": "informational",
+    "answerType": "how",
+    "pillar": "/knowledge/tuic-vs-hysteria2/",
+    "commercialLevel": "level3",
+    "nextStep": "查看 2026 稳定专线机场推荐与晚高峰测速横评",
+    "status": "published",
+    "publishedDate": "2026-10-02",
+    "wordCount": 5605
+  },
+  {
+    "id": "matrix-002",
+    "slug": "iepl-vs-iplc-physical-transpacific-backhaul",
+    "category": "物理专线与网络架构",
+    "primaryKeyword": "IEPL 与 IPLC 物理专线对比",
+    "secondaryKeywords": [
+      "IEPL 专线原理",
+      "IPLC 海缆架构",
+      "跨境以太网二层传输",
+      "晚高峰零丢包"
+    ],
+    "theme": "IEPL 与 IPLC 物理专线底层技术对决：跨国以太网光缆二层链路、运营商 SLA 机制与 0 丢包终极实测",
+    "searchIntent": "informational",
+    "answerType": "comparison",
+    "pillar": "/dedicated-line-airport/",
+    "commercialLevel": "level3",
+    "nextStep": "查看 2026 纯 IEPL 专线机场横评与选型指南",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-003",
+    "slug": "singbox-universal-kernel-route-rules-guide",
+    "category": "客户端工程化实践",
+    "primaryKeyword": "sing-box 规则集与内核配置",
+    "secondaryKeywords": [
+      "sing-box 教程",
+      "Rule-set 规则集",
+      "Tun 虚拟网卡",
+      "Mihomo 迁移"
+    ],
+    "theme": "sing-box 全平台工程级配置手册：Rule-set 规则集动态更新、Inbound/Outbound 链式分流与 Tun 极速网卡实战",
+    "searchIntent": "tutorial",
+    "answerType": "how",
+    "pillar": "/tutorial/sing-box/",
+    "commercialLevel": "level2",
+    "nextStep": "查看 2026 适配 sing-box 的优质专线机场",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-004",
+    "slug": "cross-border-ecommerce-tiktok-residential-ip-matrix",
+    "category": "出海高敏场景与矩阵防封",
+    "primaryKeyword": "TikTok 跨境出海原生住宅 IP",
+    "secondaryKeywords": [
+      "TikTok 防 0 播放",
+      "双 ISP 住宅 IP",
+      "跨境矩阵防封",
+      "指纹浏览器环境隔离"
+    ],
+    "theme": "TikTok 跨境电商与海外矩阵防封完全工程手册：双 ISP 纯净原生住宅 IP 选型、DNS 泄漏封堵与 0 播放环境隔离",
+    "searchIntent": "commercial",
+    "answerType": "decision",
+    "pillar": "/scene/tiktok-matrix/",
+    "commercialLevel": "level3",
+    "nextStep": "查看 2026 TikTok 专线与双 ISP 纯净住宅节点评测",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-005",
+    "slug": "tuic-v5-quic-multiplexing-performance-benchmark",
+    "category": "协议逆向与内核优化",
+    "primaryKeyword": "TUIC v5 协议性能测试",
+    "secondaryKeywords": [
+      "TUIC 协议优势",
+      "QUIC 0-RTT 握手",
+      "多路复用",
+      "高并发长连接"
+    ],
+    "theme": "TUIC v5 协议完全工程手册：基于 QUIC 的 0-RTT 极速握手、单连接多路复用与弱网竞速实测拆解",
+    "searchIntent": "informational",
+    "answerType": "comparison",
+    "pillar": "/knowledge/tuic-vs-hysteria2/",
+    "commercialLevel": "level2",
+    "nextStep": "查看 2026 稳定机场排行榜",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-006",
+    "slug": "vless-reality-tls-fingerprint-anti-gfw-guide",
+    "category": "网络安全与协议伪装",
+    "primaryKeyword": "VLESS Reality 协议原理与配置",
+    "secondaryKeywords": [
+      "Reality TLS 伪装",
+      "SNI 阻断防御",
+      "Chrome 真实指纹",
+      "Vision 流控"
+    ],
+    "theme": "VLESS Reality 真实伪装机制完全通识：SNI 借壳偷渡、真实证书指纹提取与 DPI 深度包检测防御体系",
+    "searchIntent": "informational",
+    "answerType": "why",
+    "pillar": "/knowledge/reality/",
+    "commercialLevel": "level2",
+    "nextStep": "查看 2026 支持 Reality 的高品质节点与服务商",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-007",
+    "slug": "developer-terminal-ai-api-proxy-optimization",
+    "category": "开发者与工程师生产力",
+    "primaryKeyword": "终端与 AI API 代理加速指南",
+    "secondaryKeywords": [
+      "Cursor 代理加速",
+      "Git SSH 代理",
+      "Claude API 防封",
+      "Docker 镜像加速"
+    ],
+    "theme": "程序员出海生产力网络配置：终端 Bash/Zsh、Git SSH、Docker 容器与 Cursor / Claude API 极速加速方案",
+    "searchIntent": "tutorial",
+    "answerType": "how",
+    "pillar": "/scene/developer/",
+    "commercialLevel": "level2",
+    "nextStep": "查看 2026 开发者与 AI 编程专用低延迟节点",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-008",
+    "slug": "netflix-global-content-unlocking-isp-forensics",
+    "category": "流媒体解锁与家庭影院",
+    "primaryKeyword": "Netflix 跨区解锁与住宅 IP",
+    "secondaryKeywords": [
+      "Netflix 非自制剧解锁",
+      "4K HDR 码率保障",
+      "IP 纯净度检测",
+      "流媒体风控数据库"
+    ],
+    "theme": "Netflix 跨区与非自制剧解锁底层机制：IP 属性风控数据库识别原理与家庭 4K HDR 杜比视界高码率保障",
+    "searchIntent": "commercial",
+    "answerType": "decision",
+    "pillar": "/netflix-airport/",
+    "commercialLevel": "level3",
+    "nextStep": "查看 2026 Netflix 原生解锁机场排行榜",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-009",
+    "slug": "airport-dual-active-disaster-recovery-architecture",
+    "category": "网络容灾与资产安全",
+    "primaryKeyword": "科学上网双活容灾架构",
+    "secondaryKeywords": [
+      "1主1备 容灾方案",
+      "按量付费备用节点",
+      "防断网主备热备",
+      "节点健康检查自动切换"
+    ],
+    "theme": "科学上网 1主1备 双活容灾拓扑设计：杜绝单点故障瘫痪的机场订阅自动分流与热备降级实战",
+    "searchIntent": "informational",
+    "answerType": "decision",
+    "pillar": "/pay-as-you-go-airport/",
+    "commercialLevel": "level3",
+    "nextStep": "查看 2026 按量付费不限时备用机场推荐",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-010",
+    "slug": "openwrt-istoreos-openclash-transparent-proxy-guide",
+    "category": "软路由与家庭智能网关",
+    "primaryKeyword": "OpenClash 全屋透明代理教程",
+    "secondaryKeywords": [
+      "OpenWrt 旁路由",
+      "iStoreOS 配置",
+      "Fake-IP 模式",
+      "全屋设备无感出海"
+    ],
+    "theme": "OpenWrt / iStoreOS 全屋透明代理实战：硬件选型、主路由与旁路由双栈拓扑及 OpenClash 稳如磐石调优",
+    "searchIntent": "tutorial",
+    "answerType": "how",
+    "pillar": "/tutorial/openwrt-openclash/",
+    "commercialLevel": "level2",
+    "nextStep": "查看适合软路由全天候常驻的专线机场推荐",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-011",
+    "slug": "single-thread-vs-multi-thread-speedtest-lies",
+    "category": "数据透明与评测方法论",
+    "primaryKeyword": "单线程测速与多线程测速真相",
+    "secondaryKeywords": [
+      "测速图谎言",
+      "单线程带宽",
+      "节点超卖识别",
+      "晚高峰真实体验"
+    ],
+    "theme": "测速图为什么骗了你？单线程测速（Single-Thread）与多线程测速断崖式差距解析及超卖检测手册",
+    "searchIntent": "informational",
+    "answerType": "why",
+    "pillar": "/risk-warning/speedtest-lies/",
+    "commercialLevel": "level3",
+    "nextStep": "查看 2026 经千兆真实测试的稳定专线机场",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-012",
+    "slug": "apple-tv-tvos-surge-shadowrocket-home-proxy",
+    "category": "流媒体解锁与家庭影院",
+    "primaryKeyword": "Apple TV 科学上网客户端配置",
+    "secondaryKeywords": [
+      "tvOS 小火箭",
+      "Apple TV Surge 网关",
+      "家庭影院 4K 串流",
+      "Disney+ 秒开"
+    ],
+    "theme": "Apple TV tvOS 原生代理与家庭影院串流完全指南：从 Shadowrocket 到 Surge 网关接管方案深度复盘",
+    "searchIntent": "tutorial",
+    "answerType": "how",
+    "pillar": "/tutorial/apple-tv/",
+    "commercialLevel": "level2",
+    "nextStep": "查看适合 Apple TV 大流量 4K 串流的高速机场",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-013",
+    "slug": "subconverter-local-docker-offline-privacy-deployment",
+    "category": "网络安全与隐私防范",
+    "primaryKeyword": "Subconverter 本地自建订阅转换",
+    "secondaryKeywords": [
+      "订阅转换安全陷阱",
+      "Docker 部署 Subconverter",
+      "防节点 Token 泄漏",
+      "离线规则合并"
+    ],
+    "theme": "拒绝订阅明文泄露：使用 Docker 本地自建 Subconverter 订阅转换与敏感 Token 脱敏离线处理实战",
+    "searchIntent": "tutorial",
+    "answerType": "how",
+    "pillar": "/knowledge/subconverter-security/",
+    "commercialLevel": "level2",
+    "nextStep": "查看支持全客户端免转换原生订阅的优质机场",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-014",
+    "slug": "china-telecom-cn2-gia-vs-cmi-vs-9929-comparison",
+    "category": "物理专线与网络架构",
+    "primaryKeyword": "CN2 GIA vs 联通 9929 vs 移动 CMI",
+    "secondaryKeywords": [
+      "运营商骨干出海线路",
+      "晚高峰丢包实测",
+      "BGP 入口优化",
+      "国际出口 QoS"
+    ],
+    "theme": "三大运营商出海骨干对决：电信 CN2 GIA、联通 9929/4837 与移动 CMI 晚高峰 QoS 丢包率实测横评",
+    "searchIntent": "informational",
+    "answerType": "comparison",
+    "pillar": "/dedicated-line-airport/",
+    "commercialLevel": "level3",
+    "nextStep": "查看配备优质骨干出口的服务商实测数据",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-015",
+    "slug": "airport-financial-collapse-early-warning-indicators",
+    "category": "网络容灾与资产安全",
+    "primaryKeyword": "机场跑路前兆与资金链崩塌指标",
+    "secondaryKeywords": [
+      "防跑路指南",
+      "低价年付陷阱",
+      "大促圈钱特征",
+      "工单响应率分析"
+    ],
+    "theme": "机场跑路资金链破裂监测模型：从低价年付诱饵、频度异常大促到工单停更的 7 阶段识别法则",
+    "searchIntent": "informational",
+    "answerType": "why",
+    "pillar": "/risk-warning/runaway-signs/",
+    "commercialLevel": "level3",
+    "nextStep": "查看 2026 老牌不跑路高信誉机场排行榜",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-016",
+    "slug": "fake-ip-vs-redir-host-dns-leakage-prevention",
+    "category": "软路由与家庭智能网关",
+    "primaryKeyword": "Fake-IP 与 Redir-Host 模式对比",
+    "secondaryKeywords": [
+      "DNS 污染防治",
+      "DNS 泄漏检测",
+      "UDP 转发",
+      "TUN 模式 DNS 劫持"
+    ],
+    "theme": "Fake-IP 与 Redir-Host 模式技术原理对决：解决 DNS 污染、DNS 泄漏与局域网设备劫持方案",
+    "searchIntent": "informational",
+    "answerType": "comparison",
+    "pillar": "/troubleshooting/clash/",
+    "commercialLevel": "level2",
+    "nextStep": "查看 2026 稳定节点选型与客户端配置指南",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-017",
+    "slug": "web3-binance-okx-exchange-security-proxy-setup",
+    "category": "出海高敏场景与矩阵防封",
+    "primaryKeyword": "Web3 与币安 OKX 交易所合规节点",
+    "secondaryKeywords": [
+      "交易所防封风控",
+      "纯净 IP 选型",
+      "零日志代理",
+      "高资产安全出海"
+    ],
+    "theme": "Web3 与加密货币交易所高安全出海指南：币安 / OKX 防风控节点选型与零日志离线环境配置",
+    "searchIntent": "commercial",
+    "answerType": "decision",
+    "pillar": "/scene/crypto-trading/",
+    "commercialLevel": "level3",
+    "nextStep": "查看 2026 Web3 与加密交易安全专线推荐",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-018",
+    "slug": "ps5-switch-xbox-console-gaming-nat-type-optimization",
+    "category": "开发者与工程师生产力",
+    "primaryKeyword": "主机游戏联机加速与 NAT 优化",
+    "secondaryKeywords": [
+      "PS5 加速",
+      "Switch NAT Type A",
+      "Steam 国际服 0 丢包",
+      "电竞专线实测"
+    ],
+    "theme": "主机游戏联机加速终极指南：Steam / PS5 / Switch NAT Type 1/Open 优化与 0 丢包专线工程",
+    "searchIntent": "tutorial",
+    "answerType": "how",
+    "pillar": "/scene/gaming-acceleration/",
+    "commercialLevel": "level2",
+    "nextStep": "查看 2026 低延迟游戏专线机场横评",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-019",
+    "slug": "bgp-anycast-multi-inbound-intelligent-routing",
+    "category": "物理专线与网络架构",
+    "primaryKeyword": "BGP Anycast 多入口智能调度架构",
+    "secondaryKeywords": [
+      "多入口 BGP",
+      "三网优化入口",
+      "Anycast 容灾",
+      "跨网延迟优化"
+    ],
+    "theme": "BGP Anycast 多入口智能调度架构：三网骨干优化、动态路由容灾与物理专线接入标准深度剖析",
+    "searchIntent": "informational",
+    "answerType": "why",
+    "pillar": "/dedicated-line-airport/",
+    "commercialLevel": "level3",
+    "nextStep": "查看全节点支持多入口 BGP 调度的品牌推荐",
+    "status": "pending"
+  },
+  {
+    "id": "matrix-020",
+    "slug": "mosdns-smart-dns-split-tunneling-configuration",
+    "category": "软路由与家庭智能网关",
+    "primaryKeyword": "MosDNS 智能分流与 DNS 净化",
+    "secondaryKeywords": [
+      "MosDNS 配置教程",
+      "ECS 零泄漏",
+      "国内无感直连",
+      "分流规则优化"
+    ],
+    "theme": "MosDNS 智能分流与 DNS 净化工程：境内境外无缝分流、ECS 零泄漏与秒级解析实战指南",
+    "searchIntent": "tutorial",
+    "answerType": "how",
+    "pillar": "/tutorial/openwrt-openclash/",
+    "commercialLevel": "level2",
+    "nextStep": "查看优质专线节点与 DNS 优化适配方案",
+    "status": "pending"
+  }
+]

@@ -1,0 +1,81 @@
+name: Auto Publish SEO/GEO Matrix Article
+
+on:
+  schedule:
+    # 每天早晨 02:00 UTC (北京时间 10:00) 触发，每 4 天自动发布一篇深度万字级矩阵文章
+    - cron: '0 2 */4 * *'
+  workflow_dispatch:
+    inputs:
+      topic_id:
+        description: '可选：指定发布的专题 ID (例如 matrix-002)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish-matrix-article:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 配置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 配置 pnpm 包管理器
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: 安装项目依赖
+        run: pnpm install --frozen-lockfile
+
+      - name: 执行 DeepSeek 自动化万字级矩阵文章生成器
+        id: generate
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          TOPIC_ID_INPUT: ${{ github.event.inputs.topic_id }}
+        run: |
+          pnpm publish:matrix
+
+      - name: 验证静态站点构建与 Pagefind 索引
+        run: |
+          pnpm build
+
+      - name: 提交并推送到仓库主分支
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.name "qweqwe98698-tech"
+          git config --local user.email "qweqwe98698-tech@users.noreply.github.com"
+
+          # 暂存新发布的文章、更新后的矩阵状态及导航文件
+          git add src/content/articles data/matrix-topics.json
+
+          # 检查是否存在变更
+          if git diff --staged --quiet; then
+            echo "没有需要提交的新文章。"
+            exit 0
+          fi
+
+          ARTICLE_SLUG="${{ steps.generate.outputs.article_slug }}"
+          ARTICLE_TITLE="${{ steps.generate.outputs.article_title }}"
+          WORD_COUNT="${{ steps.generate.outputs.word_count }}"
+
+          # 注意：按照指示严禁携带 [skip ci]，确保提交能立即触发线上部署流水线！
+          COMMIT_MSG="feat(articles): publish new GEO matrix article - ${ARTICLE_TITLE:-${ARTICLE_SLUG}}"
+          echo "Commit Message: $COMMIT_MSG"
+
+          git commit -m "$COMMIT_MSG"
+          git push origin main
+
+      - name: 向 IndexNow 推送新 URL（加速 Bing 搜索引擎抓取）
+        continue-on-error: true
+        run: |
+          pnpm indexnow
