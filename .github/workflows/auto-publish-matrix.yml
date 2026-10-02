@@ -34,7 +34,7 @@ jobs:
           version: 9
 
       - name: 安装项目依赖
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: 执行 DeepSeek 自动化万字级矩阵文章生成器
         id: generate
