@@ -37,7 +37,9 @@
     "pillar": "/dedicated-line-airport/",
     "commercialLevel": "level3",
     "nextStep": "查看 2026 纯 IEPL 专线机场横评与选型指南",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-10-02",
+    "wordCount": 4017
   },
   {
     "id": "matrix-003",
