@@ -58,7 +58,9 @@
     "pillar": "/tutorial/sing-box/",
     "commercialLevel": "level2",
     "nextStep": "查看 2026 适配 sing-box 的优质专线机场",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-10-05",
+    "wordCount": 4921
   },
   {
     "id": "matrix-004",
