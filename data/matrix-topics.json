@@ -79,7 +79,9 @@
     "pillar": "/scene/tiktok-matrix/",
     "commercialLevel": "level3",
     "nextStep": "查看 2026 TikTok 专线与双 ISP 纯净住宅节点评测",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-10-09",
+    "wordCount": 6057
   },
   {
     "id": "matrix-005",
