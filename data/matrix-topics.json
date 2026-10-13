@@ -100,7 +100,9 @@
     "pillar": "/knowledge/tuic-vs-hysteria2/",
     "commercialLevel": "level2",
     "nextStep": "查看 2026 稳定机场排行榜",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-10-13",
+    "wordCount": 3936
   },
   {
     "id": "matrix-006",
