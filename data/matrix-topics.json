@@ -142,7 +142,9 @@
     "pillar": "/scene/developer/",
     "commercialLevel": "level2",
     "nextStep": "查看 2026 开发者与 AI 编程专用低延迟节点",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-10-21",
+    "wordCount": 5530
   },
   {
     "id": "matrix-008",
