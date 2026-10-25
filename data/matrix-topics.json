@@ -163,7 +163,9 @@
     "pillar": "/netflix-airport/",
     "commercialLevel": "level3",
     "nextStep": "查看 2026 Netflix 原生解锁机场排行榜",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-10-25",
+    "wordCount": 5669
   },
   {
     "id": "matrix-009",
