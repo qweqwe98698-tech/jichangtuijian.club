@@ -184,7 +184,9 @@
     "pillar": "/pay-as-you-go-airport/",
     "commercialLevel": "level3",
     "nextStep": "查看 2026 按量付费不限时备用机场推荐",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-10-29",
+    "wordCount": 6081
   },
   {
     "id": "matrix-010",
