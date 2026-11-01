@@ -205,7 +205,9 @@
     "pillar": "/tutorial/openwrt-openclash/",
     "commercialLevel": "level2",
     "nextStep": "查看适合软路由全天候常驻的专线机场推荐",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-11-01",
+    "wordCount": 6606
   },
   {
     "id": "matrix-011",
