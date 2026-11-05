@@ -226,7 +226,9 @@
     "pillar": "/risk-warning/speedtest-lies/",
     "commercialLevel": "level3",
     "nextStep": "查看 2026 经千兆真实测试的稳定专线机场",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-11-05",
+    "wordCount": 5220
   },
   {
     "id": "matrix-012",
