@@ -247,7 +247,9 @@
     "pillar": "/tutorial/apple-tv/",
     "commercialLevel": "level2",
     "nextStep": "查看适合 Apple TV 大流量 4K 串流的高速机场",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-11-09",
+    "wordCount": 4332
   },
   {
     "id": "matrix-013",
