@@ -1,0 +1,85 @@
+{
+  "id": "sslar",
+  "name": "sslar",
+  "slug": "sslar",
+  "tagline": "技术极客导向 · 现代加密隧道 · 历史数据备选",
+  "establishedYear": 2022,
+  "officialUrl": "https://sslar01.sslaraff.com/#/?code=sslar88",
+  "couponCode": "sslar88",
+  "discount": "专属优惠码",
+  "pricing": {
+    "monthlyStarting": 22,
+    "currency": "¥",
+    "billingCycle": "22 元/月起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "加密专线中转",
+    "动态出口"
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "VLESS"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "sing-box"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "支持",
+    "disney": "支持",
+    "youtube4k": "4K 支持"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.70%",
+    "averageLatency": "35ms",
+    "peakSpeed": "490 Mbps",
+    "packetLoss": "< 0.16%"
+  },
+  "plans": [
+    {
+      "name": "sslar 极客版",
+      "price": "¥22/月",
+      "traffic": "110 GB/月",
+      "speed": "加密专线"
+    },
+    {
+      "name": "sslar 旗舰版",
+      "price": "¥42/月",
+      "traffic": "240 GB/月",
+      "speed": "高速专线"
+    }
+  ],
+  "bestFor": [
+    "技术极客自用备用"
+  ],
+  "notFor": [
+    "追求极致廉价的用户"
+  ],
+  "pros": [
+    "加密性能稳健"
+  ],
+  "cons": [
+    "排位第 42 位，仅供历史数据与选型备选参考"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "排名靠后展示，历史数据收录参考。"
+}

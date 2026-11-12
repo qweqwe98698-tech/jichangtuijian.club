@@ -94,10 +94,12 @@ htmlFiles.forEach((file) => {
     }
   }
 
-  // Check Canonical
+  // Check Canonical (404 pages should NOT have canonical tags as they are noindex)
   const canonicalMatch = content.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i);
   if (!canonicalMatch) {
-    canonicalErrors.push(`${relPath}: missing canonical tag`);
+    if (relPath !== '404.html' && relPath !== '404/index.html') {
+      canonicalErrors.push(`${relPath}: missing canonical tag`);
+    }
   } else {
     const canonical = canonicalMatch[1];
     if (canonical.includes('localhost') || canonical.includes('127.0.0.1')) {

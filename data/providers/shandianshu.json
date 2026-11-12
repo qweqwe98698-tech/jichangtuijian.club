@@ -1,0 +1,85 @@
+{
+  "id": "shandianshu",
+  "name": "闪电鼠",
+  "slug": "shandianshu",
+  "tagline": "5.6元/月 60GB · 超低支出门槛 · 学生备用优选",
+  "establishedYear": 2023,
+  "officialUrl": "https://qwerty.shandianshuaff.com/#/?code=rUE75iYh",
+  "couponCode": "sd88",
+  "discount": "专属低价优惠码",
+  "pricing": {
+    "monthlyStarting": 5.6,
+    "currency": "¥",
+    "billingCycle": "5.6 元/月，60GB 起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "BGP 多线优化中转"
+  ],
+  "protocols": [
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "部分支持",
+    "disney": "支持",
+    "youtube4k": "支持 1080P/4K"
+  },
+  "aiSupport": {
+    "chatgpt": "部分可用",
+    "claude": "基础支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.40%",
+    "averageLatency": "46ms",
+    "peakSpeed": "420 Mbps",
+    "packetLoss": "< 0.35%"
+  },
+  "plans": [
+    {
+      "name": "闪电鼠极速轻量",
+      "price": "¥5.6/月",
+      "traffic": "60 GB/月",
+      "speed": "BGP 优化中转"
+    },
+    {
+      "name": "闪电鼠标准主力",
+      "price": "¥12.8/月",
+      "traffic": "140 GB/月",
+      "speed": "优质专线中转"
+    }
+  ],
+  "bestFor": [
+    "备用翻墙需求",
+    "预算 5 元左右的轻度用户"
+  ],
+  "notFor": [
+    "重度 4K 挂机追剧与生产力开发"
+  ],
+  "pros": [
+    "5.6元极低价格",
+    "60GB 满足常规日常"
+  ],
+  "cons": [
+    "晚高峰部分节点有挤压限速"
+  ],
+  "runawayRisk": "中偏低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "品牌资料显示最低门槛 5.6元/月含 60GB 流量，建议月付使用。"
+}

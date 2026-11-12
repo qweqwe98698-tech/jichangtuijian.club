@@ -29,25 +29,31 @@ const faqs = [
 ---
 
 <BaseLayout
-  title="2026 Shadowrocket 小火箭机场推荐：苹果 iOS 专用极速节点与省电选型"
-  description="2026 苹果 iPhone / iPad Shadowrocket（小火箭）专用机场推荐。精选低功耗专线节点，支持扫码一键导入、自动更新订阅与分流规则，随时随地极速畅连海外网络。"
+  title="2026 小火箭节点与机场推荐：Shadowrocket 苹果 iOS 专用稳定专线与省电选型指南"
+  description="2026 优质小火箭节点与 Shadowrocket 机场选型推荐。精选适配 iPhone/iPad 的低功耗 IEPL 专线节点，支持扫码一键导入与规则分流，搭配小火箭共享 ID 与免费节点测试快速上手。"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <Breadcrumb items={[{ title: '小火箭机场推荐' }]} />
+    <Breadcrumb items={[{ title: '小火箭节点与机场推荐' }]} />
 
     <div class="max-w-3xl mb-8">
-      <span class="text-xs font-mono font-bold text-blue-400 uppercase tracking-widest block mb-2">IOS SHADOWROCKET SPEC</span>
+      <div class="flex flex-wrap items-center gap-2 mb-2">
+        <span class="text-xs font-mono font-bold text-blue-400 uppercase tracking-widest">IOS SHADOWROCKET SPEC</span>
+        <span class="text-slate-600">•</span>
+        <a href="/apple-id/" class="text-xs text-emerald-400 hover:underline font-semibold">🍎 获取免费小火箭共享 ID</a>
+        <span class="text-slate-600">•</span>
+        <a href="/free-nodes/" class="text-xs text-cyan-400 hover:underline font-semibold">⚡ 小火箭免费节点池</a>
+      </div>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        2026 Shadowrocket 小火箭稳定机场推荐
+        2026 小火箭节点与稳定机场推荐
       </h1>
       <p class="text-slate-300 text-sm sm:text-base mt-2">
-        专为苹果 iOS 用户精选。手机端功耗极低、扫码秒导入，支持原生 5G 与 Wi-Fi 智能漫游切换。
+        专为苹果 iOS 用户精选。手机端功耗极低、扫码秒导入，支持 Shadowsocks / VLESS 硬件加速与 Wi-Fi / 5G 智能分流。
       </p>
     </div>
 
     <QuickAnswer
       answerType="decision"
-      summary="iOS 移动端强烈建议首选【光速云】（老牌 IEPL 专线，完整提供 Shadowsocks/VLESS 混合一键扫码，新人专属优惠码 AMM 享 8 折）与【速界】。小火箭导入后开启“配置（Rule）”分流模式，微信/淘宝走本地直连，推特/YouTube 走专线秒开，全天常驻后台续航无忧。"
+      summary="iOS 小火箭用户强烈建议首选【光速云】（老牌 IEPL 专线，支持 Shadowsocks/VLESS 混合一键扫码，专属 8 折优惠码 AMM）与【速界】。导入后保持“配置（Config）”分流模式，搭配本站提供的【小火箭共享 ID 账号】与【小火箭免费节点】，轻松实现零门槛畅联。"
       points={[
         '支持二维码扫描与一键唤起 Shadowrocket 订阅导入',
         '针对 iPhone 芯片硬件优化的低电量消耗与后台保活协议',

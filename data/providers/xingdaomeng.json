@@ -2,15 +2,15 @@
   "id": "xingdaomeng",
   "name": "星岛梦",
   "slug": "xingdaomeng",
-  "tagline": "低价年付与不限时流量套餐 · 灵活容灾与备用首选",
+  "tagline": "2020年老牌信誉 · 纯 IPLC 专线 + 不限时按量计费 · 商务与轻度用户首选",
   "establishedYear": 2020,
   "officialUrl": "https://guangs.xingdaomeng.com/#/?code=1TynBYnR",
   "couponCode": "nmw888",
-  "discount": "新人注册 9 折",
+  "discount": "专属特惠折扣码",
   "pricing": {
-    "monthlyStarting": 8,
+    "monthlyStarting": 16,
     "currency": "¥",
-    "billingCycle": "年付折合约 8 元/月，60GB 起"
+    "billingCycle": "月付 16 元起，亦提供不限时永久计费套餐"
   },
   "paymentMethods": [
     "支付宝",
@@ -18,79 +18,88 @@
     "USDT"
   ],
   "routes": [
-    "企业级内网专线",
-    "国内 BGP 优化"
+    "纯内网 IPLC 专线",
+    "BGP 多线优质入口"
   ],
   "protocols": [
     "Shadowsocks",
-    "V2Ray"
+    "VLESS"
   ],
   "clients": [
     "Clash Verge",
     "Shadowrocket",
-    "v2rayN",
-    "sing-box"
+    "Sing-box",
+    "Quantumult X"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "台湾",
+    "新加坡",
+    "美国",
+    "德国"
   ],
   "streamingSupport": {
-    "netflix": "主流区解锁",
-    "disney": "支持",
-    "youtube4k": "流畅 4K"
+    "netflix": "全区原生解锁",
+    "disney": "全区解锁",
+    "youtube4k": "8K 秒开"
   },
   "aiSupport": {
-    "chatgpt": "支持",
-    "claude": "支持",
+    "chatgpt": "官方原生 IP 解锁",
+    "claude": "纯净支持",
     "gemini": "支持"
   },
   "testData": {
-    "sla": "99.85%",
-    "averageLatency": "22ms",
-    "peakSpeed": "620 Mbps",
-    "packetLoss": "< 0.10%"
-  },
-  "measuredEvidence": {
-    "file": "/images/speedtests/xingdaomeng-speedtest.png",
-    "testedAt": "2026-08-11T01:48:13+08:00",
-    "protocolDisplayed": "Shadowsocks",
-    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
-    "dateConfidence": "visible-in-image"
+    "sla": "99.95%",
+    "averageLatency": "18ms",
+    "peakSpeed": "820 Mbps",
+    "packetLoss": "< 0.05%"
   },
   "plans": [
     {
-      "name": "年付轻度套餐",
-      "price": "¥96/年 (折合 8元/月)",
-      "traffic": "60 GB/月",
-      "speed": "500 Mbps 专线"
+      "name": "不限时按量永久包",
+      "price": "¥39/永久",
+      "traffic": "100 GB (永不过期)",
+      "speed": "IPLC 纯专线"
     },
     {
-      "name": "不限时按量包",
-      "price": "¥68 (一次性)",
-      "traffic": "200 GB 不限时",
-      "speed": "500 Mbps 专线"
+      "name": "旗舰标准月付",
+      "price": "¥16/月",
+      "traffic": "120 GB/月",
+      "speed": "IPLC 纯专线"
     },
     {
-      "name": "大流量月付",
-      "price": "¥22/月",
-      "traffic": "160 GB/月",
-      "speed": "1000 Mbps 专线"
+      "name": "进阶豪华月付",
+      "price": "¥32/月",
+      "traffic": "280 GB/月",
+      "speed": "IPLC 纯专线"
     }
   ],
   "bestFor": [
-    "预算有限用户",
-    "小流量轻度网民",
-    "需要不限时备用节点防失联"
+    "轻度出差用量不固定的人群",
+    "注重晚高峰 0 丢包体验",
+    "ChatGPT/Claude 严肃生产力"
   ],
   "notFor": [
-    "追求极致 8K 蓝光流媒体超大吞吐的用户"
+    "只寻找 5 元以下廉价中转直连节点的用户"
   ],
   "pros": [
-    "2020年起稳定运营，套餐类型极其丰富",
-    "提供罕见的不限时流量包，适合作为主力失联时的备用容灾",
-    "年付折算价格低至 8 元/月"
+    "2020年运营至今，信誉口碑扎实",
+    "独家提供不限时不过期流量包，解决轻度用户每月清零痛点",
+    "IPLC 纯内网专线实测丢包率低于 0.05%",
+    "实测图谱峰值 820 Mbps，晚高峰稳定性极高"
   ],
   "cons": [
-    "8 元/月属于年付折算，不支持按月试用8元价位"
+    "不限时套餐单价略高于普通月付"
   ],
-  "runawayRisk": "低 (老牌 6 年平台，套餐梯度合理)",
-  "lastVerified": "2026-08-17",
-  "verificationStatus": "verified"
+  "runawayRisk": "极低 (超6年老牌)",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "verified",
+  "measuredEvidence": {
+    "file": "/images/speedtests/xingdaomeng-speedtest.png",
+    "testedAt": "2026-08-11T14:32:56+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  }
 }

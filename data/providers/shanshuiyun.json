@@ -1,0 +1,85 @@
+{
+  "id": "shanshuiyun",
+  "name": "山水云",
+  "slug": "shanshuiyun",
+  "tagline": "国内多线中转 · 历史测速记录 · 务实平价",
+  "establishedYear": 2022,
+  "officialUrl": "https://ssy01.shanshuiyunaff.com/#/?code=ssy88",
+  "couponCode": "ssy88",
+  "discount": "专属优惠码",
+  "pricing": {
+    "monthlyStarting": 15,
+    "currency": "¥",
+    "billingCycle": "15 元/月起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "多线隧道中转",
+    "动态 BGP 入口"
+  ],
+  "protocols": [
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "支持",
+    "disney": "支持",
+    "youtube4k": "1080P/4K"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.60%",
+    "averageLatency": "39ms",
+    "peakSpeed": "460 Mbps",
+    "packetLoss": "< 0.2%"
+  },
+  "plans": [
+    {
+      "name": "山水入门月付",
+      "price": "¥15/月",
+      "traffic": "90 GB/月",
+      "speed": "多线隧道中转"
+    },
+    {
+      "name": "山水进阶月付",
+      "price": "¥28/月",
+      "traffic": "200 GB/月",
+      "speed": "优化专线"
+    }
+  ],
+  "bestFor": [
+    "备用日常浏览",
+    "外贸邮件与即时通讯"
+  ],
+  "notFor": [
+    "对 0 丢包有严苛诉求的用户"
+  ],
+  "pros": [
+    "价格亲民，服务稳定"
+  ],
+  "cons": [
+    "高峰期丢包率略有上升"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "排名靠后展示，历史数据收录参考。"
+}

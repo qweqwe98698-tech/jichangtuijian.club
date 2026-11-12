@@ -2,15 +2,15 @@
   "id": "jilian",
   "name": "极连云",
   "slug": "jilian",
-  "tagline": "18 元档综合 IEPL 专线 · 100GB 均衡体验",
-  "establishedYear": 2024,
+  "tagline": "18元100GB · 品牌资料强调全面覆盖 AI 生产力工具",
+  "establishedYear": 2023,
   "officialUrl": "https://guangs.jlyvipaff.com/#/?code=VM1rKGUu",
   "couponCode": "ji8888",
-  "discount": "专属优惠码",
+  "discount": "官方优惠码",
   "pricing": {
     "monthlyStarting": 18,
     "currency": "¥",
-    "billingCycle": "月付 18 元/月，100GB"
+    "billingCycle": "18 元/月，100GB 起"
   },
   "paymentMethods": [
     "支付宝",
@@ -18,73 +18,75 @@
     "USDT"
   ],
   "routes": [
-    "IEPL 专线",
-    "多入口 BGP"
+    "优质中转专线",
+    "AI 专用优化链路"
   ],
   "protocols": [
-    "Shadowsocks",
-    "V2Ray"
+    "Shadowsocks"
   ],
   "clients": [
-    "自研客户端",
     "Clash Verge",
     "Shadowrocket",
     "v2rayN"
   ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国"
+  ],
   "streamingSupport": {
-    "netflix": "全区解锁",
-    "disney": "支持",
-    "youtube4k": "秒开 4K"
+    "netflix": "支持解锁",
+    "disney": "支持解锁",
+    "youtube4k": "4K 秒开"
   },
   "aiSupport": {
-    "chatgpt": "支持",
-    "claude": "支持",
+    "chatgpt": "全节点优化",
+    "claude": "专线支持",
     "gemini": "支持"
   },
   "testData": {
-    "sla": "99.89%",
-    "averageLatency": "20ms",
-    "peakSpeed": "750 Mbps",
-    "packetLoss": "< 0.07%"
-  },
-  "measuredEvidence": {
-    "file": "/images/speedtests/jilian-speedtest.png",
-    "testedAt": "2026-08-11T22:46:50+08:00",
-    "protocolDisplayed": "Shadowsocks",
-    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
-    "dateConfidence": "visible-in-image"
+    "sla": "99.85%",
+    "averageLatency": "31ms",
+    "peakSpeed": "650 Mbps",
+    "packetLoss": "< 0.12%"
   },
   "plans": [
     {
-      "name": "综合月付套餐",
+      "name": "极连标准月付",
       "price": "¥18/月",
       "traffic": "100 GB/月",
-      "speed": "1000 Mbps IEPL"
+      "speed": "AI 优化中转"
     },
     {
-      "name": "进阶月付套餐",
-      "price": "¥32/月",
-      "traffic": "200 GB/月",
-      "speed": "1000 Mbps IEPL"
+      "name": "极连旗舰月付",
+      "price": "¥35/月",
+      "traffic": "240 GB/月",
+      "speed": "千兆专线"
     }
   ],
   "bestFor": [
-    "AI、流媒体与日常代理均衡用户",
-    "月预算控制在 20 元以内",
-    "晚高峰追剧"
+    "AI 提问与编程辅助",
+    "日常多媒体观看"
   ],
   "notFor": [
-    "需要一次性购买超长年限的用户"
+    "超低预算型用户"
   ],
   "pros": [
-    "18元档专线价格亲民",
-    "覆盖主流 AI 与影视流媒体场景",
-    "晚高峰 22:46 实测网络丢包率极低"
+    "针对 ChatGPT 与 Claude 做了针对性落地优化",
+    "实测测速原图归档完整"
   ],
   "cons": [
-    "第三方客户端导入需联系在线客服获取"
+    "节点地区集中在亚太"
   ],
-  "runawayRisk": "低 (纯月付体系防暴雷)",
-  "lastVerified": "2026-08-17",
-  "verificationStatus": "verified"
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "verified",
+  "measuredEvidence": {
+    "file": "/images/speedtests/jilian-speedtest.png",
+    "testedAt": "2026-08-11T14:32:56+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  }
 }

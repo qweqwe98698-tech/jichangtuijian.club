@@ -1,0 +1,85 @@
+{
+  "id": "longmaoyun",
+  "name": "龙猫云",
+  "slug": "longmaoyun",
+  "tagline": "平价中转 · 实用入门备用 · 历史测试收录",
+  "establishedYear": 2023,
+  "officialUrl": "https://lma01.totoroaff.com/#/?code=tt88",
+  "couponCode": "tt88",
+  "discount": "专属折扣直达",
+  "pricing": {
+    "monthlyStarting": 15,
+    "currency": "¥",
+    "billingCycle": "15 元/月起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "BGP 中转",
+    "多线优化接入"
+  ],
+  "protocols": [
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "基础支持",
+    "disney": "支持",
+    "youtube4k": "1080P/4K"
+  },
+  "aiSupport": {
+    "chatgpt": "常规支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.60%",
+    "averageLatency": "42ms",
+    "peakSpeed": "450 Mbps",
+    "packetLoss": "< 0.2%"
+  },
+  "plans": [
+    {
+      "name": "龙猫基础月付",
+      "price": "¥15/月",
+      "traffic": "100 GB/月",
+      "speed": "BGP 中转"
+    },
+    {
+      "name": "龙猫进阶月付",
+      "price": "¥28/月",
+      "traffic": "220 GB/月",
+      "speed": "高速中转"
+    }
+  ],
+  "bestFor": [
+    "中低预算日常备用",
+    "轻度社交工具使用"
+  ],
+  "notFor": [
+    "重度 4K 蓝光流媒体与低延迟游戏"
+  ],
+  "pros": [
+    "价格适中，配置简单"
+  ],
+  "cons": [
+    "高峰期延迟有一定上升"
+  ],
+  "runawayRisk": "中偏低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "排名靠后展示，历史数据归档参考。"
+}

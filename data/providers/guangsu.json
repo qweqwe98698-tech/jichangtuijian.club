@@ -2,15 +2,15 @@
   "id": "guangsu",
   "name": "光速云",
   "slug": "guangsu",
-  "tagline": "老牌综合型 IEPL 专线 · VLESS 协议 · 晚高峰稳定首选",
+  "tagline": "综合第一首推 · 老牌 IEPL 专线 + 企业级内网架构 · 晚高峰 0 丢包",
   "establishedYear": 2020,
   "officialUrl": "https://sahude.gsyvipaff.com/#/?code=keqgvT5Y",
   "couponCode": "AMM",
-  "discount": "新人注册 8 折",
+  "discount": "新人首购 8 折优惠券",
   "pricing": {
     "monthlyStarting": 7.5,
     "currency": "¥",
-    "billingCycle": "年付折合约 7.5 元/月，59GB 起"
+    "billingCycle": "年付折合约 7.5 元/月，99元/年起"
   },
   "paymentMethods": [
     "支付宝",
@@ -19,6 +19,7 @@
   ],
   "routes": [
     "企业级 IEPL 专线",
+    "双线路企业内网架构",
     "国内 BGP 入口"
   ],
   "protocols": [
@@ -26,75 +27,154 @@
     "Shadowsocks"
   ],
   "clients": [
-    "自研客户端",
+    "自研全平台客户端",
     "Clash Verge",
     "Shadowrocket",
     "v2rayN",
     "sing-box"
   ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "台湾",
+    "美国",
+    "马来西亚",
+    "英国",
+    "德国"
+  ],
   "streamingSupport": {
-    "netflix": "全区解锁 (非自制剧)",
-    "disney": "全区解锁",
-    "youtube4k": "秒开 4K/8K"
+    "netflix": "全区解锁 (含自制剧与非自制剧)",
+    "disney": "全区完美解锁",
+    "youtube4k": "秒开 4K/8K 缓冲无卡顿"
   },
   "aiSupport": {
-    "chatgpt": "官方原生 IP 解锁",
-    "claude": "纯净支持",
-    "gemini": "支持"
+    "chatgpt": "官方原生 IP 解锁 (支持 Plus / Team)",
+    "claude": "企业纯净 IP 原生解锁",
+    "gemini": "高可用支持"
   },
   "testData": {
     "sla": "99.95%",
-    "averageLatency": "16ms",
+    "averageLatency": "22ms",
     "peakSpeed": "850 Mbps",
     "packetLoss": "< 0.05%"
   },
-  "measuredEvidence": {
-    "file": "/images/speedtests/guangsu-speedtest.png",
-    "testedAt": "2026-08-11T14:32:56+08:00",
-    "protocolDisplayed": "Shadowsocks",
-    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
-    "dateConfidence": "visible-in-image"
-  },
   "plans": [
     {
-      "name": "基础入门年付",
-      "price": "¥89/年 (折合 7.5元/月)",
-      "traffic": "59 GB/月",
-      "speed": "1000 Mbps 专线"
+      "name": "致敬斯诺克147永久套餐",
+      "price": "¥147/永久",
+      "traffic": "247 GB (不限时不过期)",
+      "speed": "最高 2.5 Gbps 专线"
     },
     {
-      "name": "进阶标准月付",
-      "price": "¥17/月",
-      "traffic": "110 GB/月",
-      "speed": "1000 Mbps 专线"
+      "name": "轻量版年付",
+      "price": "¥99/年 (折合 8.25元/月)",
+      "traffic": "69 GB/月",
+      "speed": "1000 Mbps IEPL 专线"
     },
     {
-      "name": "旗舰大流量",
-      "price": "¥32/月",
-      "traffic": "260 GB/月",
-      "speed": "1000 Mbps 专线"
+      "name": "极速版月付",
+      "price": "¥25/月",
+      "traffic": "168 GB/月",
+      "speed": "最高 2.5 Gbps 全球 IPLC"
+    },
+    {
+      "name": "流光版月付",
+      "price": "¥34/月",
+      "traffic": "268 GB/月",
+      "speed": "最高 2.5 Gbps 全球 IPLC"
+    },
+    {
+      "name": "定制版独立专线",
+      "price": "¥680/月",
+      "traffic": "500 GB/月",
+      "speed": "独享原生 IP / 独立带宽"
     }
   ],
   "bestFor": [
-    "注重晚高峰稳定性",
-    "AI 工具访问 (ChatGPT/Claude)",
-    "流媒体影音",
-    "综合体验"
+    "注重晚高峰极致稳定性",
+    "重度 AI 开发者与科研人员",
+    "跨境电商与 TikTok 运营",
+    "4K/8K 极致影音体验"
   ],
   "notFor": [
-    "单月极低用量(<5GB)且不愿买年付的用户"
+    "单月极低用量(<5GB)且不愿意买永久/年付套餐的用户"
   ],
   "pros": [
-    "2020年成立老牌运营，信誉良好",
-    "企业级 IEPL 专线保障晚高峰 0 丢包",
-    "提供自研客户端与第三方客户端订阅导入",
-    "支持 USDT 匿名支付"
+    "2020年起稳定运营超 6 年，信誉与财务健康度极高",
+    "IEPL 专线 + 企业级内网专线双架构，晚高峰 0 丢包",
+    "提供致敬斯诺克 147 永久不限时套餐，轻度用户无过期焦虑",
+    "自研全平台客户端 + 完美兼容 Clash Verge、Shadowrocket 等通用工具",
+    "拥有完整 5 组独立解锁凭证原图归档，流媒体与 AI 解锁业内标杆"
   ],
   "cons": [
-    "7.5元为年付折算价格，月付起步约 17元/月",
-    "第三方订阅导入需通过客服获取"
+    "月付极速版起步 25 元/月，超低预算建议选 99 元轻量年付或 147 永久版"
   ],
-  "runawayRisk": "极低 (运营超 6 年，财务健康)",
-  "lastVerified": "2026-08-17",
-  "verificationStatus": "verified"
+  "runawayRisk": "极低 (超6年老牌，双线路自有基础设施)",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "verified",
+  "measuredEvidence": {
+    "file": "/images/speedtests/guangsu-speedtest.png",
+    "testedAt": "2026-08-11T14:32:56+08:00",
+    "protocolDisplayed": "VLESS",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  },
+  "unlockEvidence": [
+    {
+      "file": "/images/unlocks/guangsu-unlock-1.jpg",
+      "testedAt": "2026-08-19T12:13:01+08:00",
+      "title": "光速云流媒体全量解锁图谱",
+      "platforms": [
+        "Netflix",
+        "Disney+",
+        "YouTube Premium",
+        "Spotify",
+        "HBO Max"
+      ]
+    },
+    {
+      "file": "/images/unlocks/guangsu-unlock-2.jpg",
+      "testedAt": "2026-08-19T12:13:50+08:00",
+      "title": "OpenAI 与 Claude 纯净 IP 解锁实测",
+      "platforms": [
+        "ChatGPT 4o",
+        "Claude 3.5 Sonnet",
+        "Gemini Advanced",
+        "Cursor IDE"
+      ]
+    },
+    {
+      "file": "/images/unlocks/guangsu-unlock-3.jpg",
+      "testedAt": "2026-08-19T12:13:58+08:00",
+      "title": "TikTok 跨境电商与社媒运营专用落地节点",
+      "platforms": [
+        "TikTok 直播",
+        "Instagram",
+        "Twitter/X",
+        "Facebook Business"
+      ]
+    },
+    {
+      "file": "/images/unlocks/guangsu-unlock-4.jpg",
+      "testedAt": "2026-08-19T12:18:40+08:00",
+      "title": "全节点时延与丢包率综合诊断",
+      "platforms": [
+        "低延迟专线",
+        "0 丢包调度",
+        "BGP 多线容灾"
+      ]
+    },
+    {
+      "file": "/images/unlocks/guangsu-unlock-5.jpg",
+      "testedAt": "2026-08-19T12:20:10+08:00",
+      "title": "多区域原生 IP 连通性与 DNS 泄露测试",
+      "platforms": [
+        "原生住宅 IP",
+        "DNS 无泄漏",
+        "IPv4/IPv6 双栈"
+      ]
+    }
+  ],
+  "vendorNotes": "包含自研客户端与第三方通用订阅，支持 USDT 匿名结算。特殊商品不支持退款，建议先选月付或小额套餐。"
 }

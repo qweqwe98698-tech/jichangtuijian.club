@@ -1,0 +1,112 @@
+{
+  "id": "muguang",
+  "name": "暮光加速",
+  "slug": "muguang",
+  "tagline": "2023年黑马新星 · BGP 智能调度 + 专线级出口 · 7×24 小时真人客服",
+  "establishedYear": 2023,
+  "officialUrl": "https://varnexa.twilightaff.com/#/?code=D1LHglg3",
+  "couponCode": "muguang5555",
+  "discount": "专属特惠折扣码",
+  "pricing": {
+    "monthlyStarting": 20,
+    "currency": "¥",
+    "billingCycle": "20 元/月，120GB 起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "BGP 智能调度",
+    "专线级出口",
+    "多线低延迟中转"
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "VLESS"
+  ],
+  "clients": [
+    "Windows",
+    "macOS",
+    "iOS",
+    "Android",
+    "Linux 全平台适配"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "台湾",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "支持主流区域解锁",
+    "disney": "支持解锁",
+    "youtube4k": "4K 秒开"
+  },
+  "aiSupport": {
+    "chatgpt": "全节点稳定支持",
+    "claude": "支持纯净接入",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.90%",
+    "averageLatency": "28ms",
+    "peakSpeed": "720 Mbps",
+    "packetLoss": "< 0.1%"
+  },
+  "plans": [
+    {
+      "name": "【暮光·基础版】",
+      "price": "¥20/月",
+      "traffic": "120 GB/月",
+      "speed": "专线级出口 BGP 智能调度"
+    },
+    {
+      "name": "【暮光·标准版】",
+      "price": "¥40/月",
+      "traffic": "240 GB/月",
+      "speed": "专线级出口 BGP 智能调度"
+    },
+    {
+      "name": "【暮光·旗舰版】",
+      "price": "¥100/月",
+      "traffic": "700 GB/月",
+      "speed": "全节点多路加速"
+    },
+    {
+      "name": "【暮光·至尊版】",
+      "price": "¥180/月",
+      "traffic": "1500 GB/月",
+      "speed": "极致千兆并发通道"
+    }
+  ],
+  "bestFor": [
+    "注重日常流媒体追剧",
+    "全平台多设备同时在线",
+    "需要 7×24 小时真人客服保障"
+  ],
+  "notFor": [
+    "预算低于 15 元/月的极低价需求"
+  ],
+  "pros": [
+    "2023年成立至今网络表现强劲，用户增长迅速",
+    "BGP 智能调度链路，全天延迟波动极低",
+    "拥有完整节点单线测速图谱归档，峰值突破 700 Mbps",
+    "覆盖全平台设备并支持多设备并发在线"
+  ],
+  "cons": [
+    "最低套餐为 20 元/月，不提供低于 10 元的体验包"
+  ],
+  "runawayRisk": "低 (稳定运营 3 年以上)",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "verified",
+  "measuredEvidence": {
+    "file": "/images/speedtests/muguang-speedtest.png",
+    "testedAt": "2026-08-11T14:32:56+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  }
+}

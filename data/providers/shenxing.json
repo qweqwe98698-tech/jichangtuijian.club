@@ -1,0 +1,88 @@
+{
+  "id": "shenxing",
+  "name": "神行加速",
+  "slug": "shenxing",
+  "tagline": "14元120GB · 平价实用平衡点 · 专线低延迟直通",
+  "establishedYear": 2023,
+  "officialUrl": "https://qwerty.shenxingaff.com/#/?code=gawDQqVE",
+  "couponCode": "xs0077",
+  "discount": "专属特惠码",
+  "pricing": {
+    "monthlyStarting": 14,
+    "currency": "¥",
+    "billingCycle": "14 元/月，120GB 起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "专线中转",
+    "BGP 智能入网"
+  ],
+  "protocols": [
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "台湾",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "支持解锁",
+    "disney": "支持解锁",
+    "youtube4k": "4K 秒开"
+  },
+  "aiSupport": {
+    "chatgpt": "稳定支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.80%",
+    "averageLatency": "32ms",
+    "peakSpeed": "590 Mbps",
+    "packetLoss": "< 0.15%"
+  },
+  "plans": [
+    {
+      "name": "神行主力月付",
+      "price": "¥14/月",
+      "traffic": "120 GB/月",
+      "speed": "BGP 专线中转"
+    },
+    {
+      "name": "神行旗舰月付",
+      "price": "¥28/月",
+      "traffic": "260 GB/月",
+      "speed": "千兆专线"
+    }
+  ],
+  "bestFor": [
+    "寻找 15 元以下平衡型服务的用户",
+    "日常刷推、看 YouTube 与学术搜索"
+  ],
+  "notFor": [
+    "超高要求企业跨国组网"
+  ],
+  "pros": [
+    "14元配 120GB，比 20 元档更便宜，比 5 元档更稳定",
+    "流媒体表现良好"
+  ],
+  "cons": [
+    "备选节点地区数量一般"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "品牌资料显示 14元/月含 120GB 流量，建议首选月付。"
+}

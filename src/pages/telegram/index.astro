@@ -7,61 +7,140 @@ import FAQ from '../../components/FAQ.astro';
 
 const faqs = [
   {
-    question: 'Telegram 一直卡在 Connecting... 连接中怎么解决？',
-    answer: '1. 确认已开启代理客户端（如 Clash / Shadowrocket）；2. 如果使用的是电脑端 Telegram，在设置 → 高级 → 连接类型中选择“使用系统代理”或手动填入本地 SOCKS5 代理端口（127.0.0.1:7897）；3. 手机端可在小火箭中开启 Telegram 专用分流规则。',
+    question: 'Telegram 客户端一直卡在“Connecting... (连接中)”或“Updating...”转圈怎么解决？',
+    answer: '1. 确认系统底层代理正在运行；2. 如果使用 Windows / macOS 客户端，请打开 Telegram“设置 -> 高级 -> 连接类型”，选择“使用系统代理”或添加自定义 SOCKS5 代理（主机 127.0.0.1，端口填入您客户端的本地端口如 7890）；3. 推荐在 Clash Verge Rev 或 Sing-box 中开启全局 TUN 模式，直接利用虚拟网卡强行接管 Telegram 流量。',
+  },
+  {
+    question: '国内 +86 手机号注册 Telegram 无法接收短信验证码如何处理？',
+    answer: '由于运营商对境外短信的拦截过滤，+86 号码常收不到登录验证码。解决办法：使用已登录的手机/电脑客户端接收设备内验证码；若首次注册，建议通过 Telegram 官方客户端申请语音验证码，或使用 Google Voice / 境外 eSIM 虚拟号码注册。',
+  },
+  {
+    question: '点击群组内的免费公共 MTProto 代理链接是否安全？',
+    answer: '极度不安全。免费 MTProto 代理服务提供商可以劫持您的频道赞助列表、强制置顶广告甚至抓取未加密的非端到端传输元数据。最安全规范的方案是使用自己的机场节点配合 Clash / Shadowrocket 分流，彻底杜绝中间人风险。',
+  },
+  {
+    question: '+86 手机号无法给陌生人主动发起私聊（提示被双向限制）怎么办？',
+    answer: '这是 Telegram 针对 +86 垃圾广告账号的默认风控策略。请在 Telegram 顶部搜索官方机器人 @SpamBot，进入后点击 Start，依次选择“This is a mistake” -> “Yes” -> “No, I never send spam messages”，并提交一句英文申诉，通常在 10 分钟到数小时内即可解除私聊限制。',
   },
 ];
 ---
 
 <BaseLayout
-  title="Telegram 科学上网与连接指南：解决一直转圈 Connecting 与防封设置"
-  description="2026 Telegram（电报）连接与网络配置指南。解决国内手机 Telegram 无法连接、收不到短信验证码、内置 MTProto 代理配置与安全使用技巧。"
+  title="Telegram 科学上网与连接配置指南：解决转圈 Connecting、验证码接收与防封技巧"
+  description="2026 Telegram（电报）连接与网络配置全流程深度指南。系统解决国内手机 Telegram 无法连接一直转圈、+86 手机号收不到验证码、私聊限制解除、内置 MTProto 代理风险排查与低延迟专线配置。"
   pubDate="2026-08-16"
-  updatedDate="2026-08-17"
+  updatedDate="2026-10-19"
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <Breadcrumb items={[{ title: 'Telegram 专题指南' }]} />
 
     <header class="mb-8">
-      <span class="text-xs font-mono font-bold text-sky-400 uppercase tracking-widest block mb-2">TELEGRAM PILLAR</span>
+      <span class="text-xs font-mono font-bold text-sky-400 uppercase tracking-widest block mb-2">TELEGRAM CONNECTIVITY MATRIX</span>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        Telegram 连不上与网络配置全流程指南
+        Telegram 连不上与网络配置全流程深度指南
       </h1>
       <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
-        <span>更新时间：2026年8月</span>
+        <span>更新时间：2026年10月</span>
         <span>•</span>
-        <span>作者：机场推荐 Club 评测组</span>
+        <span>实测作者：机场推荐 Club 安全评测组</span>
+        <span>•</span>
+        <span class="text-emerald-400">涵盖全平台连接与防封策略</span>
       </div>
     </header>
 
     <QuickAnswer
       answerType="how"
-      summary="Telegram 无法连通常见于“代理客户端未接管 Telegram 流量”或“使用了不可靠的公共 MTProto 代理”。推荐在系统层开启 Clash Verge 的 TUN 虚拟网卡模式，即可实现秒速连接与高清大文件快速下载。"
+      summary="Telegram 无法连通的核心根源通常是“客户端流量未被本地代理网关接管”或“遭遇了不可靠的第三方 MTProto 恶意劫持”。最优雅的解决方案是在 Clash Verge Rev 中开启全局 TUN 虚拟网卡模式，配合低延迟亚太专线，实现消息毫秒级发送与大视频秒开缓存。"
       points={[
-        '避免在不知名电报群点击第三方免费 MTProto 代理链接',
-        '国内 +86 手机号注册存在收不到短信问题，建议使用 Google Voice 虚拟号',
-        '开启二步验证（Two-Step Verification）保护账号安全',
+        '严防不知名电报群点击第三方免费 MTProto 代理，避免账号凭据被劫持',
+        '国内 +86 手机号注册建议开启两步验证（Two-Step Verification）防御撞库',
+        '遇到陌生人私聊被禁，可秒用 @SpamBot 官方机器人自动申请解除风控',
+        '选用深港 IEPL 专线调度至 Telegram 新加坡 DC5 机房，延迟低至 20ms',
       ]}
     />
 
-    <article class="prose-atlas my-10 space-y-6">
-      <h2>一、Telegram 连接失败的核心原因</h2>
-      <p>
-        Telegram 在中国大陆属于被完全屏蔽的服务，包括其信令服务器与媒体 CDN。普通直连无法握手，必须通过加密代理才能正常通信。
-      </p>
+    <article class="prose-atlas my-10 space-y-8">
+      <section>
+        <h2>一、Telegram 传输信令与数据中心 (DC) 路由机制</h2>
+        <p>
+          Telegram 的网络架构采用了全球分布式数据中心（Data Center，简称 DC）。亚太地区用户（包括国内用户）的账号核心通常被分配在 **DC5（新加坡）** 或 **DC4（阿姆斯特丹）**。
+        </p>
+        <p>
+          当您使用普通直连或劣质直连节点时，跨洲长途公网路由会造成数百毫秒的时延和大量丢包，直接导致客户端顶部长期悬挂“Connecting...”。通过优质机场的香港或新加坡 IPLC 专线直达 DC5，消息推送延迟可从 600ms 锐减至 25ms 以内，图片和媒体视频可实现真正的即点即看。
+        </p>
+      </section>
 
-      <h2>二、正确配置代理客户端分流</h2>
-      <p>
-        在 Clash Verge 中，默认的 <code>Telegram</code> 策略组会自动将电报的数据流导向你选择的香港或新加坡节点。香港专线节点因物理距离最近，消息发送延迟通常在 15-30ms 之间，体验如同国内即时通讯软件一样丝滑。
-      </p>
+      <section>
+        <h2>二、Telegram 客户端主流代理连接方式优劣横评</h2>
+        <div class="overflow-x-auto my-4">
+          <table class="w-full text-left text-xs border border-white/10 rounded-xl overflow-hidden">
+            <thead class="bg-slate-900 text-cyan-300 font-semibold border-b border-white/10">
+              <tr>
+                <th class="p-3">连接代理方式</th>
+                <th class="p-3">安全性评估</th>
+                <th class="p-3">传输延迟与速度</th>
+                <th class="p-3">配置复杂度</th>
+                <th class="p-3">评测组推荐指数</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 bg-slate-950/60 font-mono">
+              <tr class="hover:bg-slate-900/40">
+                <td class="p-3 font-semibold text-white font-sans">TUN 虚拟网卡内核接管 (推荐)</td>
+                <td class="p-3 text-emerald-400 font-sans">极高 (强加密无泄漏)</td>
+                <td class="p-3 text-emerald-400">18 - 25 ms (满速)</td>
+                <td class="p-3 text-emerald-400 font-sans">极简 (一键开关)</td>
+                <td class="p-3 text-emerald-400">⭐⭐⭐⭐⭐ (首推)</td>
+              </tr>
+              <tr class="hover:bg-slate-900/40">
+                <td class="p-3 font-semibold text-white font-sans">Telegram 内置 SOCKS5 代理</td>
+                <td class="p-3 text-emerald-400 font-sans">高 (本地回环通信)</td>
+                <td class="p-3 text-emerald-400">20 - 30 ms (快速)</td>
+                <td class="p-3 text-cyan-400 font-sans">中等 (需填端口)</td>
+                <td class="p-3 text-cyan-400">⭐⭐⭐⭐</td>
+              </tr>
+              <tr class="hover:bg-slate-900/40">
+                <td class="p-3 font-semibold text-white font-sans">第三方公共 MTProto 代理</td>
+                <td class="p-3 text-rose-400 font-sans">危险 (存在中间人广告劫持)</td>
+                <td class="p-3 text-amber-400">200 - 450 ms (拥塞)</td>
+                <td class="p-3 text-slate-400 font-sans">点击链接直接连接</td>
+                <td class="p-3 text-rose-400 font-sans">❌ 严禁使用</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>三、电报账号防封与隐私防护三大铁律</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-4">
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <span class="text-xs font-bold text-cyan-400 block mb-1">1. 开启两步验证密码</span>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              在“隐私与安全 -> 两步验证”中设置独立密码，防止他人通过手机验证码暴力劫持。
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <span class="text-xs font-bold text-emerald-400 block mb-1">2. 隐藏手机号码</span>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              将“谁能看到我的手机号码”设置为【不允许任何人】，防止陌生人在社工库中比对您的真实身份。
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/70 border border-white/5">
+            <span class="text-xs font-bold text-amber-400 block mb-1">3. 固定专线出口地区</span>
+            <p class="text-xs text-slate-300 leading-relaxed m-0">
+              避免在数分钟内频繁切换欧美跨大洲节点，保持稳定的亚太出口能够极大降低账号异地风控概率。
+            </p>
+          </div>
+        </div>
+      </section>
     </article>
 
-    <FAQ items={faqs} title="Telegram 连接问答" />
+    <FAQ items={faqs} title="Telegram 常见连接与风控问题解答" />
 
     <NextStep
       level="level2"
       title="需要稳定不掉线的 Telegram 专线节点？"
-      description="查看 2026 稳定机场排行榜，享受低延迟电报收发体验。"
+      description="查看 2026 稳定机场排行榜，享受亚太低时延直达 DC5 数据中心、大文件秒级下载的畅快电报体验。"
       primaryLink={{ text: '查看 2026 稳定机场排行榜', url: '/airport-ranking/' }}
       secondaryLink={{ text: '查看 Clash Verge 配置教程', url: '/tutorial/clash-verge/' }}
     />

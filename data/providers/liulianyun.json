@@ -1,0 +1,85 @@
+{
+  "id": "liulianyun",
+  "name": "榴莲云",
+  "slug": "liulianyun",
+  "tagline": "5.6元/月起步 · 60GB 亲民配额 · 轻松破墙轻量备选",
+  "establishedYear": 2023,
+  "officialUrl": "https://qwerty.liulianyunaff.com#/?code=hS5pvbfE",
+  "couponCode": "ll88",
+  "discount": "专属特惠码",
+  "pricing": {
+    "monthlyStarting": 5.6,
+    "currency": "¥",
+    "billingCycle": "5.6 元/月，60GB 起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "多线优化中转"
+  ],
+  "protocols": [
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "基础支持",
+    "disney": "支持",
+    "youtube4k": "流畅 1080P/4K"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "基础支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.40%",
+    "averageLatency": "48ms",
+    "peakSpeed": "410 Mbps",
+    "packetLoss": "< 0.35%"
+  },
+  "plans": [
+    {
+      "name": "榴莲尝鲜月付",
+      "price": "¥5.6/月",
+      "traffic": "60 GB/月",
+      "speed": "多线优化中转"
+    },
+    {
+      "name": "榴莲主力月付",
+      "price": "¥14/月",
+      "traffic": "160 GB/月",
+      "speed": "优质专线"
+    }
+  ],
+  "bestFor": [
+    "超低预算日常浏览",
+    "外贸邮件查阅备用"
+  ],
+  "notFor": [
+    "4K/8K 极限下载与无死角稳定诉求"
+  ],
+  "pros": [
+    "单月 5.6 元极低试错成本",
+    "操作简便导入快速"
+  ],
+  "cons": [
+    "协议资料官方暂未公开详尽白皮书"
+  ],
+  "runawayRisk": "中偏低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "品牌资料显示最低门槛 5.6元/月，建议首选月付。"
+}

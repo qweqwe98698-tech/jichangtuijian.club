@@ -1,0 +1,87 @@
+{
+  "id": "lingdongyun",
+  "name": "灵动云",
+  "slug": "lingdongyun",
+  "tagline": "历史多区域节点记录 · 弹性计费 · 备用出海选项",
+  "establishedYear": 2022,
+  "officialUrl": "https://ldy01.lingdongyunaff.com/#/?code=ldy88",
+  "couponCode": "ldy88",
+  "discount": "专属特惠直达",
+  "pricing": {
+    "monthlyStarting": 18,
+    "currency": "¥",
+    "billingCycle": "18 元/月起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "BGP 专线",
+    "多出口中转"
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "VLESS"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "台湾",
+    "新加坡",
+    "美国",
+    "英国"
+  ],
+  "streamingSupport": {
+    "netflix": "支持",
+    "disney": "支持",
+    "youtube4k": "4K 支持"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.70%",
+    "averageLatency": "36ms",
+    "peakSpeed": "490 Mbps",
+    "packetLoss": "< 0.16%"
+  },
+  "plans": [
+    {
+      "name": "灵动标准版",
+      "price": "¥18/月",
+      "traffic": "110 GB/月",
+      "speed": "BGP 专线"
+    },
+    {
+      "name": "灵动豪华版",
+      "price": "¥35/月",
+      "traffic": "240 GB/月",
+      "speed": "千兆专线"
+    }
+  ],
+  "bestFor": [
+    "常规网页浏览与文献下载"
+  ],
+  "notFor": [
+    "极低预算几元党"
+  ],
+  "pros": [
+    "节点地区分布均衡"
+  ],
+  "cons": [
+    "市场声量一般，排位靠后"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "排名靠后展示，历史数据归档参考。"
+}

@@ -1,0 +1,97 @@
+{
+  "id": "baiyueguang",
+  "name": "白月光",
+  "slug": "baiyueguang",
+  "tagline": "季付 66元入门 · 108个海量节点覆盖 · 79个细分地区",
+  "establishedYear": 2022,
+  "officialUrl": "https://sibker.com/register?invite_code=gg6puAId",
+  "couponCode": "gg6puAId",
+  "discount": "邀请注册优惠直达",
+  "pricing": {
+    "monthlyStarting": 22,
+    "currency": "¥",
+    "billingCycle": "季付 ¥66 起 (折合 22 元/月，100GB/月)"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "多国家优化中转",
+    "海量冷门出口覆盖"
+  ],
+  "protocols": [
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN",
+    "sing-box"
+  ],
+  "regions": [
+    "香港",
+    "美国",
+    "日本",
+    "台湾",
+    "新加坡",
+    "越南",
+    "泰国",
+    "印度"
+  ],
+  "streamingSupport": {
+    "netflix": "部分节点支持",
+    "disney": "支持",
+    "youtube4k": "4K 支持"
+  },
+  "aiSupport": {
+    "chatgpt": "部分可用",
+    "claude": "基础支持",
+    "gemini": "部分可用"
+  },
+  "testData": {
+    "sla": "99.50%",
+    "averageLatency": "60ms",
+    "peakSpeed": "410 Mbps",
+    "packetLoss": "< 0.25%"
+  },
+  "plans": [
+    {
+      "name": "小包季付",
+      "price": "¥66/季 (折合 22元/月)",
+      "traffic": "100 GB/月",
+      "speed": "多国家优化中转"
+    },
+    {
+      "name": "中包季付",
+      "price": "¥126/季 (折合 42元/月)",
+      "traffic": "250 GB/月",
+      "speed": "多国家优化中转"
+    },
+    {
+      "name": "大包季付",
+      "price": "¥156/季 (折合 52元/月)",
+      "traffic": "400 GB/月",
+      "speed": "多国家优化中转"
+    }
+  ],
+  "bestFor": [
+    "需要东南亚与冷门小众地区 IP 的用户",
+    "多国节点测试"
+  ],
+  "notFor": [
+    "希望按单月 10 元以内支付的用户"
+  ],
+  "pros": [
+    "一次性支出门槛相对不高 (季付66元)",
+    "节点涉及 79 个地区名目，覆盖面极广"
+  ],
+  "cons": [
+    "节点速度中等偏平缓，历史测试以季付为主"
+  ],
+  "runawayRisk": "中偏低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "数据基于 2026-07-17 历史测速归档，建议在官网重新核验最新价格。"
+}

@@ -1,0 +1,86 @@
+{
+  "id": "edgenova",
+  "name": "EdgeNova",
+  "slug": "edgenova",
+  "tagline": "边缘节点加速 · 现代协议适配 · 历史技术选型",
+  "establishedYear": 2023,
+  "officialUrl": "https://en01.edgenovaaff.com/#/?code=en88",
+  "couponCode": "en88",
+  "discount": "专属特惠直达",
+  "pricing": {
+    "monthlyStarting": 25,
+    "currency": "¥",
+    "billingCycle": "25 元/月起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "Anycast 边缘加速",
+    "专线出口"
+  ],
+  "protocols": [
+    "VLESS",
+    "Trojan"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "sing-box"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国",
+    "德国"
+  ],
+  "streamingSupport": {
+    "netflix": "支持",
+    "disney": "支持",
+    "youtube4k": "4K 支持"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.75%",
+    "averageLatency": "33ms",
+    "peakSpeed": "510 Mbps",
+    "packetLoss": "< 0.14%"
+  },
+  "plans": [
+    {
+      "name": "EdgeNova 基础方案",
+      "price": "¥25/月",
+      "traffic": "120 GB/月",
+      "speed": "边缘加速专线"
+    },
+    {
+      "name": "EdgeNova 高级方案",
+      "price": "¥48/月",
+      "traffic": "260 GB/月",
+      "speed": "千兆专线"
+    }
+  ],
+  "bestFor": [
+    "看重 Anycast 边缘网络架构的用户"
+  ],
+  "notFor": [
+    "10元以内预算用户"
+  ],
+  "pros": [
+    "协议现代，连接握手速度快"
+  ],
+  "cons": [
+    "资费属于中高端，排位靠后参考"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "排名靠后展示，历史数据收录参考。"
+}

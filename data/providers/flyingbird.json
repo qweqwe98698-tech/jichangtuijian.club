@@ -1,0 +1,87 @@
+{
+  "id": "flyingbird",
+  "name": "FlyingBird",
+  "slug": "flyingbird",
+  "tagline": "飞鸟加速 · 历史专线记录 · 稳定出海选型参考",
+  "establishedYear": 2022,
+  "officialUrl": "https://fba01.flyingbirdvipaff.com/#/?code=8i8p",
+  "couponCode": "8i8p",
+  "discount": "注册特惠优惠直达",
+  "pricing": {
+    "monthlyStarting": 25,
+    "currency": "¥",
+    "billingCycle": "25 元/月起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "专线中转",
+    "BGP 入口"
+  ],
+  "protocols": [
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "台湾",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "支持",
+    "disney": "支持",
+    "youtube4k": "4K 秒开"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.80%",
+    "averageLatency": "35ms",
+    "peakSpeed": "520 Mbps",
+    "packetLoss": "< 0.15%"
+  },
+  "plans": [
+    {
+      "name": "FlyingBird 基础方案",
+      "price": "¥25/月",
+      "traffic": "120 GB/月",
+      "speed": "专线中转"
+    },
+    {
+      "name": "FlyingBird 高级方案",
+      "price": "¥48/月",
+      "traffic": "260 GB/月",
+      "speed": "优质专线"
+    }
+  ],
+  "bestFor": [
+    "老用户迁移备选",
+    "常规多媒体浏览"
+  ],
+  "notFor": [
+    "寻找超低价几元套餐的用户"
+  ],
+  "pros": [
+    "网络连通率高",
+    "多端兼容稳定"
+  ],
+  "cons": [
+    "最低价格较普通平价机场略高"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "排名靠后展示，数据源于历史项目归档，请以服务商官网最新状态为准。"
+}

@@ -1,0 +1,85 @@
+{
+  "id": "qingyunti",
+  "name": "青云梯",
+  "slug": "qingyunti",
+  "tagline": "平价多节点 · 历史科学上网收录 · 备选网络方案",
+  "establishedYear": 2022,
+  "officialUrl": "https://qyt01.qingyuntiaff.com/#/?code=qy88",
+  "couponCode": "qy88",
+  "discount": "专属优惠直达",
+  "pricing": {
+    "monthlyStarting": 16,
+    "currency": "¥",
+    "billingCycle": "16 元/月起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "优质隧道",
+    "BGP 调度"
+  ],
+  "protocols": [
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "台湾",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "支持",
+    "disney": "支持",
+    "youtube4k": "4K 支持"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.65%",
+    "averageLatency": "37ms",
+    "peakSpeed": "470 Mbps",
+    "packetLoss": "< 0.18%"
+  },
+  "plans": [
+    {
+      "name": "青云轻量月付",
+      "price": "¥16/月",
+      "traffic": "100 GB/月",
+      "speed": "优质隧道"
+    },
+    {
+      "name": "青云标准月付",
+      "price": "¥30/月",
+      "traffic": "220 GB/月",
+      "speed": "高速隧道"
+    }
+  ],
+  "bestFor": [
+    "轻度日常科学上网备用"
+  ],
+  "notFor": [
+    "企业高要求严苛低延迟场景"
+  ],
+  "pros": [
+    "入门容易，客户端兼容完备"
+  ],
+  "cons": [
+    "特色不鲜明，排位靠后参考"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "排名靠后展示，历史数据收录参考。"
+}

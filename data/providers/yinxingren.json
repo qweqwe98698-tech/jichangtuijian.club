@@ -1,0 +1,89 @@
+{
+  "id": "yinxingren",
+  "name": "隐形人",
+  "slug": "yinxingren",
+  "tagline": "60+ 节点详实清单 · 品牌宣称1小时修复承诺 · 专线自研架构",
+  "establishedYear": 2022,
+  "officialUrl": "https://yinxingren1.invisibleaff.com/#/?code=kcyEeoJT",
+  "couponCode": "yxr888",
+  "discount": "专属特惠码",
+  "pricing": {
+    "monthlyStarting": 18,
+    "currency": "¥",
+    "billingCycle": "18 元/月起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "专线中转",
+    "多地区冗余专线"
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "自研专线协议"
+  ],
+  "clients": [
+    "自研客户端专属"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "台湾",
+    "新加坡",
+    "美国",
+    "英国",
+    "德国",
+    "韩国"
+  ],
+  "streamingSupport": {
+    "netflix": "品牌声称完美解锁",
+    "disney": "品牌声称完美解锁",
+    "youtube4k": "4K 秒开"
+  },
+  "aiSupport": {
+    "chatgpt": "品牌声称完美解锁",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.85%",
+    "averageLatency": "30ms",
+    "peakSpeed": "640 Mbps",
+    "packetLoss": "< 0.12%"
+  },
+  "plans": [
+    {
+      "name": "隐形人标准月付",
+      "price": "¥18/月",
+      "traffic": "110 GB/月",
+      "speed": "多地区冗余专线"
+    },
+    {
+      "name": "隐形人豪华月付",
+      "price": "¥36/月",
+      "traffic": "240 GB/月",
+      "speed": "千兆专线"
+    }
+  ],
+  "bestFor": [
+    "注重客服快速故障排查的用户",
+    "偏好专属客户端开箱即用"
+  ],
+  "notFor": [
+    "必须使用 Clash / Shadowrocket 等第三方通用订阅的用户"
+  ],
+  "pros": [
+    "60+ 丰富节点清单公示",
+    "官方宣称故障 1 小时响应修复机制"
+  ],
+  "cons": [
+    "不支持第三方通用订阅导入，需使用官方客户端"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "品牌资料显示「1小时修复承诺」与「完美解锁」，为官方单方承诺，请结合实际网络验证。"
+}

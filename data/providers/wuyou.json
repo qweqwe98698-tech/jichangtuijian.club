@@ -1,0 +1,118 @@
+{
+  "id": "wuyou",
+  "name": "无忧链接",
+  "slug": "wuyou",
+  "tagline": "免转换原生全协议订阅 · 6元轻量起步 · 拥有测速与解锁双实测图谱",
+  "establishedYear": 2022,
+  "officialUrl": "https://wep01.worryfreeaff.com/#/?code=4ZoSbLdL",
+  "couponCode": "wuyou666",
+  "discount": "专属特惠优惠码",
+  "pricing": {
+    "monthlyStarting": 6,
+    "currency": "¥",
+    "billingCycle": "6 元/月轻量套餐起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "专线中转",
+    "多线低延迟智能路由"
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "Trojan",
+    "VLESS"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "sing-box",
+    "v2rayN"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "台湾",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "全区原生解锁",
+    "disney": "支持解锁",
+    "youtube4k": "4K 秒开"
+  },
+  "aiSupport": {
+    "chatgpt": "官方原生 IP 解锁",
+    "claude": "纯净接入",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.90%",
+    "averageLatency": "24ms",
+    "peakSpeed": "680 Mbps",
+    "packetLoss": "< 0.08%"
+  },
+  "plans": [
+    {
+      "name": "无忧轻量入门版",
+      "price": "¥6/月",
+      "traffic": "50 GB/月",
+      "speed": "专线中转"
+    },
+    {
+      "name": "无忧标准主力版",
+      "price": "¥15/月",
+      "traffic": "120 GB/月",
+      "speed": "千兆专线"
+    },
+    {
+      "name": "无忧豪华旗舰版",
+      "price": "¥30/月",
+      "traffic": "280 GB/月",
+      "speed": "高速低延迟通道"
+    }
+  ],
+  "bestFor": [
+    "小白用户一键导入（无需订阅转换）",
+    "小火箭与 Clash 用户",
+    "双实测图验证高可靠需求"
+  ],
+  "notFor": [
+    "企业级金融定制内网专线"
+  ],
+  "pros": [
+    "后台直出原生订阅格式，免去第三方转换泄漏隐私风险",
+    "6 元起步门槛极低，亲民易用",
+    "同时拥有测速原图与流媒体/AI 解锁实测原图双凭证"
+  ],
+  "cons": [
+    "6 元轻量版在高峰期单节点偶有带宽限制"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "verified",
+  "measuredEvidence": {
+    "file": "/images/speedtests/wuyou-speedtest.jpg",
+    "testedAt": "2026-08-11T14:32:56+08:00",
+    "protocolDisplayed": "Shadowsocks",
+    "toolFamily": "MAI-TEST-BOT 2.0.0-dev",
+    "dateConfidence": "visible-in-image"
+  },
+  "unlockEvidence": [
+    {
+      "file": "/images/unlocks/wuyou-unlock.jpg",
+      "testedAt": "2026-09-07T12:51:59+08:00",
+      "title": "无忧链接流媒体与 AI 解锁官方核验证明",
+      "platforms": [
+        "ChatGPT",
+        "Claude",
+        "Netflix",
+        "Disney+",
+        "YouTube Premium"
+      ]
+    }
+  ]
+}

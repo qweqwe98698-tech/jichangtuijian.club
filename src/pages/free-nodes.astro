@@ -23,8 +23,8 @@ const faqs = [
 ---
 
 <BaseLayout
-  title="2026 每日动态免费节点订阅池：Clash / 小火箭 / v2rayN 公益节点每日更新"
-  description="2026 每日自动更新的公益免费节点订阅池。提供香港、日本、新加坡、美国等全球优质 VLESS、VMess、Shadowsocks 与 Hysteria2 节点，一键复制 Clash 订阅链接与图文配置。"
+  title="2026 小火箭免费节点与 Clash 代理节点池：Shadowrockets / v2rayN 免费网络节点每日更新"
+  description="【2026每日动态更新】小火箭免费节点与 Clash 代理节点免费订阅池。覆盖香港、日本、美国等高速免费网络节点，支持 Shadowrocket (shadowrockets) 与 v2rayN 一键导入、自动清洗失效节点与测速。"
   pubDate="2026-08-16"
   updatedDate="2026-08-18"
 >
@@ -34,20 +34,20 @@ const faqs = [
     <header class="max-w-3xl mb-8">
       <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest block mb-2">FREE PUBLIC NODES MATRIX</span>
       <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-        2026 每日动态公益节点订阅池
+        2026 小火箭免费节点与 Clash 代理节点订阅池
       </h1>
       <p class="text-slate-300 text-sm sm:text-base mt-2 leading-relaxed">
-        为临时查阅资料、开源学习与应急备用提供每日更新的高可用公共代理节点。支持 Clash Verge、小火箭与 v2rayN 一键导入。
+        为临时查阅资料、开源学习与应急备用提供每日更新的高可用公共代理节点。覆盖小火箭节点、Clash 免费代理节点、Shadowrockets 协议与 v2rayN 一键导入。
       </p>
     </header>
 
     <QuickAnswer
       answerType="how"
-      summary="获取与使用免费订阅三步法：1. 复制本页上方的通用 Clash / v2ray 订阅链接；2. 打开客户端点击“从 URL 导入配置”并粘贴链接；3. 开启系统代理即可联网。推荐将更新周期设置为 12 小时以自动获取每日最新可用节点。"
+      summary="获取与导入免费小火箭节点与 Clash 代理节点三步法：1. 复制本页动态维护的通用订阅链接；2. 在 Shadowrocket（小火箭）点击右上角“+”选择 Subscribe，或在 Clash Verge 中添加订阅并更新；3. 开启代理即可连通。推荐设置 12 小时自动更新以剔除失效节点。"
       points={[
-        '节点协议：涵盖 VLESS、VMess、Shadowsocks 与 Hysteria2 协议',
-        '覆盖地区：香港、日本东京、新加坡、美国西海岸',
-        '安全建议：仅供临时查阅资料，严禁在免费节点下进行网银或支付操作',
+        '节点协议：涵盖 VLESS、VMess、Shadowsocks (shadowrockets) 与 Hysteria2 协议',
+        '覆盖地区：香港、日本东京、新加坡、美国西海岸高带宽节点',
+        '安全建议：仅供临时查阅资料，严禁在免费网络节点下进行网银或敏感支付操作',
       ]}
     />
 
@@ -83,11 +83,15 @@ const faqs = [
           </div>
 
           <div class="p-4 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
-            <h3 class="text-sm font-bold text-white">Shadowrocket (苹果手机)</h3>
+            <h3 class="text-sm font-bold text-white">Shadowrocket / 小火箭 (iOS)</h3>
             <p class="text-xs text-slate-300">
               右上角点击【+】号 ➔ 类型选择【Subscribe】➔ URL 处粘贴订阅链接 ➔ 点击右上角【完成】保存并拉取。
             </p>
-            <a href="/tutorial/shadowrocket/" class="text-[11px] text-cyan-400 font-bold block pt-1 hover:underline">查看完整教程 →</a>
+            <div class="flex items-center gap-2 pt-1 text-[11px]">
+              <a href="/tutorial/shadowrocket/" class="text-cyan-400 font-bold hover:underline">小火箭教程 →</a>
+              <span class="text-slate-600">•</span>
+              <a href="/apple-id/" class="text-emerald-400 font-bold hover:underline">免费小火箭ID →</a>
+            </div>
           </div>
 
           <div class="p-4 rounded-xl bg-slate-900/80 border border-white/10 space-y-2">
@@ -98,6 +102,62 @@ const faqs = [
             <a href="/tutorial/v2rayn/" class="text-[11px] text-cyan-400 font-bold block pt-1 hover:underline">查看完整教程 →</a>
           </div>
         </div>
+      </section>
+
+      <section>
+        <h2>三、小火箭节点与 Clash 免费代理常见故障排除</h2>
+        <div class="space-y-3 text-sm text-slate-300">
+          <p>
+            很多用户导入<strong>小火箭节点</strong>或 <strong>Clash 免费代理节点</strong>后，发现节点测速全部显示 <code>TIMEOUT</code> 或延迟过高（500ms+），通常由以下三类原因导致：
+          </p>
+          <ul class="space-y-1.5 pl-5 list-disc text-xs text-slate-300">
+            <li><strong>公共 IP 被动态封锁</strong>：免费网络节点由于万人共用，海外落地 IP 极易被 GFW 探测列入阻断黑名单。遇到此类情况，直接重新在客户端内执行【更新订阅】即可拉取最新清洗后的 IP 池；</li>
+            <li><strong>系统时间未同步</strong>：VLESS、VMess 和 Shadowsocks 协议依赖严格的 TLS 时间戳握手，手机或电脑系统时间与标准北京时间偏差超过 90 秒即会彻底无法连通；</li>
+            <li><strong>分流规则冲突</strong>：若全局路由被误设为全局代理（Proxy），本地 DNS 请求被劫持可能导致网络阻塞。建议在 Shadowrocket 保持【配置（Config）】模式，在 Clash Verge 开启【Rule】分流模式。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>四、免费网络节点 vs 商业级稳定专线（实测指标对比）</h2>
+        <div class="overflow-x-auto my-4">
+          <table class="w-full text-left text-xs border border-white/10 rounded-xl overflow-hidden">
+            <thead class="bg-slate-900 text-cyan-300 font-semibold border-b border-white/10">
+              <tr>
+                <th class="p-3">对比维度</th>
+                <th class="p-3">公共免费网络节点</th>
+                <th class="p-3">企业级 IEPL / IPLC 稳定专线</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 bg-slate-950/60">
+              <tr>
+                <td class="p-3 font-medium text-white">晚高峰可用率 (SLA)</td>
+                <td class="p-3 text-rose-400 font-mono">50% - 70% (丢包频发)</td>
+                <td class="p-3 text-emerald-400 font-mono font-bold">99.95%+ (0 丢包)</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium text-white">网络平均延迟</td>
+                <td class="p-3 text-slate-300 font-mono">180ms - 450ms+</td>
+                <td class="p-3 text-cyan-400 font-mono font-bold">12ms - 35ms (深港/沪日物理专线)</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium text-white">ChatGPT / Claude 解锁</td>
+                <td class="p-3 text-rose-400">极易被判 1020 拒绝访问或封号</td>
+                <td class="p-3 text-emerald-400">100% 原生纯净住宅/商业 IP，稳定秒开</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium text-white">推荐使用场景</td>
+                <td class="p-3 text-slate-300">临时应急、学术查资料、备用容灾</td>
+                <td class="p-3 text-emerald-400 font-semibold">远程办公、外贸出海、4K 视频、AI 编程主力</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-slate-400">
+          💡 如果您的日常工作依赖稳定的跨境网络，强烈建议搭配一条平价商业专线作为主力，免费节点仅作为备用。推荐查阅我们的
+          <a href="/shadowrocket-airport/" class="text-cyan-400 hover:underline font-semibold">小火箭专用机场推荐</a> 与
+          <a href="/stable-airport/" class="text-cyan-400 hover:underline font-semibold">稳定专线机场选型指南</a>。
+        </p>
       </section>
     </article>
 

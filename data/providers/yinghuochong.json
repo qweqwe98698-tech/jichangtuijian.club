@@ -1,0 +1,84 @@
+{
+  "id": "yinghuochong",
+  "name": "萤火虫",
+  "slug": "yinghuochong",
+  "tagline": "轻量平价中转 · 备用多线 · 历史项目归档",
+  "establishedYear": 2022,
+  "officialUrl": "https://yhc01.fireflycloudsite.com/#/?code=yhc88",
+  "couponCode": "yhc88",
+  "discount": "专属优惠码",
+  "pricing": {
+    "monthlyStarting": 15,
+    "currency": "¥",
+    "billingCycle": "15 元/月起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "多线优化中转"
+  ],
+  "protocols": [
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "支持",
+    "disney": "支持",
+    "youtube4k": "1080P/4K"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.55%",
+    "averageLatency": "41ms",
+    "peakSpeed": "440 Mbps",
+    "packetLoss": "< 0.22%"
+  },
+  "plans": [
+    {
+      "name": "萤火微光月付",
+      "price": "¥15/月",
+      "traffic": "90 GB/月",
+      "speed": "优化中转"
+    },
+    {
+      "name": "萤火明亮月付",
+      "price": "¥28/月",
+      "traffic": "200 GB/月",
+      "speed": "高速中转"
+    }
+  ],
+  "bestFor": [
+    "备用日常浏览",
+    "外贸邮件查阅"
+  ],
+  "notFor": [
+    "重度 4K 蓝光流媒体与低延迟游戏"
+  ],
+  "pros": [
+    "使用简单，价格适中"
+  ],
+  "cons": [
+    "排位靠后，节点池规模一般"
+  ],
+  "runawayRisk": "中偏低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "排名靠后展示，历史数据收录参考。"
+}

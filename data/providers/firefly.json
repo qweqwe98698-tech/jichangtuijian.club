@@ -1,0 +1,93 @@
+{
+  "id": "firefly",
+  "name": "Firefly",
+  "slug": "firefly",
+  "tagline": "纯正 IPLC 专线 · 6档灵活套餐 · 官网国内直连免翻墙访问",
+  "establishedYear": 2022,
+  "officialUrl": "https://vip02.fireflyaff.com/#/?code=2n7VURre",
+  "couponCode": "firefly",
+  "discount": "官方优惠码直达",
+  "pricing": {
+    "monthlyStarting": 18,
+    "currency": "¥",
+    "billingCycle": "18 元/月起，提供 6 档跨度套餐"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "纯 IPLC 物理专线",
+    "免翻墙直连官网入口"
+  ],
+  "protocols": [
+    "Shadowsocks"
+  ],
+  "clients": [
+    "全平台第三方主流代理客户端"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国",
+    "韩国"
+  ],
+  "streamingSupport": {
+    "netflix": "全区解锁",
+    "disney": "支持解锁",
+    "youtube4k": "4K 秒开"
+  },
+  "aiSupport": {
+    "chatgpt": "纯净 IP 支持",
+    "claude": "稳定解锁",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.95%",
+    "averageLatency": "19ms",
+    "peakSpeed": "810 Mbps",
+    "packetLoss": "< 0.05%"
+  },
+  "plans": [
+    {
+      "name": "Firefly 基础入门",
+      "price": "¥18/月",
+      "traffic": "100 GB/月",
+      "speed": "IPLC 纯专线"
+    },
+    {
+      "name": "Firefly 进阶主力",
+      "price": "¥36/月",
+      "traffic": "220 GB/月",
+      "speed": "IPLC 纯专线"
+    },
+    {
+      "name": "Firefly 尊享旗舰",
+      "price": "¥72/月",
+      "traffic": "500 GB/月",
+      "speed": "IPLC 纯专线"
+    }
+  ],
+  "bestFor": [
+    "注重出海合规与稳定免翻直达",
+    "严苛低延迟网络游戏",
+    "商务跨国邮件办公"
+  ],
+  "notFor": [
+    "寻找几元钱廉价按量垃圾节点的用户"
+  ],
+  "pros": [
+    "全线部署 IPLC 纯物理专线，杜绝敏感期封锁",
+    "官网国内网络直达，无需翻墙即可续费更新订阅",
+    "6 档套餐划分细致，满足不同流量需求"
+  ],
+  "cons": [
+    "品牌声称不限速，实际吞吐受各机房物理带宽约束"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "品牌资料显示全 IPLC 架构与免翻墙访问官网特性，建议首选月付测试。"
+}

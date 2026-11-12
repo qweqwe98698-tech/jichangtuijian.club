@@ -1,0 +1,97 @@
+{
+  "id": "wgetcloud",
+  "name": "WgetCloud",
+  "slug": "wgetcloud",
+  "tagline": "高端企业级专线 · 历史多节点全覆盖 · 季付门槛",
+  "establishedYear": 2021,
+  "officialUrl": "https://invite.wgetcloud.ltd/auth/register?code=VLG2xb",
+  "couponCode": "VLG2xb",
+  "discount": "邀请注册优惠直达",
+  "pricing": {
+    "monthlyStarting": 99,
+    "currency": "¥",
+    "billingCycle": "季付 ¥297 起 (折合 99 元/月)"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "企业级物理专线",
+    "全球高质量 BGP 节点"
+  ],
+  "protocols": [
+    "Trojan"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "Quantumult X",
+    "Surge"
+  ],
+  "regions": [
+    "香港",
+    "台湾",
+    "新加坡",
+    "日本",
+    "美国",
+    "韩国",
+    "澳大利亚",
+    "英国"
+  ],
+  "streamingSupport": {
+    "netflix": "部分节点支持 (历史实测)",
+    "disney": "部分节点支持",
+    "youtube4k": "4K 秒开"
+  },
+  "aiSupport": {
+    "chatgpt": "部分节点可用",
+    "claude": "专线支持",
+    "gemini": "部分可用"
+  },
+  "testData": {
+    "sla": "99.95%",
+    "averageLatency": "25.9ms",
+    "peakSpeed": "462 Mbps",
+    "packetLoss": "< 0.05%"
+  },
+  "plans": [
+    {
+      "name": "基础专线服务",
+      "price": "¥297/季 (折合 99元/月)",
+      "traffic": "230 GB/月",
+      "speed": "企业级专线"
+    },
+    {
+      "name": "优质专线服务",
+      "price": "¥327/季 (折合 109元/月)",
+      "traffic": "250 GB/月",
+      "speed": "企业级专线"
+    },
+    {
+      "name": "精品专线服务",
+      "price": "¥357/季 (折合 119元/月)",
+      "traffic": "270 GB/月",
+      "speed": "企业级专线"
+    }
+  ],
+  "bestFor": [
+    "企业高管与高端跨境商务",
+    "对价格不敏感且追求极致稳定的人群"
+  ],
+  "notFor": [
+    "预算低于 50 元/月的个人普通用户"
+  ],
+  "pros": [
+    "历史测速 59 个节点全部可用，亚洲近端延迟极低 (香港 25.9ms)",
+    "多地区平均下载超 50 MB/s"
+  ],
+  "cons": [
+    "价格昂贵，无单月直接月付方案，最低季付 297 元起步"
+  ],
+  "runawayRisk": "极低 (高端老牌)",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "历史测速数据基于 2026-05-02 资料归档，当前暂无单月月付选项，请在官网确认最新套餐。"
+}

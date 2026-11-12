@@ -8,6 +8,14 @@ import FAQ from '../../components/FAQ.astro';
 
 const faqs = [
   {
+    question: '小火箭共享 ID 账号网站怎么安全登录下载？',
+    answer: '打开 iPhone【App Store】➔ 点击右上角头像 ➔ 滑到最底部点击【退出登录】➔ 输入本站共享池提供的小火箭 ID 账号与密码登录 ➔ 提示双重验证时点击“其他选项-不升级” ➔ 在【已购项目】中搜索 Shadowrocket 下载 ➔ 下载完成后立即退出共享账号。切勿在系统【设置-iCloud】中登录他人共享账号，防止设备被锁！',
+  },
+  {
+    question: '美区 Apple ID 共享账号提示“账号锁定”或需要双重验证怎么办？',
+    answer: '公共共享账号由于登录人数过多，苹果系统偶会触发安全风控。本站每日维护检测并轮换更新可用账号；遇到验证码时只需刷新页面尝试列表中的备用 ID，或者直接按照本页下方的四步免信用卡教程，5 分钟自建一个个人永久独享美区账号。',
+  },
+  {
     question: '注册美区 Apple ID 必须绑定海外信用卡吗？',
     answer: '完全不需要！只要在苹果官网注册页面将国家和地区直接选择为“美国”，付款方式选择“None（无）”，并填入一个合法的免税州真实街道账单地址即可。下载付费 App（如 Shadowrocket）时，直接使用礼品卡充值余额扣费。',
   },
@@ -23,20 +31,20 @@ const faqs = [
 ---
 
 <BaseLayout
-  title="美区 Apple ID 免费共享池与注册教程：2026 每日更新已购小火箭公共账号与免信用卡注册指南"
-  description="2026 最新美区 / 港区 / 日区免费公共 Apple ID 账号实时共享池（已购 Shadowrocket 小火箭与各类生产力工具）。同时提供 100% 成功免国外信用卡自建注册保姆级教程。"
+  title="小火箭共享 ID 账号网站：2026 美区 Apple ID 免费共享池与小火箭 ID 下载保姆级教程"
+  description="【2026每日更新】小火箭共享 ID 账号网站与免费美区 Apple ID 共享池。提供已购 Shadowrocket 小火箭的海外公共 ID，附免国外信用卡自建专属美区账号保姆级教程与防锁机安全指南。"
   pubDate="2026-08-16"
   updatedDate="2026-08-18"
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <Breadcrumb items={[{ title: '美区 Apple ID 共享与教程' }]} />
+    <Breadcrumb items={[{ title: '小火箭共享 ID 账号与美区教程' }]} />
 
     <header class="mb-8">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3">
-        <span>每日动态解锁 · 已购 Shadowrocket · 免费自建教程</span>
+        <span>小火箭共享 ID · 美区 Apple ID 共享 · 每日动态更新</span>
       </div>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        2026 免费美区 Apple ID 实时共享池与免信用卡注册完全指南
+        2026 小火箭共享 ID 账号与免费美区 Apple ID 实时共享池
       </h1>
       <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
         <span>更新时间：2026年8月</span>
@@ -49,11 +57,11 @@ const faqs = [
 
     <QuickAnswer
       answerType="how"
-      summary="获取美区 Apple ID 两种方案：1.【直接免费使用】：直接复制下方共享池中的美区已购账号，在 App Store 登录下载 Shadowrocket；2.【自建永久独享账号】：按后文四步法在苹果官网免信用卡注册专属美区账号，终身不受密码修改或锁定困扰。"
+      summary="获取小火箭与美区 Apple ID 两种方案：1.【小火箭共享 ID 直接下载】：直接复制下方公共共享池中已购 Shadowrocket 的小火箭 ID，在 App Store 登录下载；2.【自建永久独占账号】：按后文四步法在苹果官网免信用卡注册专属美区账号，终生零锁定风险。"
       points={[
-        '共享账号：提供美区、港区、日区公共账号，每日自动维护测活',
-        '自建独享：中国大陆手机号（+86）完全支持直接注册，账单填俄勒冈免税州',
-        '安全红线：严禁在系统【设置 - iCloud】登录，必须且只能在【App Store】登录',
+        '小火箭共享 ID：提供美区、港区已购小火箭公共账号，每日自动维护测活',
+        '自建独享美区：中国大陆手机号（+86）支持直接注册，账单填俄勒冈免税州',
+        '核心安全红线：严禁在系统【设置 - iCloud】登录，必须且只能在【App Store】登录',
       ]}
     />
 

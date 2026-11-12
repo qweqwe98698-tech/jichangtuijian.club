@@ -22,20 +22,28 @@ const faqs = [
 ---
 
 <BaseLayout
-  title="Shadowrocket 小火箭 iOS 保姆级配置教程：2026 最新下载、订阅导入与分流设置"
-  description="2026 最全 Shadowrocket（小火箭）iPhone / iPad 使用指南。详解美区 Apple ID 获取方式、一键导入机场订阅链接、全局路由配置模式切换与规则分流深度调优。"
+  title="2026 Shadowrocket 小火箭下载与配置保姆级教程：从小火箭共享 ID 到节点订阅导入与分流设置"
+  description="【2026最新】Shadowrocket（小火箭）iPhone/iPad 下载安装与配置完全教程。提供免费美区 Apple ID 与小火箭共享账号获取方法、节点订阅导入、全局路由分流规则与全红超时排查。"
   pubDate="2026-08-16"
-  updatedDate="2026-08-17"
+  updatedDate="2026-08-18"
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <Breadcrumb items={[{ title: '客户端教程', url: '/tutorial/' }, { title: 'Shadowrocket 小火箭教程' }]} />
 
     <header class="mb-8">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3">
-        <span>适用于 iPhone · iPad · Apple TV</span>
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium">
+          适用于 iPhone · iPad · Apple TV
+        </span>
+        <a href="/apple-id/" class="text-xs text-emerald-400 hover:underline font-semibold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+          🍎 免费获取小火箭共享 ID
+        </a>
+        <a href="/free-nodes/" class="text-xs text-cyan-300 hover:underline font-semibold bg-cyan-500/10 px-2.5 py-1 rounded-full border border-cyan-500/20">
+          ⚡ 小火箭免费节点池
+        </a>
       </div>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        Shadowrocket 小火箭 iOS 保姆级配置教程 (2026 最新版)
+        Shadowrocket 小火箭 iOS 下载与配置保姆级教程 (2026 最新版)
       </h1>
       <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
         <span>更新时间：2026年8月</span>
@@ -48,11 +56,11 @@ const faqs = [
 
     <QuickAnswer
       answerType="how"
-      summary="Shadowrocket（俗称小火箭）是 iOS 生态中最强大、最成熟的代理工具。配置四步走：1. 切换美区 Apple ID 下载正版小火箭；2. 复制机场订阅链接并在 App 中点击右上角“+”一键导入；3. 全局路由务必选择为“配置（Config）”；4. 开启顶部连接开关并在系统弹窗中允许安装 VPN 配置。"
+      summary="Shadowrocket（俗称小火箭）是 iOS 生态中最成熟强大的代理工具。四步完整 SOP：1. 通过【美区 Apple ID 共享池】或自建外区账号在 App Store 下载正版小火箭；2. 复制机场订阅链接并在 App 中点击右上角“+”一键导入；3. 全局路由务必保持为“配置（Config）”模式（国内直连、海外代理）；4. 开启顶部连接开关并在系统弹窗中允许安装 VPN 配置。"
       points={[
-        '安全警告：非国区 Apple ID 仅允许在 App Store 中登录，严禁在“设置-iCloud”中登录',
-        '分流模式：务必选择“配置”模式，国内网站直连，海外网站代理',
-        '定期同步：在订阅列表向左滑动点击“更新”，保持最新节点列表',
+        '安全警告：非国区 Apple ID 仅允许在 App Store 中登录，严禁在系统“设置-iCloud”中登录',
+        '分流模式：务必选择“配置”模式，国内微信/淘宝直连秒开，国外服务走节点代理',
+        '定期更新：在订阅列表向左滑动点击“更新”，或者查阅本站每日免费小火箭节点',
       ]}
     />
 

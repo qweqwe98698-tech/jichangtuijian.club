@@ -1,0 +1,89 @@
+{
+  "id": "tiziyun",
+  "name": "梯子云",
+  "slug": "tiziyun",
+  "tagline": "自研全平台客户端 + 一键登录 · 支持通用订阅 · 丰富多线出口",
+  "establishedYear": 2022,
+  "officialUrl": "https://tiziyun3.ladderaff.com/#/?code=7EmnpHs0",
+  "couponCode": "tiziyun",
+  "discount": "官方优惠码",
+  "pricing": {
+    "monthlyStarting": 16,
+    "currency": "¥",
+    "billingCycle": "16 元/月起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "BGP 多线优化专线",
+    "自研链路加速"
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "VLESS"
+  ],
+  "clients": [
+    "自研全平台客户端",
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "台湾",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "品牌声称完美解锁",
+    "disney": "支持解锁",
+    "youtube4k": "4K 秒开"
+  },
+  "aiSupport": {
+    "chatgpt": "品牌声称支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.85%",
+    "averageLatency": "29ms",
+    "peakSpeed": "650 Mbps",
+    "packetLoss": "< 0.12%"
+  },
+  "plans": [
+    {
+      "name": "梯子云入门月付",
+      "price": "¥16/月",
+      "traffic": "100 GB/月",
+      "speed": "BGP 多线专线"
+    },
+    {
+      "name": "梯子云旗舰月付",
+      "price": "¥32/月",
+      "traffic": "220 GB/月",
+      "speed": "千兆专线"
+    }
+  ],
+  "bestFor": [
+    "新手用户（提供自研软件同时兼容通用订阅）",
+    "多设备协同使用"
+  ],
+  "notFor": [
+    "超低预算(<10元)用户"
+  ],
+  "pros": [
+    "自研客户端一键扫码/账号登录，同时开放第三方通用订阅",
+    "连通性好"
+  ],
+  "cons": [
+    "官方口号含「完美解锁」，实际应以本地测试为准"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "品牌资料显示支持全平台客户端一键登录并兼顾通用订阅。"
+}

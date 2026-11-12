@@ -1,0 +1,88 @@
+{
+  "id": "cyberguard",
+  "name": "CyberGuard",
+  "slug": "cyberguard",
+  "tagline": "主打安全加密 · 隐私保护隧道 · 历史数据备档",
+  "establishedYear": 2022,
+  "officialUrl": "https://cga01.cyberguardvipaff.com/#/?code=cg88",
+  "couponCode": "cg88",
+  "discount": "专属优惠直达",
+  "pricing": {
+    "monthlyStarting": 28,
+    "currency": "¥",
+    "billingCycle": "28 元/月起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "高强度加密隧道",
+    "企业级专线出口"
+  ],
+  "protocols": [
+    "Shadowsocks",
+    "Trojan"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "Surge"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "新加坡",
+    "美国",
+    "瑞士"
+  ],
+  "streamingSupport": {
+    "netflix": "部分支持",
+    "disney": "支持",
+    "youtube4k": "4K 支持"
+  },
+  "aiSupport": {
+    "chatgpt": "支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.85%",
+    "averageLatency": "38ms",
+    "peakSpeed": "480 Mbps",
+    "packetLoss": "< 0.12%"
+  },
+  "plans": [
+    {
+      "name": "CyberGuard 隐私基础",
+      "price": "¥28/月",
+      "traffic": "100 GB/月",
+      "speed": "加密专线"
+    },
+    {
+      "name": "CyberGuard 旗舰安全",
+      "price": "¥55/月",
+      "traffic": "240 GB/月",
+      "speed": "多重跳板专线"
+    }
+  ],
+  "bestFor": [
+    "注重出海传输隐私隔离",
+    "商务敏感数据传输"
+  ],
+  "notFor": [
+    "追求极致性价比与低价娱乐刷剧人群"
+  ],
+  "pros": [
+    "强调隐私不保留日志",
+    "多跳安全出口可选"
+  ],
+  "cons": [
+    "起步价偏高"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "排名靠后展示，数据为历史安全记录归档。"
+}

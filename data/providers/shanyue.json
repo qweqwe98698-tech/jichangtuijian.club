@@ -1,0 +1,87 @@
+{
+  "id": "shanyue",
+  "name": "闪跃",
+  "slug": "shanyue",
+  "tagline": "24元150GB 充足配额 · 大带宽出口 · 极速连通",
+  "establishedYear": 2023,
+  "officialUrl": "https://vip02.flashleapaff.com/#/?code=3lgzm9mm",
+  "couponCode": "shanyue",
+  "discount": "官方优惠码",
+  "pricing": {
+    "monthlyStarting": 24,
+    "currency": "¥",
+    "billingCycle": "24 元/月，150GB 起"
+  },
+  "paymentMethods": [
+    "支付宝",
+    "微信支付",
+    "USDT"
+  ],
+  "routes": [
+    "大带宽 BGP 专线",
+    "多点接入中转"
+  ],
+  "protocols": [
+    "Shadowsocks"
+  ],
+  "clients": [
+    "Clash Verge",
+    "Shadowrocket",
+    "v2rayN"
+  ],
+  "regions": [
+    "香港",
+    "日本",
+    "台湾",
+    "新加坡",
+    "美国"
+  ],
+  "streamingSupport": {
+    "netflix": "支持解锁",
+    "disney": "支持解锁",
+    "youtube4k": "4K 秒开"
+  },
+  "aiSupport": {
+    "chatgpt": "稳定支持",
+    "claude": "支持",
+    "gemini": "支持"
+  },
+  "testData": {
+    "sla": "99.88%",
+    "averageLatency": "28ms",
+    "peakSpeed": "680 Mbps",
+    "packetLoss": "< 0.1%"
+  },
+  "plans": [
+    {
+      "name": "闪跃畅享月付",
+      "price": "¥24/月",
+      "traffic": "150 GB/月",
+      "speed": "大带宽 BGP 专线"
+    },
+    {
+      "name": "闪跃豪华月付",
+      "price": "¥48/月",
+      "traffic": "350 GB/月",
+      "speed": "千兆专线"
+    }
+  ],
+  "bestFor": [
+    "日常视频重度用户",
+    "需要充裕月流量保障"
+  ],
+  "notFor": [
+    "10元以下轻量需求"
+  ],
+  "pros": [
+    "150GB 充足月度配额",
+    "连通性稳定"
+  ],
+  "cons": [
+    "最低套餐从 24 元起步，单价稍高"
+  ],
+  "runawayRisk": "低",
+  "lastVerified": "2026-10-19",
+  "verificationStatus": "vendor",
+  "vendorNotes": "品牌资料显示 24元150GB 主打大流量与专线出口，建议首选月付。"
+}

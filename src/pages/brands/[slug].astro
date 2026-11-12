@@ -20,6 +20,20 @@ export interface Props {
 
 const { provider } = Astro.props;
 
+// Dynamically calculate rating based on verified test metrics (SLA, latency, measured evidence)
+const slaNum = parseFloat(provider.testData.sla) || 99.0;
+const latencyNum = parseFloat(provider.testData.averageLatency) || 50;
+let dynamicRating = 4.6;
+if (provider.verificationStatus === 'verified' && slaNum >= 99.9 && latencyNum <= 25) {
+  dynamicRating = 4.9;
+} else if (provider.verificationStatus === 'verified' && slaNum >= 99.85 && latencyNum <= 32) {
+  dynamicRating = 4.8;
+} else if (slaNum >= 99.7) {
+  dynamicRating = 4.7;
+} else {
+  dynamicRating = 4.6;
+}
+
 const brandFaqs = [
   {
     question: `${provider.name} 支持哪些客户端协议和设备？`,
@@ -32,6 +46,10 @@ const brandFaqs = [
   {
     question: `${provider.name} 在 AI 工具与流媒体解锁上的实测表现如何？`,
     answer: `在【机场推荐 Club 评测实验室】实测中，${provider.name} 对 ChatGPT 的支持状态为【${provider.aiSupport.chatgpt}】，Claude 支持为【${provider.aiSupport.claude}】，Netflix 流媒体支持为【${provider.streamingSupport.netflix}】。建议首选月付测试本地连通性。`,
+  },
+  {
+    question: `如何防范 ${provider.name} 误入山寨钓鱼网站？`,
+    answer: `建议通过本站评测报告中归档的【官方核验正版入口】直达官网控制台，并在个人浏览器中建立书签。切勿轻信搜索推广中的仿冒镜像域名。`,
   },
 ];
 
@@ -60,27 +78,43 @@ const productReviewSchema = {
     },
     reviewRating: {
       '@type': 'Rating',
-      ratingValue: '4.8',
+      ratingValue: dynamicRating.toString(),
       bestRating: '5',
     },
-    reviewBody: `${provider.name} 经实测验证：晚高峰 SLA 可用性为 ${provider.testData.sla}，平均时延 ${provider.testData.averageLatency}，峰值吞吐达到 ${provider.testData.peakSpeed}。`,
+    reviewBody: `${provider.name} 经实测验证：晚高峰 SLA 可用性为 ${provider.testData.sla}，平均时延 ${provider.testData.averageLatency}，峰值吞吐达到 ${provider.testData.peakSpeed}，综合评测评分 ${dynamicRating} 分。`,
   },
 };
 
-// Differentiate Title and Description dynamically
-const routeFeature = provider.routes.join(' · ');
-const pageTitle = provider.pricing.monthlyStarting <= 12
-  ? `${provider.name}怎么样？2026平价月付评测、真实测速图与套餐解析`
-  : `${provider.name}深度评测：2026 ${routeFeature}实测与选型指南`;
+// Differentiate Title and Description dynamically for high CTR & search intent matching
+const couponNotice = provider.couponCode ? `优惠码【${provider.couponCode}】` : '正版官网直达';
+const routePrimary = provider.routes[0] || '稳定专线';
+const pageTitle = `${provider.name}官网入口与2026最新评测：${provider.pricing.billingCycle ? provider.pricing.billingCycle.split('，')[0] : `${provider.pricing.monthlyStarting}元起`}、${couponNotice}与测速防坑指南`;
 
-const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provider.testData.sla}、平均延迟 ${provider.testData.averageLatency}、最高下行 ${provider.testData.peakSpeed}。包含 ${provider.plans.length} 档套餐规格、流媒体/AI 解锁能力与防坑实测凭证。`;
+const pageDesc = `【官方核验】2026 ${provider.name}官网正版入口与最新深度评测。晚高峰实测 SLA ${provider.testData.sla}、平均延迟 ${provider.testData.averageLatency}、最高下行 ${provider.testData.peakSpeed}。提供${provider.couponCode ? `专属优惠码【${provider.couponCode}】、` : ''}${provider.plans.length} 档套餐规格、节点测速实测原图、AI/流媒体解锁与防坑避雷指南。`;
+
+// Dynamic Section H2 Titles for DOM outline de-fingerprinting
+const sec1Title = provider.verificationStatus === 'verified'
+  ? `一、${provider.name} 订阅规格与套餐资费明细`
+  : `一、${provider.name} 资费档案与规格梯度分析`;
+
+const sec2Title = provider.measuredEvidence
+  ? `二、${provider.name} 实验室实测节点下行与晚高峰稳定性图谱`
+  : `二、${provider.name} 网络基准参数与官方 SLA 指标公示`;
+
+const sec3Title = provider.unlockEvidence && provider.unlockEvidence.length > 0
+  ? `三、${provider.name} AI 生产力与主流流媒体全量解锁实测`
+  : `三、${provider.name} 严苛风控平台与多媒体服务兼容性矩阵`;
+
+const sec4Title = provider.routes.some(r => r.includes('IEPL') || r.includes('IPLC'))
+  ? `四、${provider.name} 骨干专线传输链路与现代协议架构`
+  : `四、${provider.name} 传输路由拓扑与客户端适配清单`;
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDesc}
   pubDate="2026-08-16"
-  updatedDate="2026-08-17"
+  updatedDate="2026-10-19"
   schema={productReviewSchema}
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -89,12 +123,22 @@ const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provid
     <!-- Brand Header -->
     <header class="mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-3">
-        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>已核验服务商 (Verified & Measured)</span>
-        </span>
+        {provider.verificationStatus === 'verified' ? (
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>已核验服务商 (Verified & Measured)</span>
+          </span>
+        ) : (
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 border border-sky-500/30 text-sky-400 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+            <span>官方公示与历史数据归档</span>
+          </span>
+        )}
         <span class="px-2.5 py-0.5 rounded text-xs bg-slate-800 text-slate-300 border border-white/5">
           成立年份：{provider.establishedYear} 年
+        </span>
+        <span class="px-2.5 py-0.5 rounded text-xs bg-amber-500/10 text-amber-300 border border-amber-500/20 font-mono">
+          综合实测指数：{dynamicRating} / 5.0
         </span>
         <span class="text-xs text-slate-400">核验更新：{provider.lastVerified}</span>
       </div>
@@ -108,20 +152,28 @@ const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provid
     <!-- Quick Decision Answer Box (GEO Engine) -->
     <QuickAnswer
       answerType="decision"
-      summary={`${provider.name} 经过实测与资料核验，SLA 可用性维持在 ${provider.testData.sla}，平均延迟约 ${provider.testData.averageLatency}。起步价格仅为 ${provider.pricing.monthlyStarting} 元/月，特别适合 ${provider.bestFor.join('、')} 等场景。`}
+      summary={`${provider.name} 经过实测与资料核验，综合评测指数达到 ${dynamicRating} 分。晚高峰 SLA 可用性维持在 ${provider.testData.sla}，平均延迟约 ${provider.testData.averageLatency}。起步价格仅为 ${provider.pricing.monthlyStarting} 元/月，特别适合 ${provider.bestFor.join('、')} 等场景。`}
       points={[
         `起步价格：${provider.pricing.billingCycle || `${provider.pricing.monthlyStarting} 元/月`}`,
         `专属优惠：${provider.couponCode ? `优惠码【${provider.couponCode}】(${provider.discount})` : '按官方最新优惠直达'}`,
         `线路协议：${provider.routes.join(' · ')} (${provider.protocols.join('/')})`,
-        `实测凭证：已归档 2026-08-11 完整节点单线测速图谱`,
+        `实测凭证：${provider.measuredEvidence ? '已归档完整单线测速图谱' : '已收录官方基准与历史网络指标'}`,
       ]}
     />
+
+    <!-- Vendor Transparent Note if present -->
+    {provider.vendorNotes && (
+      <div class="my-6 p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200 flex items-start gap-2.5">
+        <span class="text-amber-400 font-bold shrink-0">⚠️ 评测声明：</span>
+        <span class="text-amber-300/90 leading-relaxed">{provider.vendorNotes}</span>
+      </div>
+    )}
 
     <!-- Quick CTA & Coupon Banner -->
     <div class="my-8 p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 border border-cyan-500/30 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-5">
       <div class="space-y-1 text-center sm:text-left">
         <div class="flex items-center justify-center sm:justify-start gap-2">
-          <h2 class="text-base font-bold text-white">前往 {provider.name} 官方网站</h2>
+          <span class="text-base font-bold text-white">直达 {provider.name} 官方控制台</span>
           {provider.discount && (
             <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
               {provider.discount}
@@ -134,6 +186,9 @@ const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provid
           ) : (
             <span>官方正品入口，动态镜像同步更新，防误入山寨钓鱼网站</span>
           )}
+        </p>
+        <p class="text-[11px] text-slate-400">
+          含推广合作链接，通过链接注册可能为本站带来评测维护支持，不影响用户支付价格。
         </p>
       </div>
 
@@ -157,9 +212,9 @@ const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provid
       
       <!-- Section 1: Pricing & Plans -->
       <section>
-        <h2>一、{provider.name} 套餐规划与资费标准</h2>
+        <h2>{sec1Title}</h2>
         <p>
-          {provider.name} 的定价模式具有明显的梯度划分，支持按月灵活订购或按年优惠订阅。以下为其核心主力套餐的资费与规格明细：
+          {provider.name} 的定价模式具有清晰的梯度划分，支持按月灵活订购或按年优惠订阅。以下为其主力套餐的资费与规格明细：
         </p>
         
         <div class="overflow-x-auto my-4">
@@ -192,7 +247,7 @@ const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provid
       </section>
 
       <!-- Section 2: Real Speedtest Evidence & Measured Telemetry -->
-      {provider.measuredEvidence && (
+      {provider.measuredEvidence ? (
         <section class="p-6 rounded-2xl bg-slate-900/80 border border-cyan-500/30 shadow-2xl space-y-5">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/10">
             <div>
@@ -200,7 +255,7 @@ const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provid
                 MEASURED EVIDENCE // 实测凭证归档
               </span>
               <h2 class="text-xl font-bold text-white m-0">
-                二、{provider.name} 真实节点测速报告图
+                {sec2Title}
               </h2>
             </div>
             <span class="px-2.5 py-1 rounded bg-slate-950 text-slate-300 text-xs font-mono border border-white/5">
@@ -251,15 +306,54 @@ const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provid
               <span class="text-[11px] font-mono text-slate-400">硬件环境：Mihomo v1.18.8 / 上海电信千兆</span>
             </div>
             <p class="text-[11px] text-slate-400 leading-relaxed m-0">
-              上述测速数据由【机场推荐 Club 评测实验室】在 2026-08-11 晚高峰（20:00-23:00）通过上海电信 1000M 宽带与广州移动 500M 专线双路实地采集。实测图谱真实反映对应时刻的吞吐上限。评测结论严格区分物理实测事实与中立选型建议。
+              上述测速数据由【机场推荐 Club 评测实验室】在晚高峰（20:00-23:00）通过上海电信 1000M 宽带与广州移动 500M 专线双路实地采集。实测图谱真实反映对应时刻的吞吐上限。评测结论严格区分物理实测事实与中立选型建议。
             </p>
+          </div>
+        </section>
+      ) : (
+        <section class="p-6 rounded-2xl bg-slate-900/60 border border-white/10 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/10">
+            <div>
+              <span class="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
+                TELEMETRY BENCHMARK // 网络性能基准数据公示
+              </span>
+              <h2 class="text-xl font-bold text-white m-0">
+                {sec2Title}
+              </h2>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-300 text-xs font-mono border border-amber-500/20">
+              官方数据与历史归档
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+            <div class="p-3 rounded-lg bg-slate-950/70 border border-white/5">
+              <span class="text-slate-400 text-[10px] block">晚高峰 SLA 可用性</span>
+              <span class="text-emerald-400 font-bold text-sm">{provider.testData.sla}</span>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/70 border border-white/5">
+              <span class="text-slate-400 text-[10px] block">平均往返延迟</span>
+              <span class="text-cyan-400 font-bold text-sm">{provider.testData.averageLatency}</span>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/70 border border-white/5">
+              <span class="text-slate-400 text-[10px] block">实测峰值带宽</span>
+              <span class="text-slate-200 font-bold text-sm">{provider.testData.peakSpeed}</span>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/70 border border-white/5">
+              <span class="text-slate-400 text-[10px] block">平均丢包率</span>
+              <span class="text-emerald-400 font-bold text-sm">{provider.testData.packetLoss}</span>
+            </div>
+          </div>
+
+          <div class="p-3.5 rounded-lg bg-slate-950/60 border border-white/5 text-[11px] text-slate-400 leading-relaxed">
+            ℹ️ 【客观声明】：当前展示数据基于服务商官方白皮书与历史测速归档。实验室独立第三方全节点跑图复测队列正在排期中，建议首次订购优先选择月付方案以验证您本地网络实际连通质量。
           </div>
         </section>
       )}
 
       <!-- Section 3: Service Availability & AI / Streaming Matrix -->
       <section>
-        <h2>三、AI 工具与流媒体解锁能力矩阵</h2>
+        <h2>{sec3Title}</h2>
         <p>
           针对 OpenAI ChatGPT、Anthropic Claude、Netflix 等严苛风控平台的解锁能力分析：
         </p>
@@ -280,9 +374,60 @@ const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provid
         </div>
       </section>
 
+      <!-- Section 3.5: Unlock Evidence Screenshots Gallery (If Available) -->
+      {provider.unlockEvidence && provider.unlockEvidence.length > 0 && (
+        <section class="p-6 rounded-2xl bg-slate-900/80 border border-emerald-500/30 shadow-2xl space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/10">
+            <div>
+              <span class="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider block">
+                UNLOCKED TELEMETRY EVIDENCE // 流媒体与 AI 解锁实测凭证图谱
+              </span>
+              <h3 class="text-xl font-bold text-white m-0">
+                {provider.name} 真实流媒体与 AI 解锁测试图谱
+              </h3>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-slate-950 text-emerald-300 text-xs font-mono border border-emerald-500/20">
+              共归档 {provider.unlockEvidence.length} 张实测证据原图
+            </span>
+          </div>
+
+          <p class="text-xs text-slate-300">
+            以下截图为【评测实验室】实地抓取核验的解锁证据原图，证实 {provider.name} 节点的真实原生落地与流媒体/AI 访问状态：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {provider.unlockEvidence.map((item, idx) => (
+              <div class="rounded-xl overflow-hidden border border-white/10 bg-slate-950 space-y-2 group">
+                <div class="p-3 bg-slate-900/90 border-b border-white/5 flex items-center justify-between">
+                  <span class="text-xs font-bold text-white">{item.title}</span>
+                  <span class="text-[10px] font-mono text-slate-400">证据 #{idx + 1}</span>
+                </div>
+                <div class="p-2">
+                  <img
+                    src={item.file}
+                    alt={`${provider.name} ${item.title}`}
+                    class="w-full h-auto max-h-[420px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01]"
+                    loading="lazy"
+                  />
+                </div>
+                {item.platforms && (
+                  <div class="p-3 pt-0 flex flex-wrap gap-1.5">
+                    {item.platforms.map((p) => (
+                      <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        ✓ {p}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       <!-- Section 4: Architecture Topology -->
       <section>
-        <h2>四、{provider.name} 骨干传输链路与协议架构</h2>
+        <h2>{sec4Title}</h2>
         <p class="text-sm text-slate-300 mb-4">
           根据实测与网络路由分析，{provider.name} 主要采用 {provider.routes.join(' 与 ')} 进行跨境流量调度，核心协议支持 {provider.protocols.join('、')}。
         </p>
@@ -310,7 +455,7 @@ const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provid
 
       <!-- Section 5: Pros & Cons -->
       <section>
-        <h2>五、核心优缺点综合分析</h2>
+        <h2>五、{provider.name} 核心优势与局限性客观总结</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
           <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20">
             <h3 class="text-sm font-bold text-emerald-400 mb-2">✓ 核心优势</h3>
@@ -334,7 +479,7 @@ const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provid
 
       <!-- Section 6: Target Audience -->
       <section>
-        <h2>六、适合人群与不适合人群</h2>
+        <h2>六、目标适用场景与不推荐人群画像</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
           <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5">
             <h3 class="text-xs font-bold text-cyan-300 mb-2 uppercase">🎯 最适合的人群</h3>
@@ -355,10 +500,44 @@ const pageDesc = `${provider.name} 2026 技术评测报告。实测 SLA ${provid
         </div>
       </section>
 
+      <!-- Section 7: Contextual Cross-Links & Ecosystem -->
+      <section class="p-6 rounded-2xl bg-slate-900/40 border border-white/5 space-y-4">
+        <h2>七、同梯位服务商对比与关联客户端教程</h2>
+        <p class="text-xs text-slate-300 m-0">
+          如果您还在对比其他服务商，或者需要下载客户端与配置节点，可参考评测实验室的相关专题：
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-2 text-xs">
+          <a href="/airport-ranking/" class="p-3 rounded-xl bg-slate-950/70 border border-white/5 hover:border-cyan-500/30 hover:text-cyan-300 transition-all flex flex-col justify-between">
+            <span class="font-semibold text-white">🏆 2026 机场排行榜</span>
+            <span class="text-[11px] text-slate-400 mt-1">查看 42 家全量测速天梯排位</span>
+          </a>
+          <a href="/stable-airport/" class="p-3 rounded-xl bg-slate-950/70 border border-white/5 hover:border-cyan-500/30 hover:text-cyan-300 transition-all flex flex-col justify-between">
+            <span class="font-semibold text-white">⚡ 晚高峰稳定专线推荐</span>
+            <span class="text-[11px] text-slate-400 mt-1">0 丢包深港/沪日物理专线</span>
+          </a>
+          <a href="/shadowrocket-airport/" class="p-3 rounded-xl bg-slate-950/70 border border-white/5 hover:border-cyan-500/30 hover:text-cyan-300 transition-all flex flex-col justify-between">
+            <span class="font-semibold text-white">🚀 小火箭节点与机场</span>
+            <span class="text-[11px] text-slate-400 mt-1">iOS 低耗电一键扫码导入</span>
+          </a>
+          <a href="/apple-id/" class="p-3 rounded-xl bg-slate-950/70 border border-emerald-500/20 hover:border-emerald-500/40 text-emerald-300 transition-all flex flex-col justify-between">
+            <span class="font-semibold text-white">🍎 小火箭共享 ID 账号</span>
+            <span class="text-[11px] text-slate-400 mt-1">美区 Apple ID 每日免费共享</span>
+          </a>
+          <a href="/free-nodes/" class="p-3 rounded-xl bg-slate-950/70 border border-emerald-500/20 hover:border-emerald-500/40 text-emerald-300 transition-all flex flex-col justify-between">
+            <span class="font-semibold text-white">⚡ 每日免费节点订阅池</span>
+            <span class="text-[11px] text-slate-400 mt-1">Clash / 小火箭应急备用</span>
+          </a>
+          <a href="/tutorial/clash-verge/" class="p-3 rounded-xl bg-slate-950/70 border border-white/5 hover:border-cyan-500/30 hover:text-cyan-300 transition-all flex flex-col justify-between">
+            <span class="font-semibold text-white">💻 Clash Verge 配置教程</span>
+            <span class="text-[11px] text-slate-400 mt-1">Windows/Mac TUN 模式配置</span>
+          </a>
+        </div>
+      </section>
+
     </article>
 
     <!-- FAQ Accordion -->
-    <FAQ items={brandFaqs} title={`${provider.name} 常见问题解答`} />
+    <FAQ items={brandFaqs} title={`${provider.name} 用户高频常见问题解答 (FAQ)`} />
 
     <!-- Level 3 CTA NextStep -->
     <NextStep
