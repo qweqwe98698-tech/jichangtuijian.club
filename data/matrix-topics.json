@@ -289,7 +289,9 @@
     "pillar": "/dedicated-line-airport/",
     "commercialLevel": "level3",
     "nextStep": "查看配备优质骨干出口的服务商实测数据",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-11-17",
+    "wordCount": 5745
   },
   {
     "id": "matrix-015",
