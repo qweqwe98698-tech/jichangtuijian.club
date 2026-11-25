@@ -331,7 +331,9 @@
     "pillar": "/troubleshooting/clash/",
     "commercialLevel": "level2",
     "nextStep": "查看 2026 稳定节点选型与客户端配置指南",
-    "status": "pending"
+    "status": "published",
+    "publishedDate": "2026-11-25",
+    "wordCount": 5342
   },
   {
     "id": "matrix-017",
